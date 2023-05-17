@@ -1,4 +1,4 @@
-import { login } from "./services/fetchAuthServices.js";
+import { login } from "../services/fetchAuthServices.js";
 
 const Redirect = () => 
 {
@@ -13,7 +13,7 @@ document.addEventListener("submit", function(e)
 
     const {target} = e;
 
-    if(target.matches("#loginForm")) {
+    if(target.matches("#login__form")) {
 
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value;
@@ -23,6 +23,6 @@ document.addEventListener("submit", function(e)
             password: password
         }
 
-        login(auth, Redirect);
+        login(auth);
     }
 })

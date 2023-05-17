@@ -1,6 +1,6 @@
 let urlBase = 'https://localhost:7017/api/v1/Auth/login';
 
-export const login = (request, callback) => {
+export const login = async (request) => {
 
     fetch(urlBase,{
         method: "POST",
@@ -13,9 +13,9 @@ export const login = (request, callback) => {
         if(httpResponse.ok)
             return httpResponse.json();
     })
-    .then(body => {
-        callback(body);
-        console.log(body);
-        localStorage.setItem("token", body.result);
+    .then(json => {
+        localStorage.setItem("token", json.token);
+        console.log(json);
+        callback(json);  
     })
 }
