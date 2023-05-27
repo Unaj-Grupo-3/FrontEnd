@@ -1,21 +1,25 @@
 import { GetMyUser } from "../services/fetchUserServices.js";
 import { UserMiniComponent } from "../components/userMini.js";
 
-let userInfo;
 
-const RenderUser = (data) =>
+let image = "";
+let userInfo = document.getElementById("user__info");
+
+const RenderUser = async () =>
 {
-    let image = data.image;
-    let name = data.name;
-    let te = data.birthday.indexOf('T');
-    let birthday = data.birthday(0, te);
+    let user = await GetMyUser();
 
-    userInfo.innerHtml += UserMiniComponent(image, name, birthday);
+    if( typeof user.image === 'undefined'){
+        image = "http://127.0.0.1:5501/img/user-default.png";
+    }
+    else{
+        image = user.image[0];
+    }
+
+    console.log(user);
+    userInfo.innerHTML += UserMiniComponent(image, user.name, user.birthday);
 }
 
 
-export const UserPageRender = () =>
-{
-    console.log("UserPageRender");
-    GetMyUser(RenderUser);
-}
+window.onload = RenderUser;
+
