@@ -17,22 +17,30 @@
 
 /* Body */
 body {
+	margin: 0;
+	padding: 0;
 	background-color: var(--gris-claro);
-	color:black;
-	max-width: 1920px;
-	max-height: 1080px;
+	color:white;
+	height: 100vh;
+	width: 100vw;
 }
 
 /* Flex container */
 .flex-container {
 	display: flex;
 	flex-direction: row;
+	height: 100%;
+	width: 100%;
+}
+
+.title{
+	color: var(--violeta);
 }
 
 /* Section Info */
 #section__info {
-	max-width: 960px;
-	height: 1080px;
+	width: 40%;
+	height: 100%;
 	background-color: var(--violeta);
 }
 
@@ -56,18 +64,19 @@ body {
 
 /* Section Login */
 #section__login {
+	width: 60%;
 	text-align: center;
 	align-items: center;
+	background-color: white;
 }
 
 #login__content {
-	width: 960px;
-	height: 1080px;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: var(--violeta);
+	/* background-color: var(--violeta); */
 }
 
 #login__form {
@@ -109,9 +118,11 @@ input {
 	width: 60%;
 	margin: 2vw;
 	border-radius: 25px;
-	border: 2px solid black;
+	border: 2px solid var(--violeta);
+	color: white;
 	transition-duration: 0.4s;
 	font-size: 18px;
+	cursor: pointer;
 }
 
 #form__content #btn button:hover {
