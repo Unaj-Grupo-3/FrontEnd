@@ -1,29 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
 
-  <head>
+  	<head>
 		<meta charset="UTF-8"> 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Pagina principal del usuario</title>
 		<link rel="stylesheet" href="../css/userPageStyle.css">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 	</head>
 
 	<body>
 
 		<header>
 			<h1>App de citas</h1>
+			<nav></nav>
 		</header>
 
 	  <main>
 
-			<section id="user">
-				<div id="user__info">
+			<nav class="nav__lateral">
+				<p>lateral</p>
+			</nav>
 
+			<section class="user__photos">
+
+				<div class="drag__container" id="drag_id_1">
+					<img src="http://127.0.0.1:5501/img/user-default.png" draggable="true" class="drag__img" id="img__1" alt="Foto de usuario">
 				</div>
-				
 
-				<a href="EditUserPage.html">Icono para editar usuario</a>
+				<div class="drag__container" id="drag_id_2">
+					<img src="http://127.0.0.1:5501/img/user-default.png" draggable="true" class="drag__img" id="img__2" alt="Foto de usuario">
+				</div>
+
+				<div class="drag__container" id="drag_id_3">
+					<img src="http://127.0.0.1:5501/img/user-default.png" draggable="true" class="drag__img" id="img__3" alt="Foto de usuario">
+				</div>
+
+				<div class="drag__container" id="drag_id_4">
+					
+				</div>
+
+				<div class="drag__container" id="drag_id_5">
+					<img src="http://127.0.0.1:5501/img/pareja.jpg" draggable="true" class="drag__img" id="img__7" alt="Foto de usuario">
+				</div>
+
+				<div class="drag__container" id="drag_id_6">
+					<img src="http://127.0.0.1:5501/img/pareja.jpg" draggable="true" class="drag__img" id="img__8" alt="Foto de usuario">
+				</div>
+
+				<div class="drag__container" id="drag_id_7">
+					<img src="http://127.0.0.1:5501/img/pareja.jpg" draggable="true" class="drag__img" id="img__9" alt="Foto de usuario">
+				</div>
+
+				<div class="drag__container">
+					<button>+</button>
+				</div>
+
+				<div>
+					<p></p>
+				</div>
+
+				<div>
+					<p></p>
+				</div>
+
+				<div>
+					<p></p>
+				</div>
+
+				<button>Guardar</button>
+
+			</section>
+
+			<section class="user__info">
+
 			</section>
 
 		</main>	
@@ -33,7 +84,7 @@
 		</nav>
 
 		<footer>
-
+			<p> Página diseñada por ExpressoDeLas10 </p>
 		</footer>
 
 		<script type="module" src="../js/container/userPage.js"></script>

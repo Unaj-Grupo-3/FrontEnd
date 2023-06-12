@@ -1,0 +1,103 @@
+/* Colores */
+:root {
+    --violeta: #885FFF;
+    --violeta-claro: rgb(135, 94, 255, 0.6);
+    --violeta-rojizo: #9747FF;
+    --bordo: #9B12A7;
+    --rosa: #d23bdf;
+    --negro-mate: #282728;
+    --violeta-oscuro: #280D4A;
+    --blanco-rosa: #FDF9FF;
+    --pop: 'Poppins', sans-serif;
+}
+
+/* Estilos generales */
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+    font-family: var(--pop);
+}
+
+/* BODY */
+
+/* MAIN */
+
+body {
+    width: 1903px;
+}
+
+header {
+    height: 58px;
+    background-color: var(--violeta);
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav__lateral {
+    width: 150px;
+    background-color: var(--violeta);
+}
+
+/* SECTION: USER PHOTOS */
+
+.user__photos {
+    background-color: var(--violeta-claro);
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    /*width: 1332px;*/
+    width: 70%;
+    height: 850px;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+.drag__container {
+    width: 206px;
+    height: 250px;
+    background-color: var(--blanco-rosa);
+    border: 2px dashed black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drag__img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* SECTION: USER INFO */
+
+.user__info {
+    background-color: var(--blanco-rosa);
+    /*width: 571px;*/
+    width: 30%;
+    color: var(--violeta-oscuro);
+    display: grid;
+    grid-template-columns: auto;
+}
+
+#title__name {
+    text-align: center;
+}
+
+.info__div {
+    padding: 0 0 0 20px;
+}
+
+#user__info__input {
+    background-color: aquamarine;
+
+}
+
+/* Footer */
+footer {
+    background-color: var(--negro-mate);
+    color: white;
+}
