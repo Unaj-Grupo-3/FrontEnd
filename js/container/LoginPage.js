@@ -2,7 +2,7 @@ import { login } from "../services/fetchAuthServices.js";
 
 const Redirect = () => 
 {
-    console.log("Inicio de sesión exitoso");
+    window.location.href = "http://127.0.0.1:5501/views/homepage.html";
 }
 
 
@@ -34,6 +34,9 @@ document.addEventListener("submit", async function(e)
             msj.style.color = "#41BC02";
             msj.style.display = 'block';
             localStorage.setItem("token", resp.token);
+            setTimeout(() => {
+                Redirect();
+            }, 1000);
         }
     }
 })
