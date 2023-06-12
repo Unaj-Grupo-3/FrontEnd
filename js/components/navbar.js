@@ -11,12 +11,12 @@ export const Navbar = (userPhoto) =>
         <div class="l-navbar" id="nav-bar">
           <nav class="nav">
             <div>
-              <a href="#" class="nav_logo">
+              <a href="http://127.0.0.1:5501/views/homepage.html" class="nav_logo">
                 <img src="\\img\\globo-blanco.png" alt="Logo" class="logo-citas" />
                 <span class="nav_logo-name">CitasApp</span>
               </a>
               <div class="nav_list">
-                <a href="#" class="nav_link active">
+                <a href="http://127.0.0.1:5501/views/UserPage.html" class="nav_link active">
                     <i class="bi bi-person-circle"></i>
                   <span class="nav_name">Perfil</span>
                 </a>
