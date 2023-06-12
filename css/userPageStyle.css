@@ -15,43 +15,35 @@
 *{
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
-    font-family: var(--pop);
 }
 
 /* BODY */
 
-/* MAIN */
-
 body {
+    width: 100vw;
     height: 100vh;
-	width: 100vw;
+    background-color: var(--violeta-claro);
 }
 
-header {
-    height: 58px;
-    background-color: var(--violeta);
-}
+/* MAIN */
 
 main {
     display: flex;
     flex-direction: row;
 }
 
-.nav__lateral {
-    width: 150px;
-    background-color: var(--violeta);
+#user_page_main {
+    margin: 0;
+	padding: 0;
 }
 
 /* SECTION: USER PHOTOS */
 
 .user__photos {
-    background-color: var(--violeta-claro);
     display: grid;
     grid-template-columns: auto auto auto auto;
-    /*width: 1332px;*/
     width: 70%;
-    height: 850px;
+    height: 100%;
     justify-content: space-around;
     align-content: space-around;
 }
@@ -77,11 +69,11 @@ main {
 
 .user__info {
     background-color: var(--blanco-rosa);
-    /*width: 571px;*/
     width: 30%;
     color: var(--violeta-oscuro);
     display: grid;
     grid-template-columns: auto;
+    font-family: var(--pop);
 }
 
 #title__name {
@@ -90,11 +82,6 @@ main {
 
 .info__div {
     padding: 0 0 0 20px;
-}
-
-#user__info__input {
-    background-color: aquamarine;
-
 }
 
 /* Footer */
