@@ -28,7 +28,7 @@ export const Navbar = (userPhoto) =>
                     <i class="bi bi-cup-hot"></i>
                   <span class="nav_name">Citas</span>
                 </a>
-                <a href="#" class="nav_link">
+                <a href="../../views/Chat.html" class="nav_link">
                     <i class="bi bi-chat-right-text"></i>
                   <span class="nav_name">Chats</span>
                 </a>

@@ -1,7 +1,6 @@
 import { renderChats } from "../components/chats.js";
 import { ObtenerChats, scrollToBottom } from "../services/fetchChatServices.js";
 
-
 var connection;
 
 export async  function addEventListenerHub(){
@@ -133,7 +132,6 @@ export async  function addEventListenerHub(){
         ObtenerChats(renderChats);
     });
 }
-
 
 export function enviarMensaje() {
     var message = document.getElementById("txt-Message").value;
