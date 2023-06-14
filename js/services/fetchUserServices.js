@@ -4,7 +4,7 @@ let urlBase = 'https://localhost:7020/api/v1';
 export const GetMyUser = async () =>
 {
     let result;
-    let response = await fetch(`${urlBase}/User/me`, {
+    let response = await fetch(`${urlBase}/User/true`, {
         method: "GET",
         headers:{
             "Content-Type": "application/json",
