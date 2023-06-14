@@ -40,4 +40,5 @@ export const Navbar = (userPhoto) =>
             </a>
           </nav>
         </div>
+
 `

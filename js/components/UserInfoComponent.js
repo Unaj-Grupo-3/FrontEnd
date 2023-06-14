@@ -13,7 +13,7 @@ export const UserInfoComponent = (name, mail, description) =>
 
 <div class="info__div">
     <h3>Sobre mi...</h3>
-    <input type="text" id="user__input" value="${description} ">
+    <textarea id="user__input" maxlength="255" rows="4" cols="25">${description}</textarea>
 </div>
 
 <div class="info__div">
