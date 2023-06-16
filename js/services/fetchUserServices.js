@@ -18,3 +18,22 @@ export const GetMyUser = async () =>
     
     return result;
 }
+
+export const ChangePhotoOrd = async (request) => 
+{
+    let result;
+    let response = await fetch(`${urlBase}/User`, {
+        method: "PUT",
+        headers:{
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        body: JSON.stringify(request)
+    })
+
+    if(response.ok){
+        result = await response.json();
+    }
+    
+    return result;
+}
