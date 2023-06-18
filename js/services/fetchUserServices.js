@@ -37,3 +37,31 @@ export const ChangePhotoOrd = async (request) =>
     
     return result;
 }
+
+export const UploadPhoto = async (data) =>
+{
+    let result;
+    let response = await fetch(`${urlBase}/Photo`, {
+        method: "POST",
+        headers:{
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        body: data
+    })
+
+    result = await response.json();
+
+    if(response.ok && response.status == 201){
+        return result;
+    }
+    else{
+        if(result.imagen == "No se pueden agregar mas fotos") {
+            console.log("No se puede agregar mas fotos");
+            return -1;
+        }   
+        result == null;
+
+        return result;
+    }
+    
+}
