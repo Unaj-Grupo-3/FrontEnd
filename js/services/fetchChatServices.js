@@ -1,156 +1,146 @@
-import { leerMensajes } from "../container/connectionHub.js";
+import { blockChat } from "../components/chats.js";
+import { newMessage } from "../components/chats.js";
+import { message_left } from "../components/chats.js";
+import { message_right } from "../components/chats.js";
+import { headerFriend } from "../components/chats.js";
+import { readMessages } from "../container/connectionHub.js";
+
+export let currentChat = "";
+const JwtToken = localStorage.getItem("token");
 
 
-
-export const ObtenerChats = (callback)  => {
-    let dataResponse;
-    fetch('https://localhost:7165/api/v1/Chat/me', {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem("token")
-        }
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al obtener los chats');
-            }
-            return response.json();
-        })
-        .then(data => {
-           callback(data);
-        })
-        .catch(error => {
-            console.log(error.message);
+export async function renderChats() {
+    try {
+        const response = await fetch("https://localhost:7165/api/v1/Chat/me", {
+            method: "GET",
+            headers: { Authorization: `Bearer ${JwtToken}` }
         });
-
-        return dataResponse;
-}
-
-export const CargarMensajes = async (chatId,Index) => {
-    let newMessage = document.getElementById("divNewMessage")
-    if (newMessage) { newMessage.remove(); }
-    let divMensajes = document.getElementById("chat-messages");
-    divMensajes.innerHTML = '';
-    
-    let messagesToRead = [];
-    await fetch('https://localhost:7165/api/v1/Chat' + `?PageSize=10&PageIndex=${Index}&ChatId=${chatId}`, {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem("token")
+        if (response.ok) {
+            const data = await response.json();
+            const chatHeader = document.getElementById("chat-header1");
+            chatHeader.innerHTML = `<h3>${data.userMe.userName} ${data.userMe.lastName}</h3>`;
+            const chatList = document.getElementById("chats-friend");
+            chatList.innerHTML = "";
+            for (const chat of data.listChat) {
+                const chatItem = await blockChats(chat);
+                chatList.appendChild(chatItem);
+                if (chat.latestMessage && chat.latestMessage.fromUserId != data.userMe.userId &&
+                    !chat.latestMessage.isRead && currentChat.chatId != chat.chatId) {
+                    document.getElementById(`chat-simple-${chat.chatId}`).innerHTML += newMessage(chat.chatId);
+                }
+            }
+        } else {
+            throw new Error("Error obtaining chats");
         }
-    })
-        .then(response => response.json())
-        .then(async data => {             
-            let nombreUser = document.getElementById("chat-header2");
-            nombreUser.innerHTML=`
-                    <img src="${data.userFriend.images || '../../img/user-default.png'}" class="chat-img" title="a" />
-                    <h3 id="nombre-chat">${data.userFriend.userName} ${data.userFriend.lastName}</h3>
-            `;             
-            localStorage.removeItem("currentChat");
-            localStorage.setItem("currentChat", JSON.stringify(data));
-            for (let i = 0; i < data.messages.length; i++) {
-                let div = document.createElement("div");
-                if (data.userFriend.userId == data.messages[i].fromUserId) {
-                    div.innerHTML = `
-                    <div class="messages_simple_left">
-                        <img class="chat-messages" src="${data.userFriend.images ? data.userFriend.images : '../../img/user-default.png'}"/>
-                        <div class="div_messages">
-                            <p>${data.messages[i].content}</p>                
-                        </div>
-                    </div>
-                    `;
-                    if(!data.messages[i].isRead){
-                       messagesToRead.push(data.messages[i].id);
-                    }
-                }
-                else {
-                    div.innerHTML = `
-                    <div class="messages_simple_right">                                               
-                        <div class="div_messages"> 
-                            <p>${data.messages[i].content}</p>       
-                            <span id="message-id-${data.messages[i].id}" 
-                            class="material-symbols-outlined message-check-read message-check-read--${data.messages[i].isRead? `isRead` : `noRead` }"> done_all </span>             
-                        </div>
-                        <img class="chat-messages" src="${data.userMe.images ? data.userMe.images : '../../img/user-default.png'}"/>
-                    </div>
-                    `;
-                }
-                divMensajes.appendChild(div);
-                
-            }
-            scrollToBottom("chat-mensajes");
-
-            // Mostrar el chat una vez que se hayan cargado los mensajes
-            let currentChat = JSON.parse(localStorage.getItem("currentChat"));
-
-            if(data.messages.length < 10 && currentChat.pageIndex > 1)
-            {
-                await cargarMensajes2(currentChat.chatId,currentChat.pageIndex - 1,true);
-            }
-            if(messagesToRead.length > 0){
-                console.log("Envio lectura de mensajes");
-                console.log(messagesToRead);
-                await leerMensajes(currentChat.chatId, messagesToRead);
-
-            }
-        })
-        .catch(error => console.error(error));
+    } catch (error) {
+        console.error(error);
+    }
 }
 
-export async function cargarMensajes2(chatId,Index,flag) {
-    let divMensajes = document.getElementById("chat-messages");
-    let messagesToRead = [];
-    fetch('https://localhost:7165/api/v1/Chat' + `?PageSize=10&PageIndex=${Index}&ChatId=${chatId}`, {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem("token")
+async function renderMessages(chatId, Index) {
+    const newMessage = document.getElementById("divNewMessage");
+    if (newMessage) {
+        newMessage.remove();
+    }
+    try {
+        const API_BASE_URL = "https://localhost:7165/api/v1/Chat?";
+        const response = await fetch(`${API_BASE_URL}PageSize=10&PageIndex=${Index}&ChatId=${chatId}`, {
+            method: "GET",
+            headers: { Authorization: `Bearer ${JwtToken}` }
+        });
+        const data = await response.json();
+        const divMessages = document.getElementById("chat-body");
+        divMessages.innerHTML = "";
+        const nameUser = document.getElementById("chat-header2");
+        nameUser.innerHTML = headerFriend(data);
+        localStorage.removeItem("chat");
+        currentChat = data;
+        const messagesToRead = await DrawMessage_page(data, true);
+        if (data.messages.length < 10 && currentChat.pageIndex > 1) {
+            await paginatedMessages(currentChat.chatId, currentChat.pageIndex - 1, true);
         }
-    })
-        .then(response => response.json())
-        .then(async data => {       
-            localStorage.setItem("currentChat", JSON.stringify(data));
-            for (let i = data.messages.length-1; i >= 0; i--) {
-                let div = document.createElement("div");
-                if (data.userFriend.userId == data.messages[i].fromUserId) {
-                    div.innerHTML = `
-                    <div class="messages_simple_left">
-                        <img class="chat-messages" src="${data.userFriend.images ? data.userFriend.images : '../../img/user-default.png'}"/>
-                        <div class="div_messages">
-                            <p>${data.messages[i].content}</p>                
-                        </div>
-                    </div>
-                    `;
-                    if(!data.messages[i].isRead){
-                        messagesToRead.push(data.messages[i].id);
-                    }
-                }
-                else {
-                    div.innerHTML = `
-                    <div class="messages_simple_right">                                               
-                        <div class="div_messages">
-                            <p>${data.messages[i].content}</p>
-                            <span id="message-id-${data.messages[i].id}" class="material-symbols-outlined message-check-read message-check-read--${data.messages[i].isRead? `isRead` : `noRead` }"> done_all </span>                  
-                        </div>
-                        <img class="chat-messages" src="${data.userMe.images ? data.userMe.images : '../../img/user-default.png'}"/>
-                    </div>
-                    `;
-                }
-                divMensajes.prepend(div);
-                if(flag){
-                    scrollToBottom("chat-messages");
-                }
-            } 
-            if(messagesToRead.length > 0){
-                console.log("Envio lectura de mensajes");
-                let currentChat = JSON.parse(localStorage.getItem("currentChat"));
-                await leerMensajes(currentChat.chatId, messagesToRead);
-            }      
-            
-        })
-        .catch(error => console.error(error));
+        if (messagesToRead.length > 0) {
+            await readMessages(currentChat.chatId, messagesToRead);
+        }
+    } catch (error) {
+        console.error(error);
+    }
 }
 
-export function scrollToBottom() {
-    let div = document.getElementById("chat-messages");
+export async function paginatedMessages(chatId, pageIndex, flag) {
+    try {
+        const API_BASE_URL = "https://localhost:7165/api/v1/Chat?";
+        const response = await fetch(`${API_BASE_URL}PageSize=10&PageIndex=${pageIndex}&ChatId=${chatId}`, {
+            method: "GET",
+            headers: { Authorization: `Bearer ${JwtToken}` },
+        });
+        const data = await response.json();
+        currentChat = data;
+        const messagesToRead = await DrawMessage_page(data, flag);
+        if (messagesToRead.length > 0) {
+            await readMessages(currentChat.chatId, messagesToRead);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function blockChats(element) {
+    const chatId = element.chatId;
+    const item = document.createElement("div");
+    item.id = `chat-simple-${chatId}`;
+    item.classList.add("chat-simple");
+    item.innerHTML += blockChat(element);
+    const page = element.paginacion ? element.paginacion.totalPage : 1;
+    item.addEventListener("click", async () => {
+        const newMessage = document.getElementById(`divNewMessage-${chatId}`);
+        if (newMessage) {
+            newMessage.remove();
+        }
+        await renderMessages(chatId, page);
+    });
+    return item;
+}
+
+async function DrawMessage_page(data, flag) {
+    const divMessages = document.getElementById("chat-body");
+    const messagesToRead = [];
+    for (let i = data.messages.length - 1; i >= 0; i--) {
+        const div = document.createElement("div");
+        if (data.userFriend.userId == data.messages[i].fromUserId) {
+            div.innerHTML += message_left(data, data.messages[i]);
+            if (!data.messages[i].isRead) {
+                messagesToRead.push(data.messages[i].id);
+            }
+        } else {
+            div.innerHTML += message_right(data, data.messages[i]);
+        }
+        divMessages.prepend(div);
+    }
+    if (flag) {
+        scrollToBottom("chat-body");
+    }
+    else {
+        document.getElementById("chat-body").scrollTop = 50;
+    }
+    return messagesToRead;
+}
+
+export async function DrawMessage(chatId, messageResponse) {
+    const div = document.createElement("div");
+    if (messageResponse.fromUserId == currentChat.userFriend.userId) {
+        div.innerHTML += message_left(currentChat, messageResponse);
+        document.getElementById("chat-body").appendChild(div);
+        scrollToBottom("chat-body");
+        await readMessages(chatId, [messageResponse.id]);
+    } else {
+        div.innerHTML += message_right(currentChat, messageResponse);
+        document.getElementById("chat-body").appendChild(div);
+        scrollToBottom("chat-body");
+    }
+    return;
+}
+export function scrollToBottom(id) {
+    const div = document.getElementById(id);
     div.scrollTop = div.scrollHeight - div.clientHeight;
 }

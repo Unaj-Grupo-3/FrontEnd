@@ -1,25 +1,19 @@
-import { cargarMensajes2 } from "../services/fetchChatServices.js";
-import { enviarMensaje } from "./connectionHub.js";
+import { paginatedMessages } from "../services/fetchChatServices.js";
+import { currentChat } from "../services/fetchChatServices.js";
+import { toSend } from "../container/connectionHub.js";
 
 export function addEventListenerChat(){
-    document.getElementById("btnSend").addEventListener("click", () => {
-        console.log("Hora de enviar");
-        enviarMensaje();
-    });
-
-    document.getElementById("chat-messages").onscroll = function() {myFunction()};
-
-    function myFunction(){
-        let currentChat = JSON.parse( localStorage.getItem("currentChat") );
-        if (document.getElementById("chat-messages").scrollTop == 0 && currentChat.pageIndex > 1) 
-        { 
-              cargarMensajes2(currentChat.chatId,currentChat.pageIndex - 1,false)
+    document.getElementById("chat-body").onscroll = () => {
+        if (event.target.scrollTop == 0 && currentChat.pageIndex > 1) {
+          paginatedMessages(currentChat.chatId, currentChat.pageIndex - 1, false);
         }
-    }
-
-    document.getElementById("txt-Message").addEventListener("keypress", function (event) {
-        console.log("Hora de enviar");
-        if (event.key === "Enter")
-            enviarMensaje();
-    });
+      };
+    
+      document.getElementById("btnSend").addEventListener("click", () => {
+        toSend();
+      });
+    
+      document.getElementById("txt-Message").addEventListener("keypress", (event) => {
+        if (event.key === "Enter") toSend();
+      });
 }

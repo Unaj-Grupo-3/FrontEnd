@@ -1,9 +1,8 @@
-import { renderChats } from "../components/chats.js";
 import { addEventListenerChat } from "../container/chatPage.js";
 import { addEventListenerHub } from "../container/connectionHub.js"
-import { ObtenerChats } from "../services/fetchChatServices.js";
+import { renderChats } from "../services/fetchChatServices.js";
 
 localStorage.removeItem("currentChat");
 await addEventListenerHub();
-ObtenerChats(renderChats);
+renderChats();
 addEventListenerChat();
