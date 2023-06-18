@@ -1,15 +1,15 @@
-import { GetMyUser } from "../services/fetchUserServices.js";
+import { GetMyUser, UploadPhoto, ChangePhotoOrd } from "../services/fetchUserServices.js";
 import { GetMail } from "../services/fetchAuthServices.js";
 import { UserInfoComponent } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
-import { ChangePhotoOrd } from "../services/fetchUserServices.js";
-
 
 
 let userInfo = document.querySelector(".user__info");
 let userPhotoSection = document.querySelector("#photo_section");
 let dragSrcEl;
+let inputFile;
+let photoMsj = document.querySelector("#resp_msj_photo");
 
 
 /* Drag & Drop */
@@ -81,10 +81,49 @@ const ModPhotos = async () => {
     let response = await ChangePhotoOrd(request);
 
     if(response !== null) {
+        BtnDelete(document.querySelectorAll(".btn_delete"));
         console.log("Exito");
         console.log(response);
     }
 }
+
+const AddPhoto = async () => {
+
+    const formData = new FormData();
+    formData.append('file', inputFile.files[0]);
+    let response = await UploadPhoto(formData);
+
+    if(response == null) {
+        console.log("Error al subir la foto.")
+    }
+    if(response == -1){
+        photoMsj.innerHTML = "Se ha alcanzado el limite de fotos permitidas(max=6).";
+        photoMsj.style.color = "#F02E3A";
+        photoMsj.style.display = "block";
+        setTimeout(() => {
+            photoMsj.style.display = "none";
+        }, 3000);
+    }
+    else{
+        photoMsj.style.display = "block";
+        setTimeout(() => {
+            location.reload();
+        }, 3000);
+    }
+    
+}
+
+async function BtnDelete(elements) {
+    elements.forEach((element) => {
+        element.addEventListener('click', () => {
+            console.log(element.parentElement);
+            element.parentElement.remove();
+            ModPhotos();
+        })
+    })
+}
+
+
 
 const RenderUser = async () =>
 {
@@ -109,7 +148,6 @@ const RenderUser = async () =>
 
     userPhotoSection.innerHTML += AddPhotoBtn();
 
-
     let items = document.querySelectorAll('.user__photos .drag__container');
     items.forEach(function(item) {
         item.addEventListener('dragstart', handleDragStart);
@@ -120,6 +158,10 @@ const RenderUser = async () =>
         item.addEventListener('drop', handleDrop);
     });
 
+    inputFile = document.getElementById('input_id');
+    inputFile.addEventListener('input', AddPhoto);
+
+    BtnDelete(document.querySelectorAll(".btn_delete"));
 }
 
 
