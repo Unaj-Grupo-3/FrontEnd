@@ -1,4 +1,6 @@
 import { CreateAuth } from "../services/fetchAuthServices.js";
+import { validate } from "../validators/emailValidate.js";
+import { validatePassword } from "../validators/passwordValidate.js";
 
 
 
@@ -24,26 +26,70 @@ export const addEventListenerAuth = () =>{
         let password = document.getElementById("inputPassword").value;
         let password2 = document.getElementById("inputPassword2").value;
 
-        let isValid = false;
+        let isValid = true;
 
-        if(1){
-
+        if(!validate(mail)){
+            
+            isValid=false;
+            console.log("mail invalido");
+            let parrafo=document.getElementById("errorMail");
+            parrafo.textContent="El mail ingresado es invalido";
+        }
+        if(!validatePassword(password)){
+            
+            isValid=false;
+            console.log("password invalido");
+            let parrafo=document.getElementById("errorPassword");
+            parrafo.textContent="El password ingresado es invalido";
+        }
+        if(password!=password2){
+            
+            isValid=false;
+            console.log("password_2 invalido");
+            let parrafo=document.getElementById("errorPassword2");
+            parrafo.textContent="Las contraseñas no coinciden";
         }
 
-        if(false){ // CHECKS Validar values
-
+        if(isValid){ // CHECKS Validar values
+            console.log("mail esta siendo creado");
             let auth = {
                 email: mail,
                 password : password
             }
     
-           let response = await CreateAuth(auth);
+            let response = await CreateAuth(auth);
+            
+            if(response.response.Mail2){
+                console.log("Mail con errors");
+                let parrafo=document.getElementById("errorMail");
+                parrafo.textContent="El mail ingresado ya se encuentra registrado";
+            }
 
             console.log(response);
 
         }
 
     })
+
+    document.addEventListener("change", (e) => {
+        
+        let{target}=e;
+        
+        if(target.matches("#inputMail")){
+            document.getElementById("errorMail").textContent=" ";
+
+        }
+        if(target.matches("#inputPassword")){
+            document.getElementById("errorPassword").textContent=" ";
+
+        }
+        if(target.matches("#inputPassword2")){
+            document.getElementById("errorPassword2").textContent=" ";
+
+        }
+        
+    })
+    
 }
 
 

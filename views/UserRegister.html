@@ -24,14 +24,23 @@
 
 		<div id="registerAuthContainer">
 			<form id="formAuth">
-				<input type="mail" id="inputMail">
 				<div>
-					<input  type="password" id="inputPassword">
-					<span class="material-symbols-outlined icon_password" title="inputPassword">visibility</span>
+					<input type="mail" id="inputMail">
+					<p id="errorMail"></p>
 				</div>
 				<div>
-					<input type="password" id="inputPassword2">
-					<span class="material-symbols-outlined icon_password" title="inputPassword2" >visibility</span>
+					<div>
+						<input  type="password" id="inputPassword">
+						<span class="material-symbols-outlined icon_password" title="inputPassword">visibility</span>
+					</div>
+					<p id="errorPassword"></p>
+				</div>
+				<div>
+					<div>
+						<input type="password" id="inputPassword2">
+						<span class="material-symbols-outlined icon_password" title="inputPassword2" >visibility</span>
+					</div>
+					<p id="errorPassword2"></p>
 				</div>
 				<button type="submit">Registrarse</button>
 			</form>

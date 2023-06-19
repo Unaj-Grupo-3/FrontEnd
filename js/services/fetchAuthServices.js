@@ -74,7 +74,7 @@ export const CreateAuth = async (request) => {
         body: JSON.stringify(request) 
     })
 
-    if(response.ok && response.status == 201){
+    if(response.ok && response.status == 201 || response.status==400){
         result = await response.json();
     }else{
         result = null;
