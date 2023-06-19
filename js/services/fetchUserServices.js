@@ -12,10 +12,12 @@ export const GetMyUser = async () =>
         }
     })
 
-    if(response.ok){
+    if(response.ok || response.status == 404){
         result = await response.json();
+
     }
     
+
     return result;
 }
 

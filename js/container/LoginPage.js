@@ -1,4 +1,5 @@
 import { login } from "../services/fetchAuthServices.js";
+import { GetMyUser } from "../services/fetchUserServices.js";
 
 const Redirect = () => 
 {
@@ -34,6 +35,9 @@ document.addEventListener("submit", async function(e)
             msj.style.color = "#41BC02";
             msj.style.display = 'block';
             localStorage.setItem("token", resp.token);
+
+            GetMyUser();
+
             setTimeout(() => {
                 Redirect();
             }, 1000);
