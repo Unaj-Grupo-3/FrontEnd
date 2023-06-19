@@ -6,6 +6,7 @@
     --violeta-rojizo: #9747FF;
     --bordo: #9B12A7;
     --rosa: #d23bdf;
+    --rojo: #F02E3A;
     --negro-mate: #282728;
     --violeta-oscuro: #280D4A;
     --blanco-rosa: #FDF9FF;
@@ -46,6 +47,14 @@ main {
   'opsz' 48
 }
 
+.material-symbols-outlined:hover {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 48
+  }
+
 
 /* SECTION: USER PHOTOS */
 
@@ -64,7 +73,10 @@ main {
     justify-content: space-around;
     align-content: start;
     padding-top: 4rem;
+    row-gap: 15px;
 }
+
+/* User Photo container */
 
 .user_photo_cont {
     width: 206px;
@@ -91,13 +103,72 @@ main {
     object-fit: contain;
     object-position: center;
     border-radius: 10px;
+    position: relative;
+    right: -7%;
 }
+
+.btn_delete {
+    color: var(--rojo);
+    background: rgba(0,0,0,0);
+    border-color: rgba(0,0,0,0);
+    z-index: 2;
+    position: relative;
+    top: -48%;
+}
+
+
+
+/* Botón Add */
 
 .btn_add_container {
     background-color: var(--violeta);
+    object-fit: cover;
 }
 
-/* Save btn Container*/
+.btn_add {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--violeta);
+}
+
+.input_label {
+    height: 100%;
+    width: 100%;
+}
+
+.input_file {
+    display: none;
+}
+
+.btn_add_icon {
+    color: White;
+    font-size: 128px;
+    position: relative;
+    margin: 5rem 0 0 0;
+}
+
+#add_lbl {
+    color: white;
+    font-size: 1.3rem;
+}
+
+
+/* MSJ Container */
+
+.msj_container {
+    text-align: center; 
+}
+
+#resp_msj_photo {
+    color: #41BC02;
+    font-size: 1.2rem;
+    display: none;
+}
+
+
+
+/* Save btn Container (Eliminado) */
 .save_btn_container {
     margin: auto;
 }
