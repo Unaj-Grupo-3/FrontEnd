@@ -15,3 +15,9 @@ export const validatePassword= (password)=>{
         return false;
     }
 }
+
+
+
+function gola (){
+    console.log("sakldfjsklda");
+}
