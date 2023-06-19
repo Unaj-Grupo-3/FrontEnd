@@ -75,8 +75,8 @@ p {
   border: 1px solid transparent;
   font-size: 1em;
   color: #fff;
-  background-color: #885FFF;
-  border-color: #885FFF;
+  background-color: #6e22b5;
+  border-color: #6e22b5;
   text-transform: none;
   overflow: visible;
   transition:
@@ -116,7 +116,7 @@ p {
   max-width: 80%;
   flex-direction: column;
   padding: 0.4em;
-  background-color: #885FFF;
+  background-color: #202c33;
   border-radius: 0.3em;
 }
 
@@ -186,7 +186,7 @@ p {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  background: #7753DF;
+  background: #6e22b5;
   border-right: 1px solid #fff;
 }
 
@@ -224,7 +224,7 @@ p {
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
-  background: #885FFF;
+  background: #6e22b5;
   border-right: 1px solid #fff;
 }
 
@@ -286,7 +286,8 @@ p {
 }
 
 .message-check-read--isRead {
-  color: rgb(0, 0, 0);
+  color: #2be241;
+  font-weight: bold;
 }
 
 @media (max-width: 900px) {
