@@ -39,3 +39,26 @@ export const GetMail = async (request) => {
     
     return result;
 }
+
+
+export const PutPasswd = async (request) => {
+    
+    let result;
+    let response = await fetch(urlBase,{
+        method: "PUT",
+        headers:{
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        body: JSON.stringify(request)
+    })
+
+    if(response.ok && response.status == 200) {
+        result = await response.json();
+    }
+    else{
+        result = null;
+    }
+
+    return result;
+}
