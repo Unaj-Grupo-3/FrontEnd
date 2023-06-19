@@ -26,7 +26,6 @@
   body {
     position: relative;
     margin: var(--header-height) 0 0 0;
-    padding: 0 1rem;
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
     transition: 0.5s;
@@ -45,7 +44,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1rem;
+    padding: 0 ;
     background-color: var(--first-color-light);
     z-index: var(--z-fixed);
     transition: 0.5s;
@@ -55,6 +54,7 @@
     color: var(--white-color);
     font-size: 1.5rem;
     cursor: pointer;
+    margin-left: 1rem;
   }
 
   .header_img {
@@ -143,7 +143,7 @@
   }
 
   .body-pd {
-    padding-left: calc(var(--nav-width) + 1rem);
+    padding-left: calc(var(--nav-width));
   }
 
   .active {
@@ -166,12 +166,12 @@
   @media screen and (min-width: 768px) {
     body {
       margin: calc(var(--header-height) + 1rem) 0 0 0;
-      padding-left: calc(var(--nav-width) + 1rem);
+      padding-left: calc(var(--nav-width));
     }
 
     .header {
       height: calc(var(--header-height) + 1rem);
-      padding: 0 2rem 0 calc(var(--nav-width) + 2rem);
+      padding: 0 2rem 0 calc(var(--nav-width));
     }
 
     .header_img {
@@ -193,6 +193,6 @@
     }
 
     .body-pd {
-      padding-left: calc(var(--nav-width) + 120px);
+      padding-left: calc(var(--nav-width) + 100px);
     }
   }
