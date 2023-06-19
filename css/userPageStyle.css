@@ -53,7 +53,23 @@ main {
     'wght' 700,
     'GRAD' 0,
     'opsz' 48
-  }
+}
+
+.btn_general_style {
+    background-color: var(--violeta);
+    padding: 0.5rem;
+	border-radius: 25px;
+	border: 1px solid var(--violeta);
+	color: white;
+	transition-duration: 0.4s;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.btn_general_style:hover {
+    background-color: #280886;
+	color:white;
+}
 
 
 /* SECTION: USER PHOTOS */
@@ -87,6 +103,13 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.user_photo_cont:hover {
+    position: relative;
+    top: -10px;
+    box-shadow: 0px 5px 5px lightslategrey;
+    transition: top 1s, box-shadow 0.3s;
 }
 
 .drag__container {
@@ -207,14 +230,97 @@ main {
     display: grid;
     grid-template-columns: auto;
     font-family: var(--pop);
+    row-gap: 5px;
 }
 
 #title__name {
     text-align: center;
+    margin-top: 10px;
+    background-color: var(--violeta);
+    color: white;
+    box-shadow: none;
 }
 
 .info__div {
-    padding: 0 0 0 20px;
+    padding: 0.5rem 0.5rem 0.5rem 2rem;
+    border: 1px solid var(--violeta-claro);
+    border-radius: 25px;
+    background-color: white;
+}
+
+.info__div:hover {
+    box-shadow: 5px 5px 5px lightblue;
+    transition: box-shadow 0.3s;
+}
+
+.info__div h3 {
+    font-size: 1.5rem;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111111bd;
+    display:flex;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal--show {
+    opacity: 1;
+    pointer-events: unset;
+}
+
+.modal__container {
+    width: 90%;
+    background-color: white;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90%;
+    margin: auto;
+    border-radius: 6px;
+    padding: 3em 2.5em;
+    display: grid;
+    gap: 1em;
+    place-items: center;
+    grid-auto-columns: 100%;
+}
+
+.modal__paragraph {
+    margin-bottom: 10px;
+    width: 500px;
+}
+
+.modal__close {
+    text-decoration: none;
+    color: black;
+    background-color: var(--rosa-claro);
+    padding: 1em 3em;
+    border: 1px solid var(--rosa-claro);
+    border-radius: 6px;
+    display: inline-block;
+    font-weight: 300;
+    transition: background-color .3s;
+}
+
+.modal__close:hover {
+    color: var(--rosa-claro);
+    background-color: whitesmoke;
+}
+
+.passwd_input {
+    background-color: var(--gris-claro);
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	width: 100%;
+	padding: 0.5vw 1vw;
+	margin: 1vw 0;
+	display: inline-block;
+	box-sizing: border-box;
 }
 
 /* Footer */

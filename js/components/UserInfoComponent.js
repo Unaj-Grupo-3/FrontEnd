@@ -8,7 +8,7 @@ export const UserInfoComponent = (name, mail, description) =>
 <div class="info__div">
     <h3>Seguridad de la cuenta</h3>
     <p>${mail}</p>
-    <button>Cambiar Contraseña</button>
+    <button class="btn_general_style" id="btn_psswd">Cambiar Contraseña</button>
 </div>
 
 <div class="info__div">
@@ -28,7 +28,7 @@ export const UserInfoComponent = (name, mail, description) =>
 
 <div class="info__div">
     <h3>Más sobre mi</h3>
-    <button>Ver/modificar</button>
+    <button class="btn_general_style">Ver/modificar</button>
 </div>
 
 <div class="info__div">
@@ -43,7 +43,7 @@ export const UserInfoComponent = (name, mail, description) =>
     <input type="range" id="distance" min="0">
     <label for="distance">100 km</label>
     <p>Otros</p>
-    <button>Ver/modificar</button>
+    <button class="btn_general_style">Ver/modificar</button>
 </div>
 
 `
