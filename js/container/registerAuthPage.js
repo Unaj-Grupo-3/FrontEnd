@@ -1,11 +1,11 @@
+import { Loader } from "../components/spinner.js";
 import { CreateAuth } from "../services/fetchAuthServices.js";
 import { validate } from "../validators/emailValidate.js";
 import { validatePassword } from "../validators/passwordValidate.js";
 
 
-
-
 export const addEventListenerAuth = () =>{
+    
 
     document.addEventListener("click", (e) =>{
         if(e.target.matches(".icon_password")){
@@ -56,22 +56,31 @@ export const addEventListenerAuth = () =>{
                 email: mail,
                 password : password
             }
-    
+            document.getElementById("buttonSubmit").disable = true;
+            document.getElementById("buttonSubmit").innerHTML = Loader() + "Registrarse";
+
             let response = await CreateAuth(auth);
             
             if(response.response.Mail2){
                 console.log("Mail con errors");
                 let parrafo=document.getElementById("errorMail");
                 parrafo.textContent="El mail ingresado ya se encuentra registrado";
+                document.getElementById("buttonSubmit").innerHTML = "Registrarse";
+            }else{
+
+                let modal = new bootstrap.Modal( document.getElementById("modalRegister") );
+
+                modal.show();
+
+                setTimeout(() => {
+                    window.location = "../../views/Login.html"
+                }
+                ,1500);
             }
-
-            console.log(response);
-
         }
-
     })
 
-    document.addEventListener("change", (e) => {
+    document.addEventListener("keyup", (e) => {
         
         let{target}=e;
         
@@ -90,6 +99,7 @@ export const addEventListenerAuth = () =>{
         
     })
     
+
 }
 
 

@@ -1,0 +1,65 @@
+:root {
+    --header-height: 3rem;
+    --nav-width: 68px;
+    --first-color: #885FFF;
+    --first-color-light: #A386FF;
+    --first-color-light-nav: #d8cefa;
+    --white-color: #f7f6fb;
+    --body-font: "Nunito", sans-serif;
+    --normal-font-size: 1rem;
+    --z-fixed: 100;
+    --violeta: #885FFF;
+    --violeta-oscuro: #280886;
+    --gris-claro: #ECECEC;
+    --gris-oscuro: #525252;
+  }
+  
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+
+    background-color: var(--first-color);
+  }
+
+
+  form{
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  p{
+    height: 1ch;
+  }
+
+  h4{
+    margin-bottom: 0;
+  }
+
+  .inputContainer{
+    margin-bottom: .75rem;
+  }
+
+  button{
+    width: 75%;
+    margin: 0 auto;
+  }

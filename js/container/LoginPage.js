@@ -36,7 +36,9 @@ document.addEventListener("submit", async function(e)
             msj.style.display = 'block';
             localStorage.setItem("token", resp.token);
 
-            GetMyUser();
+            let user = await GetMyUser();
+
+            
 
             setTimeout(() => {
                 Redirect();
