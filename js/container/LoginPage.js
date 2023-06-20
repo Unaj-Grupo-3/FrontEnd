@@ -33,7 +33,7 @@ document.addEventListener("submit", async function(e)
             msj.innerHTML = "Te has conectado exitosamente.";
             msj.style.color = "#41BC02";
             msj.style.display = 'block';
-            localStorage.setItem("token", resp.token);
+            sessionStorage.setItem("token", resp.token);
             setTimeout(() => {
                 Redirect();
             }, 1000);

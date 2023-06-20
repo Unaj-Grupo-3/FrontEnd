@@ -1,5 +1,6 @@
 
 let urlBase = 'https://localhost:7020/api/v1';
+const JwtToken = sessionStorage.getItem("token");
 
 export const GetMyUser = async () =>
 {
@@ -8,7 +9,7 @@ export const GetMyUser = async () =>
         method: "GET",
         headers:{
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token")
+            "Authorization": `Bearer ${JwtToken}` 
         }
     })
 
@@ -26,7 +27,7 @@ export const ChangePhotoOrd = async (request) =>
         method: "PUT",
         headers:{
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token")
+            "Authorization": `Bearer ${JwtToken}` 
         },
         body: JSON.stringify(request)
     })

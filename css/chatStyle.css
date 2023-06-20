@@ -328,3 +328,26 @@ p {
   background: #cacaca;
   border-radius: 4px;
 }
+
+
+
+
+.div-temporal{
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/new_chat.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.div-loader{
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  height: 100%;
+  width: 100%;
+}
