@@ -45,7 +45,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 ;
-    background-color: var(--first-color-light);
+    background-color: #8a2be2;
     z-index: var(--z-fixed);
     transition: 0.5s;
   }
@@ -76,7 +76,7 @@
     left: -30%;
     width: var(--nav-width);
     height: 100vh;
-    background-color: var(--first-color);
+    background-color: #6e22b5;
     padding: 0.5rem 1rem 0 0;
     transition: 0.5s;
     z-index: var(--z-fixed);

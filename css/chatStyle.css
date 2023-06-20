@@ -1,8 +1,7 @@
 body {
   font-family: "Nunito", sans-serif;
   overflow: hidden;
-  background-color: #161616 !important;
-  color: white !important;
+  color: #38373c;
 }
 
 h3 {
@@ -63,7 +62,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60%;
+  height: 56%;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   font-weight: bold;
@@ -75,15 +74,10 @@ p {
   border: 1px solid transparent;
   font-size: 1em;
   color: #fff;
-  background-color: #6e22b5;
-  border-color: #6e22b5;
+  background-color: #e22b5e;
+  border-color: #e22b5e;
   text-transform: none;
   overflow: visible;
-  transition:
-    color 0.15s ease-in-out 0s,
-    background-color 0.15s ease-in-out 0s,
-    border-color 0.15s ease-in-out 0s,
-    box-shadow 0.15s ease-in-out 0s;
 }
 
 
@@ -116,8 +110,9 @@ p {
   max-width: 80%;
   flex-direction: column;
   padding: 0.4em;
-  background-color: #202c33;
+  background-color: #ffffff;
   border-radius: 0.3em;
+  border: 1px solid #ced4da;
 }
 
 
@@ -170,24 +165,20 @@ p {
 
 .chat-container {
   display: flex;
-  height: 95%;
-  width: 97%;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  border-radius: 1em;
+  background-color: #fafbfd;
+  padding: 5px
 }
-
-
 
 .list-people {
   flex: 0 0 30%;
   height: 100%;
-  border-top-left-radius: 1em;
-  border-bottom-left-radius: 1em;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  background: #6e22b5;
-  border-right: 1px solid #fff;
+  margin: 5px;
 }
 
 .chat-header1 {
@@ -197,13 +188,12 @@ p {
   gap: 1rem;
   height: 10%;
   padding: 0.2rem;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #ced4da;
 }
 
 .list-chat {
   height: 90%;
   overflow-y: auto;
-  border-bottom-left-radius: 1em;
 }
 
 .chat-simple {
@@ -211,21 +201,21 @@ p {
   align-items: center;
   gap: 1rem;
   padding: 0.5em;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #ced4da;
 }
 
 
 
 .list-messages {
-  flex: 0 0 70%;
-  height: 100%;
-  border-top-right-radius: 1em;
-  border-bottom-right-radius: 1em;
+  flex: 0 0 68%;
+  height: 98%;
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
-  background: #6e22b5;
-  border-right: 1px solid #fff;
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 1em;
+  margin: 5px;
 }
 
 .chat-header2 {
@@ -234,17 +224,12 @@ p {
   gap: 1rem;
   height: 10%;
   padding: 0.2rem;
-  border-top-right-radius: 1em;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #ced4da;
 }
 
 .chat-body {
   height: 80%;
   overflow-y: scroll;
-  background-image: url("../img/fondo2.jpg");
-  background-size: contain;
-  background-position: center;
-  background-repeat: repeat;
 }
 
 .chat-messages {
@@ -263,8 +248,7 @@ p {
   height: 10%;
   padding-left: 1em;
   padding-right: 1em;
-  border-bottom-right-radius: 1em;
-  border-top: 1px solid #fff;
+  border-top: 1px solid #ced4da;
 }
 
 
@@ -282,7 +266,8 @@ p {
 }
 
 .message-check-read--noRead {
-  color: #ffffff;
+  color: #38373c;
+  font-weight: bold;
 }
 
 .message-check-read--isRead {
@@ -323,7 +308,7 @@ p {
 }
 /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
 .chat-body::-webkit-scrollbar-thumb {
-  background: #885FFF;
+  background-color: #e22b5e;
   border-radius: 4px;
 }
 
@@ -342,4 +327,27 @@ p {
 .chat-body::-webkit-scrollbar-track {
   background: #cacaca;
   border-radius: 4px;
+}
+
+
+
+
+.div-temporal{
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/new_chat.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.div-loader{
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  height: 100%;
+  width: 100%;
 }
