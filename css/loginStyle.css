@@ -130,6 +130,10 @@ input {
 	color:white;
 }
 
+#register_lbl {
+	color: var(--gris-oscuro);
+}
+
 
 
 
