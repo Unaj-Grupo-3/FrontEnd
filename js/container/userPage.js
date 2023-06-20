@@ -1,5 +1,5 @@
 import { GetMyUser, UploadPhoto, ChangePhotoOrd } from "../services/fetchUserServices.js";
-import { GetMail } from "../services/fetchAuthServices.js";
+import { GetMail, PutPasswd } from "../services/fetchAuthServices.js";
 import { UserInfoComponent } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
@@ -10,6 +10,9 @@ let userPhotoSection = document.querySelector("#photo_section");
 let dragSrcEl;
 let inputFile;
 let photoMsj = document.querySelector("#resp_msj_photo");
+const modalPsswd = document.querySelector(".modal");
+const modalCloseBtn = document.querySelector(".modal__close");
+const changePasswdBtn = document.querySelector("#btn_change_passwd");
 
 
 /* Drag & Drop */
@@ -123,6 +126,35 @@ async function BtnDelete(elements) {
     })
 }
 
+async function ShowPssWdModal() {
+    modalPsswd.classList.add("modal--show");
+};
+
+
+modalCloseBtn.addEventListener('click', (e)=> {
+    e.preventDefault();
+    console.log("Cerrando modal");
+    modalPsswd.classList.remove("modal--show");
+});
+
+
+const ChangePassword = async () => {
+    console.log("Cambiando contraseña");
+    let psswd = document.querySelector('#in_passwd').value;
+    let confirm = document.querySelector('#in_confirm_passwd').value;
+
+    if(psswd === confirm){
+        let request = {
+            password: psswd
+        }
+
+        let response = await PutPasswd(request);
+        console.log("Cambiando password");
+        console.log(response);
+    }
+}
+
+changePasswdBtn.addEventListener('click', ChangePassword);
 
 
 const RenderUser = async () =>
@@ -139,7 +171,14 @@ const RenderUser = async () =>
         image = user.image[0];
     }*/
 
+    /* Renderizo UserInfo section */
     userInfo.innerHTML += UserInfoComponent(user.name, authInfo.email, user.description);
+
+    let psswdModalBtn = document.querySelector("#btn_psswd");
+    psswdModalBtn.addEventListener('click', ShowPssWdModal);
+
+
+    /* Renderizo UserPhotos section */
 
     images.forEach((element, index) => {
 
@@ -166,4 +205,3 @@ const RenderUser = async () =>
 
 
 window.onload = RenderUser;
-
