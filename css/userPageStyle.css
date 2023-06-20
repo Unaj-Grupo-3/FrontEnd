@@ -6,11 +6,19 @@
     --violeta-rojizo: #9747FF;
     --bordo: #9B12A7;
     --rosa: #d23bdf;
-    --rojo: #F02E3A;
+    --rojo: #dc3545;
+    --rojo-oscuro: #bb2d3b;
     --negro-mate: #282728;
     --violeta-oscuro: #280D4A;
     --blanco-rosa: #FDF9FF;
     --pop: 'Poppins', sans-serif;
+    --gris-oscuro: #525252;
+    --violeta-nuevo: #8a2be2;
+    --violeta-nuevo-oscuro: #6e22b5;
+
+    --first-color:#8a2be2;
+    --second-color: #6e22b5;
+
 }
 
 /* Estilos generales */
@@ -56,10 +64,10 @@ main {
 }
 
 .btn_general_style {
-    background-color: var(--violeta);
+    background-color: var(--first-color);
     padding: 0.5rem;
-	border-radius: 25px;
-	border: 1px solid var(--violeta);
+	border-radius: 6px;
+	border: 1px solid var(--first-color);
 	color: white;
 	transition-duration: 0.4s;
 	font-size: 1rem;
@@ -144,7 +152,7 @@ main {
 /* Botón Add */
 
 .btn_add_container {
-    background-color: var(--violeta);
+    background-color: var(--first-color);
     object-fit: cover;
 }
 
@@ -152,7 +160,7 @@ main {
     height: 100%;
     width: 100%;
     border-radius: 10px;
-    background-color: var(--violeta);
+    background-color: var(--first-color);
 }
 
 .input_label {
@@ -197,12 +205,12 @@ main {
 }
 
 .save_btn {
-    background-color: var(--violeta);
+    background-color: var(--first-color);
 	height: 2.5vw;
 	width: 60%;
 	margin: 2vw;
 	border-radius: 25px;
-	border: 2px solid var(--violeta);
+	border: 2px solid var(--first-color);
 	color: white;
 	transition-duration: 0.4s;
 	font-size: 18px;
@@ -236,7 +244,7 @@ main {
 #title__name {
     text-align: center;
     margin-top: 10px;
-    background-color: var(--violeta);
+    background-color: var(--first-color);
     color: white;
     box-shadow: none;
 }
@@ -244,7 +252,7 @@ main {
 .info__div {
     padding: 0.5rem 0.5rem 0.5rem 2rem;
     border: 1px solid var(--violeta-claro);
-    border-radius: 25px;
+    border-radius: 6px;
     background-color: white;
 }
 
@@ -277,9 +285,9 @@ main {
 
 .modal__container {
     width: 90%;
-    background-color: white;
+    background-color: var(--blanco-rosa);
     width: 90%;
-    max-width: 600px;
+    max-width: 300px;
     max-height: 90%;
     margin: auto;
     border-radius: 6px;
@@ -288,6 +296,21 @@ main {
     gap: 1em;
     place-items: center;
     grid-auto-columns: 100%;
+    border: 1px solid var(--first-color);
+}
+
+.grid_modal {
+    display: grid;
+    gap: 1em;
+    place-items: center start;
+    grid-auto-columns: 100%;
+}
+
+.div__passwd {
+    display: grid;
+    row-gap: 0.1em;
+    place-items: center start;
+    grid-auto-columns: 100%;
 }
 
 .modal__paragraph {
@@ -295,12 +318,29 @@ main {
     width: 500px;
 }
 
+#btn_change_passwd {
+    text-decoration: none;
+    color: var(--blanco-rosa);
+    background-color: var(--first-color);
+    padding: 1em 3em;
+    border: 1px solid var(--first-color);
+    border-radius: 6px;
+    display: inline-block;
+    font-weight: 300;
+    transition: background-color .3s;
+}
+
+#btn_change_passwd:hover {
+    background-color: var(--violeta-oscuro);
+}
+
+
 .modal__close {
     text-decoration: none;
-    color: black;
-    background-color: var(--rosa-claro);
-    padding: 1em 3em;
-    border: 1px solid var(--rosa-claro);
+    color: var(--blanco-rosa);
+    background-color: var(--rojo);
+    padding: 0.5em 1.5em;
+    border: 1px solid var(--rojo);
     border-radius: 6px;
     display: inline-block;
     font-weight: 300;
@@ -308,8 +348,13 @@ main {
 }
 
 .modal__close:hover {
-    color: var(--rosa-claro);
-    background-color: whitesmoke;
+    color: var(--blanco-rosa);
+    background-color: var(--rojo-oscuro);
+}
+
+
+.div__passwd p {
+    margin:0;
 }
 
 .passwd_input {
@@ -318,7 +363,9 @@ main {
 	border-radius: 4px;
 	width: 100%;
 	padding: 0.5vw 1vw;
-	margin: 1vw 0;
+	/*margin: 1vw 0;*/
+    /*margin: 0.5rem 0 1rem 0;*/
+    margin: 0;
 	display: inline-block;
 	box-sizing: border-box;
 }

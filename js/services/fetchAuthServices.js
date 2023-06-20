@@ -1,4 +1,5 @@
 let urlBase = 'https://localhost:7017/api/v1/Auth';
+const JwtToken = sessionStorage.getItem("token");
 
 export const login = async (request) => {
 
@@ -29,7 +30,7 @@ export const GetMail = async (request) => {
         method: "GET",
         headers:{
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem("token")
+            "Authorization": `Bearer ${JwtToken}`
         }
     })
 
@@ -48,7 +49,7 @@ export const PutPasswd = async (request) => {
         method: "PUT",
         headers:{
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token")
+            "Authorization": `Bearer ${JwtToken}`
         },
         body: JSON.stringify(request)
     })

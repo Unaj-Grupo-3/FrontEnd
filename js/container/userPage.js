@@ -1,4 +1,4 @@
-import { GetMyUser, UploadPhoto, ChangePhotoOrd } from "../services/fetchUserServices.js";
+import { GetMyUser, UploadPhoto, ChangeUser } from "../services/fetchUserServices.js";
 import { GetMail, PutPasswd } from "../services/fetchAuthServices.js";
 import { UserInfoComponent } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
@@ -65,7 +65,35 @@ function handleDrop(e) {
 
 /* Otros */
 
+async function ModGender(e) {
+
+    let request = {
+        gender: parseInt(e.target.value)
+    }
+
+    let response = await ChangeUser(request);
+
+    if(response !== null) {
+        console.log("Se cambio el genero");
+    }
+}
+
+async function ModDescription(e) {
+
+    let request = {
+        description: e.target.value
+    }
+
+    let response = await ChangeUser(request);
+
+    if(response !== null) {
+        console.log("Se cambio la descripcion");
+    }
+}
+
+
 const ModPhotos = async () => {
+
     let photoArray = [];
     let order = document.querySelectorAll(".drag__img");
     console.log("Orden de las fotos");
@@ -81,12 +109,10 @@ const ModPhotos = async () => {
         images: photoArray
     }
 
-    let response = await ChangePhotoOrd(request);
+    let response = await ChangeUser(request);
 
     if(response !== null) {
         BtnDelete(document.querySelectorAll(".btn_delete"));
-        console.log("Exito");
-        console.log(response);
     }
 }
 
@@ -126,6 +152,9 @@ async function BtnDelete(elements) {
     })
 }
 
+
+/* Password */
+
 async function ShowPssWdModal() {
     modalPsswd.classList.add("modal--show");
 };
@@ -156,6 +185,19 @@ const ChangePassword = async () => {
 
 changePasswdBtn.addEventListener('click', ChangePassword);
 
+async function CheckGender(value) {
+
+    if(value == 1) {
+        document.querySelector("#male").checked = true;
+    }
+    if(value == 2) {
+        document.querySelector("#female").checked = true;
+    }
+    if(value == 3) {
+        document.querySelector("#other").checked = true;
+    }
+}
+
 
 const RenderUser = async () =>
 {
@@ -163,7 +205,8 @@ const RenderUser = async () =>
     let authInfo = await GetMail();
     let images = user.images;
 
-    console.log(user);
+    console.log("Usuario");
+    console.log(user.gender.genderId);
     /*if( typeof user.image === 'undefined'){
         image = "http://127.0.0.1:5501/img/user-default.png";
     }
@@ -177,6 +220,15 @@ const RenderUser = async () =>
     let psswdModalBtn = document.querySelector("#btn_psswd");
     psswdModalBtn.addEventListener('click', ShowPssWdModal);
 
+    CheckGender(user.gender.genderId);
+
+    let genderBtns = document.querySelectorAll('input[name="gender"]');
+    genderBtns.forEach((item) => {
+        item.addEventListener('click', ModGender);
+    });
+
+    let descriptionText = document.querySelector('#user__input');
+    descriptionText.addEventListener('change', ModDescription);
 
     /* Renderizo UserPhotos section */
 
