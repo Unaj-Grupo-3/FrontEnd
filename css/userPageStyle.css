@@ -13,6 +13,12 @@
     --blanco-rosa: #FDF9FF;
     --pop: 'Poppins', sans-serif;
     --gris-oscuro: #525252;
+    --violeta-nuevo: #8a2be2;
+    --violeta-nuevo-oscuro: #6e22b5;
+
+    --first-color:#8a2be2;
+    --second-color: #6e22b5;
+
 }
 
 /* Estilos generales */
@@ -58,10 +64,10 @@ main {
 }
 
 .btn_general_style {
-    background-color: var(--violeta);
+    background-color: var(--first-color);
     padding: 0.5rem;
-	border-radius: 25px;
-	border: 1px solid var(--violeta);
+	border-radius: 6px;
+	border: 1px solid var(--first-color);
 	color: white;
 	transition-duration: 0.4s;
 	font-size: 1rem;
@@ -146,7 +152,7 @@ main {
 /* Botón Add */
 
 .btn_add_container {
-    background-color: var(--violeta);
+    background-color: var(--first-color);
     object-fit: cover;
 }
 
@@ -154,7 +160,7 @@ main {
     height: 100%;
     width: 100%;
     border-radius: 10px;
-    background-color: var(--violeta);
+    background-color: var(--first-color);
 }
 
 .input_label {
@@ -199,12 +205,12 @@ main {
 }
 
 .save_btn {
-    background-color: var(--violeta);
+    background-color: var(--first-color);
 	height: 2.5vw;
 	width: 60%;
 	margin: 2vw;
 	border-radius: 25px;
-	border: 2px solid var(--violeta);
+	border: 2px solid var(--first-color);
 	color: white;
 	transition-duration: 0.4s;
 	font-size: 18px;
@@ -238,7 +244,7 @@ main {
 #title__name {
     text-align: center;
     margin-top: 10px;
-    background-color: var(--violeta);
+    background-color: var(--first-color);
     color: white;
     box-shadow: none;
 }
@@ -246,7 +252,7 @@ main {
 .info__div {
     padding: 0.5rem 0.5rem 0.5rem 2rem;
     border: 1px solid var(--violeta-claro);
-    border-radius: 25px;
+    border-radius: 6px;
     background-color: white;
 }
 
@@ -290,6 +296,7 @@ main {
     gap: 1em;
     place-items: center;
     grid-auto-columns: 100%;
+    border: 1px solid var(--first-color);
 }
 
 .grid_modal {
@@ -314,9 +321,9 @@ main {
 #btn_change_passwd {
     text-decoration: none;
     color: var(--blanco-rosa);
-    background-color: var(--violeta);
+    background-color: var(--first-color);
     padding: 1em 3em;
-    border: 1px solid var(--violeta);
+    border: 1px solid var(--first-color);
     border-radius: 6px;
     display: inline-block;
     font-weight: 300;
@@ -332,7 +339,7 @@ main {
     text-decoration: none;
     color: var(--blanco-rosa);
     background-color: var(--rojo);
-    padding: 1em 3em;
+    padding: 0.5em 1.5em;
     border: 1px solid var(--rojo);
     border-radius: 6px;
     display: inline-block;

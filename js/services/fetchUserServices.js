@@ -20,7 +20,7 @@ export const GetMyUser = async () =>
     return result;
 }
 
-export const ChangePhotoOrd = async (request) => 
+export const ChangeUser = async (request) => 
 {
     let result;
     let response = await fetch(`${urlBase}/User`, {
@@ -45,7 +45,7 @@ export const UploadPhoto = async (data) =>
     let response = await fetch(`${urlBase}/Photo`, {
         method: "POST",
         headers:{
-            "Authorization": "Bearer " + localStorage.getItem("token")
+            "Authorization": `Bearer ${JwtToken}`
         },
         body: data
     })
