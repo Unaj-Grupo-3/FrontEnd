@@ -1,5 +1,6 @@
 
 let urlBase = 'https://localhost:7020/api/v1';
+const JwtToken = sessionStorage.getItem("token");
 
 export const GetMyUser = async () =>
 {
@@ -8,7 +9,7 @@ export const GetMyUser = async () =>
         method: "GET",
         headers:{
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token")
+            "Authorization": `Bearer ${JwtToken}` 
         }
     })
 
@@ -21,14 +22,14 @@ export const GetMyUser = async () =>
     return result;
 }
 
-export const ChangePhotoOrd = async (request) => 
+export const ChangeUser = async (request) => 
 {
     let result;
     let response = await fetch(`${urlBase}/User`, {
         method: "PUT",
         headers:{
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token")
+            "Authorization": `Bearer ${JwtToken}` 
         },
         body: JSON.stringify(request)
     })
@@ -46,7 +47,7 @@ export const UploadPhoto = async (data) =>
     let response = await fetch(`${urlBase}/Photo`, {
         method: "POST",
         headers:{
-            "Authorization": "Bearer " + localStorage.getItem("token")
+            "Authorization": `Bearer ${JwtToken}`
         },
         body: data
     })

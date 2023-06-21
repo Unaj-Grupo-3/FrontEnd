@@ -23,6 +23,7 @@ body {
 	color:white;
 	height: 100vh;
 	width: 100vw;
+	overflow: hidden;
 }
 
 /* Flex container */
@@ -84,8 +85,6 @@ body {
 	margin: 4vw;
 	border: 3px solid black;
 	border-radius: 25px;
-	width: 20vw;
-	height: 20vw;
 	text-align: left;
 }
 
@@ -128,6 +127,10 @@ input {
 #form__content #btn button:hover {
 	background-color: #280886;
 	color:white;
+}
+
+#register_lbl {
+	color: var(--gris-oscuro);
 }
 
 

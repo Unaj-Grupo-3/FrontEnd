@@ -6,7 +6,7 @@ import { headerFriend } from "../components/chats.js";
 import { readMessages } from "../container/connectionHub.js";
 
 export let currentChat = "";
-const JwtToken = localStorage.getItem("token");
+const JwtToken = sessionStorage.getItem("token");
 
 
 export async function renderChats() {

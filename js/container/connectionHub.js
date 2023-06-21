@@ -5,7 +5,7 @@ let isConnected = "";
 let connection;
 
 export async function addEventListenerHub() {
-    const JwtToken = localStorage.getItem("token");
+    const JwtToken = sessionStorage.getItem("token");
 
     connection = new signalR.HubConnectionBuilder()
         .withUrl('https://localhost:7165/chathub', { accessTokenFactory: () => JwtToken })

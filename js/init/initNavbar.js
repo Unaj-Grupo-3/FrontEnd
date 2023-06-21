@@ -1,27 +1,26 @@
 import { Navbar } from "../components/navbar.js";
 
 const navbarContainer = document.getElementById("navbar");
-let userPhoto = '\\img\\user-default.png';
+let userPhoto = "../img/user-default.png";
 navbarContainer.innerHTML = Navbar(userPhoto);
 
 document.addEventListener("DOMContentLoaded", function (event) {
-    const showNavbar = (toggleId, navId, bodyId, headerId) => {
+    const showNavbar = (toggleId, navId, headerId, imgId) => {
         const toggle = document.getElementById(toggleId),
         nav = document.getElementById(navId),
-        bodypd = document.getElementById(bodyId),
-        headerpd = document.getElementById(headerId);
+        header = document.getElementById(headerId),
+        img = document.getElementById(imgId)
 
-        if (toggle && nav && bodypd && headerpd) {
+        if (toggle && nav && header && img ) {
         toggle.addEventListener("click", () => {
             nav.classList.toggle("show");
-            toggle.classList.toggle("bx-x");
-            bodypd.classList.toggle("body-pd");
-            headerpd.classList.toggle("body-pd");
+            header.classList.toggle("column");
+            img.classList.toggle("header_img-large");
         });
         }
     };
 
-    showNavbar("header-toggle", "nav-bar", "body-pd", "header");
+    showNavbar("menu_toggle", "nav-bar", "header","header_img" );
 
     const linkColor = document.querySelectorAll(".nav_link");
 
