@@ -18,12 +18,12 @@ export const UserInfoComponent = (name, mail, description) =>
 
 <div class="info__div">
     <h3>Mi género</h3>
-    <input type="radio" id="female" name="gender">
+    <input type="radio" id="female" name="gender" value="2">
     <label for="female">Femenino</label>
-    <input type="radio" id="male" name="gender">
+    <input type="radio" id="male" name="gender" value="1">
     <label for="male">Masculino</label>
-    <input type="radio" id="others" name="gender">
-    <label for="others">Otros</label>
+    <input type="radio" id="other" name="gender" value="3">
+    <label for="other">Otro</label>
 </div>
 
 <div class="info__div">
