@@ -205,6 +205,10 @@ const RenderUser = async () =>
     let authInfo = await GetMail();
     let images = user.images;
 
+
+    userInfo.innerHTML = '';
+    userPhotoSection.innerHTML = '';
+
     console.log("Usuario");
     console.log(user.gender.genderId);
     /*if( typeof user.image === 'undefined'){
