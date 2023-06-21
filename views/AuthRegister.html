@@ -19,44 +19,52 @@
 </head>
 
 <body id="body-pd">
-<main>
-	<div id="registerAuthContainer">
-	  <form id="formAuth">
-		<div class="inputContainer">
-			<h4>Correo Electronico</h4>
-		  <input type="mail" id="inputMail">
-		  <p id="errorMail"></p>
-		</div>
-		<div>
-		  <div class="inputContainer">
-			<h4>Contraseña</h4>
-			<input type="password" id="inputPassword">
-			<span class="material-symbols-outlined icon_password" title="inputPassword">visibility_off</span>
-		  </div>
-		  <p id="errorPassword"></p>
-		</div>
-		<div class="inputContainer">
-		  <div>
-			<h4>Repetir Contraseña</h4>
-			<input type="password" id="inputPassword2">
-			<span class="material-symbols-outlined icon_password" title="inputPassword2">visibility_off</span>
-		  </div>
-		  <p id="errorPassword2"></p>
-		</div>
-		<button id="buttonSubmit" type="submit">Registrarse</button>
-	  </form>
-	</div>
-</main>
-
+  <header>
+    <div>
+      <img src="../img/globo-blanco.png" alt="logo">
+    </div>
+    <div>
+      <p>AppCitas</p>
+      <br><span class="color">Comenzemos a crear su cuenta</span>
+    </div>
+  </header>
+  <main>
+    <div class="form-container">
+      <div id="registerAuthContainer">
+        <form id="formAuth">
+          <div class="inputContainer">
+            <h4>Correo Electronico</h4>
+            <input type="mail" id="inputMail">
+            <p id="errorMail"></p>
+          </div>
+          <div class="inputContainer">
+            <div>
+              <h4>Contraseña</h4>
+              <input type="password" id="inputPassword">
+              <span class="material-symbols-outlined icon_password" title="inputPassword">visibility_off</span>
+            </div>
+            <p id="errorPassword"></p>
+          </div>
+          <div class="inputContainer">
+            <div>
+              <h4>Repetir Contraseña</h4>
+              <input type="password" id="inputPassword2">
+              <span class="material-symbols-outlined icon_password" title="inputPassword2">visibility_off</span>
+            </div>
+            <p id="errorPassword2"></p>
+          </div>
+          <button id="buttonSubmit" type="submit">Registrarse</button>
+        </form>
+      </div>
+    </div>
+  </main>
   <div class="modal fade" id="modalRegister" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-      
+      <div class="modal-content">  
         <div class="modal-body d-flex align-items-center flex-column">
-          <p>Se ha creado la cuenta con exito.</p>
-		  <p>Será redirigido al login</p>
+          <p>Se ha creado la cuenta con exito.</p><br>
+          <p>Será redirigido al login</p>
         </div>
-       
       </div>
     </div>
   </div>
