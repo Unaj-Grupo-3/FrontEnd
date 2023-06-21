@@ -22,7 +22,6 @@
 /* BODY */
 
 body {
-    width: 99.1vw;
     height: 100vh;
     background-color: var(--blanco-rosa);
 }
@@ -36,7 +35,7 @@ main {
 
 #user_page_main {
     margin: 0;
-	padding: 0;
+    padding-right: 2rem;
 }
 
 .material-symbols-outlined {
@@ -117,7 +116,7 @@ main {
 }
 
 .drag__container.over {
-    /* border: 2px dotted black; */
+    border: 2px dotted black; 
 }
 
 .drag__img {

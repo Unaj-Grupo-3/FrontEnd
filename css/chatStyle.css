@@ -152,10 +152,10 @@ p {
 
 .chat {
   position: absolute;
-  top: calc(var(--header-height) + 1rem);
+  top: 0;
   left: var(--nav-width);
   display: flex;
-  height: calc(100% - (var(--header-height) + 1rem));
+  height: 100%;
   width: calc(100% - var(--nav-width));
   align-items: center;
   justify-content: center;
