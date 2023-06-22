@@ -1,4 +1,4 @@
-
+window.onload = async () => {
 let isConnected = false;
 let connection;
 
@@ -18,6 +18,7 @@ await connection.start().then(() => {
 if (isConnected) {
     connection.invoke("ConnectionOn");
 }
+
 connection.on("ReceiveMessage", async function (chatId, messageResponse) {
     const icono = document.getElementById('nav-icono');
     const newMessage = document.createElement('span');
@@ -27,6 +28,18 @@ connection.on("ReceiveMessage", async function (chatId, messageResponse) {
         display: 'flex', height: '8px', width: '8px', borderRadius: '4px',
     });
     icono.appendChild(newMessage);
+});
+
+connection.onclose(async () => {
+    // Wait for 5 seconds before attempting to reconnect
+    await new Promise(res => setTimeout(res, 5000));
+    await connection.start().then(() => {
+        isConnected = true;
+        console.log("Reconnected to SignalR hub");
+    }).catch((err) => {
+        console.error(err.toString());
+        window.onload();
+    });
 });
 
 async function searchNotification() {
@@ -60,3 +73,5 @@ async function searchNotification() {
 
 
 searchNotification();
+
+}

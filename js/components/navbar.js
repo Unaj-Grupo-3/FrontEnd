@@ -1,13 +1,13 @@
 export const Navbar = (userPhoto) =>
 `
     <div class="l-navbar" id="nav-bar">
-        <header  id="menu_toggle" class="header">            
+        <div id="menu_toggle" class="menu_toggle">            
             <i class="bi bi-list"></i>
             <span class="nav_name">logo</span>  
-        </header>           
-        <div id="header" class="header_user">
-            <img src="${userPhoto}" alt="" class="header_img" id="header_img"/>
-            <span class="header_name">nombre apellido</span>
+        </div>           
+        <div id="header_user" class="header_user">
+            <img src="${userPhoto}" alt="" id="header_img" class="header_img"/>
+            <span id="header_name" class="header_name" >nombre apellido</span>
         </div>
         <nav class="nav">
             <div class="nav_list">
