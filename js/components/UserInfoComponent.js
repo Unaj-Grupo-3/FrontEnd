@@ -1,4 +1,4 @@
-export const UserInfoComponent = (name, mail, description) =>
+export const UserInfoComponent = (name, mail, description, minAge, maxAge, distance) =>
 
 `
 <div class="info__div" id="title__name">
@@ -34,14 +34,14 @@ export const UserInfoComponent = (name, mail, description) =>
 <div class="info__div">
     <h3>Que busco</h3>
     <p>Edad mínima</p>
-    <input type="range" id="min__age" min="18" max="100">
-    <label for="min__age">18</label>
+    <input type="range" id="in_min_age" min="18" max="${maxAge}" value="${minAge}" step="1">
+    <label for="in_min_age" id="lbl_min_age">${minAge}</label>
     <p>Edad máxima</p>
-    <input type="range" id="max__age" min="18" max="120">
-    <label for="max__age">120</label>
+    <input type="range" id="in_max_age" min="${minAge}" max="120" value="${maxAge}" step="1">
+    <label for="in_max_age" id="lbl_max_age">${maxAge}</label>
     <p>Distancia</p>
-    <input type="range" id="distance" min="0">
-    <label for="distance">100 km</label>
+    <input type="range" id="in_distance" min="0" value="${distance}" step="1">
+    <label for="in_distance" id="distance">${distance} km</label>
     <p>Otros</p>
     <button class="btn_general_style">Ver/modificar</button>
 </div>
