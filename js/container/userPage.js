@@ -1,5 +1,6 @@
 import { GetMyUser, UploadPhoto, ChangeUser } from "../services/fetchUserServices.js";
 import { GetMail, PutPasswd } from "../services/fetchAuthServices.js";
+import { GetMyOverall, PutMyOverall } from "../services/fetchPreferenceServices.js";
 import { UserInfoComponent } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
@@ -9,6 +10,12 @@ let userInfo = document.querySelector(".user__info");
 let userPhotoSection = document.querySelector("#photo_section");
 let dragSrcEl;
 let inputFile;
+let inputMinAge;
+let inputMaxAge;
+let inputDistance;
+let lblMinAge;
+let lblMaxAge;
+let lblDistance; 
 let photoMsj = document.querySelector("#resp_msj_photo");
 const modalPsswd = document.querySelector(".modal");
 const modalCloseBtn = document.querySelector(".modal__close");
@@ -90,7 +97,6 @@ async function ModDescription(e) {
         console.log("Se cambio la descripcion");
     }
 }
-
 
 const ModPhotos = async () => {
 
@@ -198,6 +204,16 @@ async function CheckGender(value) {
     }
 }
 
+async function ChangeOverall() {
+
+    let request = {
+        sinceAge: inputMinAge.value,
+        untilAge: inputMaxAge.value,
+        distance: inputDistance.value  
+    }
+
+    let response = await PutMyOverall(request);
+}
 
 const RenderUser = async () =>
 {
@@ -219,7 +235,8 @@ const RenderUser = async () =>
     }*/
 
     /* Renderizo UserInfo section */
-    userInfo.innerHTML += UserInfoComponent(user.name, authInfo.email, user.description);
+    let overall = await GetMyOverall();
+    userInfo.innerHTML += UserInfoComponent(user.name, authInfo.email, user.description, overall.sinceAge, overall.untilAge, overall.distance);
 
     let psswdModalBtn = document.querySelector("#btn_psswd");
     psswdModalBtn.addEventListener('click', ShowPssWdModal);
@@ -233,6 +250,31 @@ const RenderUser = async () =>
 
     let descriptionText = document.querySelector('#user__input');
     descriptionText.addEventListener('change', ModDescription);
+
+    lblMinAge = document.querySelector('#lbl_min_age');
+    lblMaxAge = document.querySelector('#lbl_max_age');
+    lblDistance = document.querySelector('#distance');
+
+
+    /* Overall: edad y distancia */
+    inputMinAge = document.querySelector('#in_min_age');
+    inputMinAge.addEventListener('input', async () => {
+        lblMinAge.innerHTML = inputMinAge.value;
+    });
+    inputMinAge.addEventListener('change', ChangeOverall);
+
+    inputMaxAge = document.querySelector('#in_max_age');
+    inputMaxAge.addEventListener('input', async () => {
+        lblMaxAge.innerHTML = inputMaxAge.value;
+    });
+    inputMaxAge.addEventListener('change', ChangeOverall);
+
+    inputDistance = document.querySelector('#in_distance');
+    inputDistance.addEventListener('input', async () => {
+        lblDistance.innerHTML = inputDistance.value + " km";
+    });
+    inputDistance.addEventListener('change', ChangeOverall);
+
 
     /* Renderizo UserPhotos section */
 
