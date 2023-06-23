@@ -17,8 +17,6 @@ export async function renderChats() {
         });
         if (response.ok) {
             const data = await response.json();
-            const chatHeader = document.getElementById("chat-header1");
-            chatHeader.innerHTML = `<h3>${data.userMe.userName} ${data.userMe.lastName}</h3>`;
             const chatList = document.getElementById("chats-friend");
             chatList.innerHTML = "";
             for (const chat of data.listChat) {
@@ -93,6 +91,10 @@ async function blockChats(element) {
     item.innerHTML += blockChat(element);
     const page = element.paginacion ? element.paginacion.totalPage : 1;
     item.addEventListener("click", async () => {
+        const linkColor = document.querySelectorAll(".chat-simple");
+        linkColor.forEach((l) => l.classList.remove("active-chat"));
+        item.classList.add("active-chat");
+
         const newMessage = document.getElementById(`divNewMessage-${chatId}`);
         if (newMessage) {
             newMessage.remove();
@@ -144,3 +146,5 @@ export function scrollToBottom(id) {
     const div = document.getElementById(id);
     div.scrollTop = div.scrollHeight - div.clientHeight;
 }
+
+
