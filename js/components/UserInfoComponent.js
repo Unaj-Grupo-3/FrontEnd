@@ -31,19 +31,32 @@ export const UserInfoComponent = (name, mail, description, minAge, maxAge, dista
     <button class="btn_general_style">Ver/modificar</button>
 </div>
 
-<div class="info__div">
+<div class="info__div pref_div">
     <h3>Que busco</h3>
-    <p>Edad mínima</p>
-    <input type="range" id="in_min_age" min="18" max="${maxAge}" value="${minAge}" step="1">
-    <label for="in_min_age" id="lbl_min_age">${minAge}</label>
-    <p>Edad máxima</p>
-    <input type="range" id="in_max_age" min="${minAge}" max="120" value="${maxAge}" step="1">
-    <label for="in_max_age" id="lbl_max_age">${maxAge}</label>
-    <p>Distancia</p>
-    <input type="range" id="in_distance" min="0" value="${distance}" step="1">
-    <label for="in_distance" id="distance">${distance} km</label>
-    <p>Otros</p>
-    <button class="btn_general_style">Ver/modificar</button>
+    <div>
+        <p>Edad mínima</p>
+        <input type="range" id="in_min_age" min="18" max="${maxAge}" value="${minAge}" step="1">
+        <label for="in_min_age" id="lbl_min_age">${minAge} años</label>
+        <p>Edad máxima</p>
+        <input type="range" id="in_max_age" min="${minAge}" max="120" value="${maxAge}" step="1">
+        <label for="in_max_age" id="lbl_max_age">${maxAge} años</label>
+        <p>Distancia</p>
+        <input type="range" id="in_distance" min="0" value="${distance}" step="1">
+        <label for="in_distance" id="distance">${distance} km</label>
+    </div>
+    <div>
+        <p>Género de la persona que busco</p>
+        <input type="checkbox" id="crush_female" class="crush_gender" value="2">
+        <label for="female">Femenino</label>
+        <input type="checkbox" id="crush_male" class="crush_gender" value="1">
+        <label for="male">Masculino</label>
+        <input type="checkbox" id="crush_other" class="crush_gender" value="3">
+        <label for="other">Otro</label>
+    </div>
+    <div>
+        <p>Otras caracteristicas</p>
+        <button class="btn_general_style">Ver/modificar</button>
+    </div>
 </div>
 
 `
