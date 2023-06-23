@@ -1,6 +1,6 @@
 import { GetMyUser, UploadPhoto, ChangeUser } from "../services/fetchUserServices.js";
 import { GetMail, PutPasswd } from "../services/fetchAuthServices.js";
-import { GetMyOverall, PutMyOverall } from "../services/fetchPreferenceServices.js";
+import { GetMyOverall, PutMyOverall, GetCrushGender } from "../services/fetchPreferenceServices.js";
 import { UserInfoComponent } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
@@ -251,21 +251,21 @@ const RenderUser = async () =>
     let descriptionText = document.querySelector('#user__input');
     descriptionText.addEventListener('change', ModDescription);
 
+
+    /* Overall: edad y distancia */
     lblMinAge = document.querySelector('#lbl_min_age');
     lblMaxAge = document.querySelector('#lbl_max_age');
     lblDistance = document.querySelector('#distance');
 
-
-    /* Overall: edad y distancia */
     inputMinAge = document.querySelector('#in_min_age');
     inputMinAge.addEventListener('input', async () => {
-        lblMinAge.innerHTML = inputMinAge.value;
+        lblMinAge.innerHTML = inputMinAge.value + " años";
     });
     inputMinAge.addEventListener('change', ChangeOverall);
 
     inputMaxAge = document.querySelector('#in_max_age');
     inputMaxAge.addEventListener('input', async () => {
-        lblMaxAge.innerHTML = inputMaxAge.value;
+        lblMaxAge.innerHTML = inputMaxAge.value + " años";
     });
     inputMaxAge.addEventListener('change', ChangeOverall);
 
@@ -275,6 +275,13 @@ const RenderUser = async () =>
     });
     inputDistance.addEventListener('change', ChangeOverall);
 
+    /* Que busca el usuario */
+
+    let genderPrefArray = await GetCrushGender();
+    console.log("Array de preferencias");
+    setTimeout(() => {
+        console.log(genderPrefArray);
+    }, 3000);
 
     /* Renderizo UserPhotos section */
 

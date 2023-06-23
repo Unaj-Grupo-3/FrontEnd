@@ -44,3 +44,25 @@ export const PutMyOverall = async (request) =>
 
     return result;
 }
+
+
+export const GetCrushGender = async () =>
+{
+    let result;
+    let response = await fetch(`${urlBase}/GenderPreference`,{
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JwtToken}`
+        }
+    })
+
+    if(response.ok){
+        result = await response.json();
+    }
+    else{
+        result = null;
+    }
+
+    return result;
+}
