@@ -2,18 +2,15 @@ import { GetMySuggestions } from "../services/fetchSuggestionService.js";
 import { CarouselIndicators } from "../components/carousel-indicators.js";
 import { CarouselInner } from "../components/carousel-inner.js";
 import { ButtonsLike } from "../components/button-like.js";
+import { SuggestionData } from "../components/suggestion-data.js";
+
+let suggestions = await GetMySuggestions();
 
 let carouselIndicators = document.getElementById('carousel-indicators');
 let carouselInner = document.getElementById('carousel-inner');
-
-let suggestions = await GetMySuggestions();
-let name = document.getElementById('name-match');
-let date = document.getElementById('date-match');
-let gender = document.getElementById('gender-match');
-let location = document.getElementById('location-match');
-let preference = document.getElementById('preference-match');
 let containerLike = document.getElementById('container-like');
 let containerData = document.getElementById('container-data');
+let suggestionData = document.getElementById('suggestions-data');
 let emptySuggestions = document.getElementById('empty-suggestions');
 
 if(suggestions != undefined){
@@ -32,18 +29,19 @@ function renderSuggestion(){
         let preferences = getPreferences(firstSuggestion.ourPreferences);
         let dateFormatted = getDate(firstSuggestion.birthday);
         let difference = age(dateFormatted);
-        
-        name.textContent = firstSuggestion.name + ' ' + firstSuggestion.lastName;
-        date.textContent = difference + ' años';
-        gender.textContent = firstSuggestion.gender.description;
-        location.textContent = firstSuggestion.location;
-        preference.textContent = preferences;
 
         renderPhotos(firstSuggestion.images);
+        renderData(firstSuggestion.name, firstSuggestion.lastName, difference, firstSuggestion.gender.description, firstSuggestion.location, preferences);
     }
     else{
         hiddenSuggestions();    
     }    
+}
+
+function renderData(name, lastName, age, gender, location, preferences){
+    let fullName = name + ' ' + lastName;
+    let edad = age + ' años';
+    suggestionData.innerHTML = SuggestionData(fullName, edad, gender, location, preferences);
 }
 
 function renderPhotos(images){
