@@ -22,6 +22,27 @@ export const GetMyOverall = async () =>
     return result;
 }
 
+export const GetCrushGender = async () =>
+{
+    let result;
+    let response = await fetch(`${urlBase}/GenderPreference`,{
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JwtToken}`
+        }
+    })
+
+    if(response.ok){
+        result = await response.json();
+    }
+    else{
+        result = null;
+    }
+
+    return result;
+}
+
 
 export const PutMyOverall = async (request) => 
 {
@@ -45,24 +66,52 @@ export const PutMyOverall = async (request) =>
     return result;
 }
 
-
-export const GetCrushGender = async () =>
+export const PostGenderPref = async (request) =>
 {
-    let result;
-    let response = await fetch(`${urlBase}/GenderPreference`,{
-        method: "GET",
-        headers:{
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${JwtToken}`
+    try{
+        let result;
+        let response = await fetch(`${urlBase}/GenderPreference`, {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${JwtToken}`
+            },
+            body: JSON.stringify(request)
+        })
+
+        if(response.ok){
+            result = await response.json();
         }
-    })
-
-    if(response.ok){
-        result = await response.json();
+        else{
+            throw new Error("Error al hacer POST GenderPreference");
+        }
     }
-    else{
-        result = null;
+    catch(error){
+        console.log(error);
     }
+}
 
-    return result;
+export const DeleteGenderPref = async (request) =>
+{
+    try{
+        let result;
+        let response = await fetch(`${urlBase}/GenderPreference`, {
+            method: "DELETE",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${JwtToken}`
+            },
+            body: JSON.stringify(request)
+        })
+
+        if(response.ok){
+            result = await response.json();
+        }
+        else{
+            throw new Error("Error al hacer POST GenderPreference");
+        }
+    }
+    catch(error){
+        console.log(error);
+    }
 }

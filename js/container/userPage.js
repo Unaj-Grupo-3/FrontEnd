@@ -1,6 +1,6 @@
 import { GetMyUser, UploadPhoto, ChangeUser } from "../services/fetchUserServices.js";
 import { GetMail, PutPasswd } from "../services/fetchAuthServices.js";
-import { GetMyOverall, PutMyOverall, GetCrushGender } from "../services/fetchPreferenceServices.js";
+import { GetMyOverall, PutMyOverall, GetCrushGender, PostGenderPref, DeleteGenderPref } from "../services/fetchPreferenceServices.js";
 import { UserInfoComponent } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
@@ -16,6 +16,7 @@ let inputDistance;
 let lblMinAge;
 let lblMaxAge;
 let lblDistance; 
+let genderList = [];
 let photoMsj = document.querySelector("#resp_msj_photo");
 const modalPsswd = document.querySelector(".modal");
 const modalCloseBtn = document.querySelector(".modal__close");
@@ -82,6 +83,20 @@ async function ModGender(e) {
 
     if(response !== null) {
         console.log("Se cambio el genero");
+    }
+}
+
+async function ModCrushGender(e) {
+
+    let response;
+    let request = {
+        genderId: parseInt(e.target.value)
+    }
+
+    if(e.target.checked) {
+        response = await PostGenderPref(request);
+    } else {
+        response = await DeleteGenderPref(request);
     }
 }
 
@@ -204,6 +219,19 @@ async function CheckGender(value) {
     }
 }
 
+async function CheckCrushGender(genderList) {
+
+    if(genderList.includes(1)) {
+        document.querySelector("#crush_male").checked = true;
+    }
+    if(genderList.includes(2)) {
+        document.querySelector("#crush_female").checked = true;
+    }
+    if(genderList.includes(3)) {
+        document.querySelector("#crush_other").checked = true;
+    }
+}
+
 async function ChangeOverall() {
 
     let request = {
@@ -215,6 +243,8 @@ async function ChangeOverall() {
     let response = await PutMyOverall(request);
 }
 
+
+/* Agregar manejo de errores: ej: si no existen preferencias del usuario */
 const RenderUser = async () =>
 {
     let user = await GetMyUser();
@@ -271,17 +301,24 @@ const RenderUser = async () =>
 
     inputDistance = document.querySelector('#in_distance');
     inputDistance.addEventListener('input', async () => {
-        lblDistance.innerHTML = inputDistance.value + " km";
+    lblDistance.innerHTML = inputDistance.value + " km";
     });
     inputDistance.addEventListener('change', ChangeOverall);
 
     /* Que busca el usuario */
 
     let genderPrefArray = await GetCrushGender();
-    console.log("Array de preferencias");
-    setTimeout(() => {
-        console.log(genderPrefArray);
-    }, 3000);
+    let gList = genderPrefArray.map((item) => {
+        return item.genderId;
+    });
+    CheckCrushGender(gList);
+
+    const crushGenderChecks = document.querySelectorAll('input[class="crush_gender"]');
+    crushGenderChecks.forEach((item) => {
+        item.addEventListener('change', ModCrushGender);
+    })
+
+    
 
     /* Renderizo UserPhotos section */
 

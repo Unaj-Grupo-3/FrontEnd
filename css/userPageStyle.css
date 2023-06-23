@@ -264,6 +264,12 @@ main {
     font-size: 1.5rem;
 }
 
+.pref_div {
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 20px;
+}
+
 /* Modal */
 .modal {
     position: fixed;
