@@ -123,7 +123,7 @@
     border: 1px solid var(--first-color);
 }
 
-.active::before {
+.carousel-inner> .active::before, .carousel-indicators> .active::before {
     content: "";
     position: absolute;
     left: 0;
