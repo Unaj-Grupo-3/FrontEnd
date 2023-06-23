@@ -11,15 +11,15 @@ export const Navbar = (userPhoto) =>
         </div>
         <nav class="nav">
             <div class="nav_list">
-                <a href="http://127.0.0.1:5501/views/UserPage.html" class="nav_link active">
+                <a href="../../views/UserPage.html" class="nav_link active">
                     <i class="bi bi-person-circle"></i>
                   <span class="nav_name">Perfil</span>
                 </a>
-                <a href="#" class="nav_link">
+                <a href="../../views/Matches.html" class="nav_link">
                     <i class="bi bi-arrow-through-heart"></i>
                   <span class="nav_name">Matches</span>
                 </a>
-                <a href="#" class="nav_link">
+                <a href="../../views/Citas.html" class="nav_link">
                     <i class="bi bi-cup-hot"></i>
                   <span class="nav_name">Citas</span>
                 </a>
@@ -27,7 +27,7 @@ export const Navbar = (userPhoto) =>
                     <i id="nav-icono" class="bi bi-chat-right-text"></i>
                   <span class="nav_name">Chats</span>
                 </a>
-                <a href="#" class="nav_link">
+                <a href="../../views/Login.html" class="nav_link">
                     <i class="bi bi-box-arrow-left"></i>
                     <span class="nav_name">Salir</span>
                 </a>

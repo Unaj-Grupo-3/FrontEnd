@@ -1,4 +1,4 @@
-window.onload = async () => {
+
 let isConnected = false;
 let connection;
 
@@ -7,12 +7,11 @@ const JwtToken = sessionStorage.getItem("token");
 connection = new signalR.HubConnectionBuilder()
     .withUrl('https://localhost:7165/chathub', { accessTokenFactory: () => JwtToken })
     .build();
-connection.serverTimeoutInMilliseconds = 120000;
+
 await connection.start().then(() => {
     isConnected = true;
 }).catch((err) => {
     console.error(err.toString())
-    window.onload();
 });
 
 if (isConnected) {
@@ -24,7 +23,7 @@ connection.on("ReceiveMessage", async function (chatId, messageResponse) {
     const newMessage = document.createElement('span');
     newMessage.id = 'miId';
     Object.assign(newMessage.style, {
-        position: 'absolute', left: '39px', top: '10px', backgroundColor: '#2be241',
+        position: 'absolute', left: '31px', top: '9px', backgroundColor: '#2be241',
         display: 'flex', height: '8px', width: '8px', borderRadius: '4px',
     });
     icono.appendChild(newMessage);
@@ -38,7 +37,6 @@ connection.onclose(async () => {
         console.log("Reconnected to SignalR hub");
     }).catch((err) => {
         console.error(err.toString());
-        window.onload();
     });
 });
 
@@ -57,7 +55,7 @@ async function searchNotification() {
                     const newMessage = document.createElement('span');
                     newMessage.id = 'miId';
                     Object.assign(newMessage.style, {
-                        position: 'absolute', left: '39px', top: '10px', backgroundColor: '#2be241',
+                        position: 'absolute', left: '31px', top: '9px', backgroundColor: '#2be241',
                         display: 'flex', height: '8px', width: '8px', borderRadius: '4px',
                     });
                     icono.appendChild(newMessage);
@@ -74,4 +72,3 @@ async function searchNotification() {
 
 searchNotification();
 
-}
