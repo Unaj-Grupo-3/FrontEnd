@@ -11,11 +11,11 @@ export const Navbar = (userPhoto) =>
         </div>
         <nav class="nav">
             <div class="nav_list">
-                <a href="http://127.0.0.1:5501/views/UserPage.html" class="nav_link active">
+                <a href="../../views/UserPage.html" class="nav_link active">
                     <i class="bi bi-person-circle"></i>
                   <span class="nav_name">Perfil</span>
                 </a>
-                <a href="#" class="nav_link">
+                <a href="../../views/homepage.html" class="nav_link">
                     <i class="bi bi-arrow-through-heart"></i>
                   <span class="nav_name">Matches</span>
                 </a>
