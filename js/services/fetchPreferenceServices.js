@@ -43,6 +43,36 @@ export const GetCrushGender = async () =>
     return result;
 }
 
+export const GetInterest = async () => 
+{
+    try
+    {
+        let result;
+        let response = await fetch(`${urlBase}/Interest`, {
+            method: "GET",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${JwtToken}`
+            }
+        })
+
+        if(response.ok){
+            result = await response.json();
+
+            return result;
+        }
+        else{
+            throw new Error("Error al hacer POST GenderPreference");
+        }
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+
+
+}
+
 
 export const PutMyOverall = async (request) => 
 {
@@ -81,6 +111,8 @@ export const PostGenderPref = async (request) =>
 
         if(response.ok){
             result = await response.json();
+
+            return result;
         }
         else{
             throw new Error("Error al hacer POST GenderPreference");
