@@ -1,7 +1,7 @@
 import { GetMyUser, UploadPhoto, ChangeUser } from "../services/fetchUserServices.js";
 import { GetMail, PutPasswd } from "../services/fetchAuthServices.js";
-import { GetMyOverall, PutMyOverall, GetCrushGender, PostGenderPref, DeleteGenderPref } from "../services/fetchPreferenceServices.js";
-import { UserInfoComponent } from "../components/UserInfoComponent.js";
+import { GetMyOverall, PutMyOverall, GetCrushGender, PostGenderPref, DeleteGenderPref, GetInterest } from "../services/fetchPreferenceServices.js";
+import { UserInfoComponent, PrefComponent, InterestTag } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
 
@@ -21,6 +21,7 @@ let photoMsj = document.querySelector("#resp_msj_photo");
 const modalPsswd = document.querySelector(".modal");
 const modalCloseBtn = document.querySelector(".modal__close");
 const changePasswdBtn = document.querySelector("#btn_change_passwd");
+const modal2 = document.querySelector('.modal_2');
 
 
 /* Drag & Drop */
@@ -206,6 +207,9 @@ const ChangePassword = async () => {
 
 changePasswdBtn.addEventListener('click', ChangePassword);
 
+
+/* Gender */
+
 async function CheckGender(value) {
 
     if(value == 1) {
@@ -232,6 +236,8 @@ async function CheckCrushGender(genderList) {
     }
 }
 
+/* Min & Max age, Distance */
+
 async function ChangeOverall() {
 
     let request = {
@@ -241,6 +247,41 @@ async function ChangeOverall() {
     }
 
     let response = await PutMyOverall(request);
+}
+
+/* Renders */
+
+async function RenderPrefModal() {
+
+    const prefContainer = document.querySelector('.pref_container');
+    const modalCloseBtn2 = document.querySelector("#btn_close_2");
+    let categories = await GetInterest();
+
+    console.log("Intereses");
+    console.log(JSON.stringify(categories));
+
+    categories.forEach((cat) =>
+    {
+        let ints4Cat = cat.interes;
+        let contName = '#cat_' + cat.id;
+
+        prefContainer.innerHTML += PrefComponent(cat.id, cat.description);
+        
+        let intContainer = document.querySelector(contName);
+
+        console.log(ints4Cat);
+        console.log(intContainer);
+        ints4Cat.forEach((item) =>
+        {
+            intContainer.innerHTML += InterestTag(item.id, item.description);
+        });
+    })
+
+    modalCloseBtn2.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log("se deberia cerrar el modal");
+        modal2.classList.remove("modal--show-2");
+    })
 }
 
 
@@ -281,6 +322,14 @@ const RenderUser = async () =>
     let descriptionText = document.querySelector('#user__input');
     descriptionText.addEventListener('change', ModDescription);
 
+    /* Modal Sobre mi */
+    let btnAboutMe = document.querySelector('#btn_about_me');
+    btnAboutMe.addEventListener('click', () =>
+    {
+        console.log("Me apretaste");
+        console.log(modal2);
+        modal2.classList.add("modal--show-2");
+    });
 
     /* Overall: edad y distancia */
     lblMinAge = document.querySelector('#lbl_min_age');
@@ -318,7 +367,10 @@ const RenderUser = async () =>
         item.addEventListener('change', ModCrushGender);
     })
 
-    
+
+    /* Modal Intereses */
+    RenderPrefModal();
+
 
     /* Renderizo UserPhotos section */
 
