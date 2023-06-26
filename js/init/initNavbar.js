@@ -1,4 +1,5 @@
 import { Navbar } from "../components/navbar.js";
+import { profile } from "../services/fetchNavServices.js";
 
 const navbarContainer = document.getElementById("navbar");
 let userPhoto = "../img/user-default.png";
@@ -20,15 +21,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
         }
     };
 
-    showNavbar("menu_toggle", "nav-bar", "header","header_img" );
+    showNavbar("menu_toggle", "nav-bar", "header_user","header_img" );
 
-    const linkColor = document.querySelectorAll(".nav_link");
-
+    
     function colorLink() {
         if (linkColor) {
-        linkColor.forEach((l) => l.classList.remove("active"));
-        this.classList.add("active");
+            linkColor.forEach((l) => l.classList.remove("active"));
+            this.classList.add("active");
         }
     }
+    
+    const linkColor = document.querySelectorAll(".nav_link");
     linkColor.forEach((l) => l.addEventListener("click", colorLink));
+
+    profile();
 });
+

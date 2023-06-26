@@ -62,7 +62,7 @@ export const UploadPhoto = async (data) =>
             console.log("No se puede agregar mas fotos");
             return -1;
         }   
-        result == null;
+        result = null;
 
         return result;
     }

@@ -264,7 +264,13 @@ main {
     font-size: 1.5rem;
 }
 
-/* Modal */
+.pref_div {
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 20px;
+}
+
+/* Modal 1 */
 .modal {
     position: fixed;
     top: 0;
@@ -285,7 +291,6 @@ main {
 .modal__container {
     width: 90%;
     background-color: var(--blanco-rosa);
-    width: 90%;
     max-width: 300px;
     max-height: 90%;
     margin: auto;
@@ -367,6 +372,75 @@ main {
     margin: 0;
 	display: inline-block;
 	box-sizing: border-box;
+}
+
+/* Modal 2*/
+.modal_2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111111bd;
+    display:flex;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.modal--show-2 {
+    opacity: 1;
+    pointer-events: unset;
+}
+
+.modal__container_2 {
+    width: 50%;
+    background-color: var(--blanco-rosa);
+    max-height: 90%;
+    margin: auto;
+    border-radius: 6px;
+    padding: 3em 2.5em;
+    display: grid;
+    gap: 1em;
+    place-items: center;
+    grid-auto-columns: 100%;
+    border: 1px solid var(--first-color);
+    text-align: center;
+    overflow-y: scroll;
+}
+
+.grid_modal_2 {
+    display: grid;
+    gap: 1em;
+    place-items: center;
+    grid-auto-columns: 100%;
+}
+
+.interest_cat {
+    margin: 1em 0;
+}
+
+.interests_container {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.interest_item {
+    text-decoration: none;
+    outline: none;
+    border: 1px solid var(--first-color);
+    border-radius: 5px;
+    margin: 0 1em 1em 0;
+    padding: 0.5em;
+    color: black;
+    background-color: white;
+}
+
+.interest_item:hover {
+    background-color: var(--first-color);
+    color: white;
 }
 
 /* Footer */

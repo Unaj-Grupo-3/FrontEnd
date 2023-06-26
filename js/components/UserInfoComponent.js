@@ -1,4 +1,4 @@
-export const UserInfoComponent = (name, mail, description) =>
+export const UserInfoComponent = (name, mail, description, minAge, maxAge, distance) =>
 
 `
 <div class="info__div" id="title__name">
@@ -28,22 +28,52 @@ export const UserInfoComponent = (name, mail, description) =>
 
 <div class="info__div">
     <h3>Más sobre mi</h3>
-    <button class="btn_general_style">Ver/modificar</button>
+    <button class="btn_general_style" id="btn_about_me">Ver/modificar</button>
 </div>
 
-<div class="info__div">
+<div class="info__div pref_div">
     <h3>Que busco</h3>
-    <p>Edad mínima</p>
-    <input type="range" id="min__age" min="18" max="100">
-    <label for="min__age">18</label>
-    <p>Edad máxima</p>
-    <input type="range" id="max__age" min="18" max="120">
-    <label for="max__age">120</label>
-    <p>Distancia</p>
-    <input type="range" id="distance" min="0">
-    <label for="distance">100 km</label>
-    <p>Otros</p>
-    <button class="btn_general_style">Ver/modificar</button>
+    <div>
+        <p>Edad mínima</p>
+        <input type="range" id="in_min_age" min="18" max="${maxAge}" value="${minAge}" step="1">
+        <label for="in_min_age" id="lbl_min_age">${minAge} años</label>
+        <p>Edad máxima</p>
+        <input type="range" id="in_max_age" min="${minAge}" max="120" value="${maxAge}" step="1">
+        <label for="in_max_age" id="lbl_max_age">${maxAge} años</label>
+        <p>Distancia</p>
+        <input type="range" id="in_distance" min="0" value="${distance}" step="1">
+        <label for="in_distance" id="distance">${distance} km</label>
+    </div>
+    <div>
+        <p>Género de la persona que busco</p>
+        <input type="checkbox" id="crush_female" class="crush_gender" value="2">
+        <label for="female">Femenino</label>
+        <input type="checkbox" id="crush_male" class="crush_gender" value="1">
+        <label for="male">Masculino</label>
+        <input type="checkbox" id="crush_other" class="crush_gender" value="3">
+        <label for="other">Otro</label>
+    </div>
+    <div>
+        <p>Otras caracteristicas</p>
+        <button class="btn_general_style">Ver/modificar</button>
+    </div>
 </div>
 
+`
+
+
+export const PrefComponent = (id, description) =>
+
+`
+<h4 class="interest_cat">${description}</h4>
+<div class="interests_container" id="cat_${id}">
+        
+</div>
+`
+
+
+export const InterestTag = (id, name) =>
+
+`
+<a class="interest_item" value="${id}">${name}</a>
 `

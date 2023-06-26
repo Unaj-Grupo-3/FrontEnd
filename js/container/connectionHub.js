@@ -15,7 +15,7 @@ export async function addEventListenerHub() {
         isConnected = true;
     }).catch((err) => {
         console.error(err.toString())
-        window.onload();
+        addEventListenerHub() 
     });
 
     if (isConnected) {
@@ -69,6 +69,19 @@ export async function addEventListenerHub() {
             }
         }
     });
+
+    connection.onclose(async () => {
+    // Wait for 5 seconds before attempting to reconnect
+    await new Promise(res => setTimeout(res, 5000));
+    await connection.start().then(() => {
+        isConnected = true;
+        console.log("Reconnected to SignalR hub");
+    }).catch((err) => {
+        console.error(err.toString());
+        addEventListenerHub() 
+    });
+});
+
 }
 
 export function toSend() {
@@ -84,3 +97,5 @@ export async function readMessages(chatId, messageIds) {
         console.error(err.toString());
     });
 }
+
+
