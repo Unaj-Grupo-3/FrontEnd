@@ -63,3 +63,23 @@ export const PutPasswd = async (request) => {
 
     return result;
 }
+
+export const CreateAuth = async (request) => {
+
+    let result;
+    let response = await fetch(urlBase, {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(request) 
+    })
+
+    if(response.ok && response.status == 201 || response.status==400){
+        result = await response.json();
+    }else{
+        result = null;
+    }
+
+    return result;
+}
