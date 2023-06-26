@@ -15,7 +15,7 @@
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet" href="../css/registerStyle.css">
+  <link rel="stylesheet" href="../css/authStyle.css">
 </head>
 
 <body id="body-pd">
@@ -33,28 +33,47 @@
       <div id="registerAuthContainer">
         <form id="formAuth">
           <div class="inputContainer">
-            <h4>Correo Electronico</h4>
-            <input type="mail" id="inputMail">
-            <p id="errorMail"></p>
+            <div>
+              <h4>Correo Electronico</h4>
+              <div id="input-container">
+                <input type="mail" id="inputMail">
+                <span class="icon" title="inputPassword">---</span>
+              </div>
+              <p id="errorMail"></p>
+            </div>
           </div>
           <div class="inputContainer">
             <div>
               <h4>Contraseña</h4>
-              <input type="password" id="inputPassword">
-              <span class="material-symbols-outlined icon_password" title="inputPassword">visibility_off</span>
+              <div id="input-container">
+                <input type="password" id="inputPassword">
+                <span class="material-symbols-outlined icon_password" title="inputPassword">visibility_off</span>
+              </div>    
             </div>
             <p id="errorPassword"></p>
           </div>
           <div class="inputContainer">
             <div>
               <h4>Repetir Contraseña</h4>
-              <input type="password" id="inputPassword2">
-              <span class="material-symbols-outlined icon_password" title="inputPassword2">visibility_off</span>
+              <div id="input-container">
+                <input type="password" id="inputPassword2">
+                <span class="material-symbols-outlined icon_password" title="inputPassword2">visibility_off</span>
+              </div>         
             </div>
             <p id="errorPassword2"></p>
           </div>
           <button id="buttonSubmit" type="submit">Registrarse</button>
         </form>
+      </div>
+      <div class="format">
+        <p id="format">Su contraseña debera cumplir con las siguientes caracteristicas:</p>
+        <ul>
+          <li><p id="format">Respetar una longitud minima de 8 caracteres</p></li>
+          <li><p id="format">Tener un caracter alfabetico en mayuscula</p></li>
+          <li><p id="format">Tener un caracter numero</p></li>
+          <li><p id="format">De contener un caracter no alfabetico</p></li>
+          <li><p id="format">No poseer espacios en blanco</p></li>
+        </ul>
       </div>
     </div>
   </main>
