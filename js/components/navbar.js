@@ -1,44 +1,38 @@
 export const Navbar = (userPhoto) =>
 `
-<header class="header" id="header">
-          <div class="header_toggle">
-            <i class="bi bi-list" id="header-toggle"></i>
-          </div>
-          <div class="header_img">
-            <img src="${userPhoto}" alt="" />
-          </div>
-        </header>
-        <div class="l-navbar" id="nav-bar">
-          <nav class="nav">
-            <div>
-              <a href="http://127.0.0.1:5501/views/homepage.html" class="nav_logo">
-                <img src="\\img\\globo-blanco.png" alt="Logo" class="logo-citas" />
-                <span class="nav_logo-name">CitasApp</span>
-              </a>
-              <div class="nav_list">
-                <a href="http://127.0.0.1:5501/views/UserPage.html" class="nav_link active">
+    <div class="l-navbar" id="nav-bar">
+        <div id="menu_toggle" class="menu_toggle">            
+            <i class="bi bi-list"></i>
+            <span class="nav_name">logo</span>  
+        </div>           
+        <div id="header_user" class="header_user">
+            <img src="${userPhoto}" alt="" id="header_img" class="header_img"/>
+            <span id="header_name" class="header_name" >nombre apellido</span>
+        </div>
+        <nav class="nav">
+            <div class="nav_list">
+                <a href="../../views/UserPage.html" class="nav_link active">
                     <i class="bi bi-person-circle"></i>
                   <span class="nav_name">Perfil</span>
                 </a>
-                <a href="#" class="nav_link">
+                <a href="../../views/Matches.html" class="nav_link">
                     <i class="bi bi-arrow-through-heart"></i>
                   <span class="nav_name">Matches</span>
                 </a>
+
                 <a href="http://127.0.0.1:5501/views/Dates.html" class="nav_link">
                     <i class="bi bi-cup-hot"></i>
                   <span class="nav_name">Citas</span>
                 </a>
                 <a href="../../views/Chat.html" class="nav_link">
-                    <i class="bi bi-chat-right-text"></i>
+                    <i id="nav-icono" class="bi bi-chat-right-text"></i>
                   <span class="nav_name">Chats</span>
                 </a>
-              </div>
+                <a href="../../views/Login.html" class="nav_link">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span class="nav_name">Salir</span>
+                </a>
             </div>
-            <a href="#" class="nav_link">
-                <i class="bi bi-box-arrow-left"></i>
-              <span class="nav_name">Salir</span>
-            </a>
-          </nav>
-        </div>
-
+        </nav>
+    </div>
 `
