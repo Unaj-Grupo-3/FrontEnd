@@ -89,7 +89,6 @@ export function toSend() {
     connection.invoke("SendMessage", currentChat.chatId, message)
         .catch((err) => { console.error(err.toString()); });
     document.getElementById("txt-Message").value = "";
-    document.getElementById("txt-Message").focus();
 }
 
 export async function readMessages(chatId, messageIds) {
