@@ -1,7 +1,7 @@
 import { GetMyUser, UploadPhoto, ChangeUser } from "../services/fetchUserServices.js";
 import { GetMail, PutPasswd } from "../services/fetchAuthServices.js";
-import { GetMyOverall, PutMyOverall } from "../services/fetchPreferenceServices.js";
-import { UserInfoComponent } from "../components/UserInfoComponent.js";
+import { GetMyOverall, PutMyOverall, GetCrushGender, PostGenderPref, DeleteGenderPref, GetInterest } from "../services/fetchPreferenceServices.js";
+import { UserInfoComponent, PrefComponent, InterestTag } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
 
@@ -16,10 +16,12 @@ let inputDistance;
 let lblMinAge;
 let lblMaxAge;
 let lblDistance; 
+let genderList = [];
 let photoMsj = document.querySelector("#resp_msj_photo");
 const modalPsswd = document.querySelector(".modal");
 const modalCloseBtn = document.querySelector(".modal__close");
 const changePasswdBtn = document.querySelector("#btn_change_passwd");
+const modal2 = document.querySelector('.modal_2');
 
 
 /* Drag & Drop */
@@ -82,6 +84,20 @@ async function ModGender(e) {
 
     if(response !== null) {
         console.log("Se cambio el genero");
+    }
+}
+
+async function ModCrushGender(e) {
+
+    let response;
+    let request = {
+        genderId: parseInt(e.target.value)
+    }
+
+    if(e.target.checked) {
+        response = await PostGenderPref(request);
+    } else {
+        response = await DeleteGenderPref(request);
     }
 }
 
@@ -191,6 +207,9 @@ const ChangePassword = async () => {
 
 changePasswdBtn.addEventListener('click', ChangePassword);
 
+
+/* Gender */
+
 async function CheckGender(value) {
 
     if(value == 1) {
@@ -204,6 +223,21 @@ async function CheckGender(value) {
     }
 }
 
+async function CheckCrushGender(genderList) {
+
+    if(genderList.includes(1)) {
+        document.querySelector("#crush_male").checked = true;
+    }
+    if(genderList.includes(2)) {
+        document.querySelector("#crush_female").checked = true;
+    }
+    if(genderList.includes(3)) {
+        document.querySelector("#crush_other").checked = true;
+    }
+}
+
+/* Min & Max age, Distance */
+
 async function ChangeOverall() {
 
     let request = {
@@ -215,6 +249,43 @@ async function ChangeOverall() {
     let response = await PutMyOverall(request);
 }
 
+/* Renders */
+
+async function RenderPrefModal() {
+
+    const prefContainer = document.querySelector('.pref_container');
+    const modalCloseBtn2 = document.querySelector("#btn_close_2");
+    let categories = await GetInterest();
+
+    console.log("Intereses");
+    console.log(JSON.stringify(categories));
+
+    categories.forEach((cat) =>
+    {
+        let ints4Cat = cat.interes;
+        let contName = '#cat_' + cat.id;
+
+        prefContainer.innerHTML += PrefComponent(cat.id, cat.description);
+        
+        let intContainer = document.querySelector(contName);
+
+        console.log(ints4Cat);
+        console.log(intContainer);
+        ints4Cat.forEach((item) =>
+        {
+            intContainer.innerHTML += InterestTag(item.id, item.description);
+        });
+    })
+
+    modalCloseBtn2.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log("se deberia cerrar el modal");
+        modal2.classList.remove("modal--show-2");
+    })
+}
+
+
+/* Agregar manejo de errores: ej: si no existen preferencias del usuario */
 const RenderUser = async () =>
 {
     let user = await GetMyUser();
@@ -251,29 +322,54 @@ const RenderUser = async () =>
     let descriptionText = document.querySelector('#user__input');
     descriptionText.addEventListener('change', ModDescription);
 
+    /* Modal Sobre mi */
+    let btnAboutMe = document.querySelector('#btn_about_me');
+    btnAboutMe.addEventListener('click', () =>
+    {
+        console.log("Me apretaste");
+        console.log(modal2);
+        modal2.classList.add("modal--show-2");
+    });
+
+    /* Overall: edad y distancia */
     lblMinAge = document.querySelector('#lbl_min_age');
     lblMaxAge = document.querySelector('#lbl_max_age');
     lblDistance = document.querySelector('#distance');
 
-
-    /* Overall: edad y distancia */
     inputMinAge = document.querySelector('#in_min_age');
     inputMinAge.addEventListener('input', async () => {
-        lblMinAge.innerHTML = inputMinAge.value;
+        lblMinAge.innerHTML = inputMinAge.value + " años";
     });
     inputMinAge.addEventListener('change', ChangeOverall);
 
     inputMaxAge = document.querySelector('#in_max_age');
     inputMaxAge.addEventListener('input', async () => {
-        lblMaxAge.innerHTML = inputMaxAge.value;
+        lblMaxAge.innerHTML = inputMaxAge.value + " años";
     });
     inputMaxAge.addEventListener('change', ChangeOverall);
 
     inputDistance = document.querySelector('#in_distance');
     inputDistance.addEventListener('input', async () => {
-        lblDistance.innerHTML = inputDistance.value + " km";
+    lblDistance.innerHTML = inputDistance.value + " km";
     });
     inputDistance.addEventListener('change', ChangeOverall);
+
+    /* Que busca el usuario */
+
+    let genderPrefArray = await GetCrushGender();
+    let gList = genderPrefArray.map((item) => {
+        return item.genderId;
+    });
+    CheckCrushGender(gList);
+
+    const crushGenderChecks = document.querySelectorAll('input[class="crush_gender"]');
+    crushGenderChecks.forEach((item) => {
+        item.addEventListener('change', ModCrushGender);
+    })
+
+
+    /* Modal Intereses */
+    RenderPrefModal();
 
 
     /* Renderizo UserPhotos section */

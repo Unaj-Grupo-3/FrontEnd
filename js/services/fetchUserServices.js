@@ -13,10 +13,12 @@ export const GetMyUser = async () =>
         }
     })
 
-    if(response.ok){
+    if(response.ok || response.status == 404){
         result = await response.json();
+
     }
     
+
     return result;
 }
 
@@ -65,4 +67,24 @@ export const UploadPhoto = async (data) =>
         return result;
     }
     
+}
+
+export const CreateUser = async (request) => {
+
+    let result;
+    let response = await fetch(urlBase, {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(request) 
+    })
+
+    if(response.ok && response.status == 201){
+        result = await response.json();
+    }else{
+        result = null;
+    }
+
+    return result;
 }
