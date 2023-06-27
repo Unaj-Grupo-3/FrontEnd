@@ -11,13 +11,10 @@ export const UserMatch = async (request) => {
         },
         body: JSON.stringify(request)
     })
-
-    if(response.ok && response.status == 200){
+    
+    if(response){
         result = await response.json();
-    }
-    else{
-        result = null;
-    }
+    }  
 
     return result;
 }
