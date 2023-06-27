@@ -24,6 +24,7 @@ else{
 
 function renderSuggestion(){    
     firstSuggestion = suggestions.suggestedUsers.pop();
+    //console.log(firstSuggestion)
     if(firstSuggestion != undefined){
         let preferences = getPreferences(firstSuggestion.ourPreferences);
         let dateFormatted = getDate(firstSuggestion.birthday);

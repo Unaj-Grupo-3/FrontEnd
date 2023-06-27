@@ -34,34 +34,42 @@
 
 .container-photo{
     width: 100%;
-    height: 60%;
-    padding: 0% 20%;
+    height: 70%;
+    padding: 0 5vw;
 }
 
 .data{
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: center;
     flex-direction: column;
     padding: 5%;
     box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.5);
     background: -webkit-linear-gradient(0deg , var(--first-color),var(--first-color-light));
-    padding: 10%; 
     color: white; 
     font-size: 2vw;
     border-radius: 1vw;   
     margin-right: 15px;
+    height: 70%;
 }
 
-.data>p{
+.info-data{
+    flex-direction: column;
+    align-items: start;
+    height: 90%;
+}
+
+.info-data>p{
     font-size: 1.5vw;
+    justify-content: start;
+    align-items: start;
     text-align: start;
     font-weight: 600;
     margin-bottom: 1%;
     text-shadow: 1px 2px 6px  rgba(0, 0, 0, 0.5);
 }
 
-.data>p>strong{
+.info-data>p>strong{
     font-weight: 300;
 }
 
@@ -78,11 +86,13 @@
 .photo, .carousel, .carousel-inner, .carousel-item{
     width: 100%;
     height: 100%;
-    border-radius: 1vw;    
+    border-radius: 1vw; 
+    object-fit: cover;   
+    object-position: 0 50;
 }
 
 .choice-button{
-    opacity: 0.7;
+    opacity: 0.8;
     position:absolute;
     bottom:0;
     margin: 10% 15%;
@@ -91,7 +101,7 @@
     height: 15%;
     cursor: pointer;
     -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.8s;
+    transition-duration: 0.4s;
     text-decoration: none;
 }
 
@@ -120,7 +130,7 @@
 }
 
 .btnLike:hover, .btnDislike:hover{
-    opacity: 1;
+    opacity: 0.5; 
 }
 
 #btn-match{
@@ -167,6 +177,7 @@
 .logo-data {
     width: 100%;
     padding: 10px;
+    height: 10%;
 }
 
 .img-logo-data{
@@ -248,7 +259,7 @@
         min-height: 50vh;
     }
 
-    .container-suggestion>p{
+    .info-data>p{
         font-size: 1rem;
     }
 
@@ -263,11 +274,28 @@
     .nav{
         height:60%;
     }
+    
+    #empty-suggestions{
+        padding: 5px;
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    #empty-suggestions>h1{
+        font-size: 1rem;
+    }
 
     .data{
         margin: 0;
-        background: -webkit-linear-gradient(0deg , var(--white-color),var(--first-color-light-nav));
+        background: white;
         color: var(--first-color);
+    }
+
+    .logo-data{
+        background-color: var(--first-color-light-nav);
+        border-radius: 5px;
+        margin-bottom: 10px;
+        width: 30%;
     }
 }
 
