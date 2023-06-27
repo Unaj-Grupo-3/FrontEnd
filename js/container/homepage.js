@@ -1,4 +1,5 @@
-import { GetMySuggestions } from "../services/fetchSuggestionService.js";
+import { GetMySuggestions } from "../services/fetchSuggestionServices.js";
+import { UserMatch } from "../services/fetchMatchServices.js";
 import { CarouselIndicators } from "../components/carousel-indicators.js";
 import { CarouselInner } from "../components/carousel-inner.js";
 import { ButtonsLike } from "../components/button-like.js";
@@ -13,15 +14,14 @@ let containerData = document.getElementById('container-data');
 let suggestionData = document.getElementById('suggestions-data');
 let emptySuggestions = document.getElementById('empty-suggestions');
 
-if(suggestions != undefined){
-    //console.log(suggestions);
+if(suggestions && suggestions.suggestedUsers != undefined){    
     renderSuggestion();
 }
 else{
     hiddenSuggestions();
 }
 
-function renderSuggestion(){
+function renderSuggestion(){    
     let firstSuggestion = suggestions.suggestedUsers.pop();
     //console.log(firstSuggestion);
 
@@ -30,7 +30,7 @@ function renderSuggestion(){
         let dateFormatted = getDate(firstSuggestion.birthday);
         let difference = age(dateFormatted);
 
-        renderPhotos(firstSuggestion.images);
+        renderPhotos(firstSuggestion.images, firstSuggestion.userId);
         renderData(firstSuggestion.name, firstSuggestion.lastName, difference, firstSuggestion.gender.description, firstSuggestion.location, preferences);
     }
     else{
@@ -44,7 +44,7 @@ function renderData(name, lastName, age, gender, location, preferences){
     suggestionData.innerHTML = SuggestionData(fullName, edad, gender, location, preferences);
 }
 
-function renderPhotos(images){
+function renderPhotos(images, userId){
     let indicators = '';
     let inner = '';
     if (images.length > 0){        
@@ -52,16 +52,17 @@ function renderPhotos(images){
             indicators += CarouselIndicators(index);
             inner += CarouselInner(images[index].url, index);
         }
-        inner += ButtonsLike(1);        
+        inner += ButtonsLike(userId);        
     } 
     else{
         inner = CarouselInner('../img/user-default.png', 0);
         indicators += CarouselIndicators(0);
-        inner += ButtonsLike(1);        
+        inner += ButtonsLike(userId);        
     }
+    //inner += `<img class="like-animation-show" id="like" src="../img/corazones.png" alt="Botón Like">`
     carouselIndicators.innerHTML = indicators;
     carouselInner.innerHTML = inner;
-    inner += ButtonsLike(1);  
+        
     buttonsChoice(document.querySelectorAll(".choice-button"));
 }
 
@@ -100,7 +101,39 @@ function hiddenSuggestions(){
 function buttonsChoice(elements){
     elements.forEach((element) => {
         element.addEventListener('click', () =>{
-            renderSuggestion();
+            likeDislike(element.classList[1], element.id);
         })
     });
+}
+
+async function likeDislike(action, userId){
+    let likeAnimation = document.getElementById('like-img');
+    let dislikeAnimation = document.getElementById('dislike-img');
+    let likeOption = false;
+
+    switch (action) {
+        case 'btnLike':
+            likeAnimation.classList.add("show-animation");
+            likeOption = true;
+            break;
+        case 'btnDislike':
+            dislikeAnimation.classList.add("show-animation");
+            break;    
+        default:
+            break;
+    }   
+    
+    let userLike = {
+        user2: userId,
+        like: likeOption
+    }
+    let response = await UserMatch(userLike);
+    console.log(response);
+
+    if (response.response && response.response.isMatch){
+        alert("Tenes un match!!!");
+    }
+    setTimeout(() => {
+        renderSuggestion();                
+    }, 2000);
 }

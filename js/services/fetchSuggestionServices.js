@@ -20,6 +20,6 @@ export const GetMySuggestions = async () =>
         
     }
     
-    
+    //console.log(result)
     return result;
 }
