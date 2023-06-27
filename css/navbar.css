@@ -131,7 +131,7 @@ a {
   font-size: 1.25rem;
 }
 
-.show {
+#nav-bar.show {
   width: calc(var(--nav-width) + 180px);
   left: 0;
 }
