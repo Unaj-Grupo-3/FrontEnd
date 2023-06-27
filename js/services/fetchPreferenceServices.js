@@ -62,15 +62,99 @@ export const GetInterest = async () =>
             return result;
         }
         else{
-            throw new Error("Error al hacer POST GenderPreference");
+            throw new Error("Error al hacer GET Interest");
         }
     }
     catch(error)
     {
         console.log(error);
     }
+}
 
 
+export const GetPreference = async () =>
+{
+    try{
+        let result;
+        let response = await fetch(`${urlBase}/Preference`, {
+            method: "GET",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${JwtToken}`
+            }
+        })
+
+        if(response.ok){
+            result = await response.json();
+
+            return result;
+        }
+        else{
+            throw new Error("Error al GET Preference");
+        }
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+
+export const PutPreference = async (request) =>
+{
+    try
+    {
+        let result;
+        let response = await fetch(`${urlBase}/Preference`, {
+            method: "PUT",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${JwtToken}`
+            },
+            body: JSON.stringify(request)
+        })
+
+        if(response.ok){
+            result = await response.json();
+
+            return result;
+        }
+        else{
+            throw new Error("Error al hacer PUT preference.");
+        }
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+
+export const PostPreference = async (request) =>
+{
+    try
+    {
+        let result;
+        let response = await fetch(`${urlBase}/Preference`, {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${JwtToken}`
+            },
+            body: JSON.stringify(request)
+        })
+
+        if(response.ok){
+            result = await response.json();
+
+            return result;
+        }
+        else{
+            throw new Error("Error al hacer POST preference.");
+        }
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
 }
 
 

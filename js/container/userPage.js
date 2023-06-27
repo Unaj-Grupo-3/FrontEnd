@@ -1,6 +1,6 @@
 import { GetMyUser, UploadPhoto, ChangeUser } from "../services/fetchUserServices.js";
 import { GetMail, PutPasswd } from "../services/fetchAuthServices.js";
-import { GetMyOverall, PutMyOverall, GetCrushGender, PostGenderPref, DeleteGenderPref, GetInterest } from "../services/fetchPreferenceServices.js";
+import { GetMyOverall, PutMyOverall, GetCrushGender, PostGenderPref, DeleteGenderPref, GetInterest, GetPreference, PutPreference, PostPreference } from "../services/fetchPreferenceServices.js";
 import { UserInfoComponent, PrefComponent, InterestTag } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
@@ -112,6 +112,30 @@ async function ModDescription(e) {
     if(response !== null) {
         console.log("Se cambio la descripcion");
     }
+}
+
+async function ModOwnPreference(id, value) {
+
+    let request = {
+        interestId: id,
+        ownInterest: value
+    }
+
+    let response = await PutPreference(request);
+
+    return response;
+}
+
+async function CreateOwnPreference(id) {
+
+    let request = {
+        interestId: id,
+        ownInterest: true
+    }
+
+    let response = await PostPreference(request);
+
+    return response;
 }
 
 const ModPhotos = async () => {
@@ -249,6 +273,48 @@ async function ChangeOverall() {
     let response = await PutMyOverall(request);
 }
 
+/* Modal Interests methods */
+
+const ShowMyInterest = async () =>
+{
+    let response = await GetPreference();
+    console.log("Preferencias:");
+    console.log(response);
+    response.forEach((item) => {
+        if(item.ownInterest) {
+            let intId = "#my_int_" + item.interest.id;
+            let interestContainer = document.querySelector(intId);
+            interestContainer.classList.add('interest_item_sel');
+        }
+    })
+}
+
+async function InterestOnClick(e) 
+{
+    console.log(this.id);
+    let intIdString = this.id;
+    let idx = intIdString.lastIndexOf("_") + 1;
+    let intId = intIdString.slice(idx, intIdString.length);
+    let sendId = parseInt(intId);
+
+
+    if(this.classList.contains('interest_item_sel'))
+    {
+        this.classList.remove('interest_item_sel');
+        ModOwnPreference(sendId, false);
+    }
+    else
+    {
+        this.classList.add('interest_item_sel');
+        let response = ModOwnPreference(sendId, true);
+        if(response.message = "La preferencia ingresada no existe"){
+            CreateOwnPreference(sendId);
+        }
+    }
+}
+
+
+
 /* Renders */
 
 async function RenderPrefModal() {
@@ -256,9 +322,6 @@ async function RenderPrefModal() {
     const prefContainer = document.querySelector('.pref_container');
     const modalCloseBtn2 = document.querySelector("#btn_close_2");
     let categories = await GetInterest();
-
-    console.log("Intereses");
-    console.log(JSON.stringify(categories));
 
     categories.forEach((cat) =>
     {
@@ -269,19 +332,25 @@ async function RenderPrefModal() {
         
         let intContainer = document.querySelector(contName);
 
-        console.log(ints4Cat);
-        console.log(intContainer);
         ints4Cat.forEach((item) =>
         {
             intContainer.innerHTML += InterestTag(item.id, item.description);
+
+            let intId = "#my_int_" + item.id;
         });
     })
 
     modalCloseBtn2.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log("se deberia cerrar el modal");
         modal2.classList.remove("modal--show-2");
     })
+
+    let tagContainers = document.querySelectorAll('.interest_item');
+    tagContainers.forEach((item) =>{
+        item.addEventListener('click', InterestOnClick);
+    });
+
+    ShowMyInterest();
 }
 
 
