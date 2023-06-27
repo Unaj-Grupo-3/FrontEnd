@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="../css/navbar.css">
 	<link rel="stylesheet" href="../css/userPageStyle.css">
-  <link rel="stylesheet" href="../css/performanceStyle.css">
+  	<link rel="stylesheet" href="../css/photoStyle.css">
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet"
@@ -21,16 +21,34 @@
         
 </head>
 	<body id="body-pd">
-      
-		<section class="user__photos" id="photo_section">
-			
-			
-		</section>
+		<header>
+			<div>			  
+				<img src="../img/globo-blanco.png" alt="logo">
+			</div>
+			<div>		  
+				<p>AppCitas</p>		  
+				<br>
+				<span class="color">Agreguemos algunas fotos</span>
+			</div>
+		</header>
+		<main>
+			<section class="user__photos" id="photo_section">
 
-		<div class="msj_container">
-			<p id="resp_msj_photo">La foto esta siendo subida, espere unos segundos...</p>
-		</div>
 
+
+			</section>
+			<div class="botones">
+				
+					<button id="buttonSubmit" type="submit" form="user-profile">Saltar</button>
+					<button id="buttonSubmit" type="submit" form="user-profile">Siguiente</button>
+				
+			</div>
+			<div class="msj_container">
+				<p id="resp_msj_photo">La foto esta siendo subida, espere unos segundos...</p>
+			</div>
+		</main>
+			
+		
 	<!-- Scripts -->
     <script type="module" src="../js/init/initPhotoRegister.js"></script>
     

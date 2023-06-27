@@ -14,6 +14,7 @@ export  async function addEventListenerRegisterProfile(){
 
             let parrafo=document.getElementById("errorGenero");
             parrafo.textContent="";
+            
             }
         });
         });
@@ -149,6 +150,8 @@ export  async function addEventListenerRegisterProfile(){
             
             let parrafo=document.getElementById("errorName");
             parrafo.textContent="A ingresado caracteres invalidos";
+            parrafo.style.color = "#F02E3A";
+            parrafo.style.display = 'block';
         }
 
         if(!validateNombre(lastname)){
@@ -157,6 +160,8 @@ export  async function addEventListenerRegisterProfile(){
             
             let parrafo=document.getElementById("errorApellido");
             parrafo.textContent="A ingresado caracteres invalidos";
+            parrafo.style.color = "#F02E3A";
+            parrafo.style.display = 'block';
         }
         if(!validateBirthday(birthdate)){
             
@@ -164,12 +169,16 @@ export  async function addEventListenerRegisterProfile(){
             
             let parrafo=document.getElementById("errorCumpleaños");
             parrafo.textContent="La edad debe ser mayor a 18 años";
+            parrafo.style.color = "#F02E3A";
+            parrafo.style.display = 'block';
         }
         if(!gender){
             isValid=false;
             
             let parrafo=document.getElementById("errorGenero");
             parrafo.textContent="Debe seleccionar un genero";
+            parrafo.style.color = "#F02E3A";
+            parrafo.style.display = 'block';
         }
 
         if(isValid){

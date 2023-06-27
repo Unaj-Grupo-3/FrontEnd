@@ -32,6 +32,8 @@ export const addEventListenerAuth = () =>{
             console.log("mail invalido");
             let parrafo=document.getElementById("errorMail");
             parrafo.textContent="El mail ingresado es invalido";
+            parrafo.style.color = "#F02E3A";
+            parrafo.style.display = 'block';
         }
         if(!validatePassword(password)){
             
@@ -39,6 +41,8 @@ export const addEventListenerAuth = () =>{
             console.log("password invalido");
             let parrafo=document.getElementById("errorPassword");
             parrafo.textContent="El password ingresado es invalido";
+            parrafo.style.color = "#F02E3A";
+            parrafo.style.display = 'block';
         }
         if(password!=password2){
             
@@ -46,6 +50,8 @@ export const addEventListenerAuth = () =>{
             console.log("password_2 invalido");
             let parrafo=document.getElementById("errorPassword2");
             parrafo.textContent="Las contraseñas no coinciden";
+            parrafo.style.color = "#F02E3A";
+            parrafo.style.display = 'block';
         }
 
         if(isValid){ // CHECKS Validar values
@@ -60,9 +66,11 @@ export const addEventListenerAuth = () =>{
             let response = await CreateAuth(auth);
             
             if(response.response.Mail2){
-                console.log("Mail con errors");
+                
                 let parrafo=document.getElementById("errorMail");
                 parrafo.textContent="El mail ingresado ya se encuentra registrado";
+                parrafo.style.color = "#F02E3A";
+                parrafo.style.display = 'block';
                 document.getElementById("buttonSubmit").innerHTML = "Registrarse";
             }else{
 
