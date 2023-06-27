@@ -3,7 +3,6 @@ const JwtToken = sessionStorage.getItem("token");
 
 export const GetMySuggestions = async () =>
 {
-    console.log(JwtToken)
     let result;
     try {
         let response = await fetch(`${urlBase}/me`, {
