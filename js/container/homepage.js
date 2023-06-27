@@ -14,7 +14,7 @@ let containerData = document.getElementById('container-data');
 let suggestionData = document.getElementById('suggestions-data');
 let emptySuggestions = document.getElementById('empty-suggestions');
 
-if(suggestions.suggestedUsers != undefined){    
+if(suggestions && suggestions.suggestedUsers != undefined){    
     renderSuggestion();
 }
 else{
