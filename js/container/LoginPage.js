@@ -3,7 +3,6 @@ import { GetMyUser } from "../services/fetchUserServices.js";
 
 const Redirect = (user) => 
 {
-    debugger;
     // !Existe un usuario con esta cuenta
     if(user?.userId){
         window.location.href = "../../views/Matches.html";

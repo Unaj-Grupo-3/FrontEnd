@@ -16,3 +16,5 @@ export const AddPhotoBtn = () =>
 	</input>
 </div>
 `
+
+

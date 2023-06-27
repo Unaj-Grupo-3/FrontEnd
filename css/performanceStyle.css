@@ -167,3 +167,22 @@ h4{
   height: 2.3rem;
   border: none;
 }
+
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.box {
+  border: 3px solid #666;
+  background-color: #ddd;
+  border-radius: .5em;
+  padding: 10px;
+  cursor: move;
+}
+
+.box.over {
+  border: 3px dotted #666;
+}

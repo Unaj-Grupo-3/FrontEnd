@@ -152,7 +152,10 @@ export  async function addEventListenerRegisterProfile(){
         let response = await CreateUser(body);
 
         if(response){
-            console.log("Redireccion a la pagina para completar las fotos.");
+            
+            setTimeout(() =>{
+                window.location = "../../views/PhotoRegister.html"
+            },2000);
             // Redireccion a la pagina para completar las fotos.
         }
 
