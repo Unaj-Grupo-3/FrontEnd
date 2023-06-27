@@ -1,3 +1,5 @@
+import { GetDatesByMatchId } from "../services/fetchDatesServices.js";
+
 const ProfileCard= (name, rootImage,id, idMatch) =>
 `
 <div class="Profile-Card">
@@ -11,48 +13,49 @@ const ProfileCard= (name, rootImage,id, idMatch) =>
 </div>
 `;
 
-const DatesCard = (props) => {
-    console.log(props)
-    const data = {
-        user: {
-            img: 'imagen.png',
-            name: 'Nombre' 
-        },
-        date: {
-            description: 'nombre de la cita',
-            date: 'fecha',
-            status: 'aceptada',
-            location: {
-                lat: '-34',
-                lng: '-53'
-            }
-        }
-    }
+const DatesCard = async (date) => {
+    console.log(date)
+    let anotherUser = await GetDatesByMatchId(1); //GetUserInfo
 
+/*
+    <img src=${data.userInfo.images} alt=${data.userInfo.name}>
+    <h3>${data.userInfo.userId} ${data.userInfo.name} ${data.userInfo.lastName}</h3>
+    <p>Created: ${data.createdAt}</p>
+    <p>Updated: ${data.updatedAt}</p>
+    <p>Match ID: ${data.matchId}</p>
+*/
         return  `
         <article class="dateDetail">
             <div class="dateDetail__content">
     
                 <div class="dateDetail_content_user">
-                    <img src=${data.user.img} alt=${data.user.name}>
-                    <h3>${data.user.name}</h3>
+                    <h4>Datos del Usuario</h4>
+                    <p>User1: ${date.match.user1}</p>
+                    <p>User2: ${date.match.user2}</p>
                 </div>
-                
+
                 <div class="dateDetail_content_detail">
-                    <h3>Lugar: ${data.date.description}</h3>
-                    <h2>Fecha: ${data.date.date}</h2>
-                    <h2>Hora: 20:00 h</h2>
+                    <h4>Datos de la cita</h4>
+                    <p>DateId: ${date.dateId}</p>
+                    <p>Lugar: ${date.location}</p>
+                    <p>Descripcion: ${date.description}</p>
+                    <p>Hora: ${date.time}</p>
                 </div>
-    
-                <div class="dateDetail_content_map">
-                </div>
-    
+                    <div class="dateDetail_content_map">
+                        <h4>Aca va el mapa</h4>
+                    </div>
             </div>
     
-            <div class="dateDetail__button">
+            ${date.state == 0 ? 
+            `<div class="dateDetail__button">
                 <button id="acceptDate">Aceptar</button>
                 <button id="cancelDate">Cancelar</button>
-            </div>
+            </div>`
+            :
+            `<div class="dateDetail_status">
+                <h4>Estado: ${date.state == 1 ? 'Aceptada' : 'Rechazada'}</h4>
+            </div>`
+            }
         </article>
         `
     }

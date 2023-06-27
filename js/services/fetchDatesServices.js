@@ -101,3 +101,21 @@ export async function GetMatch()
         return result;
     }
 }
+
+export const GetDatesByMatchId = async (matchId) =>
+{
+    let result;
+    let response = await fetch(`${urlBase}/Date/${matchId}`, {
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JwtToken}` 
+        }
+    })
+
+    if(response.ok){
+        result = await response.json();
+    }
+    
+    return result;
+}

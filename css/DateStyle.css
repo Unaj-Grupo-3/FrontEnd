@@ -1,0 +1,104 @@
+.Container-Dates
+{
+    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    height: 90%;
+    gap:20px;
+    
+    align-items: center;
+    
+}
+div.Profile-Card
+{
+    display: grid;
+    position: relative;
+    text-align: center;
+    background-size: cover;
+    background-size: center center;
+    width: 220px;
+    height: 320px;
+    gap:20px;
+    align-items: center;
+    left:25%;
+}
+
+div.div-click-profile
+{
+    display: grid;
+    position: relative;
+    text-align: center;
+    background-size: cover;
+    background-size: center center;
+    width: 220px;
+    height: 320px;
+    gap:20px;
+    align-items: center;
+}
+
+img#PhotoProfile
+{
+    position:absolute;
+    width: 220px;
+    height: 320px;
+    border-radius: 7px;
+    border-color: #87009D;
+
+}
+
+
+button.button-class-date
+{
+    top:275px;
+    background-color: #87009D;
+    position: absolute;
+    width: 220px;
+    height: 45px;
+    font-size: 16px;
+    color: #FFFFFF;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 50px;
+    box-shadow: 0px 5px 3px #adadad;
+    border-style: solid;
+    border-width: 1px;
+}
+
+button.button-class-date:active 
+{
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+button.button-class-date:hover
+{
+    cursor: pointer;
+} 
+
+
+#Shadow-Name-Profile
+{
+    top:230px;
+    position: absolute;
+    width: 220px;
+    height: 45px;
+    background-color:rgba(0,0,0, 25%);
+    border-radius: 5px;
+}
+
+
+#Name-Profile
+{
+    position:absolute;
+    height: 45px;
+    width: 220px;
+    top:5px;
+    font-size: 25px;
+    font-style:oblique;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+
+
+
