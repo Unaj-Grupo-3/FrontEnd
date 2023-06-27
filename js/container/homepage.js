@@ -14,17 +14,16 @@ let containerData = document.getElementById('container-data');
 let suggestionData = document.getElementById('suggestions-data');
 let emptySuggestions = document.getElementById('empty-suggestions');
 
-if(suggestions != undefined){
-    //console.log(suggestions);
+if(suggestions.suggestedUsers != undefined){    
     renderSuggestion();
 }
 else{
     hiddenSuggestions();
 }
 
-function renderSuggestion(){
+function renderSuggestion(){    
     let firstSuggestion = suggestions.suggestedUsers.pop();
-    console.log(firstSuggestion);
+    //console.log(firstSuggestion);
 
     if(firstSuggestion != undefined){
         let preferences = getPreferences(firstSuggestion.ourPreferences);
@@ -122,18 +121,18 @@ async function likeDislike(action, userId){
             break;    
         default:
             break;
-    }  
-    
+    }   
     
     let userLike = {
         user2: userId,
         like: likeOption
     }
-
     let response = await UserMatch(userLike);
+    console.log(response);
 
-    console.log(action);
-    console.log(userId);
+    if (response.response && response.response.isMatch){
+        alert("Tenes un match!!!");
+    }
     setTimeout(() => {
         renderSuggestion();                
     }, 2000);
