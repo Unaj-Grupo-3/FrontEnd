@@ -6,7 +6,7 @@
     width: 100%;
     height: 90%;
     gap:20px;
-    overflow: scroll;
+    
     align-items: center;
     
     
@@ -43,8 +43,9 @@ img#PhotoProfile
     position:absolute;
     width: 220px;
     height: 320px;
-    border-radius: 5px;
+    border-radius: 7px;
     border-color: #87009D;
+
 }
 
 
