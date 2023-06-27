@@ -137,6 +137,31 @@ export  async function addEventListenerRegisterProfile(){
             }
         }
 
+        let isValid = true;
+
+        if(!nombreValidate(inputName)){
+            
+            isValid=false;
+            console.log("nombre invalido");
+            let parrafo=document.getElementById("errorName");
+            parrafo.textContent="A ingresado caracteres invalidos";
+        }
+
+        if(!nombreValidate(inputApellido)){
+            
+            isValid=false;
+            console.log("apellido invalido");
+            let parrafo=document.getElementById("errorApellido");
+            parrafo.textContent="A ingresado caracteres invalidos";
+        }
+        if(!cumpleañosValidate(inputCumpleaños)){
+            
+            isValid=false;
+            console.log("cumpleaños invalido");
+            let parrafo=document.getElementById("errorCumpleaños");
+            parrafo.textContent="La edad debe ser mayor a 18 años";
+        }
+
         
 
         let body = {
