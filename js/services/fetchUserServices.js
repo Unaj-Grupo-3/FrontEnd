@@ -13,12 +13,17 @@ export const GetMyUser = async () =>
         }
     })
 
-    if(response.ok || response.status == 404){
+    if(response.ok){
         result = await response.json();
 
     }
-    
 
+    if(response.status == 404){
+        result = {
+            status : 404
+        }
+    }
+    
     return result;
 }
 
@@ -72,10 +77,11 @@ export const UploadPhoto = async (data) =>
 export const CreateUser = async (request) => {
 
     let result;
-    let response = await fetch(urlBase, {
+    let response = await fetch(urlBase+"/User", {
         method: "POST",
         headers:{
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JwtToken}`
         },
         body: JSON.stringify(request) 
     })
