@@ -75,5 +75,5 @@ export const PrefComponent = (id, description) =>
 export const InterestTag = (id, name) =>
 
 `
-<a class="interest_item" value="${id}">${name}</a>
+<a class="interest_item" id="my_int_${id}">${name}</a>
 `
