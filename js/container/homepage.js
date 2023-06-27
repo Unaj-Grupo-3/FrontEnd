@@ -1,4 +1,4 @@
-import { GetMySuggestions } from "../services/fetchSuggestionServices.js";
+import { GetMySuggestions, DeleteSuggestion } from "../services/fetchSuggestionServices.js";
 import { UserMatch } from "../services/fetchMatchServices.js";
 import { CarouselIndicators } from "../components/carousel-indicators.js";
 import { CarouselInner } from "../components/carousel-inner.js";
@@ -128,8 +128,11 @@ async function likeDislike(action, userId){
     }
     let response = await UserMatch(userLike);
 
-    if (response.response && response.response.isMatch){
-        showModalMatch();
+    if (response.response){
+        await DeleteSuggestion(userId);
+        if(response.response.isMatch){
+            showModalMatch();
+        }
     }
     setTimeout(() => {
         renderSuggestion();                
