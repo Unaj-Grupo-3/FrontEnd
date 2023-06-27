@@ -3,6 +3,7 @@ import { GetMyUser } from "../services/fetchUserServices.js";
 
 const Redirect = (user) => 
 {
+    debugger;
     // !Existe un usuario con esta cuenta
     if(user?.userId){
         window.location.href = "../../views/Matches.html";
@@ -47,9 +48,9 @@ document.addEventListener("submit", async function(e)
             msj.style.color = "#41BC02";
             msj.style.display = 'block';
             
-            let user = await GetMyUser();
-
             sessionStorage.setItem("token", resp.token);
+            
+            let user = await GetMyUser();
 
             setTimeout(() => {
                 Redirect(user);

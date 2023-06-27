@@ -1,9 +1,12 @@
 
 let urlBase = 'https://localhost:7020/api/v1';
-const JwtToken = sessionStorage.getItem("token");
+let JwtToken = sessionStorage.getItem("token");
+console.log(JwtToken);
 
 export const GetMyUser = async () =>
 {
+    JwtToken = sessionStorage.getItem("token");
+
     let result;
     let response = await fetch(`${urlBase}/User/true`, {
         method: "GET",
@@ -29,6 +32,7 @@ export const GetMyUser = async () =>
 
 export const ChangeUser = async (request) => 
 {
+    JwtToken = sessionStorage.getItem("token");
     let result;
     let response = await fetch(`${urlBase}/User`, {
         method: "PUT",
@@ -48,6 +52,7 @@ export const ChangeUser = async (request) =>
 
 export const UploadPhoto = async (data) =>
 {
+    JwtToken = sessionStorage.getItem("token");
     let result;
     let response = await fetch(`${urlBase}/Photo`, {
         method: "POST",
@@ -76,6 +81,7 @@ export const UploadPhoto = async (data) =>
 
 export const CreateUser = async (request) => {
 
+    JwtToken = sessionStorage.getItem("token");
     let result;
     let response = await fetch(urlBase+"/User", {
         method: "POST",
