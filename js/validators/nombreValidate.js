@@ -1,6 +1,6 @@
 export const validateNombre= (nombre)=>{
     
-    let expresion1= new RegExp("[\\-_¿.#¡/()*,.;:@]");
+    let expresion1= new RegExp("[\\-_¿.#¡/()*,.;:@$]");
     let expresion2= new RegExp("[1234567890]")
     
     if(nombre.length >50){

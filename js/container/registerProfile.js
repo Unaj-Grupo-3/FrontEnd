@@ -1,6 +1,7 @@
 
 import {CreateUser} from '../services/fetchUserServices.js';
-
+import { validateNombre } from '../validators/nombreValidate.js';
+import {validateBirthday} from '../validators/cumpleañosValidate.js';
 
 export  async function addEventListenerRegisterProfile(){
 
@@ -10,6 +11,9 @@ export  async function addEventListenerRegisterProfile(){
         radio.addEventListener('change', () => {
             if (radio.checked) {
                 sessionStorage.setItem('gender', radio.value);
+
+            let parrafo=document.getElementById("errorGenero");
+            parrafo.textContent="";
             }
         });
         });
@@ -122,7 +126,7 @@ export  async function addEventListenerRegisterProfile(){
         let gender = "";
         let description = "";
 
-        name = document.getElementById("inputNombre").value;
+        name = document.getElementById("inputName").value;
         lastname = document.getElementById("inputApellido").value;
         birthdate = document.getElementById("inputCumpleaños").value;
         gender = sessionStorage.getItem("gender");
@@ -139,53 +143,80 @@ export  async function addEventListenerRegisterProfile(){
 
         let isValid = true;
 
-        if(!nombreValidate(inputName)){
+        if(!validateNombre(name)){
             
             isValid=false;
-            console.log("nombre invalido");
+            
             let parrafo=document.getElementById("errorName");
             parrafo.textContent="A ingresado caracteres invalidos";
         }
 
-        if(!nombreValidate(inputApellido)){
+        if(!validateNombre(lastname)){
             
             isValid=false;
-            console.log("apellido invalido");
+            
             let parrafo=document.getElementById("errorApellido");
             parrafo.textContent="A ingresado caracteres invalidos";
         }
-        if(!cumpleañosValidate(inputCumpleaños)){
+        if(!validateBirthday(birthdate)){
             
             isValid=false;
-            console.log("cumpleaños invalido");
+            
             let parrafo=document.getElementById("errorCumpleaños");
             parrafo.textContent="La edad debe ser mayor a 18 años";
         }
-
-        
-
-        let body = {
-            name : name,
-            lastname : lastname,
-            birthday : birthdate,
-            gender : gender,
-            location : location,
-            description : description
-        }
-
-        
-        let response = await CreateUser(body);
-
-        if(response){
+        if(!gender){
+            isValid=false;
             
-            setTimeout(() =>{
-                window.location = "../../views/PhotoRegister.html"
-            },2000);
-            // Redireccion a la pagina para completar las fotos.
+            let parrafo=document.getElementById("errorGenero");
+            parrafo.textContent="Debe seleccionar un genero";
         }
+
+        if(isValid){
+
+            let body = {
+                name : name,
+                lastname : lastname,
+                birthday : birthdate,
+                gender : gender,
+                location : location,
+                description : description
+            }
+    
+            
+            let response = await CreateUser(body);
+    
+            if(response){
+                
+                setTimeout(() =>{
+                    window.location = "../../views/PhotoRegister.html"
+                },2000);
+                // Redireccion a la pagina para completar las fotos.
+            }
+        }
+
 
         
     });
+    document.addEventListener("keyup", (e) => {
+        
+        let{target}=e;
+        
+        if(target.matches("#inputCumpleaños")){
+            document.getElementById("errorCumpleaños").textContent=" ";
+
+        }
+        if(target.matches("#inputApellido")){
+            document.getElementById("errorApellido").textContent=" ";
+
+        }
+        if(target.matches("#inputName")){
+            document.getElementById("errorName").textContent=" ";
+
+        }
+        
+        
+    })
 }
 
 
@@ -196,3 +227,5 @@ function removePrefix(provinceName) {
   
   return newName;
 }
+
+

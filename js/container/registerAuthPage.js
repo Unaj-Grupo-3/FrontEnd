@@ -3,7 +3,6 @@ import { CreateAuth } from "../services/fetchAuthServices.js";
 import { validate } from "../validators/emailValidate.js";
 import { validatePassword } from "../validators/passwordValidate.js";
 
-
 export const addEventListenerAuth = () =>{
     
 
@@ -25,7 +24,6 @@ export const addEventListenerAuth = () =>{
         let mail = document.getElementById("inputMail").value;
         let password = document.getElementById("inputPassword").value;
         let password2 = document.getElementById("inputPassword2").value;
-
         let isValid = true;
 
         if(!validate(mail)){
