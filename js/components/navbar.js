@@ -19,7 +19,7 @@ export const Navbar = (userPhoto) =>
                     <i class="bi bi-arrow-through-heart"></i>
                   <span class="nav_name">Matches</span>
                 </a>
-                <a href="../../views/Citas.html" class="nav_link">
+                <a href="../../views/Dates.html" class="nav_link">
                     <i class="bi bi-cup-hot"></i>
                   <span class="nav_name">Citas</span>
                 </a>
