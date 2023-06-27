@@ -2,23 +2,22 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">   
-    <script defer type="module" src="../js/init/initNavbar.js"></script>
-    <script defer type="module" src="\js\init\initChat.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>chat</title> 
 
+    <script defer type="module" src="../js/init/initNavbar.js"></script>
+    <script defer type="module" src="../js/init/initChat.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@latest/dist/browser/signalr.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/chatStyle.css">
     <link rel="stylesheet" href="../css/navbar.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@latest/dist/browser/signalr.min.js"></script>
-
 </head>
 
 <body id="body-pd" class="div_grande">
@@ -42,8 +41,8 @@
                     <div class="div-temporal"></div>
                 </div>
                 <div class="chat-input">
-                    <input type="text" id="txt-Message" class="input-chat" placeholder="Escriba su mensaje">
-                    <button id="btnSend" class="btn-c"><span class="material-symbols-outlined">send</span></button>                          
+                    <textarea type="text" id="txt-Message" class="input-chat" placeholder="Escriba su mensaje"></textarea>
+                    <button id="btnSend" class="btn-c"><span class="material-symbols-outlined btn-color">send</span></button>                          
                 </div>
             </div>
         </div>

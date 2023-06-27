@@ -11,7 +11,7 @@ export const Navbar = (userPhoto) =>
         </div>
         <nav class="nav">
             <div class="nav_list">
-                <a href="../../views/UserPage.html" class="nav_link active">
+                <a href="../../views/UserPage.html" class="nav_link ">
                     <i class="bi bi-person-circle"></i>
                   <span class="nav_name">Perfil</span>
                 </a>
