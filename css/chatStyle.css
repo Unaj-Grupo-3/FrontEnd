@@ -1,7 +1,7 @@
 body {
-  font-family: 'Comfortaa', cursive !important;
+  font-family: "poppins" , sans-serif!important;
   overflow: hidden;
-  color: #38373c;
+  color: #000000;
 }
 
 h3 {
@@ -13,13 +13,13 @@ h3 {
 h5 {
   font-size: calc(0.4em + 1vw);
   margin: 0 !important;
-  font-weight: 100;
+  font-weight: 500;
   line-height: 1.2;
 }
 
 p {
   font-size: calc(0.3em + 1vw);
-  font-weight: 100;
+  font-weight: 300;
   line-height: 1.5;
   margin: 0 !important;
   overflow-wrap: break-word;
@@ -52,6 +52,7 @@ p {
   line-height: 1.5;
   resize: none;
   border: 1px solid #bfbfbf;
+  font-family: inherit;
 }
 
 .btn-c {
