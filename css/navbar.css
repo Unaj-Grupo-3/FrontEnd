@@ -91,6 +91,7 @@ a {
   transition: 0.3s;
   margin: 1rem;-webkit-transition-duration: 0.8s; /* Safari */
   transition-duration: 0.8s;
+  text-align: center;
 }
 
 
