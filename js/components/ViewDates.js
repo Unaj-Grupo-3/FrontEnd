@@ -1,4 +1,5 @@
-import { GetDatesByMatchId } from "../services/fetchDatesServices.js";
+import { GetUserById } from "../services/fetchUserServices.js"
+import { distance } from "../utils/distance.js";
 
 const ProfileCard= (name, rootImage,id, idMatch) =>
 `
@@ -13,25 +14,28 @@ const ProfileCard= (name, rootImage,id, idMatch) =>
 </div>
 `;
 
-const DatesCard = async (date) => {
+const DatesCard = async (userMe, date) => {
     console.log(date)
-    let anotherUser = await GetDatesByMatchId(1); //GetUserInfo
+    const user2 = date.match.user1 == userMe.userId ? date.match.user2 : date.match.user1;
+    let anotherUser = await GetUserById(user2); 
+    console.log(anotherUser[0])
+    const lat1 = userMe.location.latitude;
+    const lon1 = userMe.location.longitude;
+    const lat2 = anotherUser[0].location.latitude;
+    const lon2 = anotherUser[0].location.longitude;
 
-/*
-    <img src=${data.userInfo.images} alt=${data.userInfo.name}>
-    <h3>${data.userInfo.userId} ${data.userInfo.name} ${data.userInfo.lastName}</h3>
-    <p>Created: ${data.createdAt}</p>
-    <p>Updated: ${data.updatedAt}</p>
-    <p>Match ID: ${data.matchId}</p>
-*/
+    const distancia = distance (lat1, lon1, lat2, lon2);
+    console.log(`La distancia entre los dos puntos es: ${Math.round(distancia)} kilómetros`);
+  
         return  `
         <article class="dateDetail">
             <div class="dateDetail__content">
     
                 <div class="dateDetail_content_user">
                     <h4>Datos del Usuario</h4>
-                    <p>User1: ${date.match.user1}</p>
-                    <p>User2: ${date.match.user2}</p>
+                    <p>Fecha de nacimiento: ${anotherUser[0].birthday}</p>
+                    <img src=${anotherUser[0].images[0].url} alt=${anotherUser[0].name}>
+                    <p>User2: ${anotherUser[0].name} ${anotherUser[0].lastName}</p>
                 </div>
 
                 <div class="dateDetail_content_detail">
@@ -60,7 +64,7 @@ const DatesCard = async (date) => {
         `
     }
     
-export {ProfileCard, DatesCard};
+export { ProfileCard, DatesCard };
 
 function prueba(idMatch)
 {

@@ -1,8 +1,10 @@
 import { DatesCard } from "../components/ViewDates.js";
 import { GetMatch, GetMyDates } from "../services/fetchDatesServices.js";
+import { GetMyUser } from "../services/fetchUserServices.js"
+
 
 /******DESPUES LA GUARDAMOS EN OTRO ARCHIVO******/
-const printCards = async (listDates, count) => {
+const printCards = async (listDates, count, userMe) => {
     console.log(listDates);
 
     if(count > 0)
@@ -10,8 +12,7 @@ const printCards = async (listDates, count) => {
         const sectionContainer = document.querySelector("#Container-Dates");
 
         for (let i = 0; i < listDates.length; i++) {
-            let date = listDates[i];
-            sectionContainer.innerHTML += await DatesCard(date);
+            sectionContainer.innerHTML += await DatesCard(userMe, listDates[i]);
         }
     }
     else {
@@ -19,6 +20,9 @@ const printCards = async (listDates, count) => {
     }
 }
 /**********************************************/
+
+const userMe = await GetMyUser();
+console.log(userMe)
 
 /**
  * Comportamiento:
@@ -34,4 +38,4 @@ const printCards = async (listDates, count) => {
 //datesMe: { Count = response.Count, Response = IList<DateResponse> response }
 
 const datesMe = await GetMyDates();
-printCards(datesMe.response, datesMe.count)
+printCards(datesMe.response, datesMe.count, userMe)
