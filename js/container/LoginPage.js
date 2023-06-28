@@ -9,39 +9,30 @@ const Redirect = () =>
 
 document.addEventListener("submit", async function(e)
 {
-    let msj = document.querySelector("#response__msj");
+    const msj = document.querySelector("#response__msj");
     e.preventDefault();
 
     const {target} = e;
 
     if(target.matches("#login__form")) {
 
-        let email = document.getElementById("email").value;
-        let password = document.getElementById("password").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
 
-        let auth = {
+        const auth = {
             email: email,
             password: password
         }
 
-        let resp = await login(auth);
+        const resp = await login(auth);
         if(resp == null){
-            msj.innerHTML = "El mail o la contraseña son incorrectas.";
-            msj.style.color = "#F02E3A";
-            msj.style.display = 'block';
-        }else{
-            console.log(resp);
-            msj.innerHTML = "Te has conectado exitosamente.";
-            msj.style.color = "#41BC02";
-            msj.style.display = 'block';
-            
-            let user = await GetMyUser();
-
-            sessionStorage.setItem("token", resp.token);
-
+            msj.innerHTML = "email o contraseña incorrecto.";
             setTimeout(() => {
-                Redirect();
+                msj.innerHTML = "";
             }, 1000);
+        }else{
+            sessionStorage.setItem("token", resp.token);
+            setTimeout(() => { Redirect();}, 1000);    
         }
     }
 })
