@@ -64,6 +64,7 @@ async function renderMessages(chatId, Index) {
         divMessages.innerHTML = "";
         const nameUser = document.getElementById("chat-header2");
         nameUser.innerHTML = headerFriend(data);
+        nameUser.classList.add('header-active');
         localStorage.removeItem("chat");
         currentChat = data;
         const messagesToRead = await DrawMessage_page(data, true);
