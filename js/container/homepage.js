@@ -1,12 +1,13 @@
-import { GetMySuggestions } from "../services/fetchSuggestionServices.js";
+import { GetMySuggestions, DeleteSuggestion } from "../services/fetchSuggestionServices.js";
 import { UserMatch } from "../services/fetchMatchServices.js";
 import { CarouselIndicators } from "../components/carousel-indicators.js";
 import { CarouselInner } from "../components/carousel-inner.js";
 import { ButtonsLike } from "../components/button-like.js";
 import { SuggestionData } from "../components/suggestion-data.js";
+import { RenderModalMatch } from "../components/modalMatch.js";
 
 let suggestions = await GetMySuggestions();
-
+let firstSuggestion;
 let carouselIndicators = document.getElementById('carousel-indicators');
 let carouselInner = document.getElementById('carousel-inner');
 let containerLike = document.getElementById('container-like');
@@ -22,9 +23,8 @@ else{
 }
 
 function renderSuggestion(){    
-    let firstSuggestion = suggestions.suggestedUsers.pop();
-    //console.log(firstSuggestion);
-
+    firstSuggestion = suggestions.suggestedUsers.pop();
+    //console.log(firstSuggestion)
     if(firstSuggestion != undefined){
         let preferences = getPreferences(firstSuggestion.ourPreferences);
         let dateFormatted = getDate(firstSuggestion.birthday);
@@ -59,7 +59,6 @@ function renderPhotos(images, userId){
         indicators += CarouselIndicators(0);
         inner += ButtonsLike(userId);        
     }
-    //inner += `<img class="like-animation-show" id="like" src="../img/corazones.png" alt="Botón Like">`
     carouselIndicators.innerHTML = indicators;
     carouselInner.innerHTML = inner;
         
@@ -128,12 +127,46 @@ async function likeDislike(action, userId){
         like: likeOption
     }
     let response = await UserMatch(userLike);
-    console.log(response);
 
-    if (response.response && response.response.isMatch){
-        alert("Tenes un match!!!");
+    if (response.response){
+        await DeleteSuggestion(userId);
+        if(response.response.isMatch){
+            showModalMatch();
+        }
     }
     setTimeout(() => {
         renderSuggestion();                
     }, 2000);
 }
+
+function renderMatch(){
+    let fullName = firstSuggestion.name + ' ' + firstSuggestion.lastName;
+    let photoMatch;
+    if (firstSuggestion.images.length > 0){        
+        photoMatch = firstSuggestion.images[0].url;
+    } 
+    else{
+        photoMatch = '../img/user-default.png', 0;
+    }
+    
+    let modalBody = document.getElementById("modalMatchBody");
+    modalBody.innerHTML = RenderModalMatch(fullName, photoMatch);
+    setTimeout(() => {
+        var locModalImg = document.getElementById('img-animation-match');
+        locModalImg.classList.remove("show-animation");
+    }, 1000);
+}
+
+function buttonModalMatch(){
+    let element = document.getElementById('btn-match');
+    element.addEventListener('click', () =>{
+        renderMatch();
+    })
+}
+
+function showModalMatch(){
+    let buttonModalMatch = document.getElementById('btn-match');
+    buttonModalMatch.click();
+}
+
+buttonModalMatch();

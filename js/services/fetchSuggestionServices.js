@@ -23,3 +23,34 @@ export const GetMySuggestions = async () =>
     //console.log(result)
     return result;
 }
+
+export const DeleteSuggestion = async (userId) =>
+{
+    let request = {
+        userSuggested: userId
+    }
+    try
+    {       
+        let result;
+        let response = await fetch(`${urlBase}`, {
+            method: "DELETE",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${JwtToken}`
+            },
+            body: JSON.stringify(request)
+        })
+
+        if(response.ok){
+            result = await response.json();
+            return result;
+        }
+        else{
+            throw new Error("Error al eliminar la sugerencia");
+        }
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}

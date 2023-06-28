@@ -1,5 +1,6 @@
 import { renderChats, DrawMessage } from "../services/fetchChatServices.js";
 import { currentChat } from "../services/fetchChatServices.js";
+import { updateLastMessage } from "../services/fetchChatServices.js";
 
 let isConnected = "";
 let connection;
@@ -15,7 +16,7 @@ export async function addEventListenerHub() {
         isConnected = true;
     }).catch((err) => {
         console.error(err.toString())
-        addEventListenerHub() 
+        addEventListenerHub()
     });
 
     if (isConnected) {
@@ -27,21 +28,12 @@ export async function addEventListenerHub() {
         window.close();
     });
 
-    connection.on("ReceiveMessage", async function (chatId, messageResponse) {
-        if (currentChat && currentChat.chatId == chatId) {
-            const lastMessage = document.getElementById(`lastMessage-chatId-${chatId}`);
-            lastMessage.innerHTML = "";
-            if (currentChat.userMe.userId == messageResponse.fromUserId) {
-                lastMessage.innerHTML +=
-                    `<span id="message-id-${messageResponse.id}-simple" class="material-symbols-outlined 
-          message-check-read message-check-read--${messageResponse.isRead ? `isRead` : `noRead`}"> done_all </span> `
-            }
-            lastMessage.innerHTML += `
-            <p id="chat-${chatId}-text" class="chat-text">${messageResponse.content.toString().substr(0, 50)}</p>
-          `
-            DrawMessage(chatId, messageResponse);
+    connection.on("ReceiveMessage", async function (chatId, messageResponse) { 
+        if (currentChat && currentChat.chatId == chatId) {        
+            DrawMessage(chatId, messageResponse);                 
+            setTimeout(renderChats, 500);
             return;
-        }
+        } 
         renderChats();
     });
 
@@ -71,16 +63,16 @@ export async function addEventListenerHub() {
     });
 
     connection.onclose(async () => {
-    // Wait for 5 seconds before attempting to reconnect
-    await new Promise(res => setTimeout(res, 5000));
-    await connection.start().then(() => {
-        isConnected = true;
-        console.log("Reconnected to SignalR hub");
-    }).catch((err) => {
-        console.error(err.toString());
-        addEventListenerHub() 
+        // Wait for 5 seconds before attempting to reconnect
+        await new Promise(res => setTimeout(res, 5000));
+        await connection.start().then(() => {
+            isConnected = true;
+            console.log("Reconnected to SignalR hub");
+        }).catch((err) => {
+            console.error(err.toString());
+            addEventListenerHub()
+        });
     });
-});
 
 }
 
