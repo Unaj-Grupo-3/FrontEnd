@@ -1,5 +1,6 @@
 import DatesCard from "../components/dates/DatesCard.js";
 import HeaderDates from "../components/dates/HeaderDates.js";
+import onListItemClick from "../components/dates/onListItemClick.js";
 import { GetMyDates } from "../services/fetchDatesServices.js";
 import { GetMyUser } from "../services/fetchUserServices.js"
 
@@ -33,3 +34,8 @@ console.log(userMe)
 //mis citas para pintar
 const datesMe = await GetMyDates();
 printCards(datesMe.response, datesMe.count, userMe)
+
+onListItemClick(document.querySelectorAll('#filter_accepted'))
+onListItemClick(document.querySelectorAll('#filter_rejected'))
+onListItemClick(document.querySelectorAll('#filter_pending'))
+onListItemClick(document.querySelectorAll('#filter_add'))
