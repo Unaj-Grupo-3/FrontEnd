@@ -3,7 +3,7 @@ export const Navbar = (userPhoto) =>
     <div class="l-navbar" id="nav-bar">
         <div id="menu_toggle" class="menu_toggle">            
             <i class="bi bi-list"></i>
-            <span class="nav_name">logo</span>  
+            <span class="nav_name"><img src="../img/globo-blanco.png" alt="Foto Match" id="match-photo" class="header_img"/> CitasApp</span>  
         </div>           
         <div id="header_user" class="header_user">
             <img src="${userPhoto}" alt="" id="header_img" class="header_img"/>
@@ -19,7 +19,7 @@ export const Navbar = (userPhoto) =>
                     <i class="bi bi-arrow-through-heart"></i>
                   <span class="nav_name">Matches</span>
                 </a>
-                <a href="../../views/Citas.html" class="nav_link">
+                <a href="../../views/Dates.html" class="nav_link">
                     <i class="bi bi-cup-hot"></i>
                   <span class="nav_name">Citas</span>
                 </a>
