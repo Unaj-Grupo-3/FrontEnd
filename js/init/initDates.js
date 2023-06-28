@@ -1,4 +1,5 @@
 import DatesCard from "../components/dates/DatesCard.js";
+import HeaderDates from "../components/dates/HeaderDates.js";
 import { GetMyDates } from "../services/fetchDatesServices.js";
 import { GetMyUser } from "../services/fetchUserServices.js"
 
@@ -20,6 +21,11 @@ const printCards = async (listDates, count, userMe) => {
 }
 /*****************************************************/
 
+
+const main = document.getElementById("main__dates");
+const header = HeaderDates();
+main.insertAdjacentHTML('afterbegin', header)
+
 //mi usuario logueado
 const userMe = await GetMyUser();
 console.log(userMe)
@@ -27,4 +33,3 @@ console.log(userMe)
 //mis citas para pintar
 const datesMe = await GetMyDates();
 printCards(datesMe.response, datesMe.count, userMe)
-

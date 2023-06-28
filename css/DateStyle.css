@@ -4,6 +4,10 @@
     --violeta-oscuro: #280886;
     --gris-claro: #ECECEC;
     --gris-oscuro: #525252;
+    --first-color :#885FFF;
+    --first-color-light:  #A386FF;
+    --first-color-light-nav:  #d8cefa;
+  
 }
 /*#endregion */
 
@@ -102,10 +106,40 @@ button.button-class-date:hover
 }
 /*#endregion*/
 
+/*#region HEADER*/
+.headerDates {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    margin-right: 3rem;
+    background: linear-gradient(to right, var(--violeta), var(--first-color-light-nav), white,  white); 
+    
+}
+.headerDate__content{
+    margin-left: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 16px;
+}
+/*.line {
+    margin-right: 5rem;
+    color: var(--violeta);
+    background: linear-gradient(to left, var(--violeta-oscuro), transparent); 
+    height: 2px;
+}*/
+#main__dates_logo {
+    width: 100px;
+    padding: 15px 20px;
+}
+
+/*#endregion*/
 
 /*#region DATES CARD*/
 .dateDetail {
-    border: 1px solid var(--gris-claro);
+    border: 1px solid /*var(--violeta);*/rgba(145, 61, 136, 0.5);
     border-radius: 4px;
     padding: 20px;
     max-width: 1100px; 
@@ -116,10 +150,14 @@ button.button-class-date:hover
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     transition: transform 0.3s;
+    
 }
 .dateDetail:hover {
     transform: scale(1.03);
-    transition: transform 0.3s;
+    transition-duration: 0.3s;
+    box-shadow: 0px 0px 5px 1px var(--violeta);
+
+
 }
 
 .dateDetail_content_user img {
@@ -137,7 +175,7 @@ button.button-class-date:hover
 .dateDetail_content_detail{
     margin-top: 3rem;
 }
-.dateDetail__button button {
+.dateDetail__button button, .headerDate__button button {
     background-color: var(--violeta);
     padding: 0.4rem 1rem;
     border: none;
@@ -145,12 +183,14 @@ button.button-class-date:hover
     margin: 10px;
     cursor: pointer;
     transition: background-color 1s;
+    transition-duration: 1s;
+    border-radius: 7px;
 }
-.dateDetail__button button:hover {
-    background-color: var(--violeta-oscuro);
-    transition: background-color 1s;
+.dateDetail__button button:hover, .headerDate__button button:hover{
+    box-shadow: 0px 0px 10px 1px var(--gris-claro);
+    transform:scale(0.93);
+    transition-duration: 1s;
 }
-  
 .dateDetail_status h4 {
     padding-top: 2rem;
     padding-right: 2rem;
