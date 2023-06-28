@@ -26,7 +26,7 @@
       </div>
       
       <div class="row">
-        <div class="col-6 flex-center container-like" id="container-like">                
+        <div class="col-xs-12 col-sm-6  flex-center container-like" id="container-like">                
           <div class="container-photo flex-center">        
             <div class="photo-match">
               <div id="carouselExample" class="carousel slide">
@@ -56,17 +56,31 @@
 
           </div>               
         </div>
-        <div class="col-6 flex-center container-data" id="container-data">
-          <div class="container-photo data" id="suggestions-data">
+        <div class="col-xs-12 col-sm-6 flex-center container-data" id="container-data">
+          <button id="btn-match" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#modalMatch">Match</button>
+          <div class="container-suggestion data" id="suggestions-data">
             
             <!-- suggestion-data.js -->
 
           </div>
-        </div>
+        </div>        
         <div class="row container flex-center " id="empty-suggestions">
           <h1>Lo sentimos, no se encontraron nuevos resultados para tus criterios de búsqueda</h1>
         </div>
-      </div>
+        <div class="modal fade in" id="modalMatch" tabindex="-1" role="dialog" aria-labelledby="modalMatchTitle" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content modalMatchContent">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalMatchTitle">¡Éxito! Tenés un nuevo Match</h5>
+                <button type="button" id="close-modal-match" class="btn-close" data-bs-dismiss="modal" data-bs-target="#modalMatch" aria-label="Close"></button>
+              </div>
+              <div id ="modalMatchBody" class="modal-body">
+                <!-- modalMatch.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>    
 
     </body>
  </html> 

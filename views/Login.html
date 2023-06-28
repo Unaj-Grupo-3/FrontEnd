@@ -1,54 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8"> 
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Login</title>
-		<link rel="stylesheet" href="../css/loginStyle.css">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">	
-	</head>
 
-	<body>
-			<div class="flex-container">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login</title>
+	<link rel="stylesheet" href="../css/loginStyle.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+		rel="stylesheet">
+	<script defer type="module" src="../js/container/LoginPage.js"></script>
+</head>
 
-				<section id="section__info">
-					<div id="info__content">
-						<img src="../img/globo-blanco.png" alt="logo de la empresa">
-						<p>
-							Unite a la comunidad de CitasApp, la mejor aplicación gratuita de citas.
-							Matchea, chatea y tene citas en tu zona o hace amigos por todo 
-							el mundo.
-						</p>
-					</div>
-				</section>
-	
-				<section id="section__login">
-					<div id="login__content">
-						<h1 class="title">Inicia sesión</h1>
-						<form id="login__form">
-							<div id="form__content">
-								<div id="div__mail">
-									<input type="text" id="email" name="email" placeholder="email" value="">
-								</div>
-								<div id="div__passwd">
-									<input type="password" id="password" name="password" placeholder="password" value="">
-								</div>
-								<p id="response__msj"></p>
-								<div id="btn">
-									<button type="submit" id="login__btn">Iniciar sesión</button>
-
-									<p id="register_lbl">¿No tenes cuenta?<a href="./AuthRegister.html">Entra aquí</a></p>
-								</div>
-							</div>
-						</form>
-					</div>
-				</section>
-
+<body>
+	<div class="flex-container">
+		<section id="section__info">
+			<div id="info__content">
+				<img src="../img/globo-blanco.png" alt="logo de la empresa">
+				<p>
+					Unite a la comunidad de CitasApp, la mejor aplicación gratuita de citas.
+					Matchea, chatea y tene citas en tu zona o hace amigos por todo
+					el mundo.
+				</p>
 			</div>
-		<script type="module" src="../js/container/LoginPage.js"></script>
+		</section>
+		<section id="section__login">
+			<div id="login__content">
+				<h1 class="title">Inicia sesión</h1>
+				<form id="login__form">
+					<input type="text" id="email" name="email" placeholder="email" value="">
+					<input type="password" id="password" name="password" placeholder="password" value="">
+					<p id="response__msj" class="messages"></p>
+					<button type="submit" id="login__btn">Iniciar sesión</button>
+					<p id="register_lbl">¿No tenes cuenta?<a href="./AuthRegister.html">Entra aquí</a></p>
+				</form>
+			</div>
+		</section>
 
-	</body>
+	</div>
+</body>
+
 </html>

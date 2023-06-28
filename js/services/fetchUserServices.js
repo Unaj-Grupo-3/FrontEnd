@@ -100,3 +100,19 @@ export const CreateUser = async (request) => {
 
     return result;
 }
+
+export const GetUserById = async (id) =>
+{
+    let result;
+    let response = await fetch(`${urlBase}/User/true?usersId=${id}`, {
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JwtToken}` 
+        }
+    })
+    if(response.ok || response.status == 404){
+        result = await response.json();
+    }
+    return result;
+}

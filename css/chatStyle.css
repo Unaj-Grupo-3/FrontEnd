@@ -27,13 +27,11 @@ p {
 }
 
 .newMessage {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  padding: 0.2rem;
-  padding: 0.7rem;
+  padding: 0.4em;
+  font-size: xx-small;
   background-color: green;
   border-radius: 1em;
+  color: #ffffff;
 }
 
 .last {
@@ -259,6 +257,7 @@ p {
 .chat-text {
   overflow-wrap: unset;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 
