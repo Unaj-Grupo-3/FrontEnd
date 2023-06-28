@@ -16,25 +16,44 @@
 
 *,
 ::before,
-::after {
+::after{
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-}
+} 
 
 body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   margin: 0;
   padding: 0;
-  background-color: var(--white-color);
+  background-color: var(--violeta);
   height: 100vh;
   width: 100vw;
 }
 
+header {
+  display: flex;
+  color: white;
+  height: 12%;
+
+}
+
+header p{
+  color: black;
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
 main{
-  height: 100%;
+  height: 75%;
   width: 100%;
-  position: relative;
+  background-color: var(--white-color);
+}
+
+img{
+  width: 105px;
+  padding: 15px 20px;
 }
 
 button{
@@ -52,13 +71,11 @@ button{
 
 h3{
   font-weight: bold;
-  color: var(--violeta);
-  margin-left: 15px;
 }
 
 h4{
   margin-bottom: 0px;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -68,65 +85,77 @@ h4{
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  height: 80%;
-  width: 76%;
-  display: inline-table;
+  height: 90%;
+  width: 65%;
+  padding: 45px;
   border-radius: 10px;
   background-color: var(--first-color-light-nav);
 }
 
 .user-profile-header{
   display: flex;
-  justify-content: flex-start;
-  height: 8%;
-  align-items: flex-end;
+  height: 9%;
+  align-items: center;
+  color: var(--violeta);
 }
 
 .user-dates{
   height: 100%;
   width: 50%;
-  text-align: start;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  align-content: stretch;
+  text-align: start;
 }
 
+/*
 .inputContainer{
-  margin-bottom: 0px;
   width: 100%;
-  height: 35%;
-  background-color: var(--first-color-light-nav);
+  height: 50%;
   color: var(--first-color);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+}
+*/
+
+.inputContainer{
+  width: 100%;
+  height: 50%;
+  color: var(--first-color);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
-.input-dates{
-  width: 75%;
+.input-dates {
+  width: 90%;
   height: 70%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+}
+
+.input-dates p{
+  margin-bottom: 0;
+  height: 1ch;
 }
 
 .dates{
   padding-left: 10px;
   font-size: 18px;
-  width: 95%;
-  height: 45%;
-  border-radius: 10px;
+  width: 94%;
+  height: 95%;
   border:groove;
+  
 }
 
 .genero-container{
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  border: ridge;
-  background-color: white;
-  border-radius: 10px;
+  align-items: flex-end;
+  width: 80%;
+  height: 100%;
+  justify-content: space-evenly;
 }
 
 .radio-genero{
@@ -136,11 +165,54 @@ h4{
 .button-container{
   display: flex;
   justify-content: flex-end;
-  height: 6%;
+  height: 8%;
   align-items: center;
 }
 
 #user-profile{
   display: flex;
-  height: 86%;
+  height: 83%;
+  width: 100%;
+  flex-direction: row;
+  justify-items: center;
+  justify-content: center;
+}
+
+.input-dates--icon{
+  height: 42px;
+  width: 94%;
+  background-color: white ;
+  border:groove;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+
+#myLocation{
+  cursor: pointer;
+}
+
+.dates--icons{
+  border: none;
+  outline: none;
+}
+
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.box {
+  border: 3px solid #666;
+  background-color: #ddd;
+  border-radius: .5em;
+  padding: 10px;
+  cursor: move;
+}
+
+.box.over {
+  border: 3px dotted #666;
 }
