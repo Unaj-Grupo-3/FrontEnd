@@ -19,12 +19,25 @@ export async function renderChats() {
             const data = await response.json();
             const chatList = document.getElementById("chats-friend");
             chatList.innerHTML = "";
+            if (!data.listChat) {
+                const mensaje = document.createElement("p");
+                mensaje.textContent = "¿Querés empezar una conversación? Cuando hagas match con alguien, vas a poder mandarle un mensaje desde “Chats”."
+                mensaje.classList.add("div-loader");
+                chatList.appendChild(mensaje);
+                return;
+            }
             for (const chat of data.listChat) {
                 const chatItem = await blockChats(chat);
                 chatList.appendChild(chatItem);
                 if (chat.latestMessage && chat.latestMessage.fromUserId != data.userMe.userId &&
                     !chat.latestMessage.isRead && currentChat.chatId != chat.chatId) {
                     document.getElementById(`chat-simple-${chat.chatId}`).innerHTML += newMessage(chat.chatId);
+                }
+            }
+            if (currentChat && currentChat.chatId) {
+                const linkColor = document.getElementById(`chat-simple-${currentChat.chatId}`);
+                if (linkColor) {
+                    linkColor.classList.add("active-chat");
                 }
             }
         } else {
@@ -147,4 +160,16 @@ export function scrollToBottom(id) {
     div.scrollTop = div.scrollHeight - div.clientHeight;
 }
 
+export async function updateLastMessage(chatId, currentChat, messageResponse) {
+    const lastMessage = document.getElementById(`lastMessage-chatId-${chatId}`);
+    lastMessage.innerHTML = "";
+    if (currentChat.userMe.userId === messageResponse.fromUserId) {
+        lastMessage.innerHTML +=
+            `<span id="message-id-${messageResponse.id}-simple" class="material-symbols-outlined 
+        message-check-read message-check-read--isRead"> done_all </span>`;
+    }
+    lastMessage.innerHTML += `
+      <p id="chat-${chatId}-text" class="chat-text">${messageResponse.content.toString().substr(0, 50)}</p>
+    `;
+}
 
