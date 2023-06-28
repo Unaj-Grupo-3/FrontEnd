@@ -74,7 +74,7 @@ h3{
 }
 
 h4{
-  margin-bottom: 0px;
+  margin-bottom: 10px;
   font-size: 20px;
   font-weight: bold;
 }
@@ -87,7 +87,7 @@ h4{
   text-align: center;
   height: 90%;
   width: 65%;
-  padding: 45px;
+  padding: 25px;
   border-radius: 10px;
   background-color: var(--first-color-light-nav);
 }
@@ -95,7 +95,7 @@ h4{
 .user-profile-header{
   display: flex;
   height: 9%;
-  align-items: center;
+  align-items: flex-start;
   color: var(--violeta);
 }
 
@@ -108,51 +108,41 @@ h4{
   text-align: start;
 }
 
-/*
 .inputContainer{
   width: 100%;
-  height: 50%;
-  color: var(--first-color);
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: center;
-}
-*/
-
-.inputContainer{
-  width: 100%;
-  height: 50%;
+  height: 35%;
   color: var(--first-color);
   display: flex;
   align-items: flex-start;
   flex-direction: column;
 }
 
-.input-dates {
+.input-dates{
   width: 90%;
   height: 70%;
   display: flex;
   flex-direction: column;
 }
 
-.input-dates p{
-  margin-bottom: 0;
-  height: 1ch;
+.error{
+  height: 20%;
 }
-
+.input-dates-conteiner{
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+}
 .dates{
   padding-left: 10px;
   font-size: 18px;
   width: 94%;
   height: 95%;
   border:groove;
-  
 }
 
 .genero-container{
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   width: 80%;
   height: 100%;
   justify-content: space-evenly;
@@ -179,7 +169,7 @@ h4{
 }
 
 .input-dates--icon{
-  height: 42px;
+  height: 56%;
   width: 94%;
   background-color: white ;
   border:groove;
