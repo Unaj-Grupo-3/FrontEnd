@@ -29,7 +29,7 @@
       </div>
       <div>
         <p>AppCitas</p>
-        <br><span class="color">Completemos algunos datos sobre ti, para brindarte una mejor experiencia personalizada.</span>
+        <br><span>Completemos algunos datos sobre ti, para brindarte una mejor experiencia personalizada.</span>
       </div>
     </header>
     <main>
@@ -41,9 +41,13 @@
             <div class="user-dates">
               <div class="inputContainer">
                 <div class="input-dates">
-                  <h4>Nombre</h4>
-                  <input class="dates" type="text" id="inputName" required>
-                  <p id="errorName"></p>
+                  <div class="input-dates-conteiner">
+                    <h4>Nombre</h4>
+                    <input class="dates" type="text" id="inputName" required>
+                  </div>
+                  <div class="error">
+                    <p id="errorName"></p>
+                  </div>
                 </div>
               </div>
               <div class="inputContainer">
@@ -58,8 +62,7 @@
                   <h4>Ubicacion</h4>   
                   <div class="input-dates--icon" >
                     <input class="dates dates--icons" type="text" id="inputUbicacion" required>                  
-                    <span class="material-symbols-outlined" id="myLocation" title="Ingresar ubicacion actual">my_location</span>
-                    
+                    <span class="material-symbols-outlined" id="myLocation" title="Ingresar ubicacion actual">my_location</span>       
                   </div>
                 </div>
                 <p id="errorUbicacion"></p>
@@ -68,9 +71,13 @@
             <div class="user-dates">
               <div class="inputContainer">
                 <div class="input-dates">
-                  <h4>Apellido</h4>
+                  <div class="input-dates-conteiner">
+                    <h4>Apellido</h4>
                     <input class="dates" type="text" id="inputApellido" required>
-                  <p id="errorApellido"></p>
+                  </div>
+                  <div class="error">
+                    <p id="errorApellido"></p>
+                  </div>
                 </div>
               </div>
               <div class="inputContainer">
@@ -89,7 +96,7 @@
                       <input class="radio-genero" type="radio" id="inputGenero2" name="genero" value="3">
                       <label for="inputGenero">Otro</label>
                     </div>            
-                  </div>
+                  </div >
                   <p id="errorGenero"></p>
                   </div>
               </div>
