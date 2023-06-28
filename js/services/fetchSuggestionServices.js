@@ -27,7 +27,7 @@ export const GetMySuggestions = async () =>
 export const DeleteSuggestion = async (userId) =>
 {
     let request = {
-        userSuggested: userId
+        UserId: userId
     }
     try
     {       
