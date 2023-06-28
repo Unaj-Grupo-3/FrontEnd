@@ -1,5 +1,5 @@
 import { Navbar } from "../components/navbar.js";
-import { profile } from "../services/fetchNavServices.js";
+import { GetMyUser } from "../services/fetchUserServices.js";
 
 const showNavbar = (toggleId, navId, headerId, imgId) => {
     const toggle = document.getElementById(toggleId),
@@ -15,6 +15,21 @@ const showNavbar = (toggleId, navId, headerId, imgId) => {
         });
     }
 };
+
+const renderUserInfo = async () => {
+    const data = await GetMyUser();
+
+    console.log(data)
+    if (data) {
+        const nombre = document.getElementById("header_name");
+        nombre.textContent = `${data.name} ${data.lastName}`;
+        if(data.images.length > 0){
+            const img = document.getElementById("header_img");
+            img.src = data.images[0].url;
+        }
+    }
+  
+}
 
 document.addEventListener("DOMContentLoaded", function (event) {
     const navbarContainer = document.getElementById("navbar");
@@ -32,6 +47,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     if (activeLink) {
         activeLink.classList.toggle("active");
     }
-  
-    profile()
+
+    renderUserInfo();
 });
