@@ -144,7 +144,9 @@ form{
   height: 100%;
 }
 
-
+.pref_gen_container{
+  width: 40%;
+}
 
 .inputContainer{
   margin-bottom: 0;
