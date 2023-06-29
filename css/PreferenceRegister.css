@@ -1,0 +1,278 @@
+:root {
+  --header-height: 3rem;
+  --nav-width: 68px;
+  --first-color: #885FFF;
+  --first-color-light: #A386FF;
+  --first-color-light-nav: #d8cefa;
+  --white-color: #f7f6fb;
+  --body-font: "Nunito", sans-serif;
+  --normal-font-size: 1rem;
+  --z-fixed: 100;
+  --violeta: #885FFF;
+  --violeta-oscuro: #280886;
+  --gris-claro: #ECECEC;
+  --gris-oscuro: #525252;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  margin: 0;
+  padding: 0;
+  background-color: var(--first-color);
+  height: 100vh;
+  width: 100vw;
+}
+header {
+  justify-content: flex-start;
+  display: flex;
+  align-items: flex-end;
+  background-color: var(--violeta);
+  color: white;
+  height: 15%;
+
+}
+header p{
+  color: black;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+p{
+  height: 1ch;
+  font-size: calc(0.1em + 1vw);
+}
+
+h4{
+  margin-bottom: 5px;
+  font-size: calc(1rem + .3vw) !important;
+  font-weight: bold;
+}
+
+input{
+  appearance: none;
+  outline: none;
+  border: none;
+  background-color: #ececec!important;
+  box-shadow: none;
+  padding-left: 5px;
+  font-size: 12px;
+  width: 100%;
+ 
+}
+
+button{
+  width: 40%;
+  margin: 0 auto;
+  background-color: var(--violeta);
+  border-radius: 10px;
+  color: white;
+}
+
+img{
+  width: 100px;
+  padding: 15px 20px;
+}
+
+ul{
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.section-main{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  height: 85%;
+  width: 100%;
+  background-color: #fafbfd;
+}
+
+.form-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  
+}
+
+.form-container div{
+  padding: 0 .5rem;
+
+}
+
+.body-main{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 85%;
+  border-radius: 1em;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  padding: 1em;
+}
+
+.format{
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.inputContainer{
+  margin-bottom: 0;
+  width: 90%;
+}
+
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  transform: translate(-50%, -50%);
+  background-color: var(--first-color-light);
+  color: white;
+  border-radius: 10px;
+  width: 400px;
+}
+
+
+
+.icon {
+  visibility: hidden;
+  font-size: 14px;
+}
+
+
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  margin: 5px;
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  direction: ltr;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0.3em;
+}
+
+#input-container{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #ced4da;
+  border-radius:  5px;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25%;
+  width: 100%;
+  gap: 1em;
+  background-color: #ffffff;
+  overflow: hidden;
+  border-radius: 1em;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 5em;
+  width: 5em;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.step h2 {
+  color: #333;
+  font-size: 0.8em;
+}
+
+.step p {
+  color: #333;
+  font-size: 0.7em;
+}
+
+
+.interest_cat {
+  margin:0;
+  text-align: center;
+}
+
+.interests_container {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.pref_container{
+  overflow-y: scroll;
+  height: 50%;
+
+}
+
+
+
+
+.interest_item {
+  text-decoration: none;
+  outline: none;
+  border: 1px solid var(--first-color);
+  border-radius: 5px;
+  margin: 0 1em 1em 0;
+  padding: 0.5em;
+  color: black;
+  background-color: white;
+}
+
+.interest_item:hover {
+  background-color: var(--first-color);
+  color: white;
+}
+
+.interest_item_sel {
+  background-color: var(--first-color);
+  color: white;
+}

@@ -79,7 +79,7 @@ export const addEventListenerAuth = () =>{
                 modal.show();
 
                 setTimeout(() => {
-                    window.location = "../../views/Login.html"
+                    window.location = "../../views/PerformanceRegister.html"
                 }
                 ,1500);
             }
