@@ -1,7 +1,6 @@
-
 let urlBase = 'https://localhost:7020/api/v1';
 let JwtToken = sessionStorage.getItem("token");
-console.log(JwtToken);
+//console.log(JwtToken);
 
 export const GetMyUser = async () =>
 {
