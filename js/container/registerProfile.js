@@ -4,7 +4,7 @@ import { validateNombre } from '../validators/nombreValidate.js';
 import {validateBirthday} from '../validators/cumpleañosValidate.js';
 
 export  async function addEventListenerRegisterProfile(){
-
+    sessionStorage.removeItem('gender');
     const generoRadios = document.querySelectorAll('.genero-container input[type="checkbox"]');
 
         generoRadios.forEach(radio => {

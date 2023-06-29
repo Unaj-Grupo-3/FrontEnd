@@ -209,3 +209,7 @@ form p{
   width: 10%;
   background-color: #c0c0c0;
 }
+
+input:focus{
+  border: 3rem ;
+}

@@ -5,7 +5,7 @@
   --first-color-light: #A386FF;
   --first-color-light-nav: #d8cefa;
   --white-color: #f7f6fb;
-  --body-font: "Nunito", sans-serif;
+  --body-font: "Poppins", sans-serif;
   --normal-font-size: 1rem;
   --z-fixed: 100;
   --violeta: #885FFF;
@@ -66,6 +66,8 @@ button{
   padding: .25rem;
   box-shadow: 6px 6px 12px #c5c5c5,
   -6px -6px 12px #ffffff;
+
+
 }
 
 h3{
@@ -73,8 +75,9 @@ h3{
 }
 
 h4{
-  margin-bottom: 10px;
-  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-size: calc(0.1em + 1vw) !important;
   font-weight: bold;
 }
 
@@ -84,14 +87,19 @@ h4{
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  height: 90%;
-  width: 65%;
+  height: 85%;
+  width: 60%;
   padding: 25px;
   border-radius: 10px;
   background-color: white;
   border-radius: 1em;
-  border: 1px solid #c0c0c0
+  border: 1px solid #c0c0c0;
+  display: flex;
+    flex-direction: column;
+  justify-content: space-between;
 }
+
+
 
 .user-profile-header{
   display: flex;
@@ -107,37 +115,47 @@ h4{
   flex-direction: column;
   align-content: stretch;
   text-align: start;
+  padding: 0.5vw 1vw;
 }
 
 .inputContainer{
-  width: 100%;
+  /* width: 100%;
   height: 35%;
   display: flex;
   align-items: flex-start;
-  flex-direction: column;
+  flex-direction: column; */
+
+  height: 90%;
 }
 
 .input-dates{
-  width: 90%;
+  /* width: 90%;
   height: 70%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; */
 }
 
 .error{
-  height: 20%;
+  height: 2rem;
+  margin-top: 0;
+  margin-bottom: .75rem;
+
 }
 .input-dates-conteiner{
-  height: 80%;
+  /* height: 80%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; */
+  
 }
 .dates{
-  padding-left: 10px;
   font-size: 18px;
-  width: 94%;
-  height: 95%;
+  width: 10%;
+  height: 20px;
   border:groove;
+    width: 100%;
+    border: 1px solid #c0c0c0;
+    border-radius: 5px;
+    padding: 1vw 1vw;
 }
 
 .genero-container{
@@ -161,21 +179,29 @@ h4{
 
 #user-profile{
   display: flex;
-
   width: 100%;
   flex-direction: row;
   justify-items: center;
-  justify-content: center;
+  justify-content: start;
+  align-items: start;
+  height: 50%;
 }
 
+
 .input-dates--icon{
-  height: 56%;
+  height: 10%;
   width: 94%;
   background-color: white ;
-  border:groove;
+  
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  font-size: 18px;
+  background-color: rgb(236, 236, 236) !important;
+    width: 100%;
+    border: 0 solid rgb(192, 192, 192);
+    border-radius: 5px;
+    
 }
 
 
@@ -254,6 +280,12 @@ input{
   background-color: #ececec!important;
   box-shadow: none;
   padding: 0.5vw 1vw;
-  width: 100%;
+  
 }
 
+
+.genero-container--input{
+  display: flex;
+  align-items: start;
+  height: 50%;
+}
