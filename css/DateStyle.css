@@ -1,22 +1,5 @@
-/*#region COLORS*/
-:root {
-    --violeta: #885FFF;
-    --violeta-oscuro: #280886;
-    --gris-claro: #ECECEC;
-    --gris-oscuro: #525252;
-    --first-color :#885FFF;
-    --first-color-light:  #A386FF;
-    --first-color-light-nav:  #d8cefa;
-  
-}
-/*#endregion */
-
-/* body, html{
-    width: 100%;
-    height: 100%;
-} */
-
 /*#region HEADER*/
+
 .headerDates {
     display: flex;
     justify-content: space-between;
@@ -34,7 +17,8 @@
     color: white;
     font-size: 16px;
 }
-/*.line {
+/*
+.line {
     margin-right: 5rem;
     color: var(--violeta);
     background: linear-gradient(to left, var(--violeta-oscuro), transparent); 
@@ -44,22 +28,47 @@
     width: 100px;
     padding: 15px 20px;
 }
+#main__dates {
+    display: grid;
+    margin-left: 3rem;
+    grid-template-areas: "section aside"; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+}
+      
+#aside {
+    grid-area: aside;
+}
+      
+#Container-Dates {
+    margin-top: 2rem;
+    grid-area: section; 
+}
+      
 
 /*#endregion*/
 
 /*#region DATES CARD*/
-#Container-Dates
-{
-    margin-top: 2rem;
-
-}
 
 
-.dateDetail, .filterDetail {
+
+.dateDetail {
     border: 1px solid /*var(--violeta);*/rgba(145, 61, 136, 0.3);
     border-radius: 4px;
     padding: 20px;
-    max-width: 80%; 
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    transition: transform 0.3s;
+    max-height: fit-content;
+
+    max-width: fit-content;
+}
+.filterDetail {
+    border: 1px solid /*var(--violeta);*/rgba(145, 61, 136, 0.3);
+    border-radius: 4px;
+    padding: 20px;
+    max-width: 50%; 
     margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -67,8 +76,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     transition: transform 0.3s;
-}
-.filterDetail {
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .dateDetail:hover, .filterDetail:hover {
@@ -104,10 +111,10 @@
     margin-bottom: 10px;
 }
 .dateDetail_content_user, .dateDetail_content_detail {
-    display: grid;
+   /* display: grid;
     place-items: center;
     text-align: center;
-}
+*/}
 .dateDetail_content_detail{
     margin-top: 3rem;
     
@@ -143,28 +150,22 @@
     text-align: center;
 }
 
-.card-date strong{
+/*.card-date strong{
     color: white;
     background-color: red;
     border-radius: 45%;
     padding: 0.1rem 0.3rem;
     font-size: 0.7rem;
-}
-
-#main__dates{
-    min-height: 3rem;
-}
-
-#main__dates div{
-    margin-bottom: 5px;
-}
-  
+} */
 
 /*#endregion*/
+
 .map-container{
     margin: 0;
     width: 100%;
     padding: 1rem;
+    min-height: 5vh;
+    padding: 1rem 5rem;
 }
 
 .map{
@@ -179,12 +180,9 @@
 }
 
 .map-container{    
-    width: 100%;
 }
 
 .map-container{    
-    min-height: 5vh;
-    padding: 1rem 5rem;
 }
 
 .card-date{  
@@ -217,11 +215,7 @@
     height: 100%;
 }
 
-.flex-center{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 
 @media (max-width: 990px) {        
     .dateDetail, .filterDetail {

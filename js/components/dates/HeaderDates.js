@@ -11,16 +11,13 @@ const HeaderDates = () => {
                 <h4>Citas</h4>
                 </div>
 
-                <div class="headerDate__button">
-                    <button id="filter_accepted">Aceptadas</button>
-                    <button id="filter_rejected">Rechazadas</button>
-                    <button id="filter_pending">Pendientes</button>
-                    <button id="filter_add">Nueva Cita</button>
-                </div>
                 
-            </section>
+                </section>
             `
     }
     
 export default HeaderDates;
 //            <hr class="line">
+///                <div class="headerDate__button">
+//                    <button id="filter_add">Nueva Cita</button>
+//                </div>

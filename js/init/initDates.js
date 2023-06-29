@@ -6,11 +6,12 @@ import { printCards } from "../container/dates/printCards.js";
 import AsideCreateDate from "../components/dates/AsideCreateDate.js";
 import SearcherLocation from "../components/dates/SearcherLocation.js";
 
-const main = document.getElementById("main__dates");
+const aside = document.getElementById("aside");
+const body = document.getElementById("body");
 const header = HeaderDates();
 const searcher = SearcherLocation();
-main.insertAdjacentHTML('afterbegin', searcher)
-main.insertAdjacentHTML('afterbegin', header)
+aside.insertAdjacentHTML('afterbegin', searcher)
+body.insertAdjacentHTML('afterbegin', header)
 
 //mi usuario logueado
 const userMe = await GetMyUser();
