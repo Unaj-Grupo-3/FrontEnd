@@ -34,7 +34,7 @@ body {
 header {
   display: flex;
   color: white;
-  height: 12%;
+  height: 15%;
 
 }
 
@@ -46,7 +46,7 @@ header p{
 }
 
 main{
-  height: 75%;
+  height: 85%;
   width: 100%;
   background-color: var(--white-color);
 }
@@ -57,16 +57,15 @@ img{
 }
 
 button{
-    width: 20%;
-    height: 65%;
-    background-color: var(--violeta);
-    border-radius: 10px;
-    color: white;
-    font-weight: bold;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 15%;
+  border-radius: 10px;
+  background-color: #8d2ce2;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: .25rem;
+  box-shadow: 6px 6px 12px #c5c5c5,
+  -6px -6px 12px #ffffff;
 }
 
 h3{
@@ -89,7 +88,9 @@ h4{
   width: 65%;
   padding: 25px;
   border-radius: 10px;
-  background-color: var(--first-color-light-nav);
+  background-color: white;
+  border-radius: 1em;
+  border: 1px solid #c0c0c0
 }
 
 .user-profile-header{
@@ -100,7 +101,7 @@ h4{
 }
 
 .user-dates{
-  height: 100%;
+  height: 60%;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -111,7 +112,6 @@ h4{
 .inputContainer{
   width: 100%;
   height: 35%;
-  color: var(--first-color);
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -161,7 +161,7 @@ h4{
 
 #user-profile{
   display: flex;
-  height: 83%;
+
   width: 100%;
   flex-direction: row;
   justify-items: center;
@@ -206,3 +206,54 @@ h4{
 .box.over {
   border: 3px dotted #666;
 }
+
+
+.steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25%;
+  width: 100%;
+  background-color: #ffffff;
+  overflow: hidden;
+  border-radius: 1em;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 5em;
+  width: 5em;
+  border: 3px solid #c0c0c0;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.step h2 {
+  font-size: 0.8em;
+  margin: 0;
+  height: unset;
+}
+
+.step p {
+  font-size: 0.8em;
+  margin: 0;
+}
+
+.lines{
+  display: flex;
+  height: 3px;
+  width: 10%;
+  background-color: #c0c0c0;
+}
+
+input{
+  border: none;
+  background-color: #ececec!important;
+  box-shadow: none;
+  padding: 0.5vw 1vw;
+  width: 100%;
+}
+
