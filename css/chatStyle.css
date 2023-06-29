@@ -1,5 +1,5 @@
 body {
-  font-family: "poppins" , sans-serif!important;
+  font-family: "poppins", sans-serif;
   overflow: hidden;
   color: #000000;
 }
@@ -12,16 +12,16 @@ h3 {
 
 h5 {
   font-size: calc(0.4em + 1vw);
-  margin: 0 !important;
+  margin: 0;
   font-weight: 500;
   line-height: 1.2;
 }
 
 p {
-  font-size: calc(0.3em + 1vw);
+  font-size: calc(0.2em + 1vw);
   font-weight: 300;
   line-height: 1.5;
-  margin: 0 !important;
+  margin: 0;
   overflow-wrap: break-word;
   overflow: hidden;
 }
@@ -60,8 +60,8 @@ p {
   background-color: #ffffff;
 }
 
-.btn-color{
-  color: #e22b5e;
+.btn-color {
+  color: #8a2be2;
   font-weight: bold;
 }
 
@@ -92,7 +92,7 @@ p {
   width: auto;
   max-width: 80%;
   flex-direction: column;
-  padding: 0.4em;
+  padding: 0.5em;
   background-color: #ffffff;
   border-radius: 0.3em;
   border: 1px solid #ced4da;
@@ -162,8 +162,11 @@ p {
 }
 
 .list-chat {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   overflow-y: auto;
+  gap: 2px;
 }
 
 .chat-simple {
@@ -171,10 +174,15 @@ p {
   align-items: center;
   gap: 1rem;
   padding: 0.5em;
-  border-bottom: 1px solid #bfbfbf;
+  cursor: pointer;
+  border-radius: 2em;
+  border: 1px solid transparent;
 }
 
-
+.chat-simple:hover {
+  border: 1px solid #bfbfbf;
+  background: #ffffff;
+}
 
 .list-messages {
   height: 100%;
@@ -192,9 +200,11 @@ p {
   align-items: center;
   gap: 1rem;
   height: 10%;
-  padding: 0.2rem;
+  min-height: 50px;
+  padding: 1rem;
   border-bottom: 1px solid #bfbfbf;
 }
+
 
 .chat-body {
   height: 70%;
@@ -248,6 +258,7 @@ p {
     grid-template-rows: 1fr 3.4fr;
     padding: 0.5em;
   }
+
   .list-people {
     padding: 0;
   }
@@ -270,7 +281,7 @@ p {
 
 /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
 .chat-body::-webkit-scrollbar-thumb {
-  background-color: #e22b5e;
+  background-color: #8a2be2;
   border-radius: 4px;
 }
 
@@ -315,11 +326,9 @@ p {
 }
 
 .active-chat {
-  background-color: #e22b5e;
-  border-radius: 0.2em;
-  color: white;
+  background-color: #8a2be2 !important;
+  color: white !important;
 }
-
 
 
 textarea:focus {
@@ -327,3 +336,10 @@ textarea:focus {
   outline: 0 none;
 }
 
+.messages_simple_left>div {
+  background-color: #fafbfd;
+}
+
+.messages_simple_right>div {
+  background-color: #fafbfd;
+}

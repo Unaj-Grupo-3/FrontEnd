@@ -83,7 +83,7 @@ const DatesCard = async (userMe, date) => {
                 </div>
             </div>
                     
-            <div class="dateDetail_content_map">
+            <div class="dateDetail_content_map flex-center">
             ${restan == 0 ? `<h4 class="dateDetail__contentFaltan">Es hoy!</h4>` : 
             (restan > 0 ? `<h4 class="dateDetail__contentFaltan">Faltan ${restan} días!</h4>` : '')}
                 

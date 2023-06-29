@@ -1,6 +1,6 @@
 import { GetMyUser, UploadPhoto, ChangeUser } from "../services/fetchUserServices.js";
 import { GetMail, PutPasswd } from "../services/fetchAuthServices.js";
-import { GetMyOverall, PutMyOverall, GetCrushGender, PostGenderPref, DeleteGenderPref, GetInterest, GetPreference, PutPreference, PostPreference } from "../services/fetchPreferenceServices.js";
+import { GetMyOverall, PostMyOverall, PutMyOverall, GetCrushGender, PostGenderPref, DeleteGenderPref, GetInterest, GetPreference, PutPreference, PostPreference } from "../services/fetchPreferenceServices.js";
 import { UserInfoComponent, PrefComponent, InterestTag } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
@@ -375,7 +375,19 @@ const RenderUser = async () =>
     }*/
 
     /* Renderizo UserInfo section */
-    let overall = await GetMyOverall();
+
+    let overall = await GetMyOverall();    
+    if (!overall) {
+        let request = {
+            sinceAge: 18,
+            untilAge: 99,
+            distance: 1000  
+        }
+    
+        let response = await PostMyOverall(request);
+        overall = await GetMyOverall();
+    }
+
     userInfo.innerHTML += UserInfoComponent(user.name, authInfo.email, user.description, overall.sinceAge, overall.untilAge, overall.distance);
 
     let psswdModalBtn = document.querySelector("#btn_psswd");

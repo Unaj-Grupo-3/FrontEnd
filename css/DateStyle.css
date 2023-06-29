@@ -11,6 +11,11 @@
 }
 /*#endregion */
 
+/* body, html{
+    width: 100%;
+    height: 100%;
+} */
+
 /*#region HEADER*/
 .headerDates {
     display: flex;
@@ -50,11 +55,11 @@
 }
 
 
-.dateDetail {
+.dateDetail, .filterDetail {
     border: 1px solid /*var(--violeta);*/rgba(145, 61, 136, 0.3);
     border-radius: 4px;
     padding: 20px;
-    max-width: 1100px; 
+    max-width: 80%; 
     margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -62,15 +67,14 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     transition: transform 0.3s;
-    
-    
 }
-.dateDetail:hover {
+.filterDetail {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.dateDetail:hover, .filterDetail:hover {
     transform: scale(1.03);
     transition-duration: 0.3s;
     box-shadow: 0px 0px 5px 1px var(--violeta);
-
-
 }
 .dateDetail__contentTitle, .dateDetail__contentFaltan, .dateDetail__contentUser {
     color: var(--violeta);
@@ -108,7 +112,7 @@
     margin-top: 3rem;
     
 }
-.dateDetail__button button, .headerDate__button button {
+.dateDetail__button button, .headerDate__button button, .filterDetail button {
     background-color: var(--violeta);
     padding: 0.4rem 1rem;
     border: none;
@@ -120,7 +124,7 @@
     margin: 0 20px;
 }
 
-.dateDetail__button button:hover, .headerDate__button button:hover{
+.dateDetail__button button:hover, .headerDate__button button:hover, .filterDetail button:hover{
     box-shadow: 0px 0px 10px 1px var(--gris-claro);
     transform:scale(0.93);
     transition-duration: 1s;
@@ -138,7 +142,139 @@
     color: var(--violeta-oscuro);
     text-align: center;
 }
+
+.card-date strong{
+    color: white;
+    background-color: red;
+    border-radius: 45%;
+    padding: 0.1rem 0.3rem;
+    font-size: 0.7rem;
+}
+
+#main__dates{
+    min-height: 3rem;
+}
+
+#main__dates div{
+    margin-bottom: 5px;
+}
   
 
 /*#endregion*/
+.map-container{
+    margin: 0;
+    width: 100%;
+    padding: 1rem;
+}
 
+.map{
+    height: 80%;
+    max-height: 700px;
+}
+
+#map {
+    height: 80%;
+    min-height: 100px;
+    width: 100%;
+}
+
+.map-container{    
+    width: 100%;
+}
+
+.map-container{    
+    min-height: 5vh;
+    padding: 1rem 5rem;
+}
+
+.card-date{  
+    border: 1px solid var(--first-color-light-nav);
+    background: linear-gradient(to left, var(--first-color-light), var(--first-color-light-nav), white, white);
+    padding: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-date:hover{
+    transform: scale(1.03);
+    transition-duration: 0.3s;
+    box-shadow: 0px 0px 5px 1px var(--violeta);
+    background: var(--first-color-light-nav);
+    cursor: pointer;
+}
+
+.div-photo-place{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.photo-place{
+    width: 64px;
+    height: 54px;
+}
+
+.button-container{
+    height: 100%;
+}
+
+.flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 990px) {        
+    .dateDetail, .filterDetail {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 540px) { 
+    section{
+        margin: 0;
+    }
+    .row{
+        margin: 0;
+        width: 99%;
+    }
+    #map{
+        min-height: 80vh;
+    }
+
+    .headerDate__content{
+        margin-left: 0rem;
+    }
+
+    .headerDates{
+        margin: 0;
+    }
+
+    .headerDate__button{
+        
+        width: 50%;
+    }
+
+    .headerDate__button button{
+        margin-bottom: 3px;
+        width: 120px;
+        font-size: 0.8rem;
+    }
+ 
+
+    .dateDetail_content_map img{
+        width: 90%;
+        height: 90%;
+    }
+
+    .map-options{
+        margin-bottom: 10px;
+    }
+    
+    .map-colum{
+        min-height: 400px;
+    }
+
+    .map-container{
+        padding: 0;
+    }
+}

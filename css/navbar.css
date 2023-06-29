@@ -37,6 +37,9 @@ a {
   text-decoration: none;
 }
 
+.nav_name{
+  flex-direction: column;
+}
 
 .menu_toggle {
   display: flex;
@@ -65,6 +68,8 @@ a {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
 }
 
 .header_img-large {
@@ -80,10 +85,13 @@ a {
 }
 
 .header_name {
+  width: 190px;
   font-size: 1rem;
   color: var(--first-color-light-nav);
   transition: 0.3s;
-  margin: 1rem;
+  margin: 1rem;-webkit-transition-duration: 0.8s; /* Safari */
+  transition-duration: 0.8s;
+  text-align: center;
 }
 
 
@@ -101,6 +109,7 @@ a {
 
 .nav {
   height: 80%;
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

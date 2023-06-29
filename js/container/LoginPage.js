@@ -1,11 +1,20 @@
 import { login } from "../services/fetchAuthServices.js";
 import { GetMyUser } from "../services/fetchUserServices.js";
 
-const Redirect = () => 
+const Redirect = (user) => 
 {
-    window.location.href = "../../views/Matches.html";
-}
+    // !Existe un usuario con esta cuenta
+    if(user?.userId){
+        window.location.href = "../../views/Matches.html";
+    };   
 
+    // !No existe un usuario con esta cuenta
+    if(user?.status){
+        window.location.href = "../../views/PerformanceRegister.html";
+    };
+    
+
+}
 
 document.addEventListener("submit", async function(e)
 {
@@ -31,8 +40,18 @@ document.addEventListener("submit", async function(e)
                 msj.innerHTML = "";
             }, 1000);
         }else{
+            console.log(resp);
+            msj.innerHTML = "Te has conectado exitosamente.";
+            msj.style.color = "#41BC02";
+            msj.style.display = 'block';
+            
             sessionStorage.setItem("token", resp.token);
-            setTimeout(() => { Redirect();}, 1000);    
+            
+            let user = await GetMyUser();
+
+            setTimeout(() => {
+                Redirect(user);
+            }, 1000);
         }
     }
 })

@@ -157,6 +157,27 @@ export const PostPreference = async (request) =>
     }
 }
 
+export const PostMyOverall = async (request) => 
+{
+    let result;
+    let response = await fetch(`${urlBase}/OverallPreference`,{
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JwtToken}`
+        },
+        body: JSON.stringify(request)
+    })
+
+    if(response.ok){
+        result = await response.json();
+    }
+    else{
+        result = null;
+    }
+
+    return result;
+}
 
 export const PutMyOverall = async (request) => 
 {
