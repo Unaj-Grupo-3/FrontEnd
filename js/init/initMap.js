@@ -1,10 +1,16 @@
+import { RenderSuggestionDate } from "../components/dates/SuggestionDateCard.js";
+
 let map;
 let service;
 let infowindow;
+let places;
+let tipoLugar = "";
+let localidad = "";
 
 function initMap() {    
   const unaj = new google.maps.LatLng(-34.77455963753452, -58.26768668220235);
-
+  tipoLugar = document.getElementById("inputText").value;
+  localidad = document.getElementById("inputLocalidad").value;
   infowindow = new google.maps.InfoWindow();
   map = new google.maps.Map(document.getElementById("map"), {
     center: unaj,
@@ -12,23 +18,29 @@ function initMap() {
   });
 
   const request = {
-    query: "cine%20in%20quilmes",
+    query: tipoLugar + '%20in%' + localidad,
     fields: ["name", "geometry"],
-    location: unaj,
-    radius: 5000
+    // location: unaj,
+    // radius: 5000
   };
 
   service = new google.maps.places.PlacesService(map);
   
   service.textSearch(request, (results, status) => {
-    console.log(status)
-    console.log(results)
+    places = results;
+    console.log(places)
+    if(status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS){
+        let container = document.getElementById('result-dates-container');
+        container.innerHTML = '<h1> No se encontraron resultados </h1>'
+    }
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-      for (let i = 0; i < results.length; i++) {
-        createMarker(results[i], i);
-        renderDateResult(results[i], i);
-      }
-
+        let container = document.getElementById('result-dates-container');
+        container.innerHTML = '<h3>Sugerencia citas</h3><br>';
+        for (let i = 0; i < results.length; i++) {
+            createMarker(results[i], i);
+            renderDateResult(results[i], i);
+        }
+        onCardItemClick(document.querySelectorAll(".card-date"));
       //map.setCenter(results[0].geometry.location);
     }
   });
@@ -80,9 +92,36 @@ function createMarkerFull(place){
 }
 
 function renderDateResult(place, index){
+    let photo = '../../img/notfound.png'
+    if (place.photos && place.photos.length > 0){
+        photo = place.photos[0].getUrl({ maxWidth: 64, minWidth: 64, maxHeight: 50, minHeight: 50 });
+    }
     let container = document.getElementById('result-dates-container');
-    container.innerHTML += `<div class="card-date"><img src='${place.photos[0].getUrl({maxWidth: 64, maxHeight: 50, minHeight: 50})}'> <strong style="color: crimson;">${index+1}</strong> - ${place.name} (${place.formatted_address})<p></date>`;
+    container.innerHTML += RenderSuggestionDate(place.name, place.formatted_address, photo, index);
 }
 
+function renderizarPlaces(){
+    var scriptGoogleMaps = document.createElement('script');
+    scriptGoogleMaps.setAttribute('src','https://maps.googleapis.com/maps/api/js?key=AIzaSyDpwWJzl2lrtKx7JyvzHRnaotvrYijX-HU&callback=initMap&libraries=places&v=weekly');
+    document.head.appendChild(scriptGoogleMaps);
+    window.initMap = initMap;    
+}
 
-window.initMap = initMap;
+let buttonNewDatePlaces = document.getElementById('btn-new-date');
+buttonNewDatePlaces.addEventListener('click', () =>{
+    renderizarPlaces();
+})
+
+function onCardItemClick(elements){
+    elements.forEach((element) => {
+        element.addEventListener('click', () =>{
+            seleccionarSugerencia(element.id);
+        })
+    });
+}
+
+function seleccionarSugerencia(id){
+    let placeId = id.split('_')[1];
+    console.log(places[placeId]);
+}
+
