@@ -1,18 +1,3 @@
-:root {
-  --header-height: 3rem;
-  --nav-width: 68px;
-  --first-color: #885FFF;
-  --first-color-light: #A386FF;
-  --first-color-light-nav: #d8cefa;
-  --white-color: #f7f6fb;
-  --body-font: "Nunito", sans-serif;
-  --normal-font-size: 1rem;
-  --z-fixed: 100;
-  --violeta: #885FFF;
-  --violeta-oscuro: #280886;
-  --gris-claro: #ECECEC;
-  --gris-oscuro: #525252;
-}
 
 *,
 ::before,
@@ -34,7 +19,7 @@ header {
   justify-content: flex-start;
   display: flex;
   align-items: flex-end;
-  background-color: var(--violeta);
+  background-color: #8d2ce2;
   color: white;
   height: 15%;
 
@@ -48,32 +33,30 @@ header p{
 
 
 p{
-  height: 1ch;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
   font-size: calc(0.1em + 1vw);
 }
 
 h4{
-  margin-bottom: 5px;
-  font-size: calc(1rem + .3vw) !important;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-size: calc(0.1em + 1vw) !important;
   font-weight: bold;
 }
 
 input{
-  appearance: none;
-  outline: none;
   border: none;
   background-color: #ececec!important;
   box-shadow: none;
-  padding-left: 5px;
-  font-size: 12px;
+  padding: 0.5vw 1vw;
   width: 100%;
- 
 }
 
 button{
   width: 40%;
   margin: 0 auto;
-  background-color: var(--violeta);
+  background-color: #8d2ce2;
   border-radius: 10px;
   color: white;
 }
@@ -115,7 +98,7 @@ ul{
   height: 85%;
   border-radius: 1em;
   background-color: #ffffff;
-  border: 1px solid #ced4da;
+  border: 1px solid #c0c0c0;
   padding: 1em;
 }
 
@@ -135,8 +118,10 @@ form{
   width: 100%;
   height: 100%;
 }
-
-
+form p{
+  height: 1.5em;
+  margin: 0px;
+}
 
 .inputContainer{
   margin-bottom: 0;
@@ -149,7 +134,7 @@ form{
   left: 50%;
   display: flex;
   transform: translate(-50%, -50%);
-  background-color: var(--first-color-light);
+  background-color: #8d2ce2;
   color: white;
   border-radius: 10px;
   width: 400px;
@@ -185,7 +170,7 @@ form{
   display: flex;
   align-items: center;
   width: 100%;
-  border: 1px solid #ced4da;
+  border: 1px solid #c0c0c0;
   border-radius:  5px;
 }
 
@@ -195,7 +180,6 @@ form{
   align-items: center;
   height: 25%;
   width: 100%;
-  gap: 1em;
   background-color: #ffffff;
   overflow: hidden;
   border-radius: 1em;
@@ -208,19 +192,25 @@ form{
   justify-content: center;
   height: 5em;
   width: 5em;
-  border: 1px solid #ddd;
+  border: 3px solid #c0c0c0;
   border-radius: 50%;
-  background-color: #f9f9f9;
   text-align: center;
 }
 
 .step h2 {
-  color: #333;
   font-size: 0.8em;
+  margin: 0;
+  height: unset;
 }
 
 .step p {
-  color: #333;
-  font-size: 0.7em;
+  font-size: 0.8em;
+  margin: 0;
 }
 
+.lines{
+  display: flex;
+  height: 3px;
+  width: 10%;
+  background-color: #c0c0c0;
+}
