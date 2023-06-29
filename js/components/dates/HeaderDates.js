@@ -12,10 +12,10 @@ const HeaderDates = () => {
                 </div>
 
                 <div class="headerDate__button">
-                    <button id="headerDate__button">Aceptadas</button>
-                    <button id="headerDate__button">Rechazadas</button>
-                    <button id="headerDate__Status">Pendientes</button>
-                    <button id="headerDate__addDate">Agregar Cita</button>
+                    <button id="filter_accepted">Aceptadas</button>
+                    <button id="filter_rejected">Rechazadas</button>
+                    <button id="filter_pending">Pendientes</button>
+                    <button id="filter_add">Nueva Cita</button>
                 </div>
                 
             </section>

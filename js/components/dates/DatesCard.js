@@ -62,8 +62,8 @@ const DatesCard = async (userMe, date) => {
                     <p class="dateDetail__contentText">Mas info - ${date.description}</p>
                     ${date.state == 0 ? 
                     `<div class="dateDetail__button">
-                        <button id="acceptDate">Aceptar</button>
-                        <button id="cancelDate">Cancelar</button>
+                        <button id=${date.dateId} value="1" class="acceptDate">Aceptar</button>
+                        <button id=${date.dateId} value="-1" class="cancelDate">Cancelar</button>
                         </div>`
                         :
                         `<div class="dateDetail_status">
