@@ -48,19 +48,21 @@ async function searchNotification() {
         });
         if (response.ok) {
             const data = await response.json();
-            for (const chat of data.listChat) {
-                if (chat.latestMessage && chat.latestMessage.fromUserId != data.userMe.userId
-                    && !chat.latestMessage.isRead) {
-                    const icono = document.getElementById('nav-icono');
-                    const newMessage = document.createElement('span');
-                    newMessage.id = 'miId';
-                    Object.assign(newMessage.style, {
-                        position: 'absolute', left: '31px', top: '9px', backgroundColor: '#2be241',
-                        display: 'flex', height: '8px', width: '8px', borderRadius: '4px',
-                    });
-                    icono.appendChild(newMessage);
+            if(data && data.listChat){
+                for (const chat of data.listChat) {
+                    if (chat.latestMessage && chat.latestMessage.fromUserId != data.userMe.userId
+                        && !chat.latestMessage.isRead) {
+                        const icono = document.getElementById('nav-icono');
+                        const newMessage = document.createElement('span');
+                        newMessage.id = 'miId';
+                        Object.assign(newMessage.style, {
+                            position: 'absolute', left: '31px', top: '9px', backgroundColor: '#2be241',
+                            display: 'flex', height: '8px', width: '8px', borderRadius: '4px',
+                        });
+                        icono.appendChild(newMessage);
+                    }
                 }
-            }
+            }           
         } else {
             throw new Error("Error obtaining chats");
         }
