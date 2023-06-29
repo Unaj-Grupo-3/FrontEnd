@@ -1,6 +1,5 @@
 import { GetUserById } from "../../services/fetchUserServices.js"
 import { distance } from "../../utils/distance.js";
-import { initMap } from "../../container/dates/initMap.js";
 const API_KEY = "AIzaSyDpwWJzl2lrtKx7JyvzHRnaotvrYijX-HU";
 //
 
