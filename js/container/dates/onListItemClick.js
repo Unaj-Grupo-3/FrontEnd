@@ -1,3 +1,5 @@
+import { createDate } from "./createDate.js";
+
 export const onListItemClick = (elements) => {
     elements.forEach(element => {
         //filter header icons
@@ -8,7 +10,7 @@ export const onListItemClick = (elements) => {
         } else if (element.matches('#filter_pending')) { 
             element.addEventListener('click', () => alert('Pendientes')) 
         } else if (element.matches('#filter_add')) { 
-            element.addEventListener('click', () => alert('Agregar Cita')) 
+            element.addEventListener('click', () => createDate())
         } 
         //CARDS
         else if (element.classList.contains('acceptDate')) { 

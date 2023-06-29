@@ -3,6 +3,7 @@ import { onListItemClick } from "../container/dates/onListItemClick.js";
 import { GetMyDates } from "../services/fetchDatesServices.js";
 import { GetMyUser } from "../services/fetchUserServices.js"
 import { printCards } from "../container/dates/printCards.js"; 
+import AsideCreateDate from "../components/dates/AsideCreateDate.js";
 
 const main = document.getElementById("main__dates");
 const header = HeaderDates();
