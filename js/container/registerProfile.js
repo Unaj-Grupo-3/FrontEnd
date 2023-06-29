@@ -5,18 +5,22 @@ import {validateBirthday} from '../validators/cumpleañosValidate.js';
 
 export  async function addEventListenerRegisterProfile(){
 
-    const generoRadios = document.querySelectorAll('.genero-container input[type="radio"]');
+    const generoRadios = document.querySelectorAll('.genero-container input[type="checkbox"]');
 
         generoRadios.forEach(radio => {
-        radio.addEventListener('change', () => {
-            if (radio.checked) {
-                sessionStorage.setItem('gender', radio.value);
-
-            let parrafo=document.getElementById("errorGenero");
-            parrafo.textContent="";
-            
-            }
-        });
+            radio.addEventListener('change', () => {
+                if (radio.checked) {
+                    generoRadios.forEach(radio2 => {
+                        if(radio2.checked  && radio2.id != radio.id) {
+                            radio2.checked = false;
+                        }
+                    })
+                    sessionStorage.setItem('gender', radio.value);
+                    let parrafo=document.getElementById("errorGenero");
+                    parrafo.textContent="";
+                
+                }
+            });
         });
 
     document.getElementById("myLocation").addEventListener("click", (e) => {
@@ -207,6 +211,7 @@ export  async function addEventListenerRegisterProfile(){
 
         
     });
+
     document.addEventListener("keyup", (e) => {
         
         let{target}=e;
@@ -225,7 +230,7 @@ export  async function addEventListenerRegisterProfile(){
         }
         
         
-    })
+    });
 }
 
 

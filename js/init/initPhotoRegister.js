@@ -1,6 +1,7 @@
 import { UploadPhoto, GetMyUser, ChangeUser } from "../services/fetchUserServices.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
 import { UserPageImg } from "../components/UserPageImg.js";
+import { validateFile } from "../validators/fileValidate.js";
 
 
 let userInfo = document.querySelector(".user__info");
@@ -86,8 +87,25 @@ const ModPhotos = async () => {
 }
 
 const AddPhoto = async (target) => {
+
+    let validResponse = validateFile(target.files[0]) ;
+
+    let isValid = validResponse.valid;
+
+    if(!isValid){
+
+        photoMsj.innerHTML = validResponse.error;
+        photoMsj.style.color = "#F02E3A";
+        photoMsj.style.display = "block";
+        return;
+    }
+
+    console.log("La foto es valida");
+
     const formData = new FormData();
+
     formData.append('file', target.files[0]);
+
     let response = await UploadPhoto(formData); // Quizas no deberia subirla
 
     if(response == null) {
@@ -169,4 +187,10 @@ for(let i = imagesCount; i < 6; i++){
             console.log("ALGO");
             userPhotoSection.innerHTML += AddPhotoBtn();
         }
+
+        if(target.matches("#buttonSubmit")){
+            window.location = "../../views/PreferenceRegister.html"
+        }
+
     });
+

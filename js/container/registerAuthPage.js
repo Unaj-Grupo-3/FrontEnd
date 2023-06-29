@@ -1,5 +1,5 @@
 import { Loader } from "../components/spinner.js";
-import { CreateAuth } from "../services/fetchAuthServices.js";
+import { CreateAuth, login } from "../services/fetchAuthServices.js";
 import { validate } from "../validators/emailValidate.js";
 import { validatePassword } from "../validators/passwordValidate.js";
 
@@ -20,7 +20,6 @@ export const addEventListenerAuth = () =>{
 
     document.getElementById("formAuth").addEventListener("submit",async (e) =>{
         e.preventDefault();
-
         let mail = document.getElementById("inputMail").value;
         let password = document.getElementById("inputPassword").value;
         let password2 = document.getElementById("inputPassword2").value;
@@ -61,7 +60,7 @@ export const addEventListenerAuth = () =>{
                 password : password
             }
             document.getElementById("buttonSubmit").disable = true;
-            document.getElementById("buttonSubmit").innerHTML = Loader() + "Registrarse";
+            document.getElementById("buttonSubmit").innerHTML = "Registrarse";
 
             let response = await CreateAuth(auth);
             
@@ -74,14 +73,14 @@ export const addEventListenerAuth = () =>{
                 document.getElementById("buttonSubmit").innerHTML = "Registrarse";
             }else{
 
-                let modal = new bootstrap.Modal( document.getElementById("modalRegister") );
+               let loginResponse = await login(auth);
 
-                modal.show();
-
-                setTimeout(() => {
-                    window.location = "../../views/PerformanceRegister.html"
+                if(loginResponse){
+                    sessionStorage.setItem("token", loginResponse.token);
                 }
-                ,1500);
+                
+                window.location = "../../views/PerformanceRegister.html"
+
             }
         }
     })

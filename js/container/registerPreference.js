@@ -1,8 +1,30 @@
-
-
-
+import { PostMyOverall, PostGenderPref, PostPreference } from "../services/fetchPreferenceServices.js";
 
 export function addEventListenerPreference(){
+
+    const generoRadios = document.querySelectorAll('input[type="checkbox"]');
+    sessionStorage.removeItem("gender");
+    sessionStorage.setItem("gender", JSON.stringify([]));
+    generoRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            if (radio.checked) {
+                
+                let genderArray =JSON.parse(sessionStorage.getItem('gender'));
+
+                if(!genderArray.includes(radio.value) ){
+                    genderArray.push(radio.value);
+                    
+                    sessionStorage.setItem('gender', JSON.stringify(genderArray));
+                }
+            }else{
+                let genderArray =JSON.parse(sessionStorage.getItem('gender'));
+
+                genderArray  = genderArray.filter(x => x != radio.value);
+
+                sessionStorage.setItem('gender', JSON.stringify(genderArray));
+            }
+        });
+    });
 
     document.addEventListener("input", (e) =>{
         
@@ -40,4 +62,77 @@ export function addEventListenerPreference(){
         }
     });
 
+    document.getElementById("formAuth").addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        let minAge = document.getElementById("in_min_age").value;
+        let maxAge = document.getElementById("in_max_age").value;
+        let distance = document.getElementById("in_distance").value == 0 ? 100 : document.getElementById("in_distance").value;
+
+        let request = {
+            sinceAge: minAge,
+            untilAge: maxAge,
+            distance: distance 
+        }
+        
+        await PostMyOverall(request);
+   
+        let genderArray = JSON.parse( sessionStorage.getItem('gender') );
+
+        async function GenderPref(genderId) {
+            let genderBody = {
+                genderId : parseInt(genderId)
+            }
+            await PostGenderPref(genderBody);
+        }
+
+        genderArray.forEach( gender =>  GenderPref(gender));
+        
+        let ownInsterests = (document.getElementById("my_interest").querySelectorAll(".interest_item_sel"));
+        let interests = Array.from(ownInsterests).map(interest => {
+
+            let idString = interest.id;
+            let idx = idString.split("_")[2];
+            let interestBody  =  {
+                    interestId: parseInt(idx),
+                    ownInterest: true,
+                    like: false
+            }
+
+            return interestBody;
+        });
+            
+
+        let likeInterest = (document.getElementById("your_interest").querySelectorAll(".interest_item_sel"));
+        
+        Array.from(likeInterest).forEach(interest => {
+            let idString = interest.id;
+            let idx = idString.split("_")[2];
+
+            let find = interests.find(i => i.interestId == idx);
+
+
+            if(find){
+                find.like = true;
+            }else{
+                let interestBody  =  {
+                    interestId: parseInt(idx),
+                    ownInterest: false,
+                    like: true
+            }
+            interests.push(interestBody);
+            }
+        });
+
+        async function addInterest(interest){
+            await PostPreference(interest);
+        }
+
+       interests.forEach(i => addInterest(i));
+
+
+       window.location = "../../views/Matches.html"
+
+    });
 }

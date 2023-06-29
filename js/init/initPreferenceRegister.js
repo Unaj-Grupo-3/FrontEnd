@@ -13,7 +13,7 @@ async function InterestOnClick(e){
     if(this.classList.contains('interest_item_sel'))
     {
         this.classList.remove('interest_item_sel');
-        // ModOwnPreference(sendId, false);
+        
     }
     else
     {
@@ -53,7 +53,7 @@ async function RenderPref() {
         item.addEventListener('click', InterestOnClick);
     });
 
-    //ShowMyInterest();
+    
 }
 
 
