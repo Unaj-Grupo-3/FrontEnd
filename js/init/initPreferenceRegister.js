@@ -3,6 +3,7 @@ import {GetInterest} from '../services/fetchPreferenceServices.js';
 import {PrefComponent, InterestTag} from '../components/UserInfoComponent.js';
 
 async function InterestOnClick(e){
+
     console.log(this.id);
     let intIdString = this.id;
     let idx = intIdString.lastIndexOf("_") + 1;
@@ -12,16 +13,13 @@ async function InterestOnClick(e){
 
     if(this.classList.contains('interest_item_sel'))
     {
-        // this.classList.remove('interest_item_sel');
+        this.classList.remove('interest_item_sel');
         // ModOwnPreference(sendId, false);
     }
     else
     {
-        // this.classList.add('interest_item_sel');
-        // let response = ModOwnPreference(sendId, true);
-        // if(response.message = "La preferencia ingresada no existe"){
-        //     CreateOwnPreference(sendId);
-        // }
+        this.classList.add('interest_item_sel');
+         
     }
 }
 

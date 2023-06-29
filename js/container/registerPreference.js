@@ -4,7 +4,7 @@
 
 export function addEventListenerPreference(){
 
-    document.addEventListener("change", (e) =>{
+    document.addEventListener("input", (e) =>{
         
         let {target} = e;
 
