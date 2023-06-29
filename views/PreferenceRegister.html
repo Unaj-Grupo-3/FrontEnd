@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  
+    <link rel="stylesheet" href="../css/authStyle.css">
+  <link rel="stylesheet" href="../css/PreferenceRegister.css">
+
+
+  <script defer src="../js/init/initPreferenceRegister.js" type="module"></script>
+</head>
+
+<body id="body-pd">
+  <header>
+    <div>
+      <img src="../img/globo-blanco.png" alt="logo">
+    </div>
+    <div>
+      <p>AppCitas</p>
+      <br><span class="color">Comenzemos a crear su cuenta</span>
+    </div>
+  </header>
+  <section class="section-main">
+    <div class="body-main">
+      <div class="steps">
+        <div class="step" style="border: 3px solid #8d2ce2;">
+          <h2>Paso 1</h2>
+          <p>Registro</p>
+        </div>
+        <div class="lines"  style="border: thin solid #8d2ce2; background-color: #8d2ce2;"></div>
+        <div class="step" style="border: 3px solid #8d2ce2;">
+          <h2>Paso 2</h2>
+          <p>Perfil</p>
+        </div>
+        <div class="lines" style="border: thin solid #8d2ce2; background-color: #8d2ce2;" ></div>
+        <div class="step" style="border: 3px solid #8d2ce2;">
+          <h2>Paso 3</h2>
+          <p>Fotos</p>
+        </div>
+        <div class="lines" style="border: thin solid #8d2ce2; background-color: #8d2ce2;"></div>
+        <div class="step"  style="border: 3px solid #8d2ce2;">
+          <h2>Paso 4</h2>
+          <p>Gustos</p>
+        </div>
+      </div>
+    <form id="formAuth" class="form-container">
+      <div class="pref_gen_container">
+        <div class="info__div pref_div">
+          <h3>Preferencias Generales</h3>
+          <div>
+              <p style="display: inline-block;">Edad mínima</p>
+              <label for="in_min_age" id="lbl_min_age">18 años</label>
+              <input type="range" id="in_min_age" min="18" max="120" value="18" step="1">
+              <p style="display: inline-block;">Edad máxima</p>
+              <label for="in_max_age" id="lbl_max_age">99 años</label>
+              <input type="range" id="in_max_age" min="18" max="120" value="99" step="1">
+              <p style="display: inline-block;">Distancia</p>
+              <label for="in_distance" id="distance">0 km</label>
+              <input type="range" id="in_distance" min="0" value="0" step="1">
+          </div>
+          <p>Género de la persona que busco</p>
+          <div class="input-checkboxes">
+              <input type="checkbox" id="crush_female" class="crush_gender" value="2">
+              <label for="crush_female">Femenino</label>
+              <input type="checkbox" id="crush_male" class="crush_gender" value="1">
+              <label for="crush_male">Masculino</label>
+              <input type="checkbox" id="crush_other" class="crush_gender" value="3">
+              <label for="crush_other">Otro</label>
+          </div>
+      </div>
+    </div>
+    <div class="format container-myInterest">
+      <h3>Mis intereses</h3>
+      <div id="my_interest" class="pref_container">
+            
+      </div>  
+      <h3>Lo que Busco</h3>
+      <div id="your_interest" class="pref_container">
+            
+      </div> 
+    </div>
+    </form>
+  <button id="buttonSubmit" type="submit" form="formAuth">Registrarse</button>
+  </div>
+  </section>
+  
+</body>
+
+</html>

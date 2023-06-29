@@ -5,7 +5,7 @@
   --first-color-light: #A386FF;
   --first-color-light-nav: #d8cefa;
   --white-color: #f7f6fb;
-  --body-font: "Nunito", sans-serif;
+  --body-font: "Poppins", sans-serif;
   --normal-font-size: 1rem;
   --z-fixed: 100;
   --violeta: #885FFF;
@@ -34,7 +34,7 @@ body {
 header {
   display: flex;
   color: white;
-  height: 12%;
+  height: 15%;
 
 }
 
@@ -46,7 +46,7 @@ header p{
 }
 
 main{
-  height: 75%;
+  height: 85%;
   width: 100%;
   background-color: var(--white-color);
 }
@@ -57,16 +57,17 @@ img{
 }
 
 button{
-    width: 20%;
-    height: 65%;
-    background-color: var(--violeta);
-    border-radius: 10px;
-    color: white;
-    font-weight: bold;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 15%;
+  border-radius: 10px;
+  background-color: #8d2ce2;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: .25rem;
+  box-shadow: 6px 6px 12px #c5c5c5,
+  -6px -6px 12px #ffffff;
+
+
 }
 
 h3{
@@ -74,8 +75,9 @@ h3{
 }
 
 h4{
-  margin-bottom: 10px;
-  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-size: calc(0.1em + 1vw) !important;
   font-weight: bold;
 }
 
@@ -85,12 +87,19 @@ h4{
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  height: 90%;
-  width: 65%;
+  height: 85%;
+  width: 60%;
   padding: 25px;
   border-radius: 10px;
-  background-color: var(--first-color-light-nav);
+  background-color: white;
+  border-radius: 1em;
+  border: 1px solid #c0c0c0;
+  display: flex;
+    flex-direction: column;
+  justify-content: space-between;
 }
+
+
 
 .user-profile-header{
   display: flex;
@@ -100,44 +109,53 @@ h4{
 }
 
 .user-dates{
-  height: 100%;
+  height: 60%;
   width: 50%;
   display: flex;
   flex-direction: column;
   align-content: stretch;
   text-align: start;
+  padding: 0.5vw 1vw;
 }
 
 .inputContainer{
-  width: 100%;
+  /* width: 100%;
   height: 35%;
-  color: var(--first-color);
   display: flex;
   align-items: flex-start;
-  flex-direction: column;
+  flex-direction: column; */
+
+  height: 90%;
 }
 
 .input-dates{
-  width: 90%;
+  /* width: 90%;
   height: 70%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; */
 }
 
 .error{
-  height: 20%;
+  height: 2rem;
+  margin-top: 0;
+  margin-bottom: .75rem;
+
 }
 .input-dates-conteiner{
-  height: 80%;
+  /* height: 80%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; */
+  
 }
 .dates{
-  padding-left: 10px;
   font-size: 18px;
-  width: 94%;
-  height: 95%;
+  width: 10%;
+  height: 20px;
   border:groove;
+    width: 100%;
+    border: 1px solid #c0c0c0;
+    border-radius: 5px;
+    padding: 1vw 1vw;
 }
 
 .genero-container{
@@ -161,21 +179,29 @@ h4{
 
 #user-profile{
   display: flex;
-  height: 83%;
   width: 100%;
   flex-direction: row;
   justify-items: center;
-  justify-content: center;
+  justify-content: start;
+  align-items: start;
+  height: 50%;
 }
 
+
 .input-dates--icon{
-  height: 56%;
+  height: 10%;
   width: 94%;
   background-color: white ;
-  border:groove;
+  
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  font-size: 18px;
+  background-color: rgb(236, 236, 236) !important;
+    width: 100%;
+    border: 0 solid rgb(192, 192, 192);
+    border-radius: 5px;
+    
 }
 
 
@@ -205,4 +231,61 @@ h4{
 
 .box.over {
   border: 3px dotted #666;
+}
+
+
+.steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25%;
+  width: 100%;
+  background-color: #ffffff;
+  overflow: hidden;
+  border-radius: 1em;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 5em;
+  width: 5em;
+  border: 3px solid #c0c0c0;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.step h2 {
+  font-size: 0.8em;
+  margin: 0;
+  height: unset;
+}
+
+.step p {
+  font-size: 0.8em;
+  margin: 0;
+}
+
+.lines{
+  display: flex;
+  height: 3px;
+  width: 10%;
+  background-color: #c0c0c0;
+}
+
+input{
+  border: none;
+  background-color: #ececec!important;
+  box-shadow: none;
+  padding: 0.5vw 1vw;
+  
+}
+
+
+.genero-container--input{
+  display: flex;
+  align-items: start;
+  height: 50%;
 }
