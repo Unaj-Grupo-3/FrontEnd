@@ -141,4 +141,25 @@
   
 
 /*#endregion*/
+.map-container{
+    margin: 0;
+    width: 100%;
+    padding: 1rem;
+}
 
+#map {
+    height: 100%;
+    min-height: 500px;
+}
+
+.map-container{    
+    width: 100%;
+}
+
+.card-date{
+  
+    border: 1px solid var(--first-color-light-nav);
+    background: linear-gradient(to left, var(--first-color-light), var(--first-color-light-nav), white, white);
+    padding: 0.3rem;
+    margin-bottom: 0.5rem;
+}

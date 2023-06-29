@@ -3,6 +3,7 @@ import { onListItemClick } from "./onListItemClick.js";
 import { GenerateDate } from "../../services/fetchDatesServices.js";
 
 export const createDate = async () => {
-    alert('createDate')
+    window.location.href = "../../views/NewDate.html";
+    //alert('createDate')
 }
 
