@@ -270,6 +270,7 @@ form{
 .interest_item:hover {
   background-color: var(--first-color);
   color: white;
+  cursor: pointer;
 }
 
 .interest_item_sel {
