@@ -5,8 +5,12 @@ import { CarouselInner } from "../components/carousel-inner.js";
 import { ButtonsLike } from "../components/button-like.js";
 import { SuggestionData } from "../components/suggestion-data.js";
 import { RenderModalMatch } from "../components/modalMatch.js";
+import { Loader } from "../components/spinner.js";
+
 
 let suggestions = await GetMySuggestions();
+document.getElementById("spinner-container").classList.add('spinner-hidden');
+
 let firstSuggestion;
 let carouselIndicators = document.getElementById('carousel-indicators');
 let carouselInner = document.getElementById('carousel-inner');

@@ -1,3 +1,15 @@
+:root {
+  --header-height: 3rem;
+  --nav-width: 68px;
+  --first-color :#885FFF;
+  --first-color-light:  #A386FF;
+  --first-color-light-nav:  #d8cefa;
+  --white-color: #f7f6fb;
+  --body-font: "poppins" , sans-serif !important;
+  --normal-font-size: 1rem;
+  --z-fixed: 100;
+}
+
 body {
   font-family: "poppins" , sans-serif!important;
   overflow: hidden;
@@ -92,7 +104,7 @@ p {
   width: auto;
   max-width: 80%;
   flex-direction: column;
-  padding: 0.4em;
+  padding: 0.5em;
   background-color: #ffffff;
   border-radius: 0.3em;
   border: 1px solid #ced4da;
@@ -171,10 +183,14 @@ p {
   align-items: center;
   gap: 1rem;
   padding: 0.5em;
-  border-bottom: 1px solid #bfbfbf;
+  border-bottom: 1px solid #bfbfbf;  
+  cursor: pointer;
 }
 
-
+.chat-simple:hover{
+  background-color: var(--first-color-light-nav);
+  border-radius: 3px;
+}
 
 .list-messages {
   height: 100%;
@@ -192,8 +208,14 @@ p {
   align-items: center;
   gap: 1rem;
   height: 10%;
-  padding: 0.2rem;
+  min-height: 50px;
+  padding: 1rem;
+  color: white;
   border-bottom: 1px solid #bfbfbf;
+}
+
+.header-active{  
+  background-color: var(--first-color);
 }
 
 .chat-body {
@@ -315,15 +337,20 @@ p {
 }
 
 .active-chat {
-  background-color: #e22b5e;
-  border-radius: 0.2em;
+  /* background-color: #e22b5e; */
+  background-color: var(--first-color-light);
   color: white;
 }
-
-
 
 textarea:focus {
   border: 1px solid #858588;
   outline: 0 none;
 }
 
+.messages_simple_left>div{
+  background-color: var(--first-color-light-nav);
+}
+
+.messages_simple_right>div{
+  background-color: var(--white-color);
+}

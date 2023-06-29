@@ -15,52 +15,68 @@ const DatesCard = async (userMe, date) => {
     const kilometros = distance (lat1, lon1, lat2, lon2);
     console.log(Math.round(kilometros));
     
+    //Edad
+    const today = new Date()
     const birth = new Date (anotherUser[0].birthday)
-    const current = new Date()
-    let age = current.getFullYear() - birth.getFullYear(); //2023 - 1997 = 26
-    if (current.getMonth() < birth.getMonth() || (current.getMonth() == birth.getMonth() && current.getDate() < birth.getDate())) { 
+    let age = today.getFullYear() - birth.getFullYear(); //2023 - 1997 = 26
+    if (today.getMonth() < birth.getMonth() || (today.getMonth() == birth.getMonth() && today.getDate() < birth.getDate())) { 
+        age--;
         //mes actual - mes de nac ||//mes actual = mes de nac & dia actual < dia nac -> no cumplio
-        age--;
-    } /*else if ((current.getMonth() == birth.getMonth() && current.getDate() < birth.getDate())) {
-        age--;
-    }*/
-
-
-    /*VER STATUS 
-    Si date.user1 = userMe --> El otro user debe aceptar o rechazar
-
-
+    } 
     
-    */
-        return  `
+    //Dias para la cita
+    const dateTime = new Date(date.time)
+
+    const meses = {
+        0: 'Enero',
+        1: 'Febrero',
+        2: 'Marzo',
+        3: 'Abril',
+        4: 'Mayo',
+        5: 'Junio',
+        6: 'Julio',
+        7: 'Agosto',
+        8: 'Septiembre',
+        9: 'Octubre',
+        10: 'Noviembre',
+        11: 'Diciembre'
+    }
+
+    const restan = Math.ceil((dateTime.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+
+
+    return  `
         <article class="dateDetail">
             <div class="dateDetail__content">
-    
+                <h4 class="dateDetail__contentTitle" >Tienes una cita</h4>
+            
                 <div class="dateDetail_content_user">
-                    <img src=${anotherUser[0].images[0].url} alt=${anotherUser[0].name}>
-                    <h4>${anotherUser[0].name} ${anotherUser[0].lastName}, ${age}</h4>
+                <img src=${anotherUser[0].images[0].url} alt=${anotherUser[0].name}>
+                    <h4 class="dateDetail__contentUser">${anotherUser[0].name} ${anotherUser[0].lastName}, ${age}</h4>
                 </div>
-
+                
                 <div class="dateDetail_content_detail">
-                    <h4>Datos de la cita</h4>
-                    <p>DateId: ${date.dateId}</p>
-                    <p>Lugar: ${date.location}</p>
-                    <p>Descripcion: ${date.description}</p>
-                    <p>Hora: ${date.time}</p>
-                    ${date.state != 0 ? 
+                    <h5 class="dateDetail__contentText">Fecha: ${dateTime.getDate()} de ${meses[dateTime.getMonth()]} de ${dateTime.getFullYear()}</h5>
+                    <h5 class="dateDetail__contentText">Hora: ${dateTime.getHours()}${dateTime.getMinutes()>0 ? `:${dateTime.getMinutes()}` : ''} horas</h5>
+                    <h5 class="dateDetail__contentText">Lugar: ${date.location}</h5>
+                    <p class="dateDetail__contentText">Mas info - ${date.description}</p>
+                    ${date.state == 0 ? 
                     `<div class="dateDetail__button">
-                        <button id="acceptDate">Aceptar</button>
-                        <button id="cancelDate">Cancelar</button>
-                    </div>`
-                    :
-                    `<div class="dateDetail_status">
+                        <button id=${date.dateId} value="1" class="acceptDate">Aceptar</button>
+                        <button id=${date.dateId} value="-1" class="cancelDate">Cancelar</button>
+                        </div>`
+                        :
+                        `<div class="dateDetail_status">
                         <h4>Estado: ${date.state == 1 ? 'Aceptada' : 'Rechazada'}</h4>
-                    </div>`
+                        </div>`
                     }
                 </div>
             </div>
-
+                    
             <div class="dateDetail_content_map">
+            ${restan == 0 ? `<h4 class="dateDetail__contentFaltan">Es hoy!</h4>` : 
+            (restan > 0 ? `<h4 class="dateDetail__contentFaltan">Faltan ${restan} días!</h4>` : '')}
+                
                 <img src="../../../img/map.png" alt="Ubicacion del lugar">
             </div>
         </article>

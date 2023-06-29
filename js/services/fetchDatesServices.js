@@ -4,6 +4,7 @@ let urlBase = 'https://localhost:7199/api';
 const JwtToken = sessionStorage.getItem("token");
 console.log(JwtToken);
 
+//AGREGAR CITA
 export const GenerateDate = async (data) =>
 {
     let result;
@@ -28,10 +29,9 @@ export const GenerateDate = async (data) =>
         result == null;
 
         return result;
-    }
-    
+    }    
 }
-
+//DATE PAGE
 export const GetMyDates = async () =>
 {
     let result;
