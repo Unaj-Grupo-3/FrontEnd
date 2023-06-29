@@ -25,81 +25,84 @@
     </div>
     <div>
       <p>AppCitas</p>
-      <span class="color">Comenzemos a crear su cuenta</span>
+      <span class="color">Comencemos a crear tu cuenta</span>
     </div>
   </header>
   <section class="section-main">
     <div class="body-main">
-    <div class="steps">
-      <div class="step" style="border: 3px solid #8d2ce2;">
-        <h2>Paso 1</h2>
-        <p>Registro</p>
+      <div class="steps">
+        <div class="step" style="border: 3px solid #8d2ce2;">
+          <h2>Paso 1</h2>
+          <p>Registro</p>
+        </div>
+        <div class="lines"></div>
+        <div class="step">
+          <h2>Paso 2</h2>
+          <p>Perfil</p>
+        </div>
+        <div class="lines"></div>
+        <div class="step">
+          <h2>Paso 3</h2>
+          <p>Fotos</p>
+        </div>
+        <div class="lines"></div>
+        <div class="step">
+          <h2>Paso 4</h2>
+          <p>Gustos</p>
+        </div>
       </div>
-      <div class="lines"></div>
-      <div class="step">
-        <h2>Paso 2</h2>
-        <p>Perfil</p>
+      <div class="form-container">
+        <form id="formAuth">
+          <div class="inputContainer">
+            <h4>Correo Electrónico</h4>
+            <div id="input-container">
+              <input type="mail" id="inputMail" placeholder="email" value="">
+            </div>
+            <p id="errorMail"></p>
+          </div>
+          <div class="inputContainer">
+            <h4>Contraseña</h4>
+            <div id="input-container">
+              <input type="password" id="inputPassword" placeholder="Contraseña" value="">
+              <span class="material-symbols-outlined icon_password" title="inputPassword">visibility_off</span>
+            </div>
+            <p id="errorPassword"></p>
+          </div>
+          <div class="inputContainer">
+            <h4>Repetir Contraseña</h4>
+            <div id="input-container">
+              <input type="password" id="inputPassword2" placeholder="Contraseña" value="">
+              <span class="material-symbols-outlined icon_password" title="inputPassword2">visibility_off</span>
+            </div>
+            <p id="errorPassword2"></p>
+          </div>
+
+        </form>
+        <div class="format">
+          <p>Su contraseña deberá cumplir son:</p>
+          <ul>
+            <li>
+              <p>Una longitud minima de 8 caracteres</p>
+            </li>
+            <li>
+              <p>Tener un carácter alfabético en mayúscula</p>
+            </li>
+            <li>
+              <p>Tener un carácter numero</p>
+            </li>
+            <li>
+              <p>De contener un carácter no alfabético</p>
+            </li>
+            <li>
+              <p>No poseer espacios en blanco</p>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="lines"></div>
-      <div class="step">
-        <h2>Paso 3</h2>
-        <p>Fotos</p> 
-      </div>
-      <div class="lines"></div>
-      <div class="step">
-        <h2>Paso 4</h2>
-        <p>Gustos</p> 
+      <div class="button-footer">
+        <button id="buttonSubmit" type="submit">Siguiente</button>
       </div>
     </div>
-    <div class="form-container">
-      <form id="formAuth" >
-        <div class="inputContainer">
-          <h4>Correo Electrónico</h4>
-          <div id="input-container">
-            <input type="mail" id="inputMail" placeholder="email" value="">
-          </div>
-          <p id="errorMail"></p>
-        </div>
-        <div class="inputContainer">
-          <h4>Contraseña</h4>
-          <div id="input-container">
-            <input type="password" id="inputPassword" placeholder="password" value="" >
-            <span class="material-symbols-outlined icon_password" title="inputPassword">visibility_off</span>
-          </div>
-          <p id="errorPassword"></p>
-        </div>
-        <div class="inputContainer">
-          <h4>Repetir Contraseña</h4>
-          <div id="input-container">
-            <input type="password" id="inputPassword2" placeholder="password" value="">
-            <span class="material-symbols-outlined icon_password" title="inputPassword2">visibility_off</span>
-          </div>
-          <p id="errorPassword2"></p>
-        </div>
-        <button id="buttonSubmit" type="submit">Registrarse</button>
-      </form>
-      <div class="format">
-        <p>Su contraseña deberá cumplir son:</p>
-        <ul>
-          <li>
-            <p>Una longitud minima de 8 caracteres</p>
-          </li>
-          <li>
-            <p>Tener un carácter alfabético en mayúscula</p>
-          </li>
-          <li>
-            <p>Tener un carácter numero</p>
-          </li>
-          <li>
-            <p>De contener un carácter no alfabético</p>
-          </li>
-          <li>
-            <p>No poseer espacios en blanco</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
   </section>
 </body>
 
