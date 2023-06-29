@@ -82,7 +82,7 @@
     align-items: center;
 
 }
-.dateDetail_content_map img {
+.dateDetail_content_map iframe {
     width: 30rem;
     height: 30rem;
     object-fit: cover;

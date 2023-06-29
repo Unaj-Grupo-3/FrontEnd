@@ -1,20 +1,19 @@
 import { GetUserById } from "../../services/fetchUserServices.js"
 import { distance } from "../../utils/distance.js";
-
-//https://maps.googleapis.com/maps/api/place/textsearch/json?query=bar%20in%20varela&key=AIzaSyDpwWJzl2lrtKx7JyvzHRnaotvrYijX-HU
+import { initMap } from "../../container/dates/initMap.js";
+const API_KEY = "AIzaSyDpwWJzl2lrtKx7JyvzHRnaotvrYijX-HU";
+//
 
 const DatesCard = async (userMe, date) => {
-    console.log(date)
     const user2 = date.match.user1 == userMe.userId ? date.match.user2 : date.match.user1;
     let anotherUser = await GetUserById(user2); 
+    
     const lat1 = userMe.location.latitude;
     const lon1 = userMe.location.longitude;
     const lat2 = anotherUser[0].location.latitude;
     const lon2 = anotherUser[0].location.longitude;
-
     const kilometros = distance (lat1, lon1, lat2, lon2);
-    console.log(Math.round(kilometros));
-    
+        
     //Edad
     const today = new Date()
     const birth = new Date (anotherUser[0].birthday)
@@ -26,6 +25,7 @@ const DatesCard = async (userMe, date) => {
     
     //Dias para la cita
     const dateTime = new Date(date.time)
+    const restan = Math.ceil((dateTime.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 
     const meses = {
         0: 'Enero',
@@ -42,9 +42,19 @@ const DatesCard = async (userMe, date) => {
         11: 'Diciembre'
     }
 
-    const restan = Math.ceil((dateTime.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
-
-
+    //MAP
+    /**https://developers.google.com/maps/documentation/embed/get-started?hl=es-419
+     * https://developers.google.com/maps/documentation/embed/embedding-map?hl=es-419#choosing_map_modes
+     * el parámetro q requerido puede admitir un nombre, una dirección, un código plus o un ID de lugar con escape de URL: */
+    let type = "bar";
+    let city = "varela";
+    let q = "varela";
+    let lugar = "varela"
+    const MAP_MODE = 'directions';
+    let consulta = `https://www.google.com/maps/embed/v1/${MAP_MODE}?key=${API_KEY}&q=${lugar}`;
+    let consultaOk = `https://www.google.com/maps/embed/v1/${MAP_MODE}?key=${API_KEY}&q=Space+Needle,Seattle+WA`;
+    const PARAMETERS = `&origin=${lat1},${lon1}&destination=${lat2},${lon2}&avoid=highways`
+    let consultaEmbed = `https://www.google.com/maps/embed/v1/${MAP_MODE}?key=${API_KEY}&${PARAMETERS}`
     return  `
         <article class="dateDetail">
             <div class="dateDetail__content">
@@ -77,7 +87,14 @@ const DatesCard = async (userMe, date) => {
             ${restan == 0 ? `<h4 class="dateDetail__contentFaltan">Es hoy!</h4>` : 
             (restan > 0 ? `<h4 class="dateDetail__contentFaltan">Faltan ${restan} días!</h4>` : '')}
                 
-                <img src="../../../img/map.png" alt="Ubicacion del lugar">
+                <iframe alt="Ubicacion del lugar"
+                    width="450"
+                    height="450"
+                    frameborder="0" style="border:0"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src=${consultaEmbed}
+                    allowfullscreen>
+                </iframe>
             </div>
         </article>
         `
