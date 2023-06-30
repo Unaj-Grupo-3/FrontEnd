@@ -1,7 +1,7 @@
 import { GetMyUser, UploadPhoto, ChangeUser } from "../services/fetchUserServices.js";
 import { GetMail, PutPasswd } from "../services/fetchAuthServices.js";
 import { GetMyOverall, PostMyOverall, PutMyOverall, GetCrushGender, PostGenderPref, DeleteGenderPref, GetInterest, GetPreference, PutPreference, PostPreference } from "../services/fetchPreferenceServices.js";
-import { UserInfoComponent, PrefComponent, InterestTag } from "../components/UserInfoComponent.js";
+import { UserInfoComponent, PrefComponent, InterestTag, PrefOtherComponent, InterestOtherTag } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
 
@@ -22,6 +22,7 @@ const modalPsswd = document.querySelector(".modal");
 const modalCloseBtn = document.querySelector(".modal__close");
 const changePasswdBtn = document.querySelector("#btn_change_passwd");
 const modal2 = document.querySelector('.modal_2');
+const modal3 = document.querySelector('.modal_3');
 
 
 /* Drag & Drop */
@@ -114,11 +115,21 @@ async function ModDescription(e) {
     }
 }
 
-async function ModOwnPreference(id, value) {
 
-    let request = {
-        interestId: id,
-        ownInterest: value
+async function ModPreference(own, id, value) {
+
+    let request;
+
+    if(own){
+        request = {
+            interestId: id,
+            ownInterest: value
+        }
+    }else{
+        request = {
+            interestId: id,
+            like: value
+        }
     }
 
     let response = await PutPreference(request);
@@ -126,11 +137,21 @@ async function ModOwnPreference(id, value) {
     return response;
 }
 
-async function CreateOwnPreference(id) {
 
-    let request = {
-        interestId: id,
-        ownInterest: true
+async function CreatePreference(own, id) {
+
+    let request;
+
+    if(own){
+        request = {
+            interestId: id,
+            ownInterest: true
+        }
+    }else{
+        request = {
+            interestId: id,
+            like: true
+        }
     }
 
     let response = await PostPreference(request);
@@ -278,8 +299,7 @@ async function ChangeOverall() {
 const ShowMyInterest = async () =>
 {
     let response = await GetPreference();
-    console.log("Preferencias:");
-    console.log(response);
+
     response.forEach((item) => {
         if(item.ownInterest) {
             let intId = "#my_int_" + item.interest.id;
@@ -289,9 +309,26 @@ const ShowMyInterest = async () =>
     })
 }
 
+const ShowOtherInterest = async () =>
+{
+    let response = await GetPreference();
+
+    response.forEach((item) => {
+        if(item.like) {
+            console.log("Like");
+            console.log(item);
+            let intOtherId = "#other_int_" + item.interest.id;
+            let interestOtherContainer = document.querySelector(intOtherId);
+            interestOtherContainer.classList.add('interest_item_sel_other');
+        }
+    })
+}
+
+
 async function InterestOnClick(e) 
 {
-    console.log(this.id);
+    console.log(this);
+    console.log(this.classList.contains("interest_item"));
     let intIdString = this.id;
     let idx = intIdString.lastIndexOf("_") + 1;
     let intId = intIdString.slice(idx, intIdString.length);
@@ -301,14 +338,36 @@ async function InterestOnClick(e)
     if(this.classList.contains('interest_item_sel'))
     {
         this.classList.remove('interest_item_sel');
-        ModOwnPreference(sendId, false);
+        ModPreference(true, sendId, false);
     }
     else
     {
         this.classList.add('interest_item_sel');
-        let response = ModOwnPreference(sendId, true);
+        let response = ModPreference(true, sendId, true);
         if(response.message = "La preferencia ingresada no existe"){
-            CreateOwnPreference(sendId);
+            CreatePreference(true, sendId);
+        }
+    }
+}
+
+async function InterestOtherOnClick(e)
+{
+    let intIdString = this.id;
+    let idx = intIdString.lastIndexOf("_") + 1;
+    let intId = intIdString.slice(idx, intIdString.length);
+    let sendId = parseInt(intId);
+
+    if(this.classList.contains('interest_item_sel_other'))
+    {
+        this.classList.remove('interest_item_sel_other');
+        ModPreference(false, sendId, false);
+    }
+    else
+    {
+        this.classList.add('interest_item_sel_other');
+        let response = ModPreference(false, sendId, true);
+        if(response.message = "La preferencia ingresada no existe"){
+            CreatePreference(false, sendId);
         }
     }
 }
@@ -321,6 +380,7 @@ async function RenderPrefModal() {
 
     const prefContainer = document.querySelector('.pref_container');
     const modalCloseBtn2 = document.querySelector("#btn_close_2");
+
     let categories = await GetInterest();
 
     categories.forEach((cat) =>
@@ -351,6 +411,44 @@ async function RenderPrefModal() {
     });
 
     ShowMyInterest();
+}
+
+
+async function RenderPrefOtherModal() {
+
+    const prefOtherContainer = document.querySelector('.pref_container_other');
+    const modalCloseBtn3 = document.querySelector('#btn_close_3');
+
+    let categories = await GetInterest();
+
+    categories.forEach((cat) =>
+    {
+        let ints4Cat = cat.interes;
+        let contName = '#cat2_' + cat.id;
+
+        prefOtherContainer.innerHTML += PrefOtherComponent(cat.id, cat.description);
+        
+        let intContainer = document.querySelector(contName);
+
+        ints4Cat.forEach((item) =>
+        {
+            intContainer.innerHTML += InterestOtherTag(item.id, item.description);
+
+            let intId = "#other_int_" + item.id;
+        });
+    })
+
+    modalCloseBtn3.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal3.classList.remove("modal--show-3");
+    });
+
+    let tagContainers = document.querySelectorAll('.interest_other_item');
+    tagContainers.forEach((item) =>{
+        item.addEventListener('click', InterestOtherOnClick);
+    });
+
+    ShowOtherInterest();
 }
 
 
@@ -407,8 +505,6 @@ const RenderUser = async () =>
     let btnAboutMe = document.querySelector('#btn_about_me');
     btnAboutMe.addEventListener('click', () =>
     {
-        console.log("Me apretaste");
-        console.log(modal2);
         modal2.classList.add("modal--show-2");
     });
 
@@ -448,10 +544,15 @@ const RenderUser = async () =>
         item.addEventListener('change', ModCrushGender);
     })
 
+    const btnAboutOther = document.querySelector('#btn_about_other');
+    btnAboutOther.addEventListener('click', () =>
+    {
+        modal3.classList.add("modal--show-3");
+    });
 
     /* Modal Intereses */
     RenderPrefModal();
-
+    RenderPrefOtherModal();
 
     /* Renderizo UserPhotos section */
 

@@ -55,7 +55,7 @@ export const UserInfoComponent = (name, mail, description, minAge, maxAge, dista
     </div>
     <div>
         <p>Otras caracteristicas</p>
-        <button class="btn_general_style">Ver/modificar</button>
+        <button class="btn_general_style" id="btn_about_other">Ver/modificar</button>
     </div>
 </div>
 
@@ -71,9 +71,24 @@ export const PrefComponent = (id, description) =>
 </div>
 `
 
+export const PrefOtherComponent = (id, description) =>
+
+`
+<h4 class="interest_cat">${description}</h4>
+<div class="interests_container" id="cat2_${id}">
+        
+</div>
+`
+
 
 export const InterestTag = (id, name) =>
 
 `
 <a class="interest_item" id="my_int_${id}">${name}</a>
+`
+
+export const InterestOtherTag = (id, name) =>
+
+`
+<a class="interest_other_item" id="other_int_${id}">${name}</a>
 `
