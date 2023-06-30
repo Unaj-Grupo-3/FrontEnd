@@ -114,10 +114,30 @@ function onCardItemClick(elements){
 }
 
 function seleccionarSugerencia(id){
-    let placeId = id.split('_')[1];
-    alert(`Usted ha seleccionado ${places[placeId].name} con Latitud: ${places[placeId].geometry.location.lat()} y Longitud: ${places[placeId].geometry.location.lng()} . Dirección: ${places[placeId].formatted_address} `)
-    console.log(places[placeId]);
-    console.log(places[placeId].geometry.location.lat());
-    console.log(places[placeId].geometry.location.lng());
+    let userIdContainer = document.querySelectorAll(".addDate");
+    let userId = userIdContainer[0].id;    
+    let userName = document.getElementById('nameDateUser').textContent;
+    
+    let date = document.getElementById("inputFecha").value;
+    if(validateDateDay(date)){
+      let placeId = id.split('_')[1];
+      alert(`¿Desea confirmar una cita con ${userName} con Id=${userId} el día ${date} en ${places[placeId].name} con Latitud: ${places[placeId].geometry.location.lat()} y Longitud: ${places[placeId].geometry.location.lng()} . Dirección: ${places[placeId].formatted_address} `)
+    }
+    else{
+      alert("Debe ingresar una fecha posterior a la fecha actual")
+    }
+}
+
+function validateDateDay(fecha){
+  var isValid = false;
+  var hoy = new Date();
+  var fechaFormulario = new Date(fecha);
+  //hoy.setHours(0,0,0,0);
+
+  if (hoy <= fechaFormulario) {
+    isValid=true;
+  }
+
+  return isValid;
 }
 

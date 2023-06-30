@@ -133,10 +133,13 @@
     transition: transform 0.3s;
 }
 .filterDetail {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.nodateDetail, .noMatchDetail{    
+    grid-template-columns: 1fr;
 }
 .nodateDetail{
-    grid-template-columns: 1fr;
+    max-height: 5rem;
 }
 .dateDetail:hover, .filterDetail:hover, .matchDetail:hover {
     transform: scale(1.03);
@@ -241,7 +244,24 @@
 #main__dates div{
     text-align: center;
 }
-  
+
+.input-dates-conteiner h4{
+    color: var(--gris-oscuro);
+}
+
+input{
+    border-radius: 5px;
+    border: 1px solid var(--first-color-light);
+}
+
+input:focus{  
+    outline: none;  
+    border: 3px solid var(--first-color-light-nav);
+}
+
+.input-fecha{
+    padding: 0.1rem 1.5rem;
+}  
 
 /*#endregion*/
 .map-container{
@@ -287,8 +307,12 @@
     transform: scale(1.03);
     transition-duration: 0.3s;
     box-shadow: 0px 0px 5px 1px var(--violeta);
-    background: var(--first-color-light-nav);
+    background: var(--white);
     cursor: pointer;
+}
+
+.card-date p{
+    text-align: start;
 }
 
 .div-photo-place{
@@ -312,6 +336,11 @@
     justify-content: center;
 }
 
+.modal-header{
+    background-color: var(--first-color-light);
+    color: white;
+}
+
 #modalDate, .modal-dialog, .modal-content{
     width: 100%;
     min-width: 90vw;
@@ -330,6 +359,9 @@
 @media (max-width: 1100px){
     #Container-Dates{        
         border: 0;
+    }
+    .nodateDetail{
+        max-height: 8rem;
     }
 }
 
