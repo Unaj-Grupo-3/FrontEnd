@@ -6,7 +6,6 @@ import { printCards } from "../container/dates/printCards.js";
 import { SearcherLocation } from "../components/dates/SearcherLocation.js";
 
 const main = document.getElementById("main__dates");
-const location = SearcherLocation();
 
 const header = HeaderDates();
 main.insertAdjacentHTML('afterbegin', location)
