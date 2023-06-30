@@ -28,10 +28,27 @@
         <!-- navbar.js -->
     </div>
 
-    <main id="main__dates">
-        <section id="Container-Dates">
-        </section>        
-    </main>
+    <main id="main__dates" class="row">
+        <br>
+
+        <section class="col-sm-12 col-lg-4" id="Container-Matches">
+        </section>
+        <section class="col-sm-12 col-lg-8" id="Container-Dates">
+        </section>
+
+        <div class="modal fade in" id="modalDate" tabindex="-1" role="dialog" aria-labelledby="modalDateTitle" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+              <div class="modal-content modalDateContent">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalMatchTitle">Nueva cita</h5>
+                  <button type="button" id="close-modal-date" class="btn-close" data-bs-dismiss="modal" data-bs-target="#modalDate" aria-label="Close"></button>
+                </div>
+                <div id ="modalDateBody" class="modal-body">
+                  <!-- modalDate.js -->
+                </div>
+              </div>
+            </div>
+          </div>
 
     <!-- Scripts -->
     <script type="module" src="\js\init\initNavbar.js"></script>  

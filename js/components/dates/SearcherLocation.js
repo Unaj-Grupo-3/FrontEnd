@@ -3,7 +3,7 @@ export const SearcherLocation = () => {
     return`
     <br>
     <section id="filter-dates" class="container-fluid filterDetail">
-        <div class="">
+        <div class="add-date-title" id="title-new-date">
             <h4 class="dateDetail__contentTitle">Agregar cita</h4>
         </div>
         <div class="inputContainer flex-center">              
@@ -32,17 +32,22 @@ export const SearcherLocation = () => {
     </section>
     <section id="main__dates">
         <div class="row map-container">
-            <div class="map-options col-md-6 col-sm-12">                    
-                <div id="result-dates-container">
-
-                </div>
-            </div>
-            <div class="map-column col-md-6 col-sm-12">
+            <div class="map-column col-xl-4 col-lg-12">
                 <h4 class="dateDetail__contentTitle" id="map-title"></h4><br>
                 <div id="map" class="map flex-center col-md-6 col-sm-12">
                     <!-- map.js -->
                 </div>
             </div>
+            <div class="map-options col-xl-4 col-lg-12">                    
+                <div id="result-dates-container">
+
+                </div>
+            </div>  
+            <div class="map-confirm col-xl-4 col-lg-12">                    
+                <div id="result-dates-container">
+
+                </div>
+            </div>           
         </div>               
     </section>
 

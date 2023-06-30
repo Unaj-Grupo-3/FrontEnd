@@ -9,8 +9,8 @@ export const onListItemClick = (elements) => {
             element.addEventListener('click', () => alert('Rechazadas')) 
         } else if (element.matches('#filter_pending')) { 
             element.addEventListener('click', () => alert('Pendientes')) 
-        } else if (element.matches('#filter_add')) { 
-            element.addEventListener('click', () => createDate())
+        // } else if (element.matches('#filter_add')) { 
+        //     element.addEventListener('click', () => createDate())
         } 
         //CARDS
         else if (element.classList.contains('acceptDate')) { 
