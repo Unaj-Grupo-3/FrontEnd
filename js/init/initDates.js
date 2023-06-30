@@ -4,10 +4,13 @@ import { GetMyMatchs } from "../services/fetchMatchServices.js";
 import { GetMyDates } from "../services/fetchDatesServices.js";
 import { GetMyUser } from "../services/fetchUserServices.js"
 import { printCards } from "../container/dates/printCards.js"; 
-import AsideCreateDate from "../components/dates/AsideCreateDate.js";
+import { SearcherLocation } from "../components/dates/SearcherLocation.js";
 
 const main = document.getElementById("main__dates");
+const location = SearcherLocation();
+
 const header = HeaderDates();
+main.insertAdjacentHTML('afterbegin', location)
 main.insertAdjacentHTML('afterbegin', header)
 
 //mi usuario logueado

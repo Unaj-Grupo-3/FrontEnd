@@ -205,6 +205,7 @@ color:white;
   position: relative;
   right: -7%;
   overflow: hidden;
+  object-fit: cover;
 }
 
 .btn_delete {
