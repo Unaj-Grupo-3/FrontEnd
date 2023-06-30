@@ -1,7 +1,8 @@
 
 .genero-container {
   padding: 0.6vw 1vw;
-  font-size: calc(0.1em + 0.8vw);
+  font-size: calc(0.7em);
+  justify-content: space-between;
   background-color: var(--gris-claro);
 }
 

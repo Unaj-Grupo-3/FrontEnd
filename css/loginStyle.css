@@ -1,7 +1,7 @@
 
 /* Colores */
 :root {
-	--violeta: #885FFF;
+	--violeta: #8d2ce2;
 	--violeta-oscuro: #280886;
 	--gris-claro: #ECECEC;
 	--gris-oscuro: #525252;
@@ -118,7 +118,7 @@ input {
 }
 
 #login__btn:hover {
-	background-color: #280886;
+	background-color: #6e22b5;
 	color:white;
 }
 
