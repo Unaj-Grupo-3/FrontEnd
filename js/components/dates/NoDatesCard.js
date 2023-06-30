@@ -2,9 +2,9 @@
 const NoDatesCard = () => {
 
     return  `
-        <article class="dateDetail">
-            <div class="dateDetail__content">
-                <h4 class="dateDetail__contentTitle" >Aun no tienes citas</h4>
+        <article class="dateDetail nodateDetail">
+            <div class="dateDetail__content flex-center">
+                <h4 class="dateDetail__contentTitle" >Aún no tienes citas</h4>
             </div>
         </article>
         `

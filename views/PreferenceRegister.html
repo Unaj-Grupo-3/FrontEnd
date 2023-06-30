@@ -13,8 +13,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     rel="stylesheet" />
-  
-    <link rel="stylesheet" href="../css/authStyle.css">
+
+  <link rel="stylesheet" href="../css/authStyle.css">
   <link rel="stylesheet" href="../css/PreferenceRegister.css">
 
 
@@ -28,73 +28,77 @@
     </div>
     <div>
       <p>AppCitas</p>
-      <br><span class="color">Comenzemos a crear su cuenta</span>
+      <span class="color">Ultimo paso crear su cuenta ,ya casi terminamos</span>
     </div>
   </header>
-  <section class="section-main">
+  <main>
     <div class="body-main">
       <div class="steps">
         <div class="step" style="border: 3px solid #8d2ce2;">
           <h2>Paso 1</h2>
           <p>Registro</p>
         </div>
-        <div class="lines"  style="border: thin solid #8d2ce2; background-color: #8d2ce2;"></div>
+        <div class="lines" style="border: thin solid #8d2ce2; background-color: #8d2ce2;"></div>
         <div class="step" style="border: 3px solid #8d2ce2;">
           <h2>Paso 2</h2>
           <p>Perfil</p>
         </div>
-        <div class="lines" style="border: thin solid #8d2ce2; background-color: #8d2ce2;" ></div>
+        <div class="lines" style="border: thin solid #8d2ce2; background-color: #8d2ce2;"></div>
         <div class="step" style="border: 3px solid #8d2ce2;">
           <h2>Paso 3</h2>
           <p>Fotos</p>
         </div>
         <div class="lines" style="border: thin solid #8d2ce2; background-color: #8d2ce2;"></div>
-        <div class="step"  style="border: 3px solid #8d2ce2;">
+        <div class="step" style="border: 3px solid #8d2ce2;">
           <h2>Paso 4</h2>
           <p>Gustos</p>
         </div>
       </div>
-    <form id="formAuth" class="form-container">
-      <div class="pref_gen_container">
-        <div class="info__div pref_div">
-          <h3>Preferencias Generales</h3>
-          <div>
-              <p style="display: inline-block;">Edad mínima</p>
-              <label for="in_min_age" id="lbl_min_age">18 años</label>
-              <input type="range" id="in_min_age" min="18" max="120" value="18" step="1">
-              <p style="display: inline-block;">Edad máxima</p>
-              <label for="in_max_age" id="lbl_max_age">99 años</label>
-              <input type="range" id="in_max_age" min="18" max="120" value="99" step="1">
-              <p style="display: inline-block;">Distancia</p>
-              <label for="in_distance" id="distance">0 km</label>
-              <input type="range" id="in_distance" min="0" value="0" step="1">
+      <form id="formAuth" class="form-container">
+        <div class="pref_gen_container">
+          <h4>Preferencias Generales</h4>
+          <div class="range-container">
+            <p style="margin: 0;">Edad mínima <label for="in_min_age" id="lbl_min_age">18 años</label></p>
+            <input style="margin: 0;" type="range" id="in_min_age" min="18" max="120" value="18" step="1">
+            <p style="margin: 0;">Edad máxima <label for="in_max_age" id="lbl_max_age">99 años</label></p>
+            <input style="margin: 0;" type="range" id="in_max_age" min="18" max="120" value="99" step="1">
+            <p style="margin: 0;">Distancia <label for="in_distance" id="distance">0 km</label></p>
+            <input style="margin: 0;" type="range" id="in_distance" min="0" value="0" step="1">
           </div>
-          <p>Género de la persona que busco</p>
-          <div class="input-checkboxes">
+          <h4  style="margin: 0;">Género de la persona que busco</h4>
+          <div class="genero-container">
+            <div class="genero-container--input">
               <input type="checkbox" id="crush_female" class="crush_gender" value="2">
               <label for="crush_female">Femenino</label>
+            </div>
+            <div class="genero-container--input">
               <input type="checkbox" id="crush_male" class="crush_gender" value="1">
               <label for="crush_male">Masculino</label>
+            </div>
+            <div class="genero-container--input">
               <input type="checkbox" id="crush_other" class="crush_gender" value="3">
               <label for="crush_other">Otro</label>
+            </div>
           </div>
+        </div>
+        <div class="pref_interest_container">
+          <div class="section-interest">
+            <h4>Mis intereses</h4>
+            <div id="my_interest" class="pref_container">
+            </div>
+          </div>
+          <div class="section-interest">
+            <h4>Lo que Busco</h4>
+            <div id="your_interest" class="pref_container">
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="button-footer">
+        <button id="buttonSubmit" type="submit" form="formAuth">Registrarse</button>
       </div>
     </div>
-    <div class="format container-myInterest">
-      <h3>Mis intereses</h3>
-      <div id="my_interest" class="pref_container">
-            
-      </div>  
-      <h3>Lo que Busco</h3>
-      <div id="your_interest" class="pref_container">
-            
-      </div> 
-    </div>
-    </form>
-  <button id="buttonSubmit" type="submit" form="formAuth">Registrarse</button>
-  </div>
-  </section>
-  
+  </main>
 </body>
 
 </html>
