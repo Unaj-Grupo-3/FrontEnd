@@ -14,7 +14,7 @@ function initMap() {
   infowindow = new google.maps.InfoWindow();
   map = new google.maps.Map(document.getElementById("map"), {
     center: unaj,
-    zoom: 9,
+    zoom: 12,
   });
 
   const request = {
