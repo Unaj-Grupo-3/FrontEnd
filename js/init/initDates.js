@@ -7,10 +7,11 @@ import { printCards } from "../container/dates/printCards.js";
 import { SearcherLocation } from "../components/dates/SearcherLocation.js";
 
 const main = document.getElementById("main__dates");
+const dateModal = document.getElementById("modalDateBody");
 const location = SearcherLocation();
 
 const header = HeaderDates();
-main.insertAdjacentHTML('afterbegin', location)
+dateModal.insertAdjacentHTML('afterbegin', location)
 main.insertAdjacentHTML('afterbegin', header)
 
 //mi usuario logueado
