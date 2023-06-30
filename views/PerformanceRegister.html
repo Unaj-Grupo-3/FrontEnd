@@ -2,10 +2,10 @@
 <html lang="es">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Perfil Usuario</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil Usuario</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
@@ -13,131 +13,112 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     rel="stylesheet" />
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    
-    <link rel="stylesheet" href="../css/performanceStyle.css">
-    <link rel="stylesheet" href="../css/authStyle.css">
+
+  <link rel="stylesheet" href="../css/performanceStyle.css">
+  <link rel="stylesheet" href="../css/authStyle.css">
+  <script defer type="module" src="../js/init/initRegisterProfile.js"></script>
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpwWJzl2lrtKx7JyvzHRnaotvrYijX-HU"></script>
 </head>
-	<body id="body-pd">
-    <header>
-      <div>
-        <img src="../img/globo-blanco.png" alt="logo">
+
+<body id="body-pd">
+  <header>
+    <div>
+      <img src="../img/globo-blanco.png" alt="logo">
+    </div>
+    <div>
+      <p>AppCitas</p>
+      <span>Completemos algunos datos sobre ti, para brindarte una mejor experiencia personalizada.</span>
+    </div>
+  </header>
+  <main>
+    <div class="body-main">
+      <div class="steps">
+        <div class="step" style="border: 3px solid #8d2ce2;">
+          <h2>Paso 1</h2>
+          <p>Registro</p>
+        </div>
+        <div class="lines" style="border: thin solid #8d2ce2; background-color: #8d2ce2;"></div>
+        <div class="step" style="border: 3px solid #8d2ce2;">
+          <h2>Paso 2</h2>
+          <p>Perfil</p>
+        </div>
+        <div class="lines"></div>
+        <div class="step">
+          <h2>Paso 3</h2>
+          <p>Fotos</p>
+        </div>
+        <div class="lines"></div>
+        <div class="step">
+          <h2>Paso 4</h2>
+          <p>Gustos</p>
+        </div>
       </div>
-      <div>
-        <p>AppCitas</p>
-        <br><span>Completemos algunos datos sobre ti, para brindarte una mejor experiencia personalizada.</span>
-      </div>
-    </header>
-    <main>
-      <div class="user-profile-container">
-        <div class="steps">
-          <div class="step" style="border: 3px solid #8d2ce2;">
-            <h2>Paso 1</h2>
-            <p>Registro</p>
+      <div class="form-container">
+        <form id="user-profile" class="form-section-one">
+          <div class="inputContainer">
+            <h4>Nombre</h4>
+            <div id="input-container">
+              <input type="text" id="inputName" placeholder="Nombre" value="" required>
+            </div>
+            <p id="errorName"></p>
           </div>
-          <div class="lines" style="border: thin solid #8d2ce2; background-color: #8d2ce2;"></div>
-          <div class="step" style="border: 3px solid #8d2ce2;">
-            <h2>Paso 2</h2>
-            <p>Perfil</p>
+          <div class="inputContainer">
+            <h4>Fecha de Nacimiento</h4>
+            <div id="input-container">
+              <input type="date" id="inputCumpleaños" required>
+            </div>
+            <p id="errorCumpleaños"></p>
           </div>
-          <div class="lines"></div>
-          <div class="step">
-            <h2>Paso 3</h2>
-            <p>Fotos</p>
+          <div class="inputContainer">
+            <h4>Ubicación</h4>
+            <div id="input-container">
+              <input type="text" id="inputUbicacion" placeholder="Ubicación" value="" required>
+              <span class="material-symbols-outlined" id="myLocation"
+                title="Ingresar ubicacion actual">my_location</span>
+            </div>
+            <p id="errorUbicacion"></p>
           </div>
-          <div class="lines"></div>
-          <div class="step">
-            <h2>Paso 4</h2>
-            <p>Gustos</p>
+        </form>
+        <div class="form-section-two">
+          <div class="inputContainer">
+            <h4>Apellido</h4>
+            <div id="input-container">
+              <input type="text" id="inputApellido" placeholder="Apellido" value="" required>
+            </div>
+            <p id="errorApellido"></p>
+          </div>
+          <div class="inputContainer">
+              <h4>Genero</h4>
+              <div id="input-container" class="genero-container">
+                <div class="genero-container--input">
+                  <input class="radio-genero" type="checkbox" id="inputGenero" name="genero" value="1">
+                  <label for="inputGenero">Masculino</label>
+                </div>
+                <div class="genero-container--input">
+                  <input class="radio-genero" type="checkbox" id="inputGenero1" name="genero" value="2">
+                  <label for="inputGenero1">Femenino</label>
+                </div>
+                <div class="genero-container--input">
+                  <input class="radio-genero" type="checkbox" id="inputGenero2" name="genero" value="3">
+                  <label for="inputGenero2">Otro</label>
+                </div>
+              </div>
+              <p id="errorGenero"></p>
+          </div>
+          <div class="inputContainer">         
+              <h4>Descripción sobre ti</h4>
+              <div id="input-container">
+                <textarea type="text" id="inputDescripcion" placeholder="Descripción sobre ti" value="" class="textarea"></textarea>
+              </div>
+              <p id="errorDescripcion"></p>           
           </div>
         </div>
-          <form id="user-profile">
-            <div class="user-dates">
-              <div class="inputContainer">
-                <div class="input-dates">
-                  <div class="input-dates-conteiner">
-                    <h4>Nombre</h4>
-                    <input class="dates" type="text" id="inputName" required>
-                  </div>
-                  <div class="error">
-                    <p id="errorName"></p>
-                  </div>
-                </div>
-              </div>
-              <div class="inputContainer">
-                <div class="input-dates">
-                  <h4>Cumpleaños</h4>                
-                  <input class="dates" type="date" id="inputCumpleaños" required>                
-                </div>
-                <p id="errorCumpleaños"></p>
-              </div>
-              <div class="inputContainer">
-                <div class="input-dates">
-                  <h4>Ubicacion</h4>   
-                  <div class="input-dates--icon" >
-                    <input class="dates dates--icons" type="text" id="inputUbicacion" required>                  
-                    <span class="material-symbols-outlined" id="myLocation" title="Ingresar ubicacion actual">my_location</span>       
-                  </div>
-                </div>
-                <p id="errorUbicacion"></p>
-              </div>
-            </div>
-            <div class="user-dates">
-              <div class="inputContainer">
-                <div class="input-dates">
-                  <div class="input-dates-conteiner">
-                    <h4>Apellido</h4>
-                    <input class="dates" type="text" id="inputApellido" required>
-                  </div>
-                  <div class="error">
-                    <p id="errorApellido"></p>
-                  </div>
-                </div>
-              </div>
-              <div class="inputContainer">
-                <div class="input-dates">
-                  <h4>Genero</h4>
-                  <div class="genero-container">
-                    <div class="genero-container--input">
-                      <input class="radio-genero" type="checkbox" id="inputGenero" name="genero" value="1"> 
-                      <label for="inputGenero">Masculino</label>
-                    </div>
-                    <div class="genero-container--input">
-                      <input class="radio-genero" type="checkbox" id="inputGenero1" name="genero" value="2">
-                      <label for="inputGenero1">Femenino</label>
-                    </div>
-                    <div class="genero-container--input">
-                      <input class="radio-genero" type="checkbox" id="inputGenero2" name="genero" value="3">
-                      <label for="inputGenero2">Otro</label>
-                    </div>  
-                  </div >
-                  <div class="error">
-                    <p id="errorGenero"></p>
-                  </div>          
-                 
-                  </div>
-              </div>
-              <div class="inputContainer">
-                <div class="input-dates">
-                  <h4>Descripcion sobre ti</h4>
-                  <input class="dates" type="text" id="inputDescripcion">
-                  <p id="errorDescripcion"></p>      
-                </div>
-              </div>
-          </form>
       </div>
-      <div class="button-container">
+      <div class="button-footer">
         <button id="buttonSubmit" type="submit" form="user-profile">Siguiente</button>
       </div>
-     
-    </main>	
-
-		<!-- Scripts -->
-
-    <script type="module" src="../js/init/initRegisterProfile.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpwWJzl2lrtKx7JyvzHRnaotvrYijX-HU"></script>
-
-	</body>
+    </div>
+  </main>
+</body>
 
 </html>

@@ -7,67 +7,73 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Registro Perfil Usuario</title>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-  <link
+		rel="stylesheet">
 
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    
-        <link rel="stylesheet" href="../css/photoStyle.css">
-		<link rel="stylesheet" href="../css/authStyle.css">
+	<link rel="stylesheet" href="../css/photoStyle.css">
+	<link rel="stylesheet" href="../css/authStyle.css">
+	<script defer type="module" src="../js/init/initPhotoRegister.js"></script>
+
 </head>
-	<body id="body-pd">
-		<header>
-			<div>			  
-				<img src="../img/globo-blanco.png" alt="logo">
-			</div>
-			<div>		  
-				<p>AppCitas</p>		  
-				<br>
-				<span class="color">Agreguemos algunas fotos</span>
-			</div>
-		</header>
-		<section class="section-main1">
-			<div class="body-main1">
-				<div class="steps">
-					<div class="step" style="border: 3px solid #8d2ce2;">
-					  <h2>Paso 1</h2>
-					  <p>Registro</p>
-					</div>
-					<div class="lines"  style="border: thin solid #8d2ce2; background-color: #8d2ce2;"></div>
-					<div class="step" style="border: 3px solid #8d2ce2;">
-					  <h2>Paso 2</h2>
-					  <p>Perfil</p>
-					</div>
-					<div class="lines" style="border: thin solid #8d2ce2; background-color: #8d2ce2;" ></div>
-					<div class="step" style="border: 3px solid #8d2ce2;">
-					  <h2>Paso 3</h2>
-					  <p>Fotos</p>
-					</div>
-					<div class="lines" ></div>
-					<div class="step">
-					  <h2>Paso 4</h2>
-					  <p>Gustos</p>
-					</div>
-				</div>
-				<section class="user__photos" id="photo_section">
-		
-				</section>
-				<div class="footer">
 
-					<div class="msj_container">
-						<p id="resp_msj_photo">La foto esta siendo subida, espere unos segundos...</p>
-					</div>
-					<div class="botones">
-							<button  id="buttonSubmit" type="submit" form="user-profile">Siguiente</button>
-					</div>
+<body id="body-pd">
+	<header>
+		<div>
+			<img src="../img/globo-blanco.png" alt="logo">
+		</div>
+		<div>
+			<p>AppCitas</p>
+			<span class="color">Agreguemos algunas fotos</span>
+		</div>
+	</header>
+	<main>
+		<div class="body-main">
+			<div class="steps">
+				<div class="step" style="border: 3px solid #8d2ce2;">
+					<h2>Paso 1</h2>
+					<p>Registro</p>
+				</div>
+				<div class="lines" style="border: thin solid #8d2ce2; background-color: #8d2ce2;"></div>
+				<div class="step" style="border: 3px solid #8d2ce2;">
+					<h2>Paso 2</h2>
+					<p>Perfil</p>
+				</div>
+				<div class="lines" style="border: thin solid #8d2ce2; background-color: #8d2ce2;"></div>
+				<div class="step" style="border: 3px solid #8d2ce2;">
+					<h2>Paso 3</h2>
+					<p>Fotos</p>
+				</div>
+				<div class="lines"></div>
+				<div class="step">
+					<h2>Paso 4</h2>
+					<p>Gustos</p>
 				</div>
 			</div>
-
-		</section>
-	<!-- Scripts -->
-    <script type="module" src="../js/init/initPhotoRegister.js"></script>
-
-	</body>
+			<div class="form-container-two">
+				<div class="user__photos" id="photo_section">
+				</div>	
+				<div class="form-section-two">
+					<p style="margin-right: 2.5em;">La imagen deberá cumplir con:</p>
+					<ul>
+					  <li>
+						<p>El peso máximo de la imagen es 1MB</p>
+					  </li>
+					  <li>
+						<p>Los formatos validos para la imagen son JPG, PNG y GIF</p>
+					  </li>
+					  <li>
+						<p>La resolución recomendada se de 800px x 800px</p>
+					  </li>
+					</ul>
+				</div>
+			</div>
+			<div class="button-footer">
+				<p id="resp_msj_photo">La foto esta siendo subida, espere unos segundos...</p>
+				<button id="buttonSubmit" type="submit" form="user-profile">Siguiente</button>
+			</div>
+		</div>
+	</main>
+</body>
 
 </html>

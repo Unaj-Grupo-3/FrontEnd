@@ -28,7 +28,7 @@
       <span class="color">Comencemos a crear tu cuenta</span>
     </div>
   </header>
-  <section class="section-main">
+  <main>
     <div class="body-main">
       <div class="steps">
         <div class="step" style="border: 3px solid #8d2ce2;">
@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="form-container">
-        <form id="formAuth">
+        <form id="formAuth" class="form-section-one">
           <div class="inputContainer">
             <h4>Correo Electrónico</h4>
             <div id="input-container">
@@ -76,10 +76,9 @@
             </div>
             <p id="errorPassword2"></p>
           </div>
-
         </form>
-        <div class="format">
-          <p>Su contraseña deberá cumplir son:</p>
+        <div class="form-section-two">
+          <p style="margin-right: 4em;">Su contraseña deberá cumplir son:</p>
           <ul>
             <li>
               <p>Una longitud minima de 8 caracteres</p>
@@ -103,7 +102,7 @@
         <button id="buttonSubmit" type="submit" form="formAuth">Siguiente</button>
       </div>
     </div>
-  </section>
+  </main>
 </body>
 
 </html>

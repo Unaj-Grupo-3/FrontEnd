@@ -1,3 +1,12 @@
+:root {
+  --first-color: #8d2ce2;
+  --white-color: #ffffff;
+  --white-color-light:#fafbfd;
+  --body-font: "Poppins", sans-serif;
+
+  --gris-claro: #ececec;
+  --gris-border: #c0c0c0;
+}
 
 *,
 ::before,
@@ -8,29 +17,27 @@
 
 body {
   font-family: var(--body-font);
-  font-size: var(--normal-font-size);
+  background-color: var(--white-color-light);
+  height: 100vh;
+  width: 100vw; 
   margin: 0;
   padding: 0;
-  background-color: var(--first-color);
-  height: 100vh;
-  width: 100vw;
 }
 header {
   justify-content: flex-start;
   display: flex;
   align-items: flex-end;
-  background-color: #8d2ce2;
+  background-color: var(--first-color);
   color: white;
   height: 15%;
 
 }
+
 header p{
   color: black;
-  justify-content: center;
   font-size: 30px;
   font-weight: bold;
 }
-
 
 p{
   margin-top: 0;
@@ -41,28 +48,32 @@ p{
 h4{
   margin-top: 0;
   margin-bottom: 0.5em;
-  font-size: calc(0.1em + 1vw) !important;
+  font-size: calc(0.1em + 1vw);
   font-weight: bold;
 }
 
 input{
   border: none;
-  background-color: #ececec!important;
+  background-color: var(--gris-claro);
   box-shadow: none;
   padding: 0.5vw 1vw;
   width: 100%;
 }
 
+input:focus{
+  border: 3rem ;
+}
+
 button{
   width: 15%;
   border-radius: 10px;
-  background-color: #8d2ce2;
+  font-size: 0.8em;
+  background-color: var(--first-color);
   color: white;
   border: none;
   cursor: pointer;
-  box-shadow: 6px 6px 12px #c5c5c5,
-  -6px -6px 12px #ffffff;
 }
+
 button:active {
   box-shadow: none
 }
@@ -79,7 +90,7 @@ ul{
   align-items: flex-start;
 }
 
-.section-main{
+main{
   position: relative;
   display: flex;
   flex-direction: column;
@@ -87,7 +98,17 @@ ul{
   justify-content: center;
   height: 85%;
   width: 100%;
-  background-color: #fafbfd;
+}
+
+.body-main{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 85%;
+  border-radius: 1em;
+  background-color: var(--white-color);
+  border: 1px solid var(--gris-border);
+  padding: 1em;
 }
 
 .form-container{
@@ -97,26 +118,8 @@ ul{
   width: 100%;
   height: 70%; 
 }
-.body-main{
-  display: flex;
-  flex-direction: column;
-  width: 60%;
-  height: 85%;
-  border-radius: 1em;
-  background-color: #ffffff;
-  border: 1px solid #c0c0c0;
-  padding: 1em;
-}
 
-.format{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-form{
+.form-section-one{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -124,22 +127,29 @@ form{
   width: 100%;
   height: 100%;
 }
-form p{
-  height: 1.5em;
-  margin: 0px;
+
+.form-section-two{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .button-footer{
   display: flex;
+  align-items: center;
   justify-content: end;
   width: 100%;
   height: 5%;
+  gap: 0.5em;
 }
-
 
 .inputContainer{
   margin-bottom: 0;
   width: 90%;
+  height: 30%;
 }
 
 .material-symbols-outlined {
@@ -158,14 +168,15 @@ form p{
   font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
   margin: 0;
-  padding: 0.3em;
+  padding: 0.5em;
+  cursor: pointer;
 }
 
 #input-container{
   display: flex;
   align-items: center;
   width: 100%;
-  border: 1px solid #c0c0c0;
+  border: 1px solid var(--gris-border);
   border-radius:  5px;
 }
 
@@ -175,7 +186,7 @@ form p{
   align-items: center;
   height: 25%;
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--white-color);
   overflow: hidden;
   border-radius: 1em;
 }
@@ -187,7 +198,7 @@ form p{
   justify-content: center;
   height: 5em;
   width: 5em;
-  border: 3px solid #c0c0c0;
+  border: 3px solid var(--gris-border);
   border-radius: 50%;
   text-align: center;
 }
@@ -207,9 +218,26 @@ form p{
   display: flex;
   height: 3px;
   width: 10%;
-  background-color: #c0c0c0;
+  background-color: var(--gris-border);
 }
 
-input:focus{
-  border: 3rem ;
+#buttonSubmit{
+  box-shadow: 6px 6px 12px #c5c5c5,
+  -6px -6px 12px #ffffff;
+}
+
+@media (max-width: 900px) {
+  .body-main{
+    height: 95%;
+    width: 95%;
+  }
+
+  p{
+   font-size: 0.8em;
+  } 
+
+  h4{
+    font-size: 0.8em;
+  }
+
 }
