@@ -13,7 +13,7 @@ Banfield: 5 usuarios
 
 -- Perfil 1
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
-VALUES (1, 'Juan', 'García', CAST('1990-05-15' AS DATE), 'Amante del deporte y la aventura.', 1, 1);
+VALUES (1, 'Juan', 'García', CAST('1990-05-15' AS DATE), 'Amante del deporte y la aventura.', 1, 3);
 
 -- Perfil 2
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
@@ -53,7 +53,7 @@ VALUES (10, 'Valeria', 'Luna', CAST('1996-06-23' AS DATE), 'Estudiante de psicol
 
 -- Perfil 11
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
-VALUES (11, 'Martín', 'Acosta', CAST('1987-02-10' AS DATE), 'Amante de los viajes y la fotografía.', 1, 1);
+VALUES (11, 'Martín', 'Acosta', CAST('1987-02-10' AS DATE), 'Amante de los viajes y la fotografía.', 1, 3);
 
 -- Perfil 12
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
@@ -78,7 +78,7 @@ VALUES (16, 'Gonzalo', 'López', CAST('1992-09-18' AS DATE), 'Apasionado por el 
 
 -- Perfil 17
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
-VALUES (17, 'Florencia', 'Martínez', CAST('1988-05-07' AS DATE), 'Artista plástica y amante de la naturaleza.', 2, 2);
+VALUES (17, 'Florencia', 'Martínez', CAST('1988-05-07' AS DATE), 'Artista plástica y amante de la naturaleza.', 2, 3);
 
 -- Perfil 18
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
@@ -110,7 +110,7 @@ VALUES (24, 'Ricardo', 'Fernández', CAST('1991-03-14' AS DATE), 'Amante de los 
 
 -- Perfil 25
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
-VALUES (25, 'Romina', 'Torres', CAST('1996-08-22' AS DATE), 'Estudiante de psicología y defensora de los animales.', 2, 2);
+VALUES (25, 'Romina', 'Torres', CAST('1996-08-22' AS DATE), 'Estudiante de psicología y defensora de los animales.', 2, 3);
 
 -- Perfil 26
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
@@ -122,7 +122,7 @@ VALUES (27, 'Ana', 'Luna', CAST('1994-10-19' AS DATE), 'Investigadora científic
 
 -- Perfil 28
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
-VALUES (28, 'Gabriel', 'Pérez', CAST('1990-07-02' AS DATE), 'Entrenador personal y amante del fitness.', 2, 1);
+VALUES (28, 'Gabriela', 'Pérez', CAST('1990-07-02' AS DATE), 'Entrenadora personal y amante del fitness.', 2, 2);
 
 -- Perfil 29
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
@@ -183,7 +183,7 @@ VALUES (42, 'Romina', 'Ortega', CAST('1996-02-25' AS DATE), 'Estudiante de derec
 
 -- Perfil 43
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
-VALUES (43, 'Sebastián', 'Mendoza', CAST('1993-09-03' AS DATE), 'Amante de los deportes extremos y la adrenalina.', 3, 1);
+VALUES (43, 'Analía', 'Mendoza', CAST('1993-09-03' AS DATE), 'Amante de los deportes extremos y la adrenalina.', 3, 2);
 
 -- Perfil 44
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
