@@ -12,7 +12,7 @@ export const SearcherLocation = () => {
                     <input class="dates" type="text" id="inputText" required>
                 </div>
                 <div class="error">
-                    <p id="errorName"></p>
+                    <p id="errorTipoLugar"></p>
                 </div>             
         </div>
         <div class="inputContainer flex-center">
@@ -21,8 +21,15 @@ export const SearcherLocation = () => {
                 <input class="dates" type="text" id="inputLocalidad" required>
             </div>
             <div class="error">
-                <p id="errorName"></p>
+                <p id="errorLocalidad"></p>
             </div>
+        </div>
+        <div class="inputContainer  flex-center">
+            <div class="input-dates-conteiner">
+              <h4>Fecha</h4>
+              <input type="datetime-local" id="inputFecha" class="input-fecha" required>
+            </div>
+            <p id="errorFecha"></p>
         </div>
         <div class="inputContainer">
             <div class="button-container flex-center">
@@ -38,16 +45,11 @@ export const SearcherLocation = () => {
                     <!-- map.js -->
                 </div>
             </div>
-            <div class="map-options col-xl-4 col-lg-12">                    
+            <div class="map-options col-xl-8 col-lg-12">                    
                 <div id="result-dates-container">
 
                 </div>
             </div>  
-            <div class="map-confirm col-xl-4 col-lg-12">                    
-                <div id="result-dates-container">
-
-                </div>
-            </div>           
         </div>               
     </section>
 
