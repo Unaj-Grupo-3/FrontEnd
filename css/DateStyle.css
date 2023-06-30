@@ -19,7 +19,7 @@
 /*#region HEADER*/
 .headerDates {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     margin-top: 2rem;
     margin-right: 3rem;
@@ -29,7 +29,7 @@
 .headerDate__content{
     margin-left: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     color: white;
     font-size: 16px;
@@ -48,13 +48,35 @@
 /*#endregion*/
 
 /*#region DATES CARD*/
-#Container-Dates
+#Container-Dates, #Container-Matches
 {
-    margin-top: 2rem;
+    margin-top: 1rem;
+    padding-left: 1rem;
 
 }
-
-
+.matchDetail{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid /*var(--violeta);*/rgba(145, 61, 136, 0.3);
+    border-radius: 4px;
+    transition: transform 0.3s;    
+    min-width: 355px;
+    margin: 0.5rem 0;
+}
+.matchDetail>*{
+    margin: 0.5rem;
+}
+.matchDetail img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.places-container{
+    padding: 0.5rem;
+}
 .dateDetail, .filterDetail {
     border: 1px solid /*var(--violeta);*/rgba(145, 61, 136, 0.3);
     border-radius: 4px;
@@ -71,7 +93,7 @@
 .filterDetail {
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-.dateDetail:hover, .filterDetail:hover {
+.dateDetail:hover, .filterDetail:hover, .matchDetail:hover {
     transform: scale(1.03);
     transition-duration: 0.3s;
     box-shadow: 0px 0px 5px 1px var(--violeta);
@@ -96,7 +118,7 @@
 .dateDetail_content_map h4{
     text-align: right;
 }
-.dateDetail_content_user img {
+.dateDetail_content_user img{
     width: 15rem;
     height: 15rem;
     object-fit: cover;
@@ -112,7 +134,7 @@
     margin-top: 3rem;
     
 }
-.dateDetail__button button, .headerDate__button button, .filterDetail button {
+.dateDetail__button button, .headerDate__content button, .filterDetail button, .matchDetail button {
     background-color: var(--violeta);
     padding: 0.4rem 1rem;
     border: none;
@@ -124,7 +146,7 @@
     margin: 0 20px;
 }
 
-.dateDetail__button button:hover, .headerDate__button button:hover, .filterDetail button:hover{
+.dateDetail__button button:hover, .headerDate__content button:hover, .filterDetail button:hover, .matchDetail button:hover {
     box-shadow: 0px 0px 10px 1px var(--gris-claro);
     transform:scale(0.93);
     transition-duration: 1s;
@@ -156,7 +178,7 @@
 }
 
 #main__dates div{
-    margin-bottom: 5px;
+    margin-bottom: 1rem;
 }
   
 
@@ -223,7 +245,7 @@
     justify-content: center;
 }
 
-@media (max-width: 990px) {        
+@media (max-width: 2000px) {        
     .dateDetail, .filterDetail {
         grid-template-columns: 1fr;
     }

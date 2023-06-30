@@ -1,5 +1,6 @@
 import HeaderDates from "../components/dates/HeaderDates.js";
 import { onListItemClick } from "../container/dates/onListItemClick.js";
+import { GetMyMatchs } from "../services/fetchMatchServices.js";
 import { GetMyDates } from "../services/fetchDatesServices.js";
 import { GetMyUser } from "../services/fetchUserServices.js"
 import { printCards } from "../container/dates/printCards.js"; 
@@ -15,11 +16,13 @@ console.log(userMe)
 
 //mis citas para pintar
 const datesMe = await GetMyDates();
-printCards(datesMe.response, datesMe.count, userMe)
+const matchsMe = await GetMyMatchs();
+console.log(matchsMe)
+printCards(datesMe.response, datesMe.count, userMe, matchsMe)
 
 onListItemClick(document.querySelectorAll('#filter_accepted'))
 onListItemClick(document.querySelectorAll('#filter_rejected'))
 onListItemClick(document.querySelectorAll('#filter_pending'))
-onListItemClick(document.querySelectorAll('#filter_add'))
+//onListItemClick(document.querySelectorAll('#filter_add'))
 
 
