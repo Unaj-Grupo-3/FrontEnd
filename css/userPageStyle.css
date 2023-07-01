@@ -54,12 +54,15 @@ p {
     font-size: calc(0.3em + 1vw);
 }
 
+
 .body-container {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
     height: 85%;
     width: 90%;
     gap: 5px;
+    overflow: hidden;
 }
 
 .section-one {
@@ -128,7 +131,7 @@ p {
     width: 100%;
     padding: 1em;
     border: 1px solid var(--gris-border);
-    border-radius: 5px;
+    border-radius: 0.5em;
     background-color: white;
 }
 
@@ -142,6 +145,7 @@ p {
     border: 1px solid var(--gris-border);
     border-radius: 6px;
     background-color: white;
+    overflow: hidden;
 }
 
 
@@ -149,8 +153,8 @@ p {
 
 .section-two {
     display: grid;
-    grid-template-rows: 0.85fr 4fr;
-    width: 100%;
+    grid-template-rows: 1fr 4fr;
+    width: 65%;
     height: 100%;
     gap: 5px;
 }
@@ -238,14 +242,17 @@ p {
 
 .user__photos {
     display: grid;
+    overflow-y: auto;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
     gap: 5px;
     height: 100%;
     width: 100%;
+    padding-right: 5px;
 }
 
 .user_photo_cont {
+    min-height: 150px;
     background-color: var(--first-color);
     border-radius: 10px;
     display: flex;
@@ -396,4 +403,47 @@ p {
         width: 100%;
         padding: 0.5em;
     }
+    .section-two {
+        grid-template-rows: 1fr 3.25fr;
+    }
+    p{
+        font-size: 0.9em;
+    }
+    h3{
+        font-size: 0.9em;
+    }
 }
+
+
+
+.user__photos::-webkit-scrollbar {
+    width: 8px;
+    /* Tamaño del scroll en vertical */
+    height: 8px;
+    /* Tamaño del scroll en horizontal */
+  }
+  
+  /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+  .user__photos::-webkit-scrollbar-thumb {
+    background-color: #8a2be2;
+    border-radius: 4px;
+  }
+  
+  /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+  .user__photos::-webkit-scrollbar-thumb:hover {
+    background: #5c5c5c;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Cambiamos el fondo cuando esté en active */
+  .user__photos::-webkit-scrollbar-thumb:active {
+    background-color: #666666;
+  }
+  
+  /* Ponemos un color de fondo y redondeamos las esquinas del track */
+  .user__photos::-webkit-scrollbar-track {
+    background: #cacaca;
+    border-radius: 4px;
+  }
+  
+  
