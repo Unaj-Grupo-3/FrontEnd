@@ -103,8 +103,8 @@ main{
 .body-main{
   display: flex;
   flex-direction: column;
-  width: 60%;
-  height: 85%;
+  width: 70%;
+  height: 90%;
   border-radius: 1em;
   background-color: var(--white-color);
   border: 1px solid var(--gris-border);

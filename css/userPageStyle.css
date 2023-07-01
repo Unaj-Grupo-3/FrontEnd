@@ -396,14 +396,14 @@ p {
     width: 100%;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1150px) {
     .body-container {
         height: 100%;
         width: 100%;
         padding: 0.5em;
     }
     .section-two {
-        grid-template-rows: 1fr 3.25fr;
+        grid-template-rows: 1fr 3.9fr;
     }
     p{
         font-size: 0.9em;
@@ -413,6 +413,24 @@ p {
     }
 }
 
+@media (max-width: 900px) {
+    .body-container {
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        padding: 0.5em;
+        overflow: auto;
+    }
+    .section-two {
+        width: 100%;
+    }
+    p{
+        font-size: 0.9em;
+    }
+    h3{
+        font-size: 0.9em;
+    }
+}
 
 
 .user__photos::-webkit-scrollbar {

@@ -7,16 +7,21 @@
 
 .user__photos {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  row-gap: 5px;
+  overflow-y: auto;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 5px;
+  height: 100%;
+  width: 100%;
+  padding-right: 5px;
 }
 
 .user_photo_cont {
-  width: 95%;
+  min-height: 150px;
   background-color: var(--first-color);
   border-radius: 10px;
   display: flex;
+  position: relative;
 }
 
 .drag__container {
@@ -28,12 +33,13 @@
 }
 
 .drag__img {
+  height: 100%;
   width: 100%;
+  position: absolute;
   object-fit: cover;
   object-position: center;
   border-radius: 10px;
   padding: 0;
-  object-fit: cover;
 }
 
 .btn_delete {
@@ -41,12 +47,10 @@
   width: min-content;
   background: rgb(196, 15, 15);
   z-index: 2;
-  position: relative;
-  top: -8%;
-  left: -107%;
   margin: 0;
   padding: 0;
   border-radius: 50%;
+  border: none;
 }
 
 /* Botón Add */
@@ -99,3 +103,36 @@
   font-size: 0.3;
   display: none;
 }
+
+
+
+.user__photos::-webkit-scrollbar {
+  width: 8px;
+  /* Tamaño del scroll en vertical */
+  height: 8px;
+  /* Tamaño del scroll en horizontal */
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+.user__photos::-webkit-scrollbar-thumb {
+  background-color: #8a2be2;
+  border-radius: 4px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.user__photos::-webkit-scrollbar-thumb:hover {
+  background: #5c5c5c;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.user__photos::-webkit-scrollbar-thumb:active {
+  background-color: #666666;
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+.user__photos::-webkit-scrollbar-track {
+  background: #cacaca;
+  border-radius: 4px;
+}
+
