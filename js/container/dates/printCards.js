@@ -2,6 +2,7 @@ import DatesCard from "../../components/dates/DatesCard.js";
 import MatchCard from "../../components/dates/MatchCard.js";
 import AddDateCardUser from "../../components/dates/AddDateCardUser.js";
 import NoDatesCard from "../../components/dates/NoDatesCard.js";
+import NoMatchsCard from "../../components/dates/NoMatchsCard.js";
 import HeaderMyDates from "../../components/dates/HeaderMyDates.js";
 import { onListItemClick } from "./onListItemClick.js";
 
@@ -20,7 +21,9 @@ export const printCards = async (listDates, count, userMe, matches) => {
         };
         console.log(matchesList);
     }
-
+    else {
+        sectionContainerMatches.innerHTML += NoMatchsCard();
+    }
     sectionContainer.innerHTML = HeaderMyDates();
     if(count > 0)
     {
