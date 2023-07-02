@@ -19,14 +19,9 @@ const userMe = await GetMyUser();
 console.log(userMe)
 
 //mis citas para pintar
-const datesMe = await GetMyDates();
+var datesMe = await GetMyDates();
 const matchsMe = await GetMyMatchs();
 console.log(matchsMe)
 printCards(datesMe.response, datesMe.count, userMe, matchsMe)
-
-onListItemClick(document.querySelectorAll('#filter_accepted'))
-onListItemClick(document.querySelectorAll('#filter_rejected'))
-onListItemClick(document.querySelectorAll('#filter_pending'))
-//onListItemClick(document.querySelectorAll('#filter_add'))
 
 

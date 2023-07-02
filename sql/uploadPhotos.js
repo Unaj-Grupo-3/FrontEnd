@@ -1,7 +1,7 @@
 
 import { login } from "../js/services/fetchAuthServices.js";
 import { UploadPhoto } from "../js/services/fetchUserServices.js";
-
+/*
 
 let inputArchivo = document.getElementById("inputArchivo");
 
@@ -29,3 +29,4 @@ inputArchivo.addEventListener("change", async function() {
     console.log(r);
   }
 });
+*/

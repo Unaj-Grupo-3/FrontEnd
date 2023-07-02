@@ -140,4 +140,3 @@ function validateDateDay(fecha){
 
   return isValid;
 }
-

@@ -1,7 +1,7 @@
 import { login } from "../js/services/fetchAuthServices.js";
 import { PostMyOverall, PostGenderPref } from "../js/services/fetchPreferenceServices.js" ;
 import { GetMyUser } from "../js/services/fetchUserServices.js";
-
+/*
 for(let i=1; i<101; i++) {
     let data  = await login({
         "email": `mail${i}@expresso.com`,
@@ -45,4 +45,4 @@ function getEdad(birthday){
         }
 
         return edad;
-}
+}*/
