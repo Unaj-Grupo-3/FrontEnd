@@ -9,7 +9,6 @@ async function InterestOnClick(e){
     let intId = intIdString.slice(idx, intIdString.length);
     let sendId = parseInt(intId);
 
-
     if(this.classList.contains('interest_item_sel'))
     {
         this.classList.remove('interest_item_sel');
@@ -25,7 +24,6 @@ async function InterestOnClick(e){
 async function RenderPref() {
 
     const prefContainers = document.querySelectorAll('.pref_container');
-
     let categories = await GetInterest();
 
     prefContainers.forEach((prefContainer, index) => {

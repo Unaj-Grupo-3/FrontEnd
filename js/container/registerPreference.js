@@ -1,4 +1,5 @@
 import { PostMyOverall, PostGenderPref, PostPreference } from "../services/fetchPreferenceServices.js";
+import { DeleteSuggestion } from "../services/fetchSuggestionServices.js";
 
 export function addEventListenerPreference(){
 
@@ -63,7 +64,6 @@ export function addEventListenerPreference(){
     });
 
     document.getElementById("formAuth").addEventListener("submit", async (e) => {
-
         e.preventDefault();
 
         let minAge = document.getElementById("in_min_age").value;
@@ -130,7 +130,8 @@ export function addEventListenerPreference(){
         }
 
        interests.forEach(i => addInterest(i));
-
+       await DeleteSuggestion(0);
+       
 
        window.location = "../../views/Matches.html"
 
