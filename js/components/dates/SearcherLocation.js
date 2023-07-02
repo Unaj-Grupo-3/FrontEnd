@@ -1,14 +1,16 @@
 export const SearcherLocation = () => {
+    const today = new Date();
+
+    const formatDate = today.toISOString().slice(0, 16);
     
     return`
     <br>
     <section id="filter-dates" class="container-fluid filterDetail">
         <div class="add-date-title" id="title-new-date">
-            <h4 class="dateDetail__contentTitle">Agregar cita</h4>
         </div>
         <div class="inputContainer flex-center">              
                 <div class="input-dates-conteiner">
-                    <h4>Tipo de lugar</h4>
+                    <h4>Lugar</h4>
                     <input class="dates" type="text" id="inputText" required>
                 </div>
                 <div class="error">
@@ -25,9 +27,9 @@ export const SearcherLocation = () => {
             </div>
         </div>
         <div class="inputContainer  flex-center">
-            <div class="input-dates-conteiner">
+            <div class="input-dates-container">
               <h4>Fecha</h4>
-              <input type="datetime-local" id="inputFecha" class="input-fecha" required>
+              <input value=${formatDate} type="datetime-local" id="inputFecha" class="input-fecha" required>
             </div>
             <p id="errorFecha"></p>
         </div>

@@ -19,7 +19,7 @@ const showNavbar = (toggleId, navId, headerId, imgId) => {
 const renderUserInfo = async () => {
     const data = await GetMyUser();
 
-    //console.log(data)
+    console.log(data)
     if (data) {
         const nombre = document.getElementById("header_name");
         nombre.textContent = `${data.name} ${data.lastName}`;

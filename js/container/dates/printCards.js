@@ -25,9 +25,14 @@ export const printCards = async (listDates, count, userMe, matches) => {
         sectionContainerMatches.innerHTML += NoMatchsCard();
     }
     sectionContainer.innerHTML = HeaderMyDates();
+
+    console.log(sectionContainer)
+    
     if(count > 0)
     {
         for (let i = 0; i < listDates.length; i++) {
+            sectionContainer.innerHTML = "";
+
             sectionContainer.innerHTML += await DatesCard(userMe, listDates[i]);
         }        
     }
@@ -36,6 +41,12 @@ export const printCards = async (listDates, count, userMe, matches) => {
     }
     onListItemClick(document.querySelectorAll('.acceptDate'))
     onListItemClick(document.querySelectorAll('.cancelDate'))
+
+    onListItemClick(document.querySelectorAll('.filter_all'))
+    onListItemClick(document.querySelectorAll('.filter_accepted'))
+    onListItemClick(document.querySelectorAll('.filter_rejected'))
+    onListItemClick(document.querySelectorAll('.filter_pending'))
+
     
     function onAddItemClick(elements){
         elements.forEach((element) => {

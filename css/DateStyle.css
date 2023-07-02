@@ -26,36 +26,9 @@
     width: 100%;
     height: 100%;
 } */
-body{
-   margin: 0;
-padding: 0;
-height: 100vh;
-width: 100vw;
-overflow: hidden; 
+#filter-dates img {
+    border-radius: 50%;
 }
-
-main{
-    position: absolute;
-    top: 0;
-    left: var(--nav-width);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: calc(100% - var(--nav-width));
-}
-
-.body-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: #fafbfd;
-    padding: 1em;
-}
-
-
-
 /*#region HEADER*/
 .headerDates {
     display: flex;
