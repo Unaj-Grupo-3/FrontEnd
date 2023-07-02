@@ -1,9 +1,10 @@
 const urlBase = 'https://localhost:7175/api/v1';
-const JwtToken = sessionStorage.getItem("token");
+let JwtToken = sessionStorage.getItem("token");
 
 export const GetMyOverall = async () => 
 {
     let result;
+    JwtToken = sessionStorage.getItem("token");
     let response = await fetch(`${urlBase}/OverallPreference`,{
         method: "GET",
         headers:{
@@ -25,6 +26,7 @@ export const GetMyOverall = async () =>
 export const GetCrushGender = async () =>
 {
     let result;
+    JwtToken = sessionStorage.getItem("token");
     let response = await fetch(`${urlBase}/GenderPreference`,{
         method: "GET",
         headers:{
@@ -48,6 +50,7 @@ export const GetInterest = async () =>
     try
     {
         let result;
+        JwtToken = sessionStorage.getItem("token");
         let response = await fetch(`${urlBase}/Interest`, {
             method: "GET",
             headers:{
@@ -76,6 +79,7 @@ export const GetPreference = async () =>
 {
     try{
         let result;
+        JwtToken = sessionStorage.getItem("token");
         let response = await fetch(`${urlBase}/Preference`, {
             method: "GET",
             headers:{
@@ -104,6 +108,7 @@ export const PutPreference = async (request) =>
     try
     {
         let result;
+        JwtToken = sessionStorage.getItem("token");
         let response = await fetch(`${urlBase}/Preference`, {
             method: "PUT",
             headers:{
@@ -133,6 +138,7 @@ export const PostPreference = async (request) =>
     try
     {
         let result;
+        JwtToken = sessionStorage.getItem("token");
         let response = await fetch(`${urlBase}/Preference`, {
             method: "POST",
             headers:{
@@ -160,6 +166,7 @@ export const PostPreference = async (request) =>
 export const PostMyOverall = async (request) => 
 {
     let result;
+    JwtToken = sessionStorage.getItem("token");
     let response = await fetch(`${urlBase}/OverallPreference`,{
         method: "POST",
         headers:{
@@ -182,6 +189,7 @@ export const PostMyOverall = async (request) =>
 export const PutMyOverall = async (request) => 
 {
     let result;
+    JwtToken = sessionStorage.getItem("token");
     let response = await fetch(`${urlBase}/OverallPreference`,{
         method: "PUT",
         headers:{
@@ -205,6 +213,7 @@ export const PostGenderPref = async (request) =>
 {
     try{
         let result;
+        JwtToken = sessionStorage.getItem("token");
         let response = await fetch(`${urlBase}/GenderPreference`, {
             method: "POST",
             headers:{
@@ -232,6 +241,7 @@ export const DeleteGenderPref = async (request) =>
 {
     try{
         let result;
+        JwtToken = sessionStorage.getItem("token");
         let response = await fetch(`${urlBase}/GenderPreference`, {
             method: "DELETE",
             headers:{

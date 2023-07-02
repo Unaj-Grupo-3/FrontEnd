@@ -1,0 +1,126 @@
+INSERT INTO MicroservicePreferenceDB.dbo.GenderPreference (UserId,GenderId) VALUES
+	 (1,2),
+	 (100,2),
+	 (100,1),
+	 (100,3),
+	 (76,2),
+	 (76,1),
+	 (76,3),
+	 (94,2),
+	 (94,1),
+	 (94,3);
+INSERT INTO MicroservicePreferenceDB.dbo.GenderPreference (UserId,GenderId) VALUES
+	 (88,2),
+	 (88,1),
+	 (88,3),
+	 (75,2),
+	 (75,1),
+	 (75,3),
+	 (78,2),
+	 (78,1),
+	 (78,3),
+	 (74,2);
+INSERT INTO MicroservicePreferenceDB.dbo.GenderPreference (UserId,GenderId) VALUES
+	 (74,1),
+	 (74,3),
+	 (2,1),
+	 (3,2),
+	 (4,1),
+	 (5,2),
+	 (6,1),
+	 (7,2),
+	 (8,1),
+	 (9,2);
+INSERT INTO MicroservicePreferenceDB.dbo.GenderPreference (UserId,GenderId) VALUES
+	 (10,1),
+	 (11,3),
+	 (12,1),
+	 (13,2),
+	 (14,1),
+	 (15,2),
+	 (16,2),
+	 (17,3),
+	 (18,2),
+	 (19,1);
+INSERT INTO MicroservicePreferenceDB.dbo.GenderPreference (UserId,GenderId) VALUES
+	 (20,2),
+	 (21,1),
+	 (22,2),
+	 (23,1),
+	 (24,2),
+	 (25,3),
+	 (26,2),
+	 (27,1),
+	 (28,1),
+	 (29,1);
+INSERT INTO MicroservicePreferenceDB.dbo.GenderPreference (UserId,GenderId) VALUES
+	 (30,2),
+	 (31,2),
+	 (32,1),
+	 (33,2),
+	 (34,1),
+	 (35,2),
+	 (36,1),
+	 (37,2),
+	 (38,1),
+	 (39,2);
+INSERT INTO MicroservicePreferenceDB.dbo.GenderPreference (UserId,GenderId) VALUES
+	 (40,1),
+	 (41,2),
+	 (42,1),
+	 (43,1),
+	 (44,1),
+	 (45,2),
+	 (46,1),
+	 (47,2),
+	 (48,1),
+	 (49,2);
+INSERT INTO MicroservicePreferenceDB.dbo.GenderPreference (UserId,GenderId) VALUES
+	 (50,1),
+	 (51,2),
+	 (52,1),
+	 (53,2),
+	 (54,1),
+	 (55,2),
+	 (56,1),
+	 (57,2),
+	 (58,2),
+	 (59,1);
+INSERT INTO MicroservicePreferenceDB.dbo.GenderPreference (UserId,GenderId) VALUES
+	 (60,2),
+	 (61,1),
+	 (62,2),
+	 (63,1),
+	 (64,2),
+	 (65,1),
+	 (66,2),
+	 (67,1),
+	 (68,2),
+	 (69,2);
+INSERT INTO MicroservicePreferenceDB.dbo.GenderPreference (UserId,GenderId) VALUES
+	 (70,1),
+	 (71,2),
+	 (72,1),
+	 (73,2),
+	 (77,2),
+	 (79,2),
+	 (80,1),
+	 (81,2),
+	 (82,1),
+	 (83,2);
+INSERT INTO MicroservicePreferenceDB.dbo.GenderPreference (UserId,GenderId) VALUES
+	 (84,1),
+	 (85,2),
+	 (86,1),
+	 (87,2),
+	 (89,2),
+	 (90,1),
+	 (91,2),
+	 (92,1),
+	 (93,2),
+	 (95,2);
+INSERT INTO MicroservicePreferenceDB.dbo.GenderPreference (UserId,GenderId) VALUES
+	 (96,1),
+	 (97,2),
+	 (98,1),
+	 (99,2);
