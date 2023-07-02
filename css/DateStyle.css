@@ -1,12 +1,18 @@
 /*#region COLORS*/
 :root {
-    --violeta: #885FFF;
+
     --violeta-oscuro: #280886;
     --gris-claro: #ECECEC;
     --gris-oscuro: #525252;
     --first-color :#885FFF;
     --first-color-light:  #A386FF;
     --first-color-light-nav:  #d8cefa;
+
+    --first-color: #8d2ce2;
+    --white-color: #ffffff;
+    --white-color-light:#fafbfd;
+    --gris-claro: #ececec;
+    --gris-border: #c0c0c0;
   
 }
 
@@ -28,41 +34,45 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-top: 2rem;
-    margin-right: 3rem;
-    background: linear-gradient(to right, var(--violeta), var(--first-color-light-nav), white,  white); 
-    
+    margin-top: 1em;
+    background: linear-gradient(to right, var(--first-color), var(--first-color-light-nav)); 
+    padding: 2em;
 }
+
+#main__dates_logo {
+    width: 50px;
+}
+
 .headerDate__content{
     margin-left: 1rem;
     display: flex;
     justify-content: start;
     flex-direction: column;
     align-items: center;
-    color: white;
-    font-size: 16px;
     gap: 1rem;
+    margin: 0;
 }
+
 .headerDate__content button{
     background-color: var(--white);
     padding: 0.4rem 1rem;
     border: none;
-    color: var(--first-color-light);
     cursor: pointer;
     transition: background-color 1s;
     transition-duration: 1s;
-    border-radius: 7px;
-    border:1px solid var(--first-color-light);
-    margin: 0 20px;
-    width: 70%;
+    border-radius: 0.5em;
+    border:1px solid var(--first-color);
+    width: 100%;
 }
 
 .headerDate__content button:hover {
-    box-shadow: 0px 0px 10px 1px var(--gris-claro);
     transform:scale(1.02);
     transition-duration: 0.5s;
-    background-color: var(--first-color-light-nav);
+    background-color: var(--first-color);
+    color: #ffffff;
 }
+
+
 .add-date{
     min-width: 25%;
 }
@@ -72,58 +82,54 @@
     background: linear-gradient(to left, var(--violeta-oscuro), transparent); 
     height: 2px;
 }*/
-#main__dates_logo {
-    width: 100px;
-    padding: 15px 20px;
-}
+
 
 /*#endregion*/
 
 /*#region DATES CARD*/
-#Container-Dates, #Container-Matches
-{
-    margin-top: 1rem;
-    padding-left: 1rem;
 
-}
 #Container-Matches{
-    /* border-right: 1px solid rgba(145, 61, 136, 0.3); */
-    height: 100%;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1em;
 }
+
 #Container-Dates{
     display: grid;
-    grid-template-columns: 1fr 4fr;
-    gap: 20px;
-    border-left: 1px solid /*var(--violeta);*/rgba(145, 61, 136, 0.3);
-    transition: transform 0.3s;
+    grid-template-columns: 1fr 2fr;
+    background-color: var(--white-color);
+    border: 1px solid var(--gris-border);
+    border-radius: 0.5em;
+    padding: 1em;
 }
 .matchDetail{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid /*var(--violeta);*/rgba(145, 61, 136, 0.3);
-    border-radius: 4px;
-    transition: transform 0.3s;    
-    min-width: 355px;
-    margin: 0.5rem 0;
+    width: 100%;
+    background-color: var(--white-color);
+    border: 1px solid var(--gris-border);
+    border-radius: 0.5em;
+    padding: 0.5em;  
+    gap: 5px; 
 }
-.matchDetail>*{
-    margin: 0.5rem;
-}
+
 .matchDetail img, .addDate img{
     width: 5rem;
     min-width: 5rem;
     height: 5rem;
+    border-radius: 1em;
     object-fit: cover;
-    /* border-radius: 50%; */
-    margin-bottom: 10px;
 }
 .places-container{
     padding: 0.5rem;
 }
 .dateDetail, .filterDetail {
-    border: 1px solid /*var(--violeta);*/rgba(145, 61, 136, 0.3);
-    border-radius: 4px;
+    border: 1px solid var(--gris-border);
+    border-radius: 0.5em;
     padding: 20px;
     max-width: 80%; 
     margin-bottom: 20px;
@@ -132,26 +138,25 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    transition: transform 0.3s;
+    background-color: var(--white-color);
 }
+
 .filterDetail {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
+
 .nodateDetail, .noMatchDetail{    
     grid-template-columns: 1fr;
 }
+
 .nodateDetail{
     max-height: 5rem;
 }
-.dateDetail:hover, .filterDetail:hover, .matchDetail:hover {
-    transform: scale(1.03);
-    transition-duration: 0.3s;
-    box-shadow: 0px 0px 5px 1px var(--violeta);
-}
+
+
 .dateDetail__contentTitle, .dateDetail__contentFaltan, .dateDetail__contentUser {
-    color: var(--violeta);
     font-size: 1.5rem;
-    width: 100%;
+
 }
 .dateDetail__contentUser {
     font-size: 1rem;
@@ -201,22 +206,14 @@
     
 }
 .dateDetail__button button, .filterDetail button, .matchDetail button {
-    background-color: var(--violeta);
-    padding: 0.4rem 1rem;
+    background-color: var(--first-color);
+    padding: 0.5em;
     border: none;
     color: white;
     cursor: pointer;
-    transition: background-color 1s;
-    transition-duration: 1s;
-    border-radius: 7px;
-    margin: 0 20px;
+    border-radius: 0.5em;
 }
 
-.dateDetail__button button:hover, .filterDetail button:hover, .matchDetail button:hover {
-    box-shadow: 0px 0px 10px 1px var(--gris-claro);
-    transform:scale(0.93);
-    transition-duration: 1s;
-}
 .dateDetail__button {
     display: flex;
     justify-content: center; 
@@ -253,17 +250,10 @@
 
 input{
     border-radius: 5px;
-    border: 1px solid var(--first-color-light);
+    border: 1px solid var(--gris-border);
+    background-color: var(--gris-claro);
+    padding: 0.5vw 1vw;
 }
-
-input:focus{  
-    outline: none;  
-    border: 3px solid var(--first-color-light-nav);
-}
-
-.input-fecha{
-    padding: 0.1rem 1.5rem;
-}  
 
 /*#endregion*/
 .map-container{
@@ -291,7 +281,6 @@ input:focus{
 
 .map-container{    
     min-height: 5vh;
-    padding: 1rem 5rem;
 }
 
 .map-options{
@@ -299,18 +288,11 @@ input:focus{
 }
 
 .card-date{  
-    border: 1px solid var(--first-color-light-nav);
-    background: linear-gradient(to left, var(--first-color-light), var(--first-color-light-nav), white, white);
+    border: 1px solid var(--gris-border);
+    border-radius: 0.5em ;
+    background:  var(--white-color);
     padding: 0.3rem;
     margin-bottom: 0.5rem;
-}
-
-.card-date:hover{
-    transform: scale(1.03);
-    transition-duration: 0.3s;
-    box-shadow: 0px 0px 5px 1px var(--violeta);
-    background: var(--white);
-    cursor: pointer;
 }
 
 .card-date p{
@@ -339,7 +321,7 @@ input:focus{
 }
 
 .modal-header{
-    background-color: var(--first-color-light);
+    background-color: var(--first-color);
     color: white;
 }
 
@@ -350,6 +332,7 @@ input:focus{
 
 .modal-body{
     min-height: 70vh;
+    background-color: var(--white-color-light);
 }
 
 @media (max-width: 1800px) {        

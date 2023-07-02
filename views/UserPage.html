@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Pagina principal del usuario</title>
+	<title>Perfil del usuario</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -44,8 +44,13 @@
 			</div>
 		</div>
 	</main>
-	<section class="modal">
+	<section class="modal">	
 		<div class="modal__container">
+			<div class="btn_close_gral">
+				<a href="#" class="modal__close">
+					<span class="material-symbols-outlined span-close">close</span>
+				</a>				
+			</div>
 			<form>
 				<div class="grid_modal">
 					<div class="div__passwd">
@@ -60,34 +65,30 @@
 					</div>
 				</div>
 			</form>
-			<p id="response__msj"></p>
+			<div class="msj_container"><p id="response__msj"></p></div>
 			<a href="#" id="btn_change_passwd">Actualizar</a>
-			<a href="#" class="modal__close">Cerrar</a>
 		</div>
 	</section>
 	<section class="modal_2">
-		<a href="#" class="modal__close btn_close_gral" id="btn_close_gral_2">
-			<span class="material-symbols-outlined span-close">
-				close
-			</span>
-		</a>
-		<div class="modal__container_2 grid_modal_2">
-			<div class="pref_container">
-			</div>
-			<a href="#" class="modal__close" id="btn_close_2">Cerrar</a>
+		<div class="modal__container_2">
+			<div class="btn_close_gral">
+				<a href="#" class="modal__close" id="btn_close_gral_2">
+					<span class="material-symbols-outlined span-close">close</span>
+				</a>				
+			</div>					
+			<div class="pref_container">						
+			</div>	
 		</div>
 	</section>
-	<section class="modal_3">
-		<a href="#" class="modal__close btn_close_gral" id="btn_close_gral_3">
-			<span class="material-symbols-outlined span-close">
-				close
-			</span>
-		</a>
-		<div class="modal__container_3 grid_modal_2">
-			<div class="pref_container_other">
-
+	<section class="modal_3">	
+		<div class="modal__container_3">	
+			<div class="btn_close_gral">
+				<a href="#" class="modal__close " id="btn_close_gral_3">
+					<span class="material-symbols-outlined span-close">close</span>
+				</a>
+			</div>			
+			<div class="pref_container_other">			
 			</div>
-			<a href="#" class="modal__close" id="btn_close_3">Cerrar</a>
 		</div>
 	</section>
 </body>

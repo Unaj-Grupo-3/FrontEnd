@@ -14,7 +14,7 @@ export const printCards = async (listDates, count, userMe, matches) => {
 
     if (matches && matches.response && matches.response.matches && matches.response.matches.length > 0){   
 
-        sectionContainerMatches.innerHTML = `<h4 class="dateDetail__contentTitle">Mis Matchs</h4><br>`     
+        sectionContainerMatches.innerHTML = `<h4 class="dateDetail__contentTitle">Mis Matchs</h4>`     
         for (let i = 0; i < matches.response.matches.length; i++) {
             matchesList = matches.response.matches;
             sectionContainerMatches.innerHTML += await MatchCard(matches.response.matches[i]);

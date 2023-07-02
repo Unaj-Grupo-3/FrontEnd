@@ -179,18 +179,25 @@ p {
     height: 100%;
 }
 
-.msj_container{
+.msj_container {
     height: 100%;
+    width: 100%;
 }
 
-#resp_msj_photo {
+#response__msj {
     color: #41BC02;
     margin: 0;
     font-size: 0.7em;
     display: none;
-  }
+}
 
-
+#resp_msj_photo {
+    color: #41BC02;
+    margin-bottom: 0;
+    margin-top: 0.5em;
+    font-size: 0.3;
+    display: none;
+}
 
 
 
@@ -215,7 +222,7 @@ p {
     width: 100%;
     margin-top: 1em;
     background-color: var(--first-color);
-    padding: 0.2em 0.2em;
+    padding: 0.5em 0.5em;
     border-radius: 6px;
     border: 1px solid var(--first-color);
     color: white;
@@ -289,6 +296,8 @@ p {
 }
 
 .icono-delete {
+    color: #ffffff;
+    font-weight: 100;
     font-size: 15px !important;
     margin: 0;
     padding: 0.4em;
@@ -402,13 +411,16 @@ p {
         width: 100%;
         padding: 0.5em;
     }
+
     .section-two {
         grid-template-rows: 1fr 3.9fr;
     }
-    p{
+
+    p {
         font-size: 0.9em;
     }
-    h3{
+
+    h3 {
         font-size: 0.9em;
     }
 }
@@ -421,13 +433,16 @@ p {
         padding: 0.5em;
         overflow: auto;
     }
+
     .section-two {
         width: 100%;
     }
-    p{
+
+    p {
         font-size: 0.9em;
     }
-    h3{
+
+    h3 {
         font-size: 0.9em;
     }
 }
@@ -438,29 +453,27 @@ p {
     /* Tamaño del scroll en vertical */
     height: 8px;
     /* Tamaño del scroll en horizontal */
-  }
-  
-  /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
-  .user__photos::-webkit-scrollbar-thumb {
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+.user__photos::-webkit-scrollbar-thumb {
     background-color: #8a2be2;
     border-radius: 4px;
-  }
-  
-  /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
-  .user__photos::-webkit-scrollbar-thumb:hover {
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.user__photos::-webkit-scrollbar-thumb:hover {
     background: #5c5c5c;
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Cambiamos el fondo cuando esté en active */
-  .user__photos::-webkit-scrollbar-thumb:active {
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.user__photos::-webkit-scrollbar-thumb:active {
     background-color: #666666;
-  }
-  
-  /* Ponemos un color de fondo y redondeamos las esquinas del track */
-  .user__photos::-webkit-scrollbar-track {
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+.user__photos::-webkit-scrollbar-track {
     background: #cacaca;
     border-radius: 4px;
-  }
-  
-  
+}

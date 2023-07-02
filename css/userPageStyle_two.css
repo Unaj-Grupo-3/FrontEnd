@@ -69,13 +69,15 @@
 
 
 .modal__close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     color: var(--blanco-rosa);
     background-color: var(--rojo);
-    padding: 0.5em 1.5em;
+    padding: 0.2em;
     border: 1px solid var(--rojo);
     border-radius: 6px;
-    display: inline-block;
     font-weight: 300;
     transition: background-color .3s;
 }
@@ -166,9 +168,10 @@
     background-color: white;
 }
 
-.interest_item:hover {
-    background-color: var(--first-color);
+.interest_item:hover, .interest_other_item:hover {
+    background-color: var(--first-color-light);
     color: white;
+    cursor: pointer;
 }
 
 .interest_item_sel {
@@ -222,11 +225,6 @@
     background-color: white;
 }
 
-.interest_other_item:hover {
-    background-color: var(--first-color);
-    color: white;
-}
-
 .interest_item_sel_other {
     background-color: var(--first-color);
     color: white;
@@ -235,8 +233,8 @@
 /* gral modales */
 .btn_close_gral {
     position: absolute;
-    right: 430px;
-    top: 15px;
+    right: 27%;
+    top: 6%;
     z-index: 4;
     height: 2em;
     width: 2em;

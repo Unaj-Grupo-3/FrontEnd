@@ -35,17 +35,17 @@ function renderSuggestion(){
         let difference = age(dateFormatted);
 
         renderPhotos(firstSuggestion.images, firstSuggestion.userId);
-        renderData(firstSuggestion.name, firstSuggestion.lastName, difference, firstSuggestion.gender.description, firstSuggestion.location, preferences);
+        renderData(firstSuggestion.name, firstSuggestion.lastName, difference, firstSuggestion.gender.description, firstSuggestion.location, preferences, firstSuggestion.description);
     }
     else{
         hiddenSuggestions();    
     }    
 }
 
-function renderData(name, lastName, age, gender, location, preferences){
+function renderData(name, lastName, age, gender, location, preferences, description){
     let fullName = name + ' ' + lastName;
     let edad = age + ' años';
-    suggestionData.innerHTML = SuggestionData(fullName, edad, gender, location, preferences);
+    suggestionData.innerHTML = SuggestionData(fullName, edad, gender, location, preferences, description);
 }
 
 function renderPhotos(images, userId){
