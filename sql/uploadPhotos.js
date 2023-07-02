@@ -25,6 +25,7 @@ inputArchivo.addEventListener("change", async function() {
     let form = new FormData();
     form.append('file', archivos[i]);
 
-    await UploadPhoto(form);
+    let r = await UploadPhoto(form);
+    console.log(r);
   }
 });
