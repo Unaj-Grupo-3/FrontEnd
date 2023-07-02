@@ -202,9 +202,12 @@ const AddPhoto = async () => {
     }
     else{
         photoMsj.style.display = "block";
+        RenderUserPhotos(response.response.images);
+        
         setTimeout(() => {
-            location.reload();
+            photoMsj.style.display = "none";
         }, 3000);
+        
     }
     
 }
@@ -315,8 +318,7 @@ const ShowOtherInterest = async () =>
 
     response.forEach((item) => {
         if(item.like) {
-            console.log("Like");
-            console.log(item);
+
             let intOtherId = "#other_int_" + item.interest.id;
             let interestOtherContainer = document.querySelector(intOtherId);
             interestOtherContainer.classList.add('interest_item_sel_other');
@@ -372,6 +374,20 @@ async function InterestOtherOnClick(e)
     }
 }
 
+async function CloseModal()
+{
+    console.log("cerrar modal");
+    if(modal2.classList.contains("modal--show-2"))
+    {
+        modal2.classList.remove("modal--show-2");
+    }
+    if(modal3.classList.contains("modal--show-3"))
+    {
+        console.log("cerrar modal 3");
+        modal3.classList.remove("modal--show-3");
+    }
+}
+
 
 
 /* Renders */
@@ -380,6 +396,7 @@ async function RenderPrefModal() {
 
     const prefContainer = document.querySelector('.pref_container');
     const modalCloseBtn2 = document.querySelector("#btn_close_2");
+    const modalCloseGral2 = document.querySelector('#btn_close_gral_2');
 
     let categories = await GetInterest();
 
@@ -405,6 +422,8 @@ async function RenderPrefModal() {
         modal2.classList.remove("modal--show-2");
     })
 
+    modalCloseGral2.addEventListener('click', CloseModal);
+
     let tagContainers = document.querySelectorAll('.interest_item');
     tagContainers.forEach((item) =>{
         item.addEventListener('click', InterestOnClick);
@@ -418,6 +437,7 @@ async function RenderPrefOtherModal() {
 
     const prefOtherContainer = document.querySelector('.pref_container_other');
     const modalCloseBtn3 = document.querySelector('#btn_close_3');
+    const modalCloseGral3 = document.querySelector('#btn_close_gral_3');
 
     let categories = await GetInterest();
 
@@ -443,12 +463,41 @@ async function RenderPrefOtherModal() {
         modal3.classList.remove("modal--show-3");
     });
 
+    modalCloseGral3.addEventListener('click', CloseModal);
+
     let tagContainers = document.querySelectorAll('.interest_other_item');
     tagContainers.forEach((item) =>{
         item.addEventListener('click', InterestOtherOnClick);
     });
 
     ShowOtherInterest();
+}
+
+async function RenderUserPhotos(photoList) {
+
+    userPhotoSection.innerHTML = '';
+
+    photoList.forEach((element, index) => {
+        userPhotoSection.innerHTML += UserPageImg(index, element.id, element.url);
+    });
+
+    userPhotoSection.innerHTML += AddPhotoBtn();
+
+    let items = document.querySelectorAll('.user__photos .drag__container');
+    items.forEach(function(item) {
+        item.addEventListener('dragstart', handleDragStart);
+        item.addEventListener('dragover', handleDragOver);
+        item.addEventListener('dragenter', handleDragEnter);
+        item.addEventListener('dragleave', handleDragLeave);
+        item.addEventListener('dragend', handleDragEnd);
+        item.addEventListener('drop', handleDrop);
+    });
+
+    inputFile = document.getElementById('input_id');
+    inputFile.addEventListener('input', AddPhoto);
+
+    BtnDelete(document.querySelectorAll(".btn_delete"));
+
 }
 
 
@@ -556,27 +605,7 @@ const RenderUser = async () =>
 
     /* Renderizo UserPhotos section */
 
-    images.forEach((element, index) => {
-
-        userPhotoSection.innerHTML += UserPageImg(index, user.images[index].id, user.images[index].url);
-    });
-
-    userPhotoSection.innerHTML += AddPhotoBtn();
-
-    let items = document.querySelectorAll('.user__photos .drag__container');
-    items.forEach(function(item) {
-        item.addEventListener('dragstart', handleDragStart);
-        item.addEventListener('dragover', handleDragOver);
-        item.addEventListener('dragenter', handleDragEnter);
-        item.addEventListener('dragleave', handleDragLeave);
-        item.addEventListener('dragend', handleDragEnd);
-        item.addEventListener('drop', handleDrop);
-    });
-
-    inputFile = document.getElementById('input_id');
-    inputFile.addEventListener('input', AddPhoto);
-
-    BtnDelete(document.querySelectorAll(".btn_delete"));
+    RenderUserPhotos(images);
 }
 
 
