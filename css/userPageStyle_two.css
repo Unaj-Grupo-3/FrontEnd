@@ -231,3 +231,18 @@
     background-color: var(--first-color);
     color: white;
 }
+
+/* gral modales */
+.btn_close_gral {
+    position: absolute;
+    right: 430px;
+    top: 15px;
+    z-index: 4;
+    height: 2em;
+    width: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
