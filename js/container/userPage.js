@@ -395,7 +395,6 @@ async function CloseModal()
 async function RenderPrefModal() {
 
     const prefContainer = document.querySelector('.pref_container');
-    const modalCloseBtn2 = document.querySelector("#btn_close_2");
     const modalCloseGral2 = document.querySelector('#btn_close_gral_2');
 
     let categories = await GetInterest();
@@ -417,11 +416,6 @@ async function RenderPrefModal() {
         });
     })
 
-    modalCloseBtn2.addEventListener('click', (e) => {
-        e.preventDefault();
-        modal2.classList.remove("modal--show-2");
-    })
-
     modalCloseGral2.addEventListener('click', CloseModal);
 
     let tagContainers = document.querySelectorAll('.interest_item');
@@ -436,7 +430,6 @@ async function RenderPrefModal() {
 async function RenderPrefOtherModal() {
 
     const prefOtherContainer = document.querySelector('.pref_container_other');
-    const modalCloseBtn3 = document.querySelector('#btn_close_3');
     const modalCloseGral3 = document.querySelector('#btn_close_gral_3');
 
     let categories = await GetInterest();
@@ -457,11 +450,6 @@ async function RenderPrefOtherModal() {
             let intId = "#other_int_" + item.id;
         });
     })
-
-    modalCloseBtn3.addEventListener('click', (e) => {
-        e.preventDefault();
-        modal3.classList.remove("modal--show-3");
-    });
 
     modalCloseGral3.addEventListener('click', CloseModal);
 
