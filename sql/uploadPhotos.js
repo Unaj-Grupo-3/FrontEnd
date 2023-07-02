@@ -1,19 +1,27 @@
-import { UploadPhoto } from "../js/services/fetchUserServices.js";
-import { login } from "../js/services/fetchAuthServices.js";
 
-for (let index = 1; index < 101; index++) {
+import { login } from "../js/services/fetchAuthServices.js";
+import { UploadPhoto } from "../js/services/fetchUserServices.js";
+
+
+let inputArchivo = document.getElementById("inputArchivo");
+
+
+inputArchivo.addEventListener("change", async function() {
+
+  // Obtener la lista de archivos seleccionados
+  let archivos = inputArchivo.files;
+
+
+  // Recorrer los archivos seleccionados
+  for (let i = 0; i < archivos.length; i++) {
     let data  = await login({
         "email": `mail${index}@expresso.com`,
         "password": "Express0."
     });
+    console.log(i+" "+data.token);
+    sessionStorage.setItem("token", data.token); 
 
-    console.log(data.token);
-    sessionStorage.setItem("token", data.token);
-
-    let photo = `../sql/images/${index}.jpg`;
-
-    console.log(photo);
-
-    //await UploadPhoto(photo);
-
-}
+    console.log(archivos[i]);
+    await UploadPhoto(photo);
+  }
+});
