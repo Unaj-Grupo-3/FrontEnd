@@ -13,11 +13,10 @@ for(let i=1; i<101; i++) {
     let user = await GetMyUser();
 
     let preferenceRequest  = {
-            sinceAge: 18,
-            untilAge: 99,
-            distance: 1000 
+            sinceAge: getEdad(user.birthday)-8 < 18?  18 :  getEdad(user.birthday)-8 ,
+            untilAge: getEdad(user.birthday) + 8,
+            distance: 15
     }
-
     let genderBody = {
         genderId : 0
     }
@@ -33,4 +32,17 @@ for(let i=1; i<101; i++) {
     }
 
     await PostGenderPref(genderBody);
+}
+
+
+function getEdad(birthday){
+    var hoy = new Date();
+        var cumpleanos = new Date(birthday);
+        var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+        var m = hoy.getMonth() - cumpleanos.getMonth();
+        if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+            edad--;
+        }
+
+        return edad;
 }
