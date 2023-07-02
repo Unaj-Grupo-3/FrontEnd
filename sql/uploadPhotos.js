@@ -15,13 +15,16 @@ inputArchivo.addEventListener("change", async function() {
   // Recorrer los archivos seleccionados
   for (let i = 0; i < archivos.length; i++) {
     let data  = await login({
-        "email": `mail${index}@expresso.com`,
+        "email": `mail${i+1}@expresso.com`,
         "password": "Express0."
     });
     console.log(i+" "+data.token);
     sessionStorage.setItem("token", data.token); 
 
     console.log(archivos[i]);
-    await UploadPhoto(photo);
+    let form = new FormData();
+    form.append('file', archivos[i]);
+
+    await UploadPhoto(form);
   }
 });

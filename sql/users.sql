@@ -212,11 +212,11 @@ VALUES (49, 'Jorge', 'Gómez', CAST('1993-02-13' AS DATE), 'Amante de los deport
 
 -- Perfil 50
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
-VALUES (50, 'María', 'Martínez', CAST('1990-07-06' AS DATE), 'Artista plástica y creadora de obras abstractas.', 4, 2);
+VALUES (50, 'María', 'Martínez', CAST('1967-07-06' AS DATE), 'Artista plástica y creadora de obras abstractas.', 4, 2);
 
 -- Perfil 51
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
-VALUES (51, 'Carlos', 'López', CAST('1987-12-22' AS DATE), 'Amante de los libros y coleccionista de obras literarias.', 4, 1);
+VALUES (51, 'Carlos', 'López', CAST('1965-12-22' AS DATE), 'Amante de los libros y coleccionista de obras literarias.', 4, 1);
 
 -- Perfil 52
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
@@ -298,7 +298,7 @@ VALUES (70, 'Camila', 'Fernández', CAST('1995-05-25' AS DATE), 'Estudiante de d
 
 -- Perfil 71
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
-VALUES (71, 'Martín', 'Rodríguez', CAST('1987-12-03' AS DATE), 'Empresario y amante de los negocios innovadores.', 6, 1);
+VALUES (71, 'Martín', 'Rodríguez', CAST('1977-12-03' AS DATE), 'Empresario y amante de los negocios innovadores.', 6, 1);
 
 -- Perfil 72
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
