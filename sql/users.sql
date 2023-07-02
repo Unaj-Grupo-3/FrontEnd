@@ -347,7 +347,7 @@ VALUES (82, 'Carolina', 'Fernández', CAST('1993-07-18' AS DATE), 'Apasionada po
 
 -- Perfil 83
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
-VALUES (83, 'Martín', 'López', CAST('1991-02-29' AS DATE), 'Amante del fútbol y jugador en un equipo local.', 7, 1);
+VALUES (83, 'Martín', 'López', CAST('1991-02-27' AS DATE), 'Amante del fútbol y jugador en un equipo local.', 7, 1);
 
 -- Perfil 84
 INSERT INTO [dbo].[Users] ([UserId], [Name], [LastName], [Birthday], [Description], [LocationId], [GenderId])
