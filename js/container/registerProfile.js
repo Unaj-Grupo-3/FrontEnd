@@ -242,4 +242,24 @@ function removePrefix(provinceName) {
   return newName;
 }
 
+document.getElementById("inputName").addEventListener("blur", (e) => {
+    document.getElementById("inputApellido").focus();
+});
+
+document.getElementById("inputApellido").addEventListener("blur", (e) => {
+    document.getElementById("inputCumpleaños").focus();
+});
+
+document.getElementById("inputCumpleaños").addEventListener("blur", (e) => {
+    document.getElementById("inputGenero").focus();
+});
+
+document.getElementById("inputGenero2").addEventListener("blur", (e) => {
+    document.getElementById("inputUbicacion").focus();
+});
+
+document.getElementById("inputUbicacion").addEventListener("blur", (e) => {
+    document.getElementById("inputDescripcion").focus();
+});
+
 

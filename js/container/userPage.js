@@ -4,6 +4,7 @@ import { GetMyOverall, PostMyOverall, PutMyOverall, GetCrushGender, PostGenderPr
 import { UserInfoComponent, PrefComponent, InterestTag, PrefOtherComponent, InterestOtherTag } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
+import { DeleteSuggestion } from "../services/fetchSuggestionServices.js";
 
 
 let userInfo = document.querySelector(".user__info");
@@ -100,6 +101,10 @@ async function ModCrushGender(e) {
     } else {
         response = await DeleteGenderPref(request);
     }
+
+    if (response.response){
+        await DeleteSuggestion(0);
+    }
 }
 
 async function ModDescription(e) {
@@ -133,6 +138,10 @@ async function ModPreference(own, id, value) {
     }
 
     let response = await PutPreference(request);
+
+    if (response.response && !own){
+        await DeleteSuggestion(0);
+    }
 
     return response;
 }
@@ -295,6 +304,11 @@ async function ChangeOverall() {
     }
 
     let response = await PutMyOverall(request);
+
+    if (response.response){
+        await DeleteSuggestion(0);
+    }
+
 }
 
 /* Modal Interests methods */
