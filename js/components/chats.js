@@ -2,7 +2,7 @@
 export const blockChat = (element) => {
     return `
     <img class="profile-img" src="${element.userFriend.images
-    ? element.userFriend.images : "../images/perfil_normal.jpg"}" />                                              
+    ? element.userFriend.images : "../img/user-default.png"}" />                                              
         <div class="last">
             <h5 class="Name">${element.userFriend.userName} ${element.userFriend.lastName}</h5>    
             ${element.latestMessage ? `                                           
@@ -32,7 +32,7 @@ export const message_left = (currentChat, messageResponse) => {
     return `
     <div class="messages_simple_left">
         <img class="chat-messages" src="${currentChat.userFriend.images ? currentChat.userFriend.images        
-            : "../images/perfil_normal.jpg" }"/>      
+            : "../img/user-default.png" }"/>      
         <div class="div_messages">
             <p>${messageResponse.content}</p>                
         </div>
@@ -50,14 +50,14 @@ export const message_right = (currentChat, messageResponse) => {
             }"> done_all </span>                      
         </div>
         <img class="chat-messages" src="${currentChat.userMe.images ? currentChat.userMe.images           
-            : "../images/perfil_normal.jpg"}"/>    
+            : "../img/user-default.png"}"/>    
     </div>
 `;
 }
 
 export const headerFriend = (data) => {
     return `
-        <img src="${data.userFriend.images || "../images/perfil_normal.jpg"}" class="chat-img" title="a" />
+        <img src="${data.userFriend.images || "../img/user-default.png"}" class="chat-img" title="a" />
         <h3 id="nombre-chat">${data.userFriend.userName} ${data.userFriend.lastName}</h3>   
     `;
 }
