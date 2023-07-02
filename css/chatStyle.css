@@ -175,7 +175,7 @@ p {
   gap: 1rem;
   padding: 0.5em;
   cursor: pointer;
-  border-radius: 2em;
+  border-radius: 0.5em;
   border: 1px solid transparent;
 }
 
@@ -192,7 +192,7 @@ p {
   overflow-y: hidden;
   background: #ffffff;
   border: 1px solid #bfbfbf;
-  border-radius: 1em;
+  border-radius: 0.5em;
 }
 
 .chat-header2 {
