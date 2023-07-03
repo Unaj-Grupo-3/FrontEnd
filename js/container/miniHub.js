@@ -39,7 +39,7 @@ connection.onclose(async () => {
     await new Promise(res => setTimeout(res, 5000));
     await connection.start().then(() => {
         isConnected = true;
-        console.log("Reconnected to SignalR hub");
+        //console.log("Reconnected to SignalR hub");
     }).catch((err) => {
         console.error(err.toString());
     });

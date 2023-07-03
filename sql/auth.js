@@ -6,5 +6,4 @@ for (let index = 1; index < 101; index++) {
         "email": `mail${index}@expresso.com`,
         "password": "Express0."
       })
-    console.log(data)
 }

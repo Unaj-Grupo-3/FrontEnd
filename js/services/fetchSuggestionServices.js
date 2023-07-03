@@ -18,7 +18,7 @@ export const GetMySuggestions = async () =>
             return result;
         }
     } catch (error) {
-        console.log(error);
+        
     }
     
     //console.log(result)
@@ -53,6 +53,5 @@ export const DeleteSuggestion = async (userId) =>
     }
     catch(error)
     {
-        console.log(error);
     }
 }

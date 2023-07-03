@@ -169,7 +169,6 @@ async function showModalConfirm(userName, date, place, request){
   let buttonConfirmar = document.getElementById('confirmarCita');
   buttonConfirmar.addEventListener('click', async () =>{
       const response = await GenerateDate(request);
-      console.log(response);
       document.getElementById('close-modal-dateConfirm').click();   
       location.reload();
   })  

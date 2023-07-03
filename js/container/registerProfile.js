@@ -74,12 +74,7 @@ export  async function addEventListenerRegisterProfile(){
                             if (types.includes('country')) {
                                 country = addressComponent.long_name;
                             }
-                        }
-    
-                        console.log("Ciudad: " + city);
-                        console.log("Provincia: " + province);
-                        console.log("País: " + country);
-    
+                        }    
     
                         location.city = city;
                         location.province = province;
@@ -92,10 +87,10 @@ export  async function addEventListenerRegisterProfile(){
                         document.getElementById("inputUbicacion").value = "Ubicacion Actual"; 
     
                     } else {
-                        console.log("No se encontraron resultados");
+                        //console.log("No se encontraron resultados");
                     }
                 } else {
-                    console.log("Error");
+                    
                 }
                 });
             }
