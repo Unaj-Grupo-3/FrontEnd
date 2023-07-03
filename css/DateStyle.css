@@ -76,6 +76,8 @@ main{
 }
 
 .headerDate__content button{
+    display: flex;
+    justify-content: space-around;
     background-color: var(--white);
     padding: 0.4rem 1rem;
     border: none;
@@ -83,8 +85,15 @@ main{
     transition: background-color 1s;
     transition-duration: 1s;
     border-radius: 0.5em;
-    border:1px solid var(--first-color);
-    width: 100%;
+    border:1px solid var(--first-color);   
+    min-width: 200px; 
+    
+}
+
+.headerDate__content button p{
+    margin: 0;
+    width: 100%;;
+    text-align: center;
 }
 
 .headerDate__content button:hover {
@@ -99,7 +108,7 @@ main{
     min-width: 25%;
 }
 
-.add-date:hover, .acceptDate:hover, .cancelDate:hover, #btn-new-date:hover{
+.add-date:hover, .acceptDate:hover, .cancelDate:hover, #btn-new-date:hover, .div-confirm-modal button:hover{
     transform:scale(1.02);
     transition-duration: 0.1s;
     background-color: var(--violeta-oscuro);    
@@ -122,7 +131,6 @@ main{
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    padding: 1em;
 }
 
 #Container-Dates{
@@ -133,6 +141,7 @@ main{
     border-radius: 0.5em;
     padding: 1em;
     align-content: center;
+    margin-right: 1rem;
 }
 .matchDetail{
     display: flex;
@@ -144,13 +153,14 @@ main{
     border-radius: 0.5em;
     padding: 0.5em;  
     gap: 5px; 
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 .matchDetail img, .addDate img{
     width: 5rem;
     min-width: 5rem;
     height: 5rem;
-    border-radius: 1em;
+    border-radius: 0.5em;
     object-fit: cover;
 }
 .places-container{
@@ -168,6 +178,7 @@ main{
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     background-color: var(--white-color);
+    box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.3);
 }
 
 .filterDetail {
@@ -185,6 +196,7 @@ main{
 
 .dateDetail__contentTitle, .dateDetail__contentFaltan, .dateDetail__contentUser {
     font-size: 1.5rem;
+    color: var(--first-color);
 
 }
 .dateDetail__contentUser {
@@ -212,13 +224,13 @@ main{
     flex-direction: column;
     height: 100%;;
 }
-.dateDetail_content_map img {
+/* .dateDetail_content_map img {
     width: 15rem;
     height: 15rem;
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 10px;
-}
+} */
 .dateDetail_content_map h4{
     text-align: right;
 }
@@ -228,6 +240,7 @@ main{
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 10px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
 }
 .dateDetail_content_user, .dateDetail_content_detail {
     display: grid;
@@ -268,6 +281,13 @@ main{
     border-radius: 45%;
     padding: 0.1rem 0.3rem;
     font-size: 0.7rem;
+}
+.map-item{
+    height: 100%;
+    width: 100%;
+    min-height: 200px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1rem;
 }
 
 #main__dates{
@@ -390,6 +410,15 @@ input{
 
 .message-pending{
     background-color: orange;
+}
+
+.errorsNewDate{
+    color:crimson;
+    font-size: 2rem;
+    visibility: hidden;
+}
+.showError{
+    visibility: visible;
 }
 
 @media (max-width: 1800px) {        

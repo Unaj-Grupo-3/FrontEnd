@@ -9,8 +9,6 @@ import { SearcherLocation } from "../components/dates/SearcherLocation.js";
 const main = document.getElementById("main__dates");
 const dateModal = document.getElementById("modalDateBody");
 const location = SearcherLocation();
-//const dateModalConfirm = document.getElementById("modalDateConfirmBody");
-//const confirmModal = ConfirmModal();
 
 const header = HeaderDates();
 dateModal.insertAdjacentHTML('afterbegin', location)
