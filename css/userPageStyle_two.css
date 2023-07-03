@@ -10,6 +10,7 @@
     display: flex;
     opacity: 0;
     pointer-events: none;
+    z-index: 3;
 }
 
 .modal--show {
@@ -241,6 +242,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.btn_close_modal {
+    position: absolute;
+    top: 27%;
+    right: 42.5%;
 }
 
 
