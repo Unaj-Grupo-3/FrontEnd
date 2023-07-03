@@ -18,14 +18,17 @@ const showNavbar = (toggleId, navId, headerId, imgId) => {
 
 const renderUserInfo = async () => {
     const data = await GetMyUser();
-
-    if (data) {
+    debugger;
+    if (data?.userId) {
         const nombre = document.getElementById("header_name");
         nombre.textContent = `${data.name} ${data.lastName}`;
         if(data.images.length > 0){
             const img = document.getElementById("header_img");
             img.src = data.images[0].url;
         }
+    }else{
+        sessionStorage.removeItem("token");
+        window.location = "../../views/Login.html"
     }
   
 }

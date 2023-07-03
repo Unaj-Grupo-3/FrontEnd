@@ -20,9 +20,9 @@ export const GetMyUser = async () =>
 
     }
 
-    if(response.status == 404){
+    if(response.status == 404 || response.status == 401){
         result = {
-            status : 404
+            status : response.status
         }
     }
     
