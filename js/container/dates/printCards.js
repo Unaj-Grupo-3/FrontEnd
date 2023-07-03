@@ -9,6 +9,7 @@ import { onListItemClick } from "./onListItemClick.js";
 export const printCards = async (listDates, count, userMe, matches) => {
     let matchesList;
     const sectionContainer = document.querySelector("#Container-Dates");
+    const filtersContainer = document.querySelector("#Container-Filters");
     const sectionContainerMatches = document.querySelector("#Container-Matches");
 
     if (matches && matches.response && matches.response.matches && matches.response.matches.length > 0){   
@@ -22,7 +23,7 @@ export const printCards = async (listDates, count, userMe, matches) => {
     else {
         sectionContainerMatches.innerHTML += NoMatchsCard();
     }
-    sectionContainer.innerHTML = HeaderMyDates();    
+    filtersContainer.innerHTML = HeaderMyDates();    
     
     if(count > 0)
     {

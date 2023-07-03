@@ -70,17 +70,7 @@ const DatesCard = async (userMe, date) => {
                 <div class="dateDetail_content_detail">
                     <h5 class="dateDetail__contentText">Fecha: ${dateTime.getDate()} de ${meses[dateTime.getMonth()]} de ${dateTime.getFullYear()}</h5>
                     <h5 class="dateDetail__contentText">Hora: ${dateTime.getHours()}${dateTime.getMinutes()>0 ? `:${dateTime.getMinutes()}` : ''} horas</h5>
-                    <h5 class="dateDetail__contentText">Lugar: ${date.description}</h5>   
-                    ${date.proposedUserId != userMe.userId && date.state == 0 ?
-                        `<div class="dateDetail__button">
-                            <button id=${date.dateId} value="1" class="acceptDate">Aceptar</button>
-                            <button id=${date.dateId} value="-1" class="cancelDate">Cancelar</button>
-                        </div>`
-                        :
-                        `<div class="dateDetail_status">
-                            <h4>Estado: ${message}</h4>
-                        </div>`
-                    }
+                    <h5 class="dateDetail__contentText">Lugar: ${date.description}</h5>                  
                 </div>
             </div>
                     
@@ -89,6 +79,16 @@ const DatesCard = async (userMe, date) => {
             (restan > 0 ? `<h4 class="dateDetail__contentFaltan">Faltan ${restan} días!</h4>` : '')}
                 
                 <img src="../../../img/map.png" alt="Ubicacion del lugar">
+                ${date.proposedUserId != userMe.userId && date.state == 0 ?
+                    `<div class="dateDetail__button">
+                        <button id=${date.dateId} value="1" class="acceptDate">Aceptar</button>
+                        <button id=${date.dateId} value="-1" class="cancelDate">Cancelar</button>
+                    </div>`
+                    :
+                    `<div class="dateDetail_status">
+                        <h4>Estado: ${message}</h4>
+                    </div>`
+                }
             </div>
         </article>
         `
