@@ -55,7 +55,6 @@ export const UpdateMatch = async (request) =>
     })
     if(response.ok){
         result = await response.json();
-        console.log(result)
     }
     
     return result;

@@ -85,7 +85,6 @@ async function ModGender(e) {
     let response = await ChangeUser(request);
 
     if(response !== null) {
-        console.log("Se cambio el genero");
     }
 }
 
@@ -116,7 +115,6 @@ async function ModDescription(e) {
     let response = await ChangeUser(request);
 
     if(response !== null) {
-        console.log("Se cambio la descripcion");
     }
 }
 
@@ -125,8 +123,6 @@ async function ModPreference(own, id, value) {
 
     let oldResponse = await GetPreference();
     let oldValues = oldResponse.filter((element) => element.interest.id === id)[0] || {};
-    console.log("Antiguos valores");
-    console.log(oldValues.ownInterest);
     let request;
 
     if(own){
@@ -145,7 +141,7 @@ async function ModPreference(own, id, value) {
 
     let response = await PutPreference(request);
 
-    if (response.response && !own){
+    if (response && response.response && !own){
         await DeleteSuggestion(0);
     }
 
@@ -171,6 +167,10 @@ async function CreatePreference(own, id) {
 
     let response = await PostPreference(request);
 
+    if (response && response.response && !own){
+        await DeleteSuggestion(0);
+    }
+
     return response;
 }
 
@@ -178,9 +178,7 @@ const ModPhotos = async () => {
 
     let photoArray = [];
     let order = document.querySelectorAll(".drag__img");
-    console.log("Orden de las fotos");
     order.forEach( (item) => {
-        console.log(item.id);
         let id = item.id;
         let idx = id.search("_") + 1;
         let photoId = id.slice(idx, id.length);
@@ -205,7 +203,6 @@ const AddPhoto = async () => {
     let response = await UploadPhoto(formData);
 
     if(response == null) {
-        console.log("Error al subir la foto.")
     }
     if(response == -1){
         photoMsj.innerHTML = "Se ha alcanzado el limite de fotos permitidas(max=6).";
@@ -230,7 +227,6 @@ const AddPhoto = async () => {
 async function BtnDelete(elements) {
     elements.forEach((element) => {
         element.addEventListener('click', () => {
-            console.log(element.parentElement);
             element.parentElement.remove();
             ModPhotos();
         })
@@ -247,13 +243,11 @@ async function ShowPssWdModal() {
 
 modalCloseBtn.addEventListener('click', (e)=> {
     e.preventDefault();
-    console.log("Cerrando modal");
     modalPsswd.classList.remove("modal--show");
 });
 
 
 const ChangePassword = async () => {
-    console.log("Cambiando contraseña");
     let passwdMsjCont = document.querySelector('#response__msj');
     let psswd = document.querySelector('#in_passwd').value;
     let confirm = document.querySelector('#in_confirm_passwd').value;
@@ -363,8 +357,6 @@ const ShowOtherInterest = async () =>
 
 async function InterestOnClick(e) 
 {
-    console.log(this);
-    console.log(this.classList.contains("interest_item"));
     let intIdString = this.id;
     let idx = intIdString.lastIndexOf("_") + 1;
     let intId = intIdString.slice(idx, intIdString.length);
@@ -375,12 +367,12 @@ async function InterestOnClick(e)
     {
         this.classList.remove('interest_item_sel');
         
-        ModPreference(true, sendId, false);
+        await ModPreference(true, sendId, false);
     }
     else
     {
         this.classList.add('interest_item_sel');
-        let response = ModPreference(true, sendId, true);
+        let response = await ModPreference(true, sendId, true);
         if(response.message = "La preferencia ingresada no existe"){
             CreatePreference(true, sendId);
         }
@@ -397,12 +389,12 @@ async function InterestOtherOnClick(e)
     if(this.classList.contains('interest_item_sel_other'))
     {
         this.classList.remove('interest_item_sel_other');
-        ModPreference(false, sendId, false);
+        await ModPreference(false, sendId, false);
     }
     else
     {
         this.classList.add('interest_item_sel_other');
-        let response = ModPreference(false, sendId, true);
+        let response = await ModPreference(false, sendId, true);
         if(response.message = "La preferencia ingresada no existe"){
             CreatePreference(false, sendId);
         }
@@ -411,14 +403,12 @@ async function InterestOtherOnClick(e)
 
 async function CloseModal()
 {
-    console.log("cerrar modal");
     if(modal2.classList.contains("modal--show-2"))
     {
         modal2.classList.remove("modal--show-2");
     }
     if(modal3.classList.contains("modal--show-3"))
     {
-        console.log("cerrar modal 3");
         modal3.classList.remove("modal--show-3");
     }
 }
@@ -534,8 +524,6 @@ const RenderUser = async () =>
     userInfo.innerHTML = '';
     userPhotoSection.innerHTML = '';
 
-    console.log("Usuario");
-    console.log(user.gender.genderId);
     /*if( typeof user.image === 'undefined'){
         image = "http://127.0.0.1:5501/img/user-default.png";
     }

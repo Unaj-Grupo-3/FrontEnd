@@ -41,7 +41,6 @@ function buttonModalMatch(){
 }
 
 function showModalMatch(){
-    console.log("ver match")
     let buttonModalMatch = document.getElementById('btn-match');
     buttonModalMatch.click();
 }
@@ -50,11 +49,9 @@ buttonModalMatch();
 
 if (matchsNew.length > 0) {
     let firstSuggestionNew = matchsNew.pop();
-    console.log(firstSuggestionNew)
     let imagesNew = [];
     imagesNew.push({id: 0, url: firstSuggestionNew.userInfo.images});
     firstSuggestion = {name: firstSuggestionNew.userInfo.name, lastName: firstSuggestionNew.userInfo.lastName, images: imagesNew, userId: firstSuggestionNew.userInfo.userId, matchId: firstSuggestionNew.matchId};
-    console.log(firstSuggestion)
     showModalMatch();
 }else{
     if(suggestions && suggestions.suggestedUsers != undefined){    
@@ -184,7 +181,6 @@ async function likeDislike(action, userId){
 }
 
 function renderMatch(){
-    console.log(firstSuggestion)
     let fullName = firstSuggestion.name + ' ' + firstSuggestion.lastName;
     let photoMatch;
     if (firstSuggestion.images.length > 0){        
@@ -211,7 +207,6 @@ function renderMatch(){
 }
 
 async function updateMatchView(){
-    console.log("cerre el modal " + firstSuggestion.userId + " Match: " + firstSuggestion.matchId )
     let request = {
         User1: userId,
         User2: firstSuggestion.userId

@@ -68,7 +68,6 @@ const ModPhotos = async () => {
     let photoArray = [];
     let order = document.querySelectorAll(".drag__img");
     order.forEach( (item) => {
-        console.log(item.id);
         let id = item.id;
         let idx = id.search("_") + 1;
         let photoId = id.slice(idx, id.length);
@@ -113,7 +112,6 @@ const AddPhoto = async (target) => {
     let response = await UploadPhoto(formData); // Quizas no deberia subirla
 
     if(response == null) {
-        console.log("Error al subir la foto.")
     }
     document.getElementById('step-3').innerHTML = '<h2>Paso 3</h2> <p>Fotos</p>';
     if(response == -1){
@@ -136,7 +134,6 @@ const AddPhoto = async (target) => {
 async function BtnDelete(elements) {
     elements.forEach((element) => {
         element.addEventListener('click', () => {
-            console.log(element.parentElement);
             let arrayDrag =document.querySelectorAll('.drag__container');
             if(element.parentElement.id == arrayDrag[0].id && arrayDrag.length == 1){
                 photoMsj.innerHTML = "No puede eliminar esta foto";
@@ -178,7 +175,6 @@ images.forEach((element, index) => {
     userPhotoSection.innerHTML += UserPageImg(index, myUser.images[index].id, myUser.images[index].url);
     imagesCount++;
 });
-console.log(imagesCount);
 
 for(let i = imagesCount; i < 6; i++){
     userPhotoSection.innerHTML += AddPhotoBtn();

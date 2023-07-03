@@ -57,7 +57,6 @@ export const filterDates = async (element) => {
                 }); 
             });    
             
-            console.log(dates);
         }else{
             sectionContainer.innerHTML = NoDatesCard();
         }
