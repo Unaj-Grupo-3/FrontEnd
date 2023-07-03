@@ -366,6 +366,7 @@ async function InterestOnClick(e)
     if(this.classList.contains('interest_item_sel'))
     {
         this.classList.remove('interest_item_sel');
+        
         ModPreference(true, sendId, false);
     }
     else
@@ -587,33 +588,55 @@ const RenderUser = async () =>
     lblDistance = document.querySelector('#distance');
 
     inputMinAge = document.querySelector('#in_min_age');
+    inputMaxAge = document.querySelector('#in_max_age');
+    
+    let min,max;
+
     inputMinAge.addEventListener('input', async () => {
+        lblMinAge.innerHTML = inputMinAge.value + " años";
+        min = parseInt(inputMinAge.value);
+        max = parseInt(inputMaxAge.value);
+        if( max <= min){
+            inputMinAge.value = max - 1;
+        }
+        
         lblMinAge.innerHTML = inputMinAge.value + " años";
         
     });
-    inputMinAge.addEventListener('change', ChangeOverall);
+    inputMinAge.addEventListener('change',  ChangeOverall);
 
-    inputMaxAge = document.querySelector('#in_max_age');
     inputMaxAge.addEventListener('input', async () => {
+        min = parseInt(inputMinAge.value);
+        max = parseInt(inputMaxAge.value);
+        if(max <= min){
+            inputMaxAge.value = min + 1;
+        }
         lblMaxAge.innerHTML = inputMaxAge.value + " años";
     });
-    inputMaxAge.addEventListener('change', ChangeOverall);
+    inputMaxAge.addEventListener('change', (ChangeOverall));
 
     inputDistance = document.querySelector('#in_distance');
+
     inputDistance.addEventListener('input', async () => {
         lblDistance.innerHTML = inputDistance.value + " km";
     });
-    inputDistance.addEventListener('change', ChangeOverall);
 
+    inputDistance.addEventListener('change', ChangeOverall);
     /* Que busca el usuario */
     let gList;
     let genderPrefArray = await GetCrushGender();
 
-    if(!genderPrefArray){
+    if(genderPrefArray.length == 0){
         gList = [1,2,3];
-        await PostGenderPref(1);
-        await PostGenderPref(2);
-        await PostGenderPref(3);
+
+        let bodyReq = {
+            genderId : 1
+        }
+        await PostGenderPref(bodyReq);
+        bodyReq.genderId = 2;
+        await PostGenderPref(bodyReq);
+        bodyReq.genderId = 3;
+        await PostGenderPref(bodyReq);
     }else{
         gList = genderPrefArray.map((item) => {
             return item.genderId;
