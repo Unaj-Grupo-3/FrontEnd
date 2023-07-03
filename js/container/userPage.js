@@ -100,10 +100,8 @@ async function ModCrushGender(e) {
     } else {
         response = await DeleteGenderPref(request);
     }
-
-    if (response.response){
-        await DeleteSuggestion(0);
-    }
+    await DeleteSuggestion(0);
+  
 }
 
 async function ModDescription(e) {
