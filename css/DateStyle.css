@@ -23,8 +23,8 @@
 /*#endregion */
 div[id^="map_"]{
     border-radius: 50%;
-    width: 300px;
-    height: 300px;
+    width: 12rem;
+    height: 12rem;
     margin-top: 1rem;
 
 }
