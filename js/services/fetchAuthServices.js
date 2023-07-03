@@ -45,6 +45,7 @@ export const GetMail = async (request) => {
 export const PutPasswd = async (request) => {
     
     let result;
+    let msg;
     let response = await fetch(urlBase,{
         method: "PUT",
         headers:{
@@ -54,11 +55,16 @@ export const PutPasswd = async (request) => {
         body: JSON.stringify(request)
     })
 
-    if(response.ok || response.status == 400 ) {
-        result = await response.json();
+    result = await response.json();
+
+    if(response.ok) {
+        msg = "Exito";
+    }
+    else if(response.status == 400){
+        msg = result.response.passwd;
     }
 
-    return result;
+    return msg;
 }
 
 export const CreateAuth = async (request) => {

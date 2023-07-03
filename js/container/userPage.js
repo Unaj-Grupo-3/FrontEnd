@@ -266,7 +266,15 @@ const ChangePassword = async () => {
 
         let response = await PutPasswd(request);
 
-        passwdMsjCont.innerHTML = response.response.Password;
+        passwdMsjCont.innerHTML = response;
+        passwdMsjCont.style.display = "block";
+        setTimeout(() => {
+            passwdMsjCont.style.display = "none";
+            modalPsswd.classList.remove("modal--show");
+        }, 3000);
+
+    }else{
+        passwdMsjCont.innerHTML = "Las contraseñas no son iguales.";
         passwdMsjCont.style.display = "block";
         setTimeout(() => {
             passwdMsjCont.style.display = "none";
