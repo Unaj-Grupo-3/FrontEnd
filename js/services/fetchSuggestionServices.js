@@ -1,9 +1,10 @@
 let urlBase = 'https://localhost:7056/api/Suggestion';
-const JwtToken = sessionStorage.getItem("token");
+let JwtToken = sessionStorage.getItem("token");
 
 export const GetMySuggestions = async () =>
 {
     let result;
+    JwtToken = sessionStorage.getItem("token");
     try {
         let response = await fetch(`${urlBase}/me`, {
             method: "GET",
@@ -13,11 +14,13 @@ export const GetMySuggestions = async () =>
             }
         })
     
+        result = await response.json();
+        console.log(result);
         if(response.ok){
-            result = await response.json();
+            return result;
         }
     } catch (error) {
-        
+        console.log(error);
     }
     
     //console.log(result)
@@ -29,6 +32,7 @@ export const DeleteSuggestion = async (userId) =>
     let request = {
         UserId: userId
     }
+    JwtToken = sessionStorage.getItem("token");
     try
     {       
         let result;

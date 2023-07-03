@@ -131,8 +131,7 @@ export function addEventListenerPreference(){
 
        interests.forEach(i => addInterest(i));
        await DeleteSuggestion(0);
-       
-
+    
        window.location = "../../views/Matches.html"
 
     });

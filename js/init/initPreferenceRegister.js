@@ -1,6 +1,23 @@
 import {addEventListenerPreference} from '../container/registerPreference.js';
 import {GetInterest} from '../services/fetchPreferenceServices.js';
 import {PrefComponent, InterestTag} from '../components/UserInfoComponent.js';
+import { GetMyUser } from '../services/fetchUserServices.js';
+
+let myUser = await GetMyUser();
+
+if(myUser?.userId){
+    window.location = '../../views/userPage.html';
+}
+
+if(myUser?.status == 401){
+    sessionStorage.removeItem('token');
+    window.location = '../../views/AuthRegister.html';
+}
+
+if(myUser?.status == 404){
+    window.location = '../../views/performanceRegister.html';
+}
+
 
 async function InterestOnClick(e){
 
@@ -54,6 +71,6 @@ async function RenderPref() {
     
 }
 
-
 RenderPref();
+
 addEventListenerPreference();

@@ -18,7 +18,6 @@ const showNavbar = (toggleId, navId, headerId, imgId) => {
 
 const renderUserInfo = async () => {
     const data = await GetMyUser();
-    debugger;
     if (data?.userId) {
         const nombre = document.getElementById("header_name");
         nombre.textContent = `${data.name} ${data.lastName}`;
@@ -27,8 +26,16 @@ const renderUserInfo = async () => {
             img.src = data.images[0].url;
         }
     }else{
-        sessionStorage.removeItem("token");
-        window.location = "../../views/Login.html"
+        if(data?.status == 401){
+
+            sessionStorage.removeItem("token");
+            window.location = "../../views/Login.html"
+        }
+
+        if(data?.status == 404){
+
+            window.location = "../../views/performanceRegister.html"
+        }
     }
   
 }
