@@ -76,6 +76,12 @@
 .add-date{
     min-width: 25%;
 }
+
+.add-date:hover, .acceptDate:hover, .cancelDate:hover, #btn-new-date:hover{
+    transform:scale(1.02);
+    transition-duration: 0.1s;
+    background-color: var(--violeta-oscuro);    
+}
 /*.line {
     margin-right: 5rem;
     color: var(--violeta);
@@ -160,6 +166,9 @@
 }
 .dateDetail__contentUser {
     font-size: 1rem;
+    text-align: start;
+    width: 100%;
+    padding-left: 1rem;
 }
 .dateDetail__contentText{
     color: var(--gris-oscuro);
@@ -205,13 +214,14 @@
     margin-top: 1rem;
     
 }
-.dateDetail__button button, .filterDetail button, .matchDetail button {
+.dateDetail__button button, .filterDetail button, .matchDetail button, .div-confirm-modal button {
     background-color: var(--first-color);
     padding: 0.5em;
     border: none;
     color: white;
     cursor: pointer;
     border-radius: 0.5em;
+    margin: 0.5rem;
 }
 
 .dateDetail__button {
@@ -295,6 +305,13 @@ input{
     margin-bottom: 0.5rem;
 }
 
+.card-date:hover{
+    transform:scale(1.01);
+    transition-duration: 0.2s;
+    background-color: var(--first-color-light-nav);
+    cursor: pointer;
+}
+
 .card-date p{
     text-align: start;
 }
@@ -304,6 +321,8 @@ input{
     justify-content: end;
     align-items: center;
 }
+
+
 
 .photo-place{
     width: 64px;
@@ -325,15 +344,15 @@ input{
     color: white;
 }
 
-#modalDate, .modal-dialog, .modal-content{
+.modalDateContent, #modaDialogDate{
     width: 100%;
     min-width: 90vw;
+    min-height: 70vh;
 }
 
-.modal-body{
-    min-height: 70vh;
+/* .modal-body{
     background-color: var(--white-color-light);
-}
+} */
 
 @media (max-width: 1800px) {        
     .dateDetail, .filterDetail {

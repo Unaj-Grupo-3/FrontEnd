@@ -7,7 +7,6 @@ import HeaderMyDates from "../../components/dates/HeaderMyDates.js";
 import { onListItemClick } from "./onListItemClick.js";
 
 export const printCards = async (listDates, count, userMe, matches) => {
-    console.log(listDates);
     let matchesList;
     const sectionContainer = document.querySelector("#Container-Dates");
     const sectionContainerMatches = document.querySelector("#Container-Matches");
@@ -19,20 +18,16 @@ export const printCards = async (listDates, count, userMe, matches) => {
             matchesList = matches.response.matches;
             sectionContainerMatches.innerHTML += await MatchCard(matches.response.matches[i]);
         };
-        console.log(matchesList);
     }
     else {
         sectionContainerMatches.innerHTML += NoMatchsCard();
     }
-    sectionContainer.innerHTML = HeaderMyDates();
-
-    console.log(sectionContainer)
+    sectionContainer.innerHTML = HeaderMyDates();    
     
     if(count > 0)
     {
+        sectionContainer.innerHTML = "";
         for (let i = 0; i < listDates.length; i++) {
-            sectionContainer.innerHTML = "";
-
             sectionContainer.innerHTML += await DatesCard(userMe, listDates[i]);
         }        
     }

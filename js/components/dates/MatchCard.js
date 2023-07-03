@@ -1,5 +1,4 @@
 const MatchCard = async (match) => {
-    console.log(match)
     return  `
         <article class="matchDetail">   
             <img src=${match.userInfo.images} alt=${match.userInfo.name}>

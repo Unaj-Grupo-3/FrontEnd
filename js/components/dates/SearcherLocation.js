@@ -53,8 +53,8 @@ export const SearcherLocation = () => {
                 </div>
             </div>  
         </div>               
-    </section>
-
+    </section>    
+    <button id="btn-confirm-date" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#modalDateConfirm" hidden>Confirmar</button>
     `
 
 }

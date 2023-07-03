@@ -39,7 +39,7 @@
 
     <div class="modal fade in" id="modalDate" tabindex="-1" role="dialog" aria-labelledby="modalDateTitle"
       aria-hidden="true">
-      <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+      <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document" id="modaDialogDate">
         <div class="modal-content modalDateContent">
           <div class="modal-header">
             <h5 class="modal-title" id="modalMatchTitle">Nueva cita</h5>
@@ -48,6 +48,21 @@
           </div>
           <div id="modalDateBody" class="modal-body">
             <!-- modalDate.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade in" id="modalDateConfirm" tabindex="-1" role="dialog" aria-labelledby="modalDateConfirmTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content modalDateConfirmContent">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalDateConfirmTitle">Confirmación</h5>
+            <button type="button" id="close-modal-dateConfirm" class="btn-close" data-bs-dismiss="modal"
+              data-bs-target="#modalDateConfirm" aria-label="Close"></button>
+          </div>
+          <div id="modalDateConfirmBody" class="modal-body">
+            <!-- modalDateConfirm.js -->
           </div>
         </div>
       </div>

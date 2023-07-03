@@ -1,4 +1,7 @@
 import { RenderSuggestionDate } from "../components/dates/SuggestionDateCard.js";
+import { GetMyUser } from "../services/fetchUserServices.js"
+import { GenerateDate } from "../services/fetchDatesServices.js"
+import { ConfirmModal } from "../components/dates/ConfirmModal.js";
 
 let map;
 let service;
@@ -6,6 +9,7 @@ let infowindow;
 let places;
 let tipoLugar = "";
 let localidad = "";
+const userMe = await GetMyUser();
 
 function initMap() {    
   const unaj = new google.maps.LatLng(-34.77455963753452, -58.26768668220235);
@@ -91,6 +95,7 @@ function renderDateResult(place, index){
     }
     let container = document.getElementById('result-dates-container');
     container.innerHTML += RenderSuggestionDate(place.name, place.formatted_address, photo, index);
+    let btnConfirm = document.getElementById('btn-new-date');  
 }
 
 function renderizarPlaces(){
@@ -113,15 +118,27 @@ function onCardItemClick(elements){
     });
 }
 
-function seleccionarSugerencia(id){
-    let userIdContainer = document.querySelectorAll(".addDate");
-    let userId = userIdContainer[0].id;    
-    let userName = document.getElementById('nameDateUser').textContent;
-    
+async function seleccionarSugerencia(id){
+    let placeId = id.split('_')[1];
+    let matchIdContainer = document.querySelectorAll(".addDate");
+    let matchId = matchIdContainer[0].id;    
+    let userName = document.getElementById('nameDateUser').textContent;    
     let date = document.getElementById("inputFecha").value;
-    if(validateDateDay(date)){
-      let placeId = id.split('_')[1];
-      alert(`¿Desea confirmar una cita con ${userName} con Id=${userId} el día ${date} en ${places[placeId].name} con Latitud: ${places[placeId].geometry.location.lat()} y Longitud: ${places[placeId].geometry.location.lng()} . Dirección: ${places[placeId].formatted_address} `)
+    let locationLatLong = `${places[placeId].geometry.location.lat()}, ${places[placeId].geometry.location.lng()}`;
+    let descriptionPlace = `${places[placeId].name}  (${places[placeId].formatted_address})`;
+
+    let request = {
+      matchId: parseInt(matchId),
+      location: locationLatLong,
+      description: descriptionPlace,
+      time: date,
+      proposedUserId: userMe.userId,
+      state: 0
+    }
+
+    if(validateDateDay(date)){            
+      document.getElementById('btn-confirm-date').click();   
+      showModalConfirm(userName, date, descriptionPlace, request);
     }
     else{
       alert("Debe ingresar una fecha posterior a la fecha actual")
@@ -139,4 +156,19 @@ function validateDateDay(fecha){
   }
 
   return isValid;
+}
+
+async function showModalConfirm(userName, date, place, request){
+  let dia = date.split('T')[0] + ' a las ' + date.split('T')[1];
+  const dateModalConfirm = document.getElementById("modalDateConfirmBody");
+  dateModalConfirm.innerHTML = await ConfirmModal(userName, dia, place);
+  document.getElementById('btn-confirm-date').click(); 
+
+  let buttonConfirmar = document.getElementById('confirmarCita');
+  buttonConfirmar.addEventListener('click', async () =>{
+      const response = await GenerateDate(request);
+      console.log(response);
+      document.getElementById('close-modal-dateConfirm').click();   
+      location.reload();
+  })  
 }

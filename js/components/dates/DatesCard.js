@@ -4,7 +4,6 @@ import { distance } from "../../utils/distance.js";
 //https://maps.googleapis.com/maps/api/place/textsearch/json?query=bar%20in%20varela&key=AIzaSyDpwWJzl2lrtKx7JyvzHRnaotvrYijX-HU
 
 const DatesCard = async (userMe, date) => {
-    console.log(date)
     const user2 = date.match.user1 == userMe.userId ? date.match.user2 : date.match.user1;
     let anotherUser = await GetUserById(user2); 
     const lat1 = userMe.location.latitude;
@@ -13,7 +12,7 @@ const DatesCard = async (userMe, date) => {
     const lon2 = anotherUser[0].location.longitude;
 
     const kilometros = distance (lat1, lon1, lat2, lon2);
-    console.log(Math.round(kilometros));
+    //console.log(Math.round(kilometros));
     
     //Edad
     const today = new Date()
@@ -45,6 +44,19 @@ const DatesCard = async (userMe, date) => {
     const restan = Math.ceil((dateTime.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 
 
+    let message;
+    switch (date.state) {
+        case -1:
+            message = 'Rechazada.';
+            break;
+        case 0:
+            message = 'Esperando confirmacion';
+            break;
+        case 1:
+            message = 'Confirmada';
+            break;
+    }
+
     return  `
         <article class="dateDetail">
             <div class="dateDetail__content">
@@ -58,16 +70,15 @@ const DatesCard = async (userMe, date) => {
                 <div class="dateDetail_content_detail">
                     <h5 class="dateDetail__contentText">Fecha: ${dateTime.getDate()} de ${meses[dateTime.getMonth()]} de ${dateTime.getFullYear()}</h5>
                     <h5 class="dateDetail__contentText">Hora: ${dateTime.getHours()}${dateTime.getMinutes()>0 ? `:${dateTime.getMinutes()}` : ''} horas</h5>
-                    <h5 class="dateDetail__contentText">Lugar: ${date.location}</h5>
-                    <p class="dateDetail__contentText">Mas info - ${date.description}</p>
-                    ${date.state == 0 ? 
-                    `<div class="dateDetail__button">
-                        <button id=${date.dateId} value="1" class="acceptDate">Aceptar</button>
-                        <button id=${date.dateId} value="-1" class="cancelDate">Cancelar</button>
+                    <h5 class="dateDetail__contentText">Lugar: ${date.description}</h5>   
+                    ${date.proposedUserId != userMe.userId && date.state == 0 ?
+                        `<div class="dateDetail__button">
+                            <button id=${date.dateId} value="1" class="acceptDate">Aceptar</button>
+                            <button id=${date.dateId} value="-1" class="cancelDate">Cancelar</button>
                         </div>`
                         :
                         `<div class="dateDetail_status">
-                        <h4>Estado: ${date.state == 1 ? 'Aceptada' : 'Rechazada'}</h4>
+                            <h4>Estado: ${message}</h4>
                         </div>`
                     }
                 </div>

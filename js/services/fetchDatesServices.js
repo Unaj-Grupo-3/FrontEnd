@@ -2,22 +2,23 @@ let urlBase = 'https://localhost:7199/api';
 //const JwtToken = sessionStorage.getItem("token");
 //const JwtToken = "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiQXV0aElkIjoiMjc2MjFkMGQtYjRmMS00ZWY5LTQ2ZjgtMDhkYjU0YjcxNDUyIiwiZXhwIjoxNjk4MjY5MTA4fQ.0VcxAtNr-LJTb35deIACJ3meZjhydemStci7fRhJAwSPdgYA7pWUI_RYE-OLf0sPSNfzXf2IgGztnmwYuwn_pA";
 const JwtToken = sessionStorage.getItem("token");
-console.log(JwtToken);
 
 //AGREGAR CITA
 export const GenerateDate = async (data) =>
 {
     let result;
+    console.log(data);
     let response = await fetch(`${urlBase}/Date`, {
         method: "POST",
         headers:{
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${JwtToken}`
         },
-        body: data
+        body: JSON.stringify(data)
     })
 
     result = await response.json();
-
+    
     if(response.ok && response.status == 201){
         return result;
     }
