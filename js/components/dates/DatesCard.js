@@ -10,7 +10,6 @@ const DatesCard = async (userMe, date) => {
     const lon1 = userMe.location.longitude;
     const lat2 = anotherUser[0].location.latitude;
     const lon2 = anotherUser[0].location.longitude;
-
     const kilometros = distance (lat1, lon1, lat2, lon2);
     //console.log(Math.round(kilometros));
     
@@ -76,9 +75,9 @@ const DatesCard = async (userMe, date) => {
                     
             <div class="dateDetail_content_map">
             ${restan == 0 ? `<h4 class="dateDetail__contentFaltan">Es hoy!</h4>` : 
-            (restan > 0 ? `<h4 class="dateDetail__contentFaltan">Faltan ${restan} días!</h4>` : '')}
+            (restan > 0 ? `<h4 class="dateDetail__contentFaltan">Faltan ${restan} días!</h4>` : '')}               
                 
-                <img src="../../../img/map.png" alt="Ubicacion del lugar">
+                <div class="map-item" id="map_${date.dateId}"></div>
                 ${date.proposedUserId != userMe.userId && date.state == 0 ?
                     `<div class="dateDetail__button">
                         <button id=${date.dateId} value="1" class="acceptDate">Aceptar</button>

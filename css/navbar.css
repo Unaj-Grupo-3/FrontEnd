@@ -125,6 +125,7 @@ a {
   align-items: center;
   column-gap: 1.5rem;
   padding: 0.5rem 0 0.5rem 1rem;
+  text-decoration: none;
 }
 
 .nav_link {

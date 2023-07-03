@@ -1,7 +1,7 @@
 import { RenderSuggestionDate } from "../components/dates/SuggestionDateCard.js";
 import { GetMyUser } from "../services/fetchUserServices.js"
 import { GenerateDate } from "../services/fetchDatesServices.js"
-import { ConfirmModal } from "../components/dates/ConfirmModal.js";
+import { ConfirmModalDate } from "../components/dates/ConfirmModalDate.js";
 
 let map;
 let service;
@@ -10,6 +10,7 @@ let places;
 let tipoLugar = "";
 let localidad = "";
 const userMe = await GetMyUser();
+let message = document.getElementById("errorsNewDate");
 
 function initMap() {    
   const unaj = new google.maps.LatLng(-34.77455963753452, -58.26768668220235);
@@ -17,9 +18,10 @@ function initMap() {
   localidad = document.getElementById("inputLocalidad").value;
   infowindow = new google.maps.InfoWindow();
   if (tipoLugar == ""){
-    alert("Elija un tipo de lugar para la cita");
+    showModalAlert("Elija un tipo de lugar para la cita");    
   }
   else{
+    message.classList.remove("showError");
     map = new google.maps.Map(document.getElementById("map"), {
       center: unaj,
       zoom: 12,
@@ -36,10 +38,9 @@ function initMap() {
     
     service.textSearch(request, (results, status) => {
       places = results;
-      console.log(places)
+      
       let container = document.getElementById('result-dates-container');
       if(status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS){
-           container = document.getElementById('result-dates-container');
           container.innerHTML = '<div class="flex-center"><h1 class="dateDetail__contentTitle"> No se encontraron resultados </h1></div>'
       }
       if (status === google.maps.places.PlacesServiceStatus.OK && results) {
@@ -136,12 +137,13 @@ async function seleccionarSugerencia(id){
       state: 0
     }
 
-    if(validateDateDay(date)){            
+    if(validateDateDay(date)){   
+      message.classList.remove("showError");         
       document.getElementById('btn-confirm-date').click();   
       showModalConfirm(userName, date, descriptionPlace, request);
     }
-    else{
-      alert("Debe ingresar una fecha posterior a la fecha actual")
+    else{            
+      showModalAlert("Debe ingresar una fecha posterior a la fecha actual");
     }
 }
 
@@ -161,7 +163,7 @@ function validateDateDay(fecha){
 async function showModalConfirm(userName, date, place, request){
   let dia = date.split('T')[0] + ' a las ' + date.split('T')[1];
   const dateModalConfirm = document.getElementById("modalDateConfirmBody");
-  dateModalConfirm.innerHTML = await ConfirmModal(userName, dia, place);
+  dateModalConfirm.innerHTML = await ConfirmModalDate(userName, dia, place);
   document.getElementById('btn-confirm-date').click(); 
 
   let buttonConfirmar = document.getElementById('confirmarCita');
@@ -172,3 +174,9 @@ async function showModalConfirm(userName, date, place, request){
       location.reload();
   })  
 }
+
+async function showModalAlert(text){ 
+  message.textContent = text;
+  message.classList.add("showError");
+}
+
