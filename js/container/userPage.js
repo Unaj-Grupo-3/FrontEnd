@@ -374,6 +374,7 @@ async function InterestOnClick(e)
     if(this.classList.contains('interest_item_sel'))
     {
         this.classList.remove('interest_item_sel');
+        
         ModPreference(true, sendId, false);
     }
     else
@@ -421,7 +422,6 @@ async function CloseModal()
         modal3.classList.remove("modal--show-3");
     }
 }
-
 
 
 /* Renders */
@@ -545,12 +545,23 @@ const RenderUser = async () =>
 
     /* Renderizo UserInfo section */
 
+    let birthday = user.birthday;
+    let edad;
+    let hoy = new Date();
+    let cumpleanos = new Date(birthday);
+    edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    let m = hoy.getMonth() - cumpleanos.getMonth();
+    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        edad--;
+    }
+
+    
     let overall = await GetMyOverall();    
     if (!overall) {
         let request = {
-            sinceAge: 18,
-            untilAge: 99,
-            distance: 1000  
+            sinceAge: edad-10 < 18? 18 : edad - 10,
+            untilAge: edad + 10,
+            distance: 15  
         }
     
         let response = await PostMyOverall(request);
@@ -585,29 +596,61 @@ const RenderUser = async () =>
     lblDistance = document.querySelector('#distance');
 
     inputMinAge = document.querySelector('#in_min_age');
+    inputMaxAge = document.querySelector('#in_max_age');
+    
+    let min,max;
+
     inputMinAge.addEventListener('input', async () => {
         lblMinAge.innerHTML = inputMinAge.value + " años";
+        min = parseInt(inputMinAge.value);
+        max = parseInt(inputMaxAge.value);
+        if( max <= min){
+            inputMinAge.value = max - 1;
+        }
+        
+        lblMinAge.innerHTML = inputMinAge.value + " años";
+        
     });
-    inputMinAge.addEventListener('change', ChangeOverall);
+    inputMinAge.addEventListener('change',  ChangeOverall);
 
-    inputMaxAge = document.querySelector('#in_max_age');
     inputMaxAge.addEventListener('input', async () => {
+        min = parseInt(inputMinAge.value);
+        max = parseInt(inputMaxAge.value);
+        if(max <= min){
+            inputMaxAge.value = min + 1;
+        }
         lblMaxAge.innerHTML = inputMaxAge.value + " años";
     });
-    inputMaxAge.addEventListener('change', ChangeOverall);
+    inputMaxAge.addEventListener('change', (ChangeOverall));
 
     inputDistance = document.querySelector('#in_distance');
+
     inputDistance.addEventListener('input', async () => {
-    lblDistance.innerHTML = inputDistance.value + " km";
+        lblDistance.innerHTML = inputDistance.value + " km";
     });
+
     inputDistance.addEventListener('change', ChangeOverall);
-
     /* Que busca el usuario */
-
+    let gList;
     let genderPrefArray = await GetCrushGender();
-    let gList = genderPrefArray.map((item) => {
-        return item.genderId;
-    });
+
+    if(genderPrefArray.length == 0){
+        gList = [1,2,3];
+
+        let bodyReq = {
+            genderId : 1
+        }
+        await PostGenderPref(bodyReq);
+        bodyReq.genderId = 2;
+        await PostGenderPref(bodyReq);
+        bodyReq.genderId = 3;
+        await PostGenderPref(bodyReq);
+    }else{
+        gList = genderPrefArray.map((item) => {
+            return item.genderId;
+        });
+    }
+
     CheckCrushGender(gList);
 
     const crushGenderChecks = document.querySelectorAll('input[class="crush_gender"]');

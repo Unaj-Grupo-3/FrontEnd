@@ -222,7 +222,6 @@ export const PostGenderPref = async (request) =>
             },
             body: JSON.stringify(request)
         })
-
         if(response.ok){
             result = await response.json();
 

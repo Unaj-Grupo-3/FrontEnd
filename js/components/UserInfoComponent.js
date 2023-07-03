@@ -9,11 +9,11 @@ export const UserInfoComponent = (name, mail, description, minAge, maxAge, dista
     <h3>Que busco</h3>
     <div class="range-container">
         <p style="margin: 0;">Edad mínima <label for="in_min_age" id="lbl_min_age">${minAge} años</label></p>
-        <input style="margin: 0;" type="range" class="input-range" id="in_min_age" min="18" max="${maxAge}" value="${minAge}" step="1">    
+        <input style="margin: 0;" type="range" class="input-range" id="in_min_age" min="18" max="99" value="${minAge}" step="1">    
         <p style="margin: 0;">Edad máxima <label for="in_max_age" id="lbl_max_age">${maxAge} años</label></p>
-        <input style="margin: 0;" type="range" class="input-range" id="in_max_age" min="${minAge}" max="120" value="${maxAge}" step="1">       
+        <input style="margin: 0;" type="range" class="input-range" id="in_max_age" min="18" max="99" value="${maxAge}" step="1">       
         <p style="margin: 0;">Distancia <label for="in_distance" id="distance">${distance} km</label></p>
-        <input style="margin: 0;" type="range" class="input-range" id="in_distance" min="0" value="${distance}" step="1">      
+        <input style="margin: 0;" type="range" class="input-range" id="in_distance" min="1" value="${distance}" step="1">      
     </div>
 
     <h3>Género que busco</h3>
