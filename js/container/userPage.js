@@ -123,16 +123,22 @@ async function ModDescription(e) {
 
 async function ModPreference(own, id, value) {
 
+    let oldResponse = await GetPreference();
+    let oldValues = oldResponse.filter((element) => element.interest.id === id)[0] || {};
+    console.log("Antiguos valores");
+    console.log(oldValues.ownInterest);
     let request;
 
     if(own){
         request = {
             interestId: id,
-            ownInterest: value
+            ownInterest: value,
+            like: oldValues.like
         }
     }else{
         request = {
             interestId: id,
+            ownInterest: oldValues.ownInterest,
             like: value
         }
     }
@@ -248,8 +254,10 @@ modalCloseBtn.addEventListener('click', (e)=> {
 
 const ChangePassword = async () => {
     console.log("Cambiando contraseña");
+    let passwdMsjCont = document.querySelector('#response__msj');
     let psswd = document.querySelector('#in_passwd').value;
     let confirm = document.querySelector('#in_confirm_passwd').value;
+    let passwdMsg = "";
 
     if(psswd === confirm){
         let request = {
@@ -257,8 +265,12 @@ const ChangePassword = async () => {
         }
 
         let response = await PutPasswd(request);
-        console.log("Cambiando password");
-        console.log(response);
+
+        passwdMsjCont.innerHTML = response.response.Password;
+        passwdMsjCont.style.display = "block";
+        setTimeout(() => {
+            passwdMsjCont.style.display = "none";
+        }, 3000);
     }
 }
 
