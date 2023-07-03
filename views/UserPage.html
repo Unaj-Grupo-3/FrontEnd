@@ -46,13 +46,13 @@
 	</main>
 	<section class="modal">	
 		<div class="modal__container">
-			<div class="btn_close_gral">
-				<a href="#" class="modal__close">
-					<span class="material-symbols-outlined span-close">close</span>
-				</a>				
-			</div>
 			<form>
 				<div class="grid_modal">
+					<div class="btn_close_modal">
+						<a href="#" class="modal__close btn_close_passwd">
+							<span class="material-symbols-outlined span-close">close</span>
+						</a>				
+					</div>
 					<div class="div__passwd">
 						<p>Nueva contraseña</p>
 						<input type="password" class="passwd_input" id="in_passwd" name="password"
@@ -65,7 +65,7 @@
 					</div>
 				</div>
 			</form>
-			<div class="msj_container"><p id="response__msj"></p></div>
+			<div class="msj_container"><p class="passwd_msg" id="response__msj"></p></div>
 			<a href="#" id="btn_change_passwd">Actualizar</a>
 		</div>
 	</section>

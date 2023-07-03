@@ -54,11 +54,8 @@ export const PutPasswd = async (request) => {
         body: JSON.stringify(request)
     })
 
-    if(response.ok && response.status == 200) {
+    if(response.ok || response.status == 400 ) {
         result = await response.json();
-    }
-    else{
-        result = null;
     }
 
     return result;
