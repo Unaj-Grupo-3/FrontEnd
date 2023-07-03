@@ -145,7 +145,7 @@ export  async function addEventListenerRegisterProfile(){
                 city : document.getElementById("inputUbicacion").value
             }
         }
-
+       
         let isValid = true;
 
         if(!validateNombre(name)){
@@ -186,7 +186,7 @@ export  async function addEventListenerRegisterProfile(){
         }
 
         if(isValid){
-
+            document.getElementById("step-2").innerHTML = '<div class="spinner"></div>'
             let body = {
                 name : name,
                 lastname : lastname,
@@ -196,16 +196,17 @@ export  async function addEventListenerRegisterProfile(){
                 description : description
             }
     
-            
             let response = await CreateUser(body);
     
             if(response){
-                
+                document.getElementById("step-2").innerHTML = '<h2>Paso 2</h2> <p>Perfil</p>'
                 setTimeout(() =>{
                     window.location = "../../views/PhotoRegister.html"
                 },2000);
                 // Redireccion a la pagina para completar las fotos.
             }
+
+            document.getElementById("step-2").innerHTML = '<h2>Paso 2</h2> <p>Perfil</p>'
         }
 
 

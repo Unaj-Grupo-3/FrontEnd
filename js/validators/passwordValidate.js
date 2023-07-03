@@ -8,7 +8,7 @@ export const validatePassword= (password)=>{
     if(password.length<8 || password.length>32){
         return false
     }
-    if(expresion.test(password) && expresion1.test(password) && expresion2.test(password) && expresion3.test(password)){
+    if(expresion.test(password) && expresion1.test(password) && expresion2.test(password) && expresion3.test(password) && !password.trim().includes(" ")){
         return true;
     }
     else{

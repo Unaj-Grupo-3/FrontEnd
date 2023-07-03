@@ -66,6 +66,7 @@ export function addEventListenerPreference(){
     document.getElementById("formAuth").addEventListener("submit", async (e) => {
         e.preventDefault();
 
+        document.getElementById("step-4").innerHTML = '<div class="spinner"></div>';
         let minAge = document.getElementById("in_min_age").value;
         let maxAge = document.getElementById("in_max_age").value;
         let distance = document.getElementById("in_distance").value == 0 ? 100 : document.getElementById("in_distance").value;
@@ -129,9 +130,11 @@ export function addEventListenerPreference(){
             await PostPreference(interest);
         }
 
+
+
        interests.forEach(i => addInterest(i));
        await DeleteSuggestion(0);
-    
+    document.getElementById("step-4").innerHTML = '<h2>Paso 4</h2> <p>Gustos</p>';
        window.location = "../../views/Matches.html"
 
     });
