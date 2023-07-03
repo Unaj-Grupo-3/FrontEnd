@@ -4,6 +4,8 @@ import { UserPageImg } from "../components/UserPageImg.js";
 import { validateFile } from "../validators/fileValidate.js";
 
 
+
+
 let userInfo = document.querySelector(".user__info");
 let userPhotoSection = document.querySelector("#photo_section");
 let dragSrcEl;
@@ -143,7 +145,17 @@ async function BtnDelete(elements) {
 
 let imagesCount = 0;
 
+
 let myUser = await GetMyUser();
+
+if(myUser?.status == 401){
+    sessionStorage.removeItem('token');
+    window.location = '../../views/AuthRegister.html';
+}
+
+if(myUser?.status == 404){
+    window.location = '../../views/performanceRegister.html';
+}
 
 let images = myUser.images;
 

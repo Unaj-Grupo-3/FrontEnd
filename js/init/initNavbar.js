@@ -18,13 +18,23 @@ const showNavbar = (toggleId, navId, headerId, imgId) => {
 
 const renderUserInfo = async () => {
     const data = await GetMyUser();
-
-    if (data) {
+    if (data?.userId) {
         const nombre = document.getElementById("header_name");
         nombre.textContent = `${data.name} ${data.lastName}`;
         if(data.images.length > 0){
             const img = document.getElementById("header_img");
             img.src = data.images[0].url;
+        }
+    }else{
+        if(data?.status == 401){
+
+            sessionStorage.removeItem("token");
+            window.location = "../../views/Login.html"
+        }
+
+        if(data?.status == 404){
+
+            window.location = "../../views/performanceRegister.html"
         }
     }
   
