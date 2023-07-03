@@ -64,10 +64,9 @@ function handleDrop(e) {
 /* Otros */
 
 const ModPhotos = async () => {
-
+    document.getElementById('step-3').innerHTML = '<div class="spinner"></div>';
     let photoArray = [];
     let order = document.querySelectorAll(".drag__img");
-    console.log("Orden de las fotos");
     order.forEach( (item) => {
         console.log(item.id);
         let id = item.id;
@@ -84,8 +83,9 @@ const ModPhotos = async () => {
 
     if(response !== null) {
         BtnDelete(document.querySelectorAll(".btn_delete"));
-        
     }
+
+    document.getElementById('step-3').innerHTML = '<h2>Paso 3</h2> <p>Fotos</p>';
 }
 
 const AddPhoto = async (target) => {
@@ -99,10 +99,12 @@ const AddPhoto = async (target) => {
         photoMsj.innerHTML = validResponse.error;
         photoMsj.style.color = "#F02E3A";
         photoMsj.style.display = "block";
+        setTimeout(() => {
+            photoMsj.style.display = "none";
+        }, 3000);
         return;
     }
-
-    console.log("La foto es valida");
+    document.getElementById("step-3").innerHTML = '<div class="spinner"></div>';
 
     const formData = new FormData();
 
@@ -113,6 +115,7 @@ const AddPhoto = async (target) => {
     if(response == null) {
         console.log("Error al subir la foto.")
     }
+    document.getElementById('step-3').innerHTML = '<h2>Paso 3</h2> <p>Fotos</p>';
     if(response == -1){
         photoMsj.innerHTML = "Se ha alcanzado el limite de fotos permitidas(max=6).";
         photoMsj.style.color = "#F02E3A";
@@ -122,7 +125,7 @@ const AddPhoto = async (target) => {
         }, 3000);
     }
     else{
-        photoMsj.style.display = "block";
+        photoMsj.style.display = "none";
         setTimeout(() => {
             location.reload();
         }, 3000);
@@ -134,9 +137,20 @@ async function BtnDelete(elements) {
     elements.forEach((element) => {
         element.addEventListener('click', () => {
             console.log(element.parentElement);
-            element.parentElement.remove();
-            userPhotoSection.innerHTML += AddPhotoBtn();
-            ModPhotos();
+            let arrayDrag =document.querySelectorAll('.drag__container');
+            if(element.parentElement.id == arrayDrag[0].id && arrayDrag.length == 1){
+                photoMsj.innerHTML = "No puede eliminar esta foto";
+                photoMsj.style.color = "#F02E3A";
+                photoMsj.style.display = "block";
+                setTimeout(() => {
+                    photoMsj.style.display = "none";
+                }, 3000);
+            }else {
+                element.parentElement.remove();
+                userPhotoSection.innerHTML += AddPhotoBtn();
+                ModPhotos();
+            }
+            
         })
     })
 
@@ -196,7 +210,6 @@ for(let i = imagesCount; i < 6; i++){
         let {target} = e;
 
         if(target.matches(".btn_delete")){
-            console.log("ALGO");
             userPhotoSection.innerHTML += AddPhotoBtn();
         }
 

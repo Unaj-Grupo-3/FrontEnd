@@ -30,7 +30,7 @@ export const addEventListenerAuth = () =>{
             isValid=false;
             console.log("mail invalido");
             let parrafo=document.getElementById("errorMail");
-            parrafo.textContent="El mail ingresado es invalido";
+            parrafo.textContent="El mail ingresado es inválido";
             parrafo.style.color = "#F02E3A";
             parrafo.style.display = 'block';
         }
@@ -39,7 +39,7 @@ export const addEventListenerAuth = () =>{
             isValid=false;
             console.log("password invalido");
             let parrafo=document.getElementById("errorPassword");
-            parrafo.textContent="El password ingresado es invalido";
+            parrafo.textContent="La contraseña es inválida";
             parrafo.style.color = "#F02E3A";
             parrafo.style.display = 'block';
         }
@@ -54,25 +54,26 @@ export const addEventListenerAuth = () =>{
         }
 
         if(isValid){ // CHECKS Validar values
-            console.log("mail esta siendo creado");
             let auth = {
                 email: mail,
                 password : password
             }
-            document.getElementById("buttonSubmit").disable = true;
-            document.getElementById("buttonSubmit").innerHTML = "Registrarse";
+            document.getElementById("step-1").innerHTML = `<div class="spinner"></div>`;
+            
 
             let response = await CreateAuth(auth);
-            
+  
+
             if(response.response.Mail2){
                 
+                document.getElementById("step-1").innerHTML = `<h2>Paso 1</h2><p>Registro</p>`;
                 let parrafo=document.getElementById("errorMail");
                 parrafo.textContent="El mail ingresado ya se encuentra registrado";
                 parrafo.style.color = "#F02E3A";
                 parrafo.style.display = 'block';
-                document.getElementById("buttonSubmit").innerHTML = "Registrarse";
+                // document.getElementById("buttonSubmit").innerHTML = "Registrarse";
             }else{
-
+                document.getElementById("step-1").innerHTML = `<h2>Paso 1</h2><p>Registro</p>`;
                let loginResponse = await login(auth);
 
                 if(loginResponse){
