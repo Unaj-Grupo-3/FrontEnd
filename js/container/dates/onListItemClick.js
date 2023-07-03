@@ -1,5 +1,6 @@
 import { createDate } from "./createDate.js";
 import { filterDates } from "./filterDates.js";
+import {decisionDate} from "./decisionAcceptDates.js"
 
 export const onListItemClick = (elements) => {
 
@@ -16,9 +17,9 @@ export const onListItemClick = (elements) => {
         } 
         //CARDS
         else if (element.classList.contains('acceptDate')) { 
-            element.addEventListener('click', () => alert(`Aceptar Cita value:${element.value} dateId:${element.id}`)) 
+            element.addEventListener('click', () => decisionDate(element.id,element.value));
         } else if (element.classList.contains('cancelDate')) { 
-            element.addEventListener('click', () => alert(`Rechazar Cita value:${element.value} dateId:${element.id}`)) 
+            element.addEventListener('click', () => decisionDate(element.id,element.value));
         } 
     });
 }
