@@ -28,7 +28,6 @@ export const addEventListenerAuth = () =>{
         if(!validate(mail)){
             
             isValid=false;
-            console.log("mail invalido");
             let parrafo=document.getElementById("errorMail");
             parrafo.textContent="El mail ingresado es inválido";
             parrafo.style.color = "#F02E3A";
@@ -37,7 +36,6 @@ export const addEventListenerAuth = () =>{
         if(!validatePassword(password)){
             
             isValid=false;
-            console.log("password invalido");
             let parrafo=document.getElementById("errorPassword");
             parrafo.textContent="La contraseña es inválida";
             parrafo.style.color = "#F02E3A";
@@ -46,7 +44,6 @@ export const addEventListenerAuth = () =>{
         if(password!=password2){
             
             isValid=false;
-            console.log("password_2 invalido");
             let parrafo=document.getElementById("errorPassword2");
             parrafo.textContent="Las contraseñas no coinciden";
             parrafo.style.color = "#F02E3A";

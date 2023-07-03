@@ -40,7 +40,6 @@ document.addEventListener("submit", async function(e)
                 msj.innerHTML = "";
             }, 1000);
         }else{
-            console.log(resp);
             msj.innerHTML = "Te has conectado exitosamente.";
             msj.style.color = "#41BC02";
             msj.style.display = 'block';

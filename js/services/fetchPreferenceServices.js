@@ -70,7 +70,6 @@ export const GetInterest = async () =>
     }
     catch(error)
     {
-        console.log(error);
     }
 }
 
@@ -99,7 +98,7 @@ export const GetPreference = async () =>
     }
     catch(error)
     {
-        console.log(error);
+       
     }
 }
 
@@ -129,7 +128,7 @@ export const PutPreference = async (request) =>
     }
     catch(error)
     {
-        console.log(error);
+        
     }
 }
 
@@ -147,7 +146,6 @@ export const PostPreference = async (request) =>
             },
             body: JSON.stringify(request)
         })
-
         if(response.ok){
             result = await response.json();
 
@@ -159,7 +157,7 @@ export const PostPreference = async (request) =>
     }
     catch(error)
     {
-        console.log(error);
+        
     }
 }
 
@@ -232,7 +230,7 @@ export const PostGenderPref = async (request) =>
         }
     }
     catch(error){
-        console.log(error);
+       
     }
 }
 
@@ -258,6 +256,6 @@ export const DeleteGenderPref = async (request) =>
         }
     }
     catch(error){
-        console.log(error);
+        
     }
 }

@@ -7,7 +7,6 @@ const JwtToken = sessionStorage.getItem("token");
 export const GenerateDate = async (data) =>
 {
     let result;
-    console.log(data);
     let response = await fetch(`${urlBase}/Date`, {
         method: "POST",
         headers:{
@@ -24,7 +23,6 @@ export const GenerateDate = async (data) =>
     }
     else{
         if(result.imagen == "No se pudo generar la cita solicitada.") {
-            console.log("No se udo generar la cita");
             return -1;
         }
         result == null;
