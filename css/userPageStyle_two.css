@@ -235,7 +235,7 @@
 .btn_close_gral {
     position: absolute;
     right: 27%;
-    top: 6%;
+    top: 19%;
     z-index: 4;
     height: 2em;
     width: 2em;
@@ -268,3 +268,8 @@
     }
 }
 
+@media (max-width: 1300px) { 
+    .btn_close_gral {
+        top: 19%;
+    }
+}

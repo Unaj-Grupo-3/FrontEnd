@@ -166,7 +166,7 @@ p {
   flex-direction: column;
   height: 100%;
   overflow-y: auto;
-  gap: 2px;
+  gap: 0.5em;
 }
 
 .chat-simple {
@@ -176,11 +176,12 @@ p {
   padding: 0.5em;
   cursor: pointer;
   border-radius: 0.5em;
-  border: 1px solid transparent;
+  border: 1px solid #bfbfbf;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 .chat-simple:hover {
-  border: 1px solid #bfbfbf;
+  border: 1px solid #000;
   background: #ffffff;
 }
 
@@ -193,6 +194,7 @@ p {
   background: #ffffff;
   border: 1px solid #bfbfbf;
   border-radius: 0.5em;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 .chat-header2 {
