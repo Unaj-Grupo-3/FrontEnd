@@ -374,9 +374,23 @@ input{
     min-height: 70vh;
 }
 
-/* .modal-body{
-    background-color: var(--white-color-light);
-} */
+.message-rejected,.message-confirmed,  .message-pending{
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    color: white;
+}
+
+.message-rejected{
+    background-color: crimson;
+}
+
+.message-confirmed{
+    background-color: green;
+}
+
+.message-pending{
+    background-color: orange;
+}
 
 @media (max-width: 1800px) {        
     .dateDetail, .filterDetail {

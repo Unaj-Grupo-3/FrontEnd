@@ -47,13 +47,13 @@ const DatesCard = async (userMe, date) => {
     let message;
     switch (date.state) {
         case -1:
-            message = 'Rechazada.';
+            message = '<p class="message-rejected">Rechazada</p>';
             break;
         case 0:
-            message = 'Esperando confirmacion';
+            message = '<p class="message-pending">Esperando confirmacion</p>';
             break;
         case 1:
-            message = 'Confirmada';
+            message = '<p class="message-confirmed">Confirmada</p>';
             break;
     }
 
@@ -82,7 +82,7 @@ const DatesCard = async (userMe, date) => {
                 ${date.proposedUserId != userMe.userId && date.state == 0 ?
                     `<div class="dateDetail__button">
                         <button id=${date.dateId} value="1" class="acceptDate">Aceptar</button>
-                        <button id=${date.dateId} value="-1" class="cancelDate">Cancelar</button>
+                        <button id=${date.dateId} value="-1" class="cancelDate">Rechazar</button>
                     </div>`
                     :
                     `<div class="dateDetail_status">
