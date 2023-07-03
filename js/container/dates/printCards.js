@@ -39,7 +39,10 @@ export const printCards = async (listDates, count, userMe, matches) => {
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 mapTypeControl: true,
                 center: mapCenter,
-                fullscreenControl: false 
+                fullscreenControl: false,
+                mapTypeControl: false, 
+                streetViewControl: false, 
+                zoomControl: false 
             }
   
             const map = {
