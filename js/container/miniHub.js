@@ -29,6 +29,11 @@ connection.on("ReceiveMessage", async function (chatId, messageResponse) {
     icono.appendChild(newMessage);
 });
 
+connection.on("Logout", () => {
+    sessionStorage.removeItem("token");
+    window.location = "../../views/Login.html";
+});
+
 connection.onclose(async () => {
     // Wait for 5 seconds before attempting to reconnect
     await new Promise(res => setTimeout(res, 5000));
@@ -70,7 +75,6 @@ async function searchNotification() {
         console.error(error);
     }
 }
-
 
 searchNotification();
 

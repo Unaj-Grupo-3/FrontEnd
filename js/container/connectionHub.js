@@ -24,8 +24,8 @@ export async function addEventListenerHub() {
     }
 
     connection.on("Logout", () => {
-        alert("The tab will close");
-        window.close();
+        sessionStorage.removeItem("token");
+        window.location = "../../views/Login.html";
     });
 
     connection.on("ReceiveMessage", async function (chatId, messageResponse) { 
