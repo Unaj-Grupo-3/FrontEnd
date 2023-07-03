@@ -39,6 +39,7 @@ export const SearcherLocation = () => {
             </div>
         </div>
     </section>
+    <h5 class="errorsNewDate" id="errorsNewDate"></h5>
     <section id="main__dates">
         <div class="row map-container">
             <div class="map-column col-xl-4 col-lg-12">
