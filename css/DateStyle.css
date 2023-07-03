@@ -132,6 +132,7 @@ main{
     border: 1px solid var(--gris-border);
     border-radius: 0.5em;
     padding: 1em;
+    align-content: center;
 }
 .matchDetail{
     display: flex;
