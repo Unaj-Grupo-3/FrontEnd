@@ -395,21 +395,20 @@ input{
 }
 
 .message-rejected,.message-confirmed,  .message-pending{
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    color: white;
+    font-size: 1.5rem;
+    text-shadow: 1px 2px 6px  rgba(0, 0, 0, 0.1);
 }
 
 .message-rejected{
-    background-color: crimson;
+    color: #ff3366;
 }
 
 .message-confirmed{
-    background-color: green;
+    color: #12cd11;
 }
 
 .message-pending{
-    background-color: orange;
+    color: orange;
 }
 
 .errorsNewDate{
