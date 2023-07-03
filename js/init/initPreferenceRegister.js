@@ -5,10 +5,6 @@ import { GetMyUser } from '../services/fetchUserServices.js';
 
 let myUser = await GetMyUser();
 
-if(myUser?.userId){
-    window.location = '../../views/userPage.html';
-}
-
 if(myUser?.status == 401){
     sessionStorage.removeItem('token');
     window.location = '../../views/AuthRegister.html';
