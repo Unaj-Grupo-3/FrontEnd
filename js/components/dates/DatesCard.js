@@ -63,24 +63,14 @@ const DatesCard = async (userMe, date) => {
                 <h4 class="dateDetail__contentTitle" >Tienes una cita</h4>
             
                 <div class="dateDetail_content_user">
-                <img src=${anotherUser[0].images[0].url} alt=${anotherUser[0].name}>
+                    <img src=${anotherUser[0]?.images[0]?.url? anotherUser[0].images[0].url : '../../../img/user-default.png' } alt=${anotherUser[0].name}>
                     <h4 class="dateDetail__contentUser">${anotherUser[0].name} ${anotherUser[0].lastName}, ${age}</h4>
                 </div>
                 
                 <div class="dateDetail_content_detail">
                     <h5 class="dateDetail__contentText">Fecha: ${dateTime.getDate()} de ${meses[dateTime.getMonth()]} de ${dateTime.getFullYear()}</h5>
                     <h5 class="dateDetail__contentText">Hora: ${dateTime.getHours()}${dateTime.getMinutes()>0 ? `:${dateTime.getMinutes()}` : ''} horas</h5>
-                    <h5 class="dateDetail__contentText">Lugar: ${date.description}</h5>   
-                    ${date.proposedUserId != userMe.userId && date.state == 0 ?
-                        `<div class="dateDetail__button">
-                            <button id=${date.dateId} value="1" class="acceptDate">Aceptar</button>
-                            <button id=${date.dateId} value="-1" class="cancelDate">Cancelar</button>
-                        </div>`
-                        :
-                        `<div class="dateDetail_status">
-                            <h4>Estado: ${message}</h4>
-                        </div>`
-                    }
+                    <h5 class="dateDetail__contentText">Lugar: ${date.description}</h5>                  
                 </div>
             </div>
                     
@@ -89,6 +79,16 @@ const DatesCard = async (userMe, date) => {
             (restan > 0 ? `<h4 class="dateDetail__contentFaltan">Faltan ${restan} días!</h4>` : '')}
                 
                 <img src="../../../img/map.png" alt="Ubicacion del lugar">
+                ${date.proposedUserId != userMe.userId && date.state == 0 ?
+                    `<div class="dateDetail__button">
+                        <button id=${date.dateId} value="1" class="acceptDate">Aceptar</button>
+                        <button id=${date.dateId} value="-1" class="cancelDate">Cancelar</button>
+                    </div>`
+                    :
+                    `<div class="dateDetail_status">
+                        <h4>Estado: ${message}</h4>
+                    </div>`
+                }
             </div>
         </article>
         `
