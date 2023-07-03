@@ -403,7 +403,6 @@ async function CloseModal()
 }
 
 
-
 /* Renders */
 
 async function RenderPrefModal() {
@@ -525,12 +524,23 @@ const RenderUser = async () =>
 
     /* Renderizo UserInfo section */
 
+    let birthday = user.birthday;
+    let edad;
+    let hoy = new Date();
+    let cumpleanos = new Date(birthday);
+    edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    let m = hoy.getMonth() - cumpleanos.getMonth();
+    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        edad--;
+    }
+
+    
     let overall = await GetMyOverall();    
     if (!overall) {
         let request = {
-            sinceAge: 18,
-            untilAge: 99,
-            distance: 1000  
+            sinceAge: edad-10 < 18? 18 : edad - 10,
+            untilAge: edad + 10,
+            distance: 15  
         }
     
         let response = await PostMyOverall(request);
@@ -567,6 +577,7 @@ const RenderUser = async () =>
     inputMinAge = document.querySelector('#in_min_age');
     inputMinAge.addEventListener('input', async () => {
         lblMinAge.innerHTML = inputMinAge.value + " años";
+        
     });
     inputMinAge.addEventListener('change', ChangeOverall);
 
@@ -578,16 +589,25 @@ const RenderUser = async () =>
 
     inputDistance = document.querySelector('#in_distance');
     inputDistance.addEventListener('input', async () => {
-    lblDistance.innerHTML = inputDistance.value + " km";
+        lblDistance.innerHTML = inputDistance.value + " km";
     });
     inputDistance.addEventListener('change', ChangeOverall);
 
     /* Que busca el usuario */
-
+    let gList;
     let genderPrefArray = await GetCrushGender();
-    let gList = genderPrefArray.map((item) => {
-        return item.genderId;
-    });
+
+    if(!genderPrefArray){
+        gList = [1,2,3];
+        await PostGenderPref(1);
+        await PostGenderPref(2);
+        await PostGenderPref(3);
+    }else{
+        gList = genderPrefArray.map((item) => {
+            return item.genderId;
+        });
+    }
+
     CheckCrushGender(gList);
 
     const crushGenderChecks = document.querySelectorAll('input[class="crush_gender"]');
