@@ -5,10 +5,12 @@ import { CarouselInner } from "../components/carousel-inner.js";
 import { ButtonsLike } from "../components/button-like.js";
 import { SuggestionData } from "../components/suggestion-data.js";
 import { RenderModalMatch } from "../components/modalMatch.js";
-import { Loader } from "../components/spinner.js";
+import { GetMyMatchs, UpdateMatch } from "../services/fetchMatchServices.js";
 
-
+let userId;
 let suggestions = await GetMySuggestions();
+let matchsMe = await GetMyMatchs();
+let matchsNew = [];
 document.getElementById("spinner-container").classList.add('spinner-hidden');
 
 let firstSuggestion;
@@ -19,12 +21,50 @@ let containerData = document.getElementById('container-data');
 let suggestionData = document.getElementById('suggestions-data');
 let emptySuggestions = document.getElementById('empty-suggestions');
 
-if(suggestions && suggestions.suggestedUsers != undefined){    
-    renderSuggestion();
+if(matchsMe && matchsMe.response && matchsMe.response.matches && matchsMe.response.matches.length > 0) {    
+    matchsNew = matchsMe.response.matches.filter(x => (x.view1 == false && x.user1 != x.userInfo.userId) || (x.view2 == false && x.user2 != x.userInfo.userId) );    
+    userId = matchsMe.response.userMe.userId;
+    //matchsNew = matchsMe.response.matches;
 }
-else{
-    hiddenSuggestions();
+
+$('#modalMatch').on('hidden.bs.modal', function () {
+    updateMatchView();    
+    location.reload()
+});
+
+
+function buttonModalMatch(){
+    let element = document.getElementById('btn-match');
+    element.addEventListener('click', () =>{
+        renderMatch();
+    })
 }
+
+function showModalMatch(){
+    console.log("ver match")
+    let buttonModalMatch = document.getElementById('btn-match');
+    buttonModalMatch.click();
+}
+
+buttonModalMatch();
+
+if (matchsNew.length > 0) {
+    let firstSuggestionNew = matchsNew.pop();
+    console.log(firstSuggestionNew)
+    let imagesNew = [];
+    imagesNew.push({id: 0, url: firstSuggestionNew.userInfo.images});
+    firstSuggestion = {name: firstSuggestionNew.userInfo.name, lastName: firstSuggestionNew.userInfo.lastName, images: imagesNew, userId: firstSuggestionNew.userInfo.userId, matchId: firstSuggestionNew.matchId};
+    console.log(firstSuggestion)
+    showModalMatch();
+}else{
+    if(suggestions && suggestions.suggestedUsers != undefined){    
+        renderSuggestion();
+    }
+    else{
+        hiddenSuggestions();
+    }
+}
+
 
 function renderSuggestion(){    
     firstSuggestion = suggestions.suggestedUsers.pop();
@@ -144,6 +184,7 @@ async function likeDislike(action, userId){
 }
 
 function renderMatch(){
+    console.log(firstSuggestion)
     let fullName = firstSuggestion.name + ' ' + firstSuggestion.lastName;
     let photoMatch;
     if (firstSuggestion.images.length > 0){        
@@ -152,25 +193,27 @@ function renderMatch(){
     else{
         photoMatch = '../img/user-default.png', 0;
     }
-    
     let modalBody = document.getElementById("modalMatchBody");
     modalBody.innerHTML = RenderModalMatch(fullName, photoMatch);
+
+    let element = document.getElementById('btn-hablar');
+    element.addEventListener('click', async () =>{
+        await updateMatchView();
+        setTimeout(() => {
+            window.location = '../../views/Chat.html'
+        }, 1000);
+    })
+
     setTimeout(() => {
         var locModalImg = document.getElementById('img-animation-match');
         locModalImg.classList.remove("show-animation");
     }, 1000);
 }
 
-function buttonModalMatch(){
-    let element = document.getElementById('btn-match');
-    element.addEventListener('click', () =>{
-        renderMatch();
-    })
-}
-
-function showModalMatch(){
-    let buttonModalMatch = document.getElementById('btn-match');
-    buttonModalMatch.click();
-}
-
-buttonModalMatch();
+async function updateMatchView(){
+    console.log("cerre el modal " + firstSuggestion.userId + " Match: " + firstSuggestion.matchId )
+    let request = {
+        User1: userId,
+        User2: firstSuggestion.userId
+    }
+    await UpdateMatch(request)}

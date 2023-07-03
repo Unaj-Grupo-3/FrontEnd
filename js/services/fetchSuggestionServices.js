@@ -13,9 +13,7 @@ export const GetMySuggestions = async () =>
                 "Authorization": `Bearer ${JwtToken}` 
             }
         })
-    
         result = await response.json();
-        console.log(result);
         if(response.ok){
             return result;
         }

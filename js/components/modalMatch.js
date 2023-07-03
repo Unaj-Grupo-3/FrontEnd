@@ -10,7 +10,7 @@ export const RenderModalMatch = (name, photo) => {
             <div class="match-nombre-container flex-center">
                 <h1 class="match-nombre">${name}</h1>
             </div>
-            <a href="../../views/Chat.html" class="match-hablar">
+            <a href="../../views/Chat.html" id="btn-hablar" class="match-hablar">
                 <i id="nav-icono" class="bi bi-chat-right-text"></i>
                 <span class="nav_name">Hablar ahora</span>
             </a>
