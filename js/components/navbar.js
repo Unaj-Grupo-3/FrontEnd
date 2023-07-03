@@ -29,7 +29,7 @@ export const Navbar = (userPhoto) =>
                     <i id="nav-icono" class="bi bi-chat-right-text"></i>
                   <span class="nav_name">Chats</span>
                 </a>
-                <a href="../../views/Login.html" class="nav_link">
+                <a href="" class="nav_link" id="btn-logout">
                     <i class="bi bi-box-arrow-left"></i>
                     <span class="nav_name">Salir</span>
                 </a>
