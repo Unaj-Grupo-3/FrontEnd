@@ -250,4 +250,21 @@
     right: 42.5%;
 }
 
+@media (min-width: 2900px) { 
+    .btn_close_gral {
+        top: 18%;
+    }
+}
+
+@media (min-width: 4000px) { 
+    .btn_close_gral {
+        top: 30%;
+    }
+}
+
+@media (min-width: 5800px) { 
+    .btn_close_gral {
+        top: 36%;
+    }
+}
 

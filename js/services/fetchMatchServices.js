@@ -41,3 +41,22 @@ export const UserMatch = async (request) => {
 
     return result;
 }
+
+export const UpdateMatch = async (request) => 
+{
+    let result;
+    let response = await fetch(`${urlBase}/Match`, {
+        method: "PUT",
+        headers:{
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JwtToken}` 
+        },
+        body: JSON.stringify(request)
+    })
+    if(response.ok){
+        result = await response.json();
+        console.log(result)
+    }
+    
+    return result;
+}
