@@ -57,5 +57,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
         activeLink.classList.toggle("active");
     }
 
+    let element = document.getElementById('btn-logout');
+    element.addEventListener('click', async () =>{
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("gender");
+        sessionStorage.removeItem("locations");
+        setTimeout(() => {
+            window.location = '../../views/Login.html'
+        }, 1000);
+    })
+
     renderUserInfo();
 });
