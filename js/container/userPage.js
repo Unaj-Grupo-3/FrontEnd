@@ -248,13 +248,15 @@ modalCloseBtn.addEventListener('click', (e)=> {
 
 const ChangePassword = async () => {
     let passwdMsjCont = document.querySelector('#response__msj');
-    let psswd = document.querySelector('#in_passwd').value;
+    let passwd = document.querySelector('#old_passwd').value;
+    let newPasswd = document.querySelector('#in_passwd').value;
     let confirm = document.querySelector('#in_confirm_passwd').value;
-    let passwdMsg = "";
 
-    if(psswd === confirm){
+    if(newPasswd === confirm){
         let request = {
-            password: psswd
+            password: passwd,
+            newPassword: newPasswd,
+            repeatNewPassword: confirm
         }
 
         let response = await PutPasswd(request);
