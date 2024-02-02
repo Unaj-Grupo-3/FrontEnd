@@ -3,6 +3,8 @@ import { GetMyUser } from "../services/fetchUserServices.js";
 
 
 let myUser = await GetMyUser();
+console.log("My user");
+console.log(myUser);
 
 if(myUser?.userId){
     window.location = '../../views/UserPage.html'

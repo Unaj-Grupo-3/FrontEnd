@@ -32,6 +32,7 @@ export const addEventListenerAuth = () =>{
             parrafo.textContent="El mail ingresado es inválido";
             parrafo.style.color = "#F02E3A";
             parrafo.style.display = 'block';
+            console.log("El mail ingresado es inválido");
         }
         if(!validatePassword(password)){
             
@@ -71,13 +72,12 @@ export const addEventListenerAuth = () =>{
                 // document.getElementById("buttonSubmit").innerHTML = "Registrarse";
             }else{
                 document.getElementById("step-1").innerHTML = `<h2>Paso 1</h2><p>Registro</p>`;
-               let loginResponse = await login(auth);
-
+                let loginResponse = await login(auth);
                 if(loginResponse){
                     sessionStorage.setItem("token", loginResponse.token);
                 }
-                
-                window.location = "../../views/PerformanceRegister.html"
+                    
+                window.location = "../../views/PerformanceRegister.html";
 
             }
         }
@@ -102,7 +102,6 @@ export const addEventListenerAuth = () =>{
         
     })
     
-
 }
 
 

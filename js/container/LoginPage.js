@@ -3,17 +3,15 @@ import { GetMyUser } from "../services/fetchUserServices.js";
 
 const Redirect = (user) => 
 {
-    // !Existe un usuario con esta cuenta
+    //!Existe un usuario con esta cuenta
     if(user?.userId){
-        window.location.href = "../../views/Matches.html";
+       window.location.href = "../../views/Matches.html";
     };   
 
-    // !No existe un usuario con esta cuenta
+    //!No existe un usuario con esta cuenta
     if(user?.status){
-        window.location.href = "../../views/PerformanceRegister.html";
+       window.location.href = "../../views/PerformanceRegister.html";
     };
-    
-
 }
 
 document.addEventListener("submit", async function(e)
@@ -50,6 +48,7 @@ document.addEventListener("submit", async function(e)
 
             setTimeout(() => {
                 Redirect(user);
+                //window.location = "../../views/Matches.html";
             }, 1000);
         }
     }

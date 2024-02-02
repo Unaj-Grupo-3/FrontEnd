@@ -1,5 +1,6 @@
 import { GetMyUser, UploadPhoto, ChangeUser } from "../services/fetchUserServices.js";
-import { GetMail, PutPasswd } from "../services/fetchAuthServices.js";
+//import { GetMail, PutPasswd } from "../services/fetchAuthServices.js";
+import { PutPasswd } from "../services/fetchAuthServices.js";
 import { GetMyOverall, PostMyOverall, PutMyOverall, GetCrushGender, PostGenderPref, DeleteGenderPref, GetInterest, GetPreference, PutPreference, PostPreference } from "../services/fetchPreferenceServices.js";
 import { UserInfoComponent, PrefComponent, InterestTag, PrefOtherComponent, InterestOtherTag } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
@@ -510,12 +511,26 @@ async function RenderUserPhotos(photoList) {
 
 }
 
+async function decodeToken(token) {
+
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const decodedData = await JSON.parse(atob(base64));
+    
+    return decodedData;
+}
+
 
 /* Agregar manejo de errores: ej: si no existen preferencias del usuario */
 const RenderUser = async () =>
 {
     let user = await GetMyUser();
-    let authInfo = await GetMail();
+
+    const jwtToken = sessionStorage.getItem("token");
+    const claims = await decodeToken(jwtToken);
+
+
+    let mail = claims.Mail;
     let images = user.images;
 
 
@@ -554,7 +569,7 @@ const RenderUser = async () =>
         overall = await GetMyOverall();
     }
 
-    userInfo.innerHTML += UserInfoComponent(user.name, authInfo.email, user.description, overall.sinceAge, overall.untilAge, overall.distance);
+    userInfo.innerHTML += UserInfoComponent(user.name, mail, user.description, overall.sinceAge, overall.untilAge, overall.distance);
 
     let psswdModalBtn = document.querySelector("#btn_psswd");
     psswdModalBtn.addEventListener('click', ShowPssWdModal);

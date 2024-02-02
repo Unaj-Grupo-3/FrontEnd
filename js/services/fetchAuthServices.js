@@ -22,7 +22,8 @@ export const login = async (request) => {
     return result;
 }
 
-
+//Agarralo del token
+/*
 export const GetMail = async (request) => {
 
     let result;
@@ -40,7 +41,7 @@ export const GetMail = async (request) => {
     
     return result;
 }
-
+*/
 
 export const PutPasswd = async (request) => {
     
