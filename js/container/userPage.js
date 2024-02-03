@@ -1,11 +1,16 @@
 import { GetMyUser, UploadPhoto, ChangeUser } from "../services/fetchUserServices.js";
-//import { GetMail, PutPasswd } from "../services/fetchAuthServices.js";
-import { PutPasswd } from "../services/fetchAuthServices.js";
-import { GetMyOverall, PostMyOverall, PutMyOverall, GetCrushGender, PostGenderPref, DeleteGenderPref, GetInterest, GetPreference, PutPreference, PostPreference } from "../services/fetchPreferenceServices.js";
+import { GetMyOverall, PostMyOverall, PutMyOverall, GetCrushGender, PostGenderPref, GetInterest, GetPreference, PutPreference, PostPreference } from "../services/fetchPreferenceServices.js";
 import { UserInfoComponent, PrefComponent, InterestTag, PrefOtherComponent, InterestOtherTag } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
 import { DeleteSuggestion } from "../services/fetchSuggestionServices.js";
+import { ShowPssWdModal, ChangePassword } from "./user/passwordContainer.js";
+import { DecodeToken } from "../utils/decode.js";
+import { ModGender } from "./user/genderContainer.js";
+import { ModCrushGender } from "./user/genderContainer.js";
+import { ModDescription } from "./user/descriptionContainer.js";
+import { CheckGender, CheckCrushGender } from "./user/genderContainer.js";
+import { ChangeOverall } from "./user/overallContainer.js";
 
 
 let userInfo = document.querySelector(".user__info");
@@ -18,7 +23,6 @@ let inputDistance;
 let lblMinAge;
 let lblMaxAge;
 let lblDistance; 
-let genderList = [];
 let photoMsj = document.querySelector("#resp_msj_photo");
 const modalPsswd = document.querySelector(".modal");
 const modalCloseBtn = document.querySelector(".modal__close");
@@ -28,7 +32,6 @@ const modal3 = document.querySelector('.modal_3');
 
 
 /* Drag & Drop */
-
 function handleDragStart(e) {
 
     this.style.opacity = '0.4';
@@ -76,48 +79,6 @@ function handleDrop(e) {
 }
 
 /* Otros */
-
-async function ModGender(e) {
-
-    let request = {
-        gender: parseInt(e.target.value)
-    }
-
-    let response = await ChangeUser(request);
-
-    if(response !== null) {
-    }
-}
-
-async function ModCrushGender(e) {
-
-    let response;
-    let request = {
-        genderId: parseInt(e.target.value)
-    }
-
-    if(e.target.checked) {
-        response = await PostGenderPref(request);
-    } else {
-        response = await DeleteGenderPref(request);
-    }
-    await DeleteSuggestion(0);
-  
-}
-
-async function ModDescription(e) {
-
-    let request = {
-        description: e.target.value
-    }
-
-    let response = await ChangeUser(request);
-
-    if(response !== null) {
-    }
-}
-
-
 async function ModPreference(own, id, value) {
 
     let oldResponse = await GetPreference();
@@ -201,8 +162,6 @@ const AddPhoto = async () => {
     formData.append('file', inputFile.files[0]);
     let response = await UploadPhoto(formData);
 
-    if(response == null) {
-    }
     if(response == -1){
         photoMsj.innerHTML = "Se ha alcanzado el limite de fotos permitidas(max=6).";
         photoMsj.style.color = "#F02E3A";
@@ -217,10 +176,8 @@ const AddPhoto = async () => {
         
         setTimeout(() => {
             photoMsj.style.display = "none";
-        }, 3000);
-        
-    }
-    
+        }, 3000);     
+    }   
 }
 
 async function BtnDelete(elements) {
@@ -233,98 +190,13 @@ async function BtnDelete(elements) {
 }
 
 
-/* Password */
-
-async function ShowPssWdModal() {
-    modalPsswd.classList.add("modal--show");
-};
-
-
+/* Change Password Container */
 modalCloseBtn.addEventListener('click', (e)=> {
     e.preventDefault();
     modalPsswd.classList.remove("modal--show");
 });
 
-
-const ChangePassword = async () => {
-    let passwdMsjCont = document.querySelector('#response__msj');
-    let passwd = document.querySelector('#old_passwd').value;
-    let newPasswd = document.querySelector('#in_passwd').value;
-    let confirm = document.querySelector('#in_confirm_passwd').value;
-
-    if(newPasswd === confirm){
-        let request = {
-            password: passwd,
-            newPassword: newPasswd,
-            repeatNewPassword: confirm
-        }
-
-        let response = await PutPasswd(request);
-
-        passwdMsjCont.innerHTML = response;
-        passwdMsjCont.style.display = "block";
-        setTimeout(() => {
-            passwdMsjCont.style.display = "none";
-            modalPsswd.classList.remove("modal--show");
-        }, 3000);
-
-    }else{
-        passwdMsjCont.innerHTML = "Las contraseñas no son iguales.";
-        passwdMsjCont.style.display = "block";
-        setTimeout(() => {
-            passwdMsjCont.style.display = "none";
-        }, 3000);
-    }
-}
-
 changePasswdBtn.addEventListener('click', ChangePassword);
-
-
-/* Gender */
-
-async function CheckGender(value) {
-
-    if(value == 1) {
-        document.querySelector("#male").checked = true;
-    }
-    if(value == 2) {
-        document.querySelector("#female").checked = true;
-    }
-    if(value == 3) {
-        document.querySelector("#other").checked = true;
-    }
-}
-
-async function CheckCrushGender(genderList) {
-
-    if(genderList.includes(1)) {
-        document.querySelector("#crush_male").checked = true;
-    }
-    if(genderList.includes(2)) {
-        document.querySelector("#crush_female").checked = true;
-    }
-    if(genderList.includes(3)) {
-        document.querySelector("#crush_other").checked = true;
-    }
-}
-
-/* Min & Max age, Distance */
-
-async function ChangeOverall() {
-
-    let request = {
-        sinceAge: inputMinAge.value,
-        untilAge: inputMaxAge.value,
-        distance: inputDistance.value  
-    }
-
-    let response = await PutMyOverall(request);
-
-    if (response.response){
-        await DeleteSuggestion(0);
-    }
-
-}
 
 /* Modal Interests methods */
 
@@ -374,7 +246,7 @@ async function InterestOnClick(e)
     {
         this.classList.add('interest_item_sel');
         let response = await ModPreference(true, sendId, true);
-        if(response.message = "La preferencia ingresada no existe"){
+        if(response != undefined && response.message == "La preferencia ingresada no existe"){
             CreatePreference(true, sendId);
         }
     }
@@ -396,7 +268,7 @@ async function InterestOtherOnClick(e)
     {
         this.classList.add('interest_item_sel_other');
         let response = await ModPreference(false, sendId, true);
-        if(response.message = "La preferencia ingresada no existe"){
+        if(response != undefined && response.message == "La preferencia ingresada no existe"){
             CreatePreference(false, sendId);
         }
     }
@@ -510,18 +382,7 @@ async function RenderUserPhotos(photoList) {
     inputFile.addEventListener('input', AddPhoto);
 
     BtnDelete(document.querySelectorAll(".btn_delete"));
-
 }
-
-async function decodeToken(token) {
-
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const decodedData = await JSON.parse(atob(base64));
-    
-    return decodedData;
-}
-
 
 /* Agregar manejo de errores: ej: si no existen preferencias del usuario */
 const RenderUser = async () =>
@@ -529,12 +390,10 @@ const RenderUser = async () =>
     let user = await GetMyUser();
 
     const jwtToken = sessionStorage.getItem("token");
-    const claims = await decodeToken(jwtToken);
-
+    const claims = await DecodeToken(jwtToken);
 
     let mail = claims.Mail;
     let images = user.images;
-
 
     userInfo.innerHTML = '';
     userPhotoSection.innerHTML = '';
@@ -573,6 +432,7 @@ const RenderUser = async () =>
 
     userInfo.innerHTML += UserInfoComponent(user.name, mail, user.description, overall.sinceAge, overall.untilAge, overall.distance);
 
+    //Change passwd section
     let psswdModalBtn = document.querySelector("#btn_psswd");
     psswdModalBtn.addEventListener('click', ShowPssWdModal);
 
