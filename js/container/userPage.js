@@ -1,9 +1,8 @@
-import { GetMyUser, UploadPhoto, ChangeUser } from "../services/fetchUserServices.js";
-import { GetMyOverall, PostMyOverall, PutMyOverall, GetCrushGender, PostGenderPref, GetInterest, GetPreference, PutPreference, PostPreference } from "../services/fetchPreferenceServices.js";
+import { GetMyUser } from "../services/fetchUserServices.js";
+import { GetMyOverall, PostMyOverall, GetCrushGender, PostGenderPref, GetInterest } from "../services/fetchPreferenceServices.js";
 import { UserInfoComponent, PrefComponent, InterestTag, PrefOtherComponent, InterestOtherTag } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
-import { DeleteSuggestion } from "../services/fetchSuggestionServices.js";
 import { ShowPssWdModal, ChangePassword } from "./user/passwordContainer.js";
 import { DecodeToken } from "../utils/decode.js";
 import { ModGender } from "./user/genderContainer.js";
@@ -11,183 +10,18 @@ import { ModCrushGender } from "./user/genderContainer.js";
 import { ModDescription } from "./user/descriptionContainer.js";
 import { CheckGender, CheckCrushGender } from "./user/genderContainer.js";
 import { ChangeOverall } from "./user/overallContainer.js";
+import { ShowMyInterest, ShowOtherInterest, InterestOnClick, InterestOtherOnClick } from "./user/preferencesContainer.js";
+import { AddPhoto, BtnDelete } from "./user/photoContainer.js";
+import { handleDragStart, handleDragEnd, handleDragOver, handleDragEnter, handleDragLeave, handleDrop } from "./user/photoContainer.js";
 
 
 let userInfo = document.querySelector(".user__info");
 let userPhotoSection = document.querySelector("#photo_section");
-let dragSrcEl;
-let inputFile;
-let inputMinAge;
-let inputMaxAge;
-let inputDistance;
-let lblMinAge;
-let lblMaxAge;
-let lblDistance; 
-let photoMsj = document.querySelector("#resp_msj_photo");
 const modalPsswd = document.querySelector(".modal");
 const modalCloseBtn = document.querySelector(".modal__close");
 const changePasswdBtn = document.querySelector("#btn_change_passwd");
 const modal2 = document.querySelector('.modal_2');
 const modal3 = document.querySelector('.modal_3');
-
-
-/* Drag & Drop */
-function handleDragStart(e) {
-
-    this.style.opacity = '0.4';
-    dragSrcEl = this;
-    e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/html', this.innerHTML);
-}
-
-function handleDragEnd(e) {
-
-    this.style.opacity = '1';
-
-    items.forEach(function (item) {
-        item.classList.remove('over');
-    });
-}
-
-function handleDragOver(e) {
-    if (e.preventDefault) {
-        e.preventDefault();
-    }
-
-    return false;
-}
-
-function handleDragEnter(e) {
-    this.classList.add('over');
-}
-
-function handleDragLeave(e) {
-    this.classList.remove('over');
-    this.style.opacity = '1';
-}
-
-function handleDrop(e) {
-    //e.stopPropagation(); // stops the browser from redirecting.
-    e.preventDefault();
-    this.style.opacity = '1';
-    if (dragSrcEl !== this) {
-            dragSrcEl.innerHTML = this.innerHTML;
-            this.innerHTML = e.dataTransfer.getData('text/html');
-            ModPhotos();
-        }
-    return false;
-}
-
-/* Otros */
-async function ModPreference(own, id, value) {
-
-    let oldResponse = await GetPreference();
-    let oldValues = oldResponse.filter((element) => element.interest.id === id)[0] || {};
-    let request;
-
-    if(own){
-        request = {
-            interestId: id,
-            ownInterest: value,
-            like: oldValues.like
-        }
-    }else{
-        request = {
-            interestId: id,
-            ownInterest: oldValues.ownInterest,
-            like: value
-        }
-    }
-
-    let response = await PutPreference(request);
-
-    if (response && response.response && !own){
-        await DeleteSuggestion(0);
-    }
-
-    return response;
-}
-
-
-async function CreatePreference(own, id) {
-
-    let request;
-
-    if(own){
-        request = {
-            interestId: id,
-            ownInterest: true
-        }
-    }else{
-        request = {
-            interestId: id,
-            like: true
-        }
-    }
-
-    let response = await PostPreference(request);
-
-    if (response && response.response && !own){
-        await DeleteSuggestion(0);
-    }
-
-    return response;
-}
-
-const ModPhotos = async () => {
-
-    let photoArray = [];
-    let order = document.querySelectorAll(".drag__img");
-    order.forEach( (item) => {
-        let id = item.id;
-        let idx = id.search("_") + 1;
-        let photoId = id.slice(idx, id.length);
-        photoArray.push(parseInt(photoId));
-    })
-
-    let request = {
-        images: photoArray
-    }
-
-    let response = await ChangeUser(request);
-
-    if(response !== null) {
-        BtnDelete(document.querySelectorAll(".btn_delete"));
-    }
-}
-
-const AddPhoto = async () => {
-
-    const formData = new FormData();
-    formData.append('file', inputFile.files[0]);
-    let response = await UploadPhoto(formData);
-
-    if(response == -1){
-        photoMsj.innerHTML = "Se ha alcanzado el limite de fotos permitidas(max=6).";
-        photoMsj.style.color = "#F02E3A";
-        photoMsj.style.display = "block";
-        setTimeout(() => {
-            photoMsj.style.display = "none";
-        }, 3000);
-    }
-    else{
-        photoMsj.style.display = "block";
-        RenderUserPhotos(response.response.images);
-        
-        setTimeout(() => {
-            photoMsj.style.display = "none";
-        }, 3000);     
-    }   
-}
-
-async function BtnDelete(elements) {
-    elements.forEach((element) => {
-        element.addEventListener('click', () => {
-            element.parentElement.remove();
-            ModPhotos();
-        })
-    })
-}
 
 
 /* Change Password Container */
@@ -198,82 +32,8 @@ modalCloseBtn.addEventListener('click', (e)=> {
 
 changePasswdBtn.addEventListener('click', ChangePassword);
 
+
 /* Modal Interests methods */
-
-const ShowMyInterest = async () =>
-{
-    let response = await GetPreference();
-
-    response.forEach((item) => {
-        if(item.ownInterest) {
-            let intId = "#my_int_" + item.interest.id;
-            let interestContainer = document.querySelector(intId);
-            interestContainer.classList.add('interest_item_sel');
-        }
-    })
-}
-
-const ShowOtherInterest = async () =>
-{
-    let response = await GetPreference();
-
-    response.forEach((item) => {
-        if(item.like) {
-
-            let intOtherId = "#other_int_" + item.interest.id;
-            let interestOtherContainer = document.querySelector(intOtherId);
-            interestOtherContainer.classList.add('interest_item_sel_other');
-        }
-    })
-}
-
-
-async function InterestOnClick(e) 
-{
-    let intIdString = this.id;
-    let idx = intIdString.lastIndexOf("_") + 1;
-    let intId = intIdString.slice(idx, intIdString.length);
-    let sendId = parseInt(intId);
-
-
-    if(this.classList.contains('interest_item_sel'))
-    {
-        this.classList.remove('interest_item_sel');
-        
-        await ModPreference(true, sendId, false);
-    }
-    else
-    {
-        this.classList.add('interest_item_sel');
-        let response = await ModPreference(true, sendId, true);
-        if(response != undefined && response.message == "La preferencia ingresada no existe"){
-            CreatePreference(true, sendId);
-        }
-    }
-}
-
-async function InterestOtherOnClick(e)
-{
-    let intIdString = this.id;
-    let idx = intIdString.lastIndexOf("_") + 1;
-    let intId = intIdString.slice(idx, intIdString.length);
-    let sendId = parseInt(intId);
-
-    if(this.classList.contains('interest_item_sel_other'))
-    {
-        this.classList.remove('interest_item_sel_other');
-        await ModPreference(false, sendId, false);
-    }
-    else
-    {
-        this.classList.add('interest_item_sel_other');
-        let response = await ModPreference(false, sendId, true);
-        if(response != undefined && response.message == "La preferencia ingresada no existe"){
-            CreatePreference(false, sendId);
-        }
-    }
-}
-
 async function CloseModal()
 {
     if(modal2.classList.contains("modal--show-2"))
@@ -288,7 +48,6 @@ async function CloseModal()
 
 
 /* Renders */
-
 async function RenderPrefModal() {
 
     const prefContainer = document.querySelector('.pref_container');
@@ -358,7 +117,8 @@ async function RenderPrefOtherModal() {
     ShowOtherInterest();
 }
 
-async function RenderUserPhotos(photoList) {
+
+export async function RenderUserPhotos(photoList) {
 
     userPhotoSection.innerHTML = '';
 
@@ -378,13 +138,13 @@ async function RenderUserPhotos(photoList) {
         item.addEventListener('drop', handleDrop);
     });
 
-    inputFile = document.getElementById('input_id');
+    let inputFile = document.getElementById('input_id');
     inputFile.addEventListener('input', AddPhoto);
 
     BtnDelete(document.querySelectorAll(".btn_delete"));
 }
 
-/* Agregar manejo de errores: ej: si no existen preferencias del usuario */
+
 const RenderUser = async () =>
 {
     let user = await GetMyUser();
@@ -454,12 +214,12 @@ const RenderUser = async () =>
     });
 
     /* Overall: edad y distancia */
-    lblMinAge = document.querySelector('#lbl_min_age');
-    lblMaxAge = document.querySelector('#lbl_max_age');
-    lblDistance = document.querySelector('#distance');
+    let lblMinAge = document.querySelector('#lbl_min_age');
+    let lblMaxAge = document.querySelector('#lbl_max_age');
+    let lblDistance = document.querySelector('#distance');
 
-    inputMinAge = document.querySelector('#in_min_age');
-    inputMaxAge = document.querySelector('#in_max_age');
+    let inputMinAge = document.querySelector('#in_min_age');
+    let inputMaxAge = document.querySelector('#in_max_age');
     
     let min,max;
 
@@ -486,7 +246,7 @@ const RenderUser = async () =>
     });
     inputMaxAge.addEventListener('change', (ChangeOverall));
 
-    inputDistance = document.querySelector('#in_distance');
+    let inputDistance = document.querySelector('#in_distance');
 
     inputDistance.addEventListener('input', async () => {
         lblDistance.innerHTML = inputDistance.value + " km";
@@ -508,7 +268,7 @@ const RenderUser = async () =>
         await PostGenderPref(bodyReq);
         bodyReq.genderId = 3;
         await PostGenderPref(bodyReq);
-    }else{
+    } else {
         gList = genderPrefArray.map((item) => {
             return item.genderId;
         });
