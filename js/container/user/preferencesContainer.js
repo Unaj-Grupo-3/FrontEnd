@@ -105,7 +105,9 @@ export async function InterestOnClick(e)
     {
         this.classList.add('interest_item_sel');
         let response = await ModPreference(true, sendId, true);
-        if(response != undefined && response.message == "La preferencia ingresada no existe"){
+        console.log("Respuesta del put");
+        console.log(response);
+        if(response == null ) {
             CreatePreference(true, sendId);
         }
     }
@@ -128,7 +130,7 @@ export async function InterestOtherOnClick(e)
     {
         this.classList.add('interest_item_sel_other');
         let response = await ModPreference(false, sendId, true);
-        if(response != undefined && response.message == "La preferencia ingresada no existe"){
+        if(response == undefined ) {
             CreatePreference(false, sendId);
         }
     }
