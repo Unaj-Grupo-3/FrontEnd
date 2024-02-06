@@ -130,7 +130,7 @@ export async function InterestOtherOnClick(e)
     {
         this.classList.add('interest_item_sel_other');
         let response = await ModPreference(false, sendId, true);
-        if(response == undefined ) {
+        if(response == null ) {
             CreatePreference(false, sendId);
         }
     }
