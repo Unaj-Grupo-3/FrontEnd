@@ -117,7 +117,7 @@ export const PutPreference = async (request) =>
             body: JSON.stringify(request)
         })
 
-        if(response.ok){
+        if(response.ok) {
             result = await response.json();
 
             return result;
@@ -128,7 +128,7 @@ export const PutPreference = async (request) =>
     }
     catch(error)
     {
-        
+        return null;
     }
 }
 
