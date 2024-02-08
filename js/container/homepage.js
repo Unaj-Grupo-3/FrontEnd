@@ -60,7 +60,7 @@ if (matchsNew != undefined && matchsNew.length > 0) {
     imagesNew.push({id: 0, url: firstSuggestionNew.userInfo.images});
     console.log("FirstSuggestionNew");
     console.log(firstSuggestionNew);
-    firstSuggestion = {name: firstSuggestionNew.userInfo.name, lastName: firstSuggestionNew.userInfo.lastName, images: imagesNew, userId: firstSuggestionNew.userInfo.userId, matchId: firstSuggestionNew.matchId, matchView1: firstSuggestionNew.view1, matchView2: firstSuggestionNew.view2};
+    firstSuggestion = {name: firstSuggestionNew.userInfo.name, lastName: firstSuggestionNew.userInfo.lastName, images: imagesNew, userId: firstSuggestionNew.userInfo.userId, matchId: firstSuggestionNew.matchId, user1: firstSuggestionNew.user1, user2: firstSuggestionNew.user2};
     console.log("FirstSuggestion2");
     console.log(firstSuggestion);
     showModalMatch();
@@ -193,15 +193,17 @@ async function likeDislike(action, userId){
     }, 2000);
 }
 
-function renderMatch(){
+function renderMatch() {
+
     let fullName = firstSuggestion.name + ' ' + firstSuggestion.lastName;
     let photoMatch;
-    if (firstSuggestion.images.length > 0){        
+    if (firstSuggestion.images.length > 0) {        
         photoMatch = firstSuggestion.images[0].url;
     } 
     else{
         photoMatch = '../img/user-default.png', 0;
     }
+
     let modalBody = document.getElementById("modalMatchBody");
     modalBody.innerHTML = RenderModalMatch(fullName, photoMatch);  
 
@@ -211,31 +213,29 @@ function renderMatch(){
         setTimeout(() => {
             window.location = '../../views/Chat.html'
         }, 1000);
-    })
+    });
 
-    //Puede afectar que se repitan los match mostrados?
-    // setTimeout(() => {
-    //     var locModalImg = document.getElementById('img-animation-match');
-    //     locModalImg.classList.remove("show-animation");
-    // }, 1000);
+    setTimeout(() => {
+        var locModalImg = document.getElementById('img-animation-match');
+        locModalImg.classList.remove("show-animation");
+    }, 1000);
 }
 
 async function updateMatchView() {
 
     let request;
-
-    if(userId == firstSuggestion.matchView1) {
+    if(userId == firstSuggestion.user1) {
         request = {
             user1: userId,
             user2: firstSuggestion.userId
         }
     }
-    else if(userId == firstSuggestion.matchView2) {
+    else if(userId == firstSuggestion.user2) {
         request = {
             user1: firstSuggestion.userId,
             user2: userId
         }
     }
-    
+
     await UpdateMatch(request);
 }
