@@ -9,11 +9,9 @@ import { GetMyMatchs, UpdateMatch } from "../services/fetchMatchServices.js";
 
 let userId;
 let suggestions = await GetMySuggestions();
-console.log("mis sugerencias");
-console.log(suggestions.suggestedUsers);
+
 let matchsMe = await GetMyMatchs();
-console.log("Mis matches");
-console.log(matchsMe);
+
 let matchsNew;
 document.getElementById("spinner-container").classList.add('spinner-hidden');
 
@@ -50,25 +48,22 @@ function showModalMatch(){
 
 buttonModalMatch();
 
-console.log("largo de matchnew");
-console.log(matchsNew.length);
-if (matchsNew.length > 0) {
-    console.log("Entro en match news > 0");
+
+if (matchsNew != undefined && matchsNew.length > 0) {
+    
     let firstSuggestionNew = matchsNew.pop();
-    console.log("Primera nueva sugerencia");
-    console.log(firstSuggestionNew);
-    console.log(matchsNew.length);
+    
     let imagesNew = [];
     imagesNew.push({id: 0, url: firstSuggestionNew.userInfo.images});
     firstSuggestion = {name: firstSuggestionNew.userInfo.name, lastName: firstSuggestionNew.userInfo.lastName, images: imagesNew, userId: firstSuggestionNew.userInfo.userId, matchId: firstSuggestionNew.matchId};
     showModalMatch();
 }else{
-    console.log("Entro en match news = 0");
+    
     if(suggestions && suggestions.suggestedUsers != undefined){    
         renderSuggestion();
     }
     else{
-        console.log("Entro en hiddenSuggestions");
+        
         hiddenSuggestions();
     }
 }
