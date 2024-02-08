@@ -9,11 +9,9 @@ import { GetMyMatchs, UpdateMatch } from "../services/fetchMatchServices.js";
 
 let userId;
 let suggestions = await GetMySuggestions();
-console.log("mis sugerencias");
-console.log(suggestions.suggestedUsers);
+
 let matchsMe = await GetMyMatchs();
-console.log("Mis matches");
-console.log(matchsMe);
+
 let matchsNew;
 document.getElementById("spinner-container").classList.add('spinner-hidden');
 
@@ -27,7 +25,10 @@ let emptySuggestions = document.getElementById('empty-suggestions');
 
 if(matchsMe && matchsMe.response && matchsMe.response.matches && matchsMe.response.matches.length > 0) {
     userId = matchsMe.response.userMe.userId;
-    matchsNew = matchsMe.response.matches.filter(x => (x.view1 == false && x.user1 == userId) || (x.view2 == false && x.user2 == userId) );   //deberia filtrar los match nuevos no vistos 
+    matchsNew = matchsMe.response.matches.filter(x => (x.view1 == false && x.user1 == userId) || (x.view2 == false && x.user2 == userId) );   //deberia filtrar los match nuevos no vistos
+    matchsNew.forEach((x) => {
+        console.log(x);
+    }); 
 }
 
 $('#modalMatch').on('hidden.bs.modal', function () {
@@ -50,25 +51,26 @@ function showModalMatch(){
 
 buttonModalMatch();
 
-console.log("largo de matchnew");
-console.log(matchsNew.length);
-if (matchsNew.length > 0) {
-    console.log("Entro en match news > 0");
+
+if (matchsNew != undefined && matchsNew.length > 0) {
+    
     let firstSuggestionNew = matchsNew.pop();
-    console.log("Primera nueva sugerencia");
-    console.log(firstSuggestionNew);
-    console.log(matchsNew.length);
+    
     let imagesNew = [];
     imagesNew.push({id: 0, url: firstSuggestionNew.userInfo.images});
-    firstSuggestion = {name: firstSuggestionNew.userInfo.name, lastName: firstSuggestionNew.userInfo.lastName, images: imagesNew, userId: firstSuggestionNew.userInfo.userId, matchId: firstSuggestionNew.matchId};
+    console.log("FirstSuggestionNew");
+    console.log(firstSuggestionNew);
+    firstSuggestion = {name: firstSuggestionNew.userInfo.name, lastName: firstSuggestionNew.userInfo.lastName, images: imagesNew, userId: firstSuggestionNew.userInfo.userId, matchId: firstSuggestionNew.matchId, matchView1: firstSuggestionNew.view1, matchView2: firstSuggestionNew.view2};
+    console.log("FirstSuggestion2");
+    console.log(firstSuggestion);
     showModalMatch();
 }else{
-    console.log("Entro en match news = 0");
+    
     if(suggestions && suggestions.suggestedUsers != undefined){    
         renderSuggestion();
     }
     else{
-        console.log("Entro en hiddenSuggestions");
+        
         hiddenSuggestions();
     }
 }
@@ -211,20 +213,29 @@ function renderMatch(){
         }, 1000);
     })
 
-    setTimeout(() => {
-        var locModalImg = document.getElementById('img-animation-match');
-        locModalImg.classList.remove("show-animation");
-    }, 1000);
+    //Puede afectar que se repitan los match mostrados?
+    // setTimeout(() => {
+    //     var locModalImg = document.getElementById('img-animation-match');
+    //     locModalImg.classList.remove("show-animation");
+    // }, 1000);
 }
 
 async function updateMatchView() {
-    console.log("Sugerencia:");
-    console.log(firstSuggestion.userId);
-    let request = {
-        User1: userId,
-        User2: firstSuggestion.userId
+
+    let request;
+
+    if(userId == firstSuggestion.matchView1) {
+        request = {
+            user1: userId,
+            user2: firstSuggestion.userId
+        }
     }
-    console.log("PUT req");
-    console.log(request);
+    else if(userId == firstSuggestion.matchView2) {
+        request = {
+            user1: firstSuggestion.userId,
+            user2: userId
+        }
+    }
+    
     await UpdateMatch(request);
 }
