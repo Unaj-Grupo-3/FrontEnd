@@ -25,7 +25,7 @@ let emptySuggestions = document.getElementById('empty-suggestions');
 
 if(matchsMe && matchsMe.response && matchsMe.response.matches && matchsMe.response.matches.length > 0) {
     userId = matchsMe.response.userMe.userId;
-    matchsNew = matchsMe.response.matches.filter(x => (x.view1 == false && x.user1 == userId) || (x.view2 == false && x.user2 == userId) );   //deberia filtrar los match nuevos no vistos
+    matchsNew = matchsMe.response.matches.filter(x => (x.view1 == false && x.user1 == userId) || (x.view2 == false && x.user2 == userId) );   
     matchsNew.forEach((x) => {
         console.log(x);
     }); 
@@ -58,11 +58,9 @@ if (matchsNew != undefined && matchsNew.length > 0) {
     
     let imagesNew = [];
     imagesNew.push({id: 0, url: firstSuggestionNew.userInfo.images});
-    console.log("FirstSuggestionNew");
-    console.log(firstSuggestionNew);
+
     firstSuggestion = {name: firstSuggestionNew.userInfo.name, lastName: firstSuggestionNew.userInfo.lastName, images: imagesNew, userId: firstSuggestionNew.userInfo.userId, matchId: firstSuggestionNew.matchId, user1: firstSuggestionNew.user1, user2: firstSuggestionNew.user2};
-    console.log("FirstSuggestion2");
-    console.log(firstSuggestion);
+
     showModalMatch();
 }else{
     
