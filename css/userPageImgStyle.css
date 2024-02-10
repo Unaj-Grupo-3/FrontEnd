@@ -1,0 +1,39 @@
+
+
+
+.drag__container {
+    cursor: pointer;
+}
+
+.drag__container.over {
+    border: 2px dotted black;
+}
+
+.drag__img {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+    padding: 0;
+}
+
+.btn_delete {
+    height: min-content;
+    width: min-content;
+    background: rgb(196, 15, 15);
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+}
+
+.icono-delete {
+    color: #ffffff;
+    font-weight: 100;
+    font-size: 15px !important;
+    margin: 0;
+    padding: 0.4em;
+}
