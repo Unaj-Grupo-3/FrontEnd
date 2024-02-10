@@ -97,12 +97,11 @@
     border-radius: 4px;
     width: 100%;
     padding: 0.5vw 1vw;
-    /*margin: 1vw 0;*/
-    /*margin: 0.5rem 0 1rem 0;*/
     margin: 0;
     display: inline-block;
     box-sizing: border-box;
 }
+
 
 /* Modal 2*/
 .modal_2 {
@@ -179,56 +178,6 @@
     color: white;
 }
 
-/* Modal 3 */
-.modal_3 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #111111bd;
-    display: flex;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 3;
-}
-
-.modal--show-3 {
-    opacity: 1;
-    pointer-events: unset;
-}
-
-.modal__container_3 {
-    width: 50%;
-    background-color: var(--blanco-rosa);
-    max-height: 90%;
-    margin: auto;
-    border-radius: 6px;
-    padding: 3em 2.5em;
-    display: grid;
-    gap: 1em;
-    place-items: center;
-    grid-auto-columns: 100%;
-    border: 1px solid var(--first-color);
-    text-align: center;
-    overflow-y: scroll;
-}
-
-.interest_other_item {
-    text-decoration: none;
-    outline: none;
-    border: 1px solid var(--first-color);
-    border-radius: 5px;
-    margin: 0 1em 1em 0;
-    padding: 0.5em;
-    color: black;
-    background-color: white;
-}
-
-.interest_item_sel_other {
-    background-color: var(--first-color);
-    color: white;
-}
 
 /* gral modales */
 .btn_close_gral {

@@ -68,15 +68,6 @@ export const PrefComponent = (id, description) =>
 </div>
 `
 
-// export const PrefOtherComponent = (id, description) =>
-
-// `
-// <h4 class="interest_cat">${description}</h4>
-// <div class="interests_container" id="cat2_${id}">
-        
-// </div>
-// `
-
 
 export const InterestTag = (id, name) =>
 
@@ -84,8 +75,4 @@ export const InterestTag = (id, name) =>
 <a class="interest_item" id="my_int_${id}">${name}</a>
 `
 
-// export const InterestOtherTag = (id, name) =>
 
-// `
-// <a class="interest_other_item" id="other_int_${id}">${name}</a>
-// `
