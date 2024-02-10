@@ -100,38 +100,39 @@ export async function InterestOnClick(e)
         this.classList.remove('interest_item_sel');
         
         await ModPreference(true, sendId, false);
+        await ModPreference(false, sendId, false);
     }
     else
     {
         this.classList.add('interest_item_sel');
         let response = await ModPreference(true, sendId, true);
-        console.log("Respuesta del put");
-        console.log(response);
-        if(response == null ) {
+        let response2 = await ModPreference(false, sendId, true);
+
+        if( response == null || response2 == null ) {
             CreatePreference(true, sendId);
         }
     }
 }
 
 
-export async function InterestOtherOnClick(e)
-{
-    let intIdString = this.id;
-    let idx = intIdString.lastIndexOf("_") + 1;
-    let intId = intIdString.slice(idx, intIdString.length);
-    let sendId = parseInt(intId);
+// export async function InterestOtherOnClick(e)
+// {
+//     let intIdString = this.id;
+//     let idx = intIdString.lastIndexOf("_") + 1;
+//     let intId = intIdString.slice(idx, intIdString.length);
+//     let sendId = parseInt(intId);
 
-    if(this.classList.contains('interest_item_sel_other'))
-    {
-        this.classList.remove('interest_item_sel_other');
-        await ModPreference(false, sendId, false);
-    }
-    else
-    {
-        this.classList.add('interest_item_sel_other');
-        let response = await ModPreference(false, sendId, true);
-        if(response == null ) {
-            CreatePreference(false, sendId);
-        }
-    }
-}
+//     if(this.classList.contains('interest_item_sel_other'))
+//     {
+//         this.classList.remove('interest_item_sel_other');
+//         await ModPreference(false, sendId, false);
+//     }
+//     else
+//     {
+//         this.classList.add('interest_item_sel_other');
+//         let response = await ModPreference(false, sendId, true);
+//         if(response == null ) {
+//             CreatePreference(false, sendId);
+//         }
+//     }
+// }

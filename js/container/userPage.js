@@ -1,6 +1,6 @@
 import { GetMyUser } from "../services/fetchUserServices.js";
 import { GetMyOverall, PostMyOverall, GetCrushGender, PostGenderPref, GetInterest } from "../services/fetchPreferenceServices.js";
-import { UserInfoComponent, PrefComponent, InterestTag, PrefOtherComponent, InterestOtherTag } from "../components/UserInfoComponent.js";
+import { UserInfoComponent, PrefComponent, InterestTag } from "../components/UserInfoComponent.js";
 import { UserPageImg } from "../components/UserPageImg.js";
 import { AddPhotoBtn } from "../components/AddPhotoBtn.js";
 import { ShowPssWdModal, ChangePassword } from "./user/passwordContainer.js";
@@ -10,7 +10,7 @@ import { ModCrushGender } from "./user/genderContainer.js";
 import { ModDescription } from "./user/descriptionContainer.js";
 import { CheckGender, CheckCrushGender } from "./user/genderContainer.js";
 import { ChangeOverall } from "./user/overallContainer.js";
-import { ShowMyInterest, ShowOtherInterest, InterestOnClick, InterestOtherOnClick } from "./user/preferencesContainer.js";
+import { ShowMyInterest, InterestOnClick } from "./user/preferencesContainer.js";
 import { AddPhoto, BtnDelete } from "./user/photoContainer.js";
 import { handleDragStart, handleDragEnd, handleDragOver, handleDragEnter, handleDragLeave, handleDrop } from "./user/photoContainer.js";
 
@@ -21,7 +21,6 @@ const modalPsswd = document.querySelector(".modal");
 const modalCloseBtn = document.querySelector(".modal__close");
 const changePasswdBtn = document.querySelector("#btn_change_passwd");
 const modal2 = document.querySelector('.modal_2');
-const modal3 = document.querySelector('.modal_3');
 
 
 /* Change Password Container */
@@ -39,10 +38,6 @@ async function CloseModal()
     if(modal2.classList.contains("modal--show-2"))
     {
         modal2.classList.remove("modal--show-2");
-    }
-    if(modal3.classList.contains("modal--show-3"))
-    {
-        modal3.classList.remove("modal--show-3");
     }
 }
 
@@ -67,8 +62,6 @@ async function RenderPrefModal() {
         ints4Cat.forEach((item) =>
         {
             intContainer.innerHTML += InterestTag(item.id, item.description);
-
-            let intId = "#my_int_" + item.id;
         });
     })
 
@@ -80,41 +73,6 @@ async function RenderPrefModal() {
     });
 
     ShowMyInterest();
-}
-
-
-async function RenderPrefOtherModal() {
-
-    const prefOtherContainer = document.querySelector('.pref_container_other');
-    const modalCloseGral3 = document.querySelector('#btn_close_gral_3');
-
-    let categories = await GetInterest();
-
-    categories.forEach((cat) =>
-    {
-        let ints4Cat = cat.interes;
-        let contName = '#cat2_' + cat.id;
-
-        prefOtherContainer.innerHTML += PrefOtherComponent(cat.id, cat.description);
-        
-        let intContainer = document.querySelector(contName);
-
-        ints4Cat.forEach((item) =>
-        {
-            intContainer.innerHTML += InterestOtherTag(item.id, item.description);
-
-            let intId = "#other_int_" + item.id;
-        });
-    })
-
-    modalCloseGral3.addEventListener('click', CloseModal);
-
-    let tagContainers = document.querySelectorAll('.interest_other_item');
-    tagContainers.forEach((item) =>{
-        item.addEventListener('click', InterestOtherOnClick);
-    });
-
-    ShowOtherInterest();
 }
 
 
@@ -158,15 +116,7 @@ const RenderUser = async () =>
     userInfo.innerHTML = '';
     userPhotoSection.innerHTML = '';
 
-    /*if( typeof user.image === 'undefined'){
-        image = "http://127.0.0.1:5501/img/user-default.png";
-    }
-    else{
-        image = user.image[0];
-    }*/
-
     /* Renderizo UserInfo section */
-
     let birthday = user.birthday;
     let edad;
     let hoy = new Date();
@@ -253,6 +203,7 @@ const RenderUser = async () =>
     });
 
     inputDistance.addEventListener('change', ChangeOverall);
+
     /* Que busca el usuario */
     let gList;
     let genderPrefArray = await GetCrushGender();
@@ -281,18 +232,10 @@ const RenderUser = async () =>
         item.addEventListener('change', ModCrushGender);
     })
 
-    const btnAboutOther = document.querySelector('#btn_about_other');
-    btnAboutOther.addEventListener('click', () =>
-    {
-        modal3.classList.add("modal--show-3");
-    });
-
     /* Modal Intereses */
     RenderPrefModal();
-    RenderPrefOtherModal();
 
     /* Renderizo UserPhotos section */
-
     RenderUserPhotos(images);
 }
 

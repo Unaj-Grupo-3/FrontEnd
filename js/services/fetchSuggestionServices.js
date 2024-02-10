@@ -14,14 +14,13 @@ export const GetMySuggestions = async () =>
             }
         })
         result = await response.json();
-        if(response.ok){
+        if(response.ok) {
             return result;
         }
     } catch (error) {
-        
+        console.log(error);
     }
     
-    //console.log(result)
     return result;
 }
 
@@ -43,7 +42,7 @@ export const DeleteSuggestion = async (userId) =>
             body: JSON.stringify(request)
         })
 
-        if(response.ok){
+        if(response.ok) {
             result = await response.json();
             return result;
         }
@@ -53,5 +52,6 @@ export const DeleteSuggestion = async (userId) =>
     }
     catch(error)
     {
+        console.log(error);
     }
 }
