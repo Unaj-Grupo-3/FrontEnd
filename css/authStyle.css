@@ -221,6 +221,10 @@ main{
   background-color: var(--gris-border);
 }
 
+#errorMail, #errorPassword, #errorPassword2 {
+  font-size: 0.8em;
+}
+
 #buttonSubmit{
   box-shadow: 6px 6px 12px #c5c5c5,
   -6px -6px 12px #ffffff;

@@ -104,28 +104,6 @@ export function addEventListenerPreference(){
             return interestBody;
         });
             
-
-        let likeInterest = (document.getElementById("your_interest").querySelectorAll(".interest_item_sel"));
-        
-        Array.from(likeInterest).forEach(interest => {
-            let idString = interest.id;
-            let idx = idString.split("_")[2];
-
-            let find = interests.find(i => i.interestId == idx);
-
-
-            if(find){
-                find.like = true;
-            }else{
-                let interestBody  =  {
-                    interestId: parseInt(idx),
-                    ownInterest: false,
-                    like: true
-            }
-            interests.push(interestBody);
-            }
-        });
-
         async function addInterest(interest){
             await PostPreference(interest);
         }
